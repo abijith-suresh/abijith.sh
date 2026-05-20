@@ -10,7 +10,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    tags: z.array(z.string()),
+    tags: z.array(z.string().min(1).trim()),
     date: z.coerce.date(),
     github: z.url().optional(),
     demo: z.url().optional(),
@@ -27,7 +27,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
-    tags: z.array(z.string()).default([]),
+    tags: z.array(z.string().min(1).trim()).default([]),
     draft: z.boolean().default(false),
     heroImage: z.string().optional(),
   }),
