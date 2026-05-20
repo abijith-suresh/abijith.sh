@@ -1,0 +1,33 @@
+---
+import FooterLink from "@/components/FooterLink.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import SplitSection from "@/components/SplitSection.astro";
+import { getAllProjects } from "@/lib/projects";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  limit?: number;
+  class?: string;
+}
+
+const { limit = 3, class: className } = Astro.props;
+const allProjects = await getAllProjects();
+const recentProjects = allProjects.slice(0, limit);
+---
+
+{
+  recentProjects.length > 0 && (
+    <section class:list={cn("flex flex-col gap-y-6", className)}>
+      <SplitSection label="Projects">
+        <div class="flex flex-col gap-3">
+          {recentProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+          <div class="pt-2">
+            <FooterLink href="/projects">View all projects</FooterLink>
+          </div>
+        </div>
+      </SplitSection>
+    </section>
+  )
+}

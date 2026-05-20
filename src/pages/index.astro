@@ -1,19 +1,10 @@
 ---
 import Hero from "@/components/Hero.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 import RecentPosts from "@/components/RecentPosts.astro";
-import FooterLink from "@/components/FooterLink.astro";
-import SplitSection from "@/components/SplitSection.astro";
+import RecentProjects from "@/components/RecentProjects.astro";
 import Container from "@/components/ui/Container.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { getAllBlogPosts } from "@/lib/blog";
-import { getAllProjects } from "@/lib/projects";
-
-const allPosts = await getAllBlogPosts();
-const hasPosts = allPosts.length > 0;
-const allProjects = await getAllProjects();
-const hasProjects = allProjects.length > 0;
 ---
 
 <Layout
@@ -25,33 +16,16 @@ const hasProjects = allProjects.length > 0;
   <div class="w-full mx-auto flex grow flex-col page-enter">
     <Hero />
 
-    {
-      hasProjects && (
-        <section class="pb-16 page-enter page-enter-delay-1">
-          <Container>
-            <SplitSection label="Projects">
-              <div class="flex flex-col gap-3">
-                {allProjects.map((project) => (
-                  <ProjectCard project={project} />
-                ))}
-                <div class="pt-2">
-                  <FooterLink href="/projects">View all projects</FooterLink>
-                </div>
-              </div>
-            </SplitSection>
-          </Container>
-        </section>
-      )
-    }
+    <section class="pb-16 page-enter page-enter-delay-1">
+      <Container>
+        <RecentProjects />
+      </Container>
+    </section>
 
-    {
-      hasPosts && (
-        <section class="pb-16 page-enter page-enter-delay-2">
-          <Container>
-            <RecentPosts />
-          </Container>
-        </section>
-      )
-    }
+    <section class="pb-16 page-enter page-enter-delay-2">
+      <Container>
+        <RecentPosts />
+      </Container>
+    </section>
   </div>
 </Layout>
