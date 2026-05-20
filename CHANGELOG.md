@@ -8,37 +8,26 @@ This changelog follows the categories and intent of [Keep a Changelog](https://k
 
 ### Added
 
-- Featured Projects section on the landing page, pulling project cards from the projects collection.
-- Bricolage Grotesque variable font (weight 200–800, optical sizing 12–96) as the display typeface, establishing a two-family system: Bricolage for identity surfaces (hero, page titles, section headings), Satoshi for content surfaces (body, cards, nav, meta).
-- Two-layered section labels across all pages: a bold Bricolage Grotesque heading paired with a Satoshi muted sublabel on the row below, with "View all" utility links baseline-aligned to the sublabel.
+- A Swiss-inspired, dark-only visual system with stronger typography hierarchy, accent rules, noise texture, refreshed monogram/favicon assets, and new shared layout primitives such as `PageShell`, `PageHeader`, `Button`, `Tag`, `Container`, `SplitSection`, and `EmptyState`.
+- An animated mobile navigation drawer, a project detail-page table of contents sidebar, scroll-reveal card motion, richer empty states, and semantic MDX callout variants.
+- Optional `heroImage` support in the blog and project content schemas, plus updated MDX-first scaffolding templates and scripts for new content.
 
 ### Changed
 
-- Rewrote the hero greeting to a conversational first-person voice ("Hey, I'm Abijith"), shortened the intro copy, and updated the role from "Software Developer" to "Backend Engineer".
-- Widened the hero accent rule from `w-12` to `w-20` so it reads as a confident compositional element rather than a tick mark.
-- Adjusted hero spacing to `pt-24 md:pt-32` for generous breathing room; tightened content sections to `py-8`.
-- Made content card hover arrows visible at ~40% opacity at rest, transitioning to evergreen on hover.
-- Entrance animations now play only on the first page load per session; subsequent navigations skip the staggered reveal.
-- Replaced clay accent with deep evergreen (OKLCH hue 155, chroma 0.09) across both themes.
-- Card borders restored as a static 1px element; hover uses scale(1.015) with ease-out-quint (250ms) and a tonal background deepening instead of translate-y.
-- Reduced dark theme surface chroma to 0.006–0.010 (near-neutral warm bias) to eliminate the reddish-brown cast and let the green accent read clearly.
-- Removed forced transitions from `Link.astro` and moved `card-hover` to the article wrapper in `ContentCard.astro`, fixing a cascade conflict that blocked transform animations.
-- Replaced small uppercase tracked section labels with bold display headings site-wide. Section landmarks now use `text-2xl sm:text-3xl font-bold font-display` with a `text-base` Satoshi sublabel below.
-- Moved "View all" links from the heading row to the sublabel row (`items-baseline` aligned) so the heading owns its line without competition.
-- Updated homepage section sublabels: Projects → "What I've built", Writing → "Thoughts in public".
-- Updated blog listing sublabel to "Notes, write-ups, and the occasional opinion".
-- Updated projects listing sublabel to "Shipped work, side projects, and experiments".
-- Redesigned the about page header from a centered stack to a horizontal avatar-and-name layout.
-- Rewrote all about page copy with three named narrative sections replacing the previous single-blob origin story: "What I do" (current role and craft focus at UST), "How I got here" (honest path without the usual clichés), and "This site" (matter-of-fact about what the writing is for).
-- Updated the about page tagline from "Developer, builder, writer." to "Backend engineer at UST. Kochi, Kerala."
-- Promoted "Away from the keyboard" from a visually separated aside to a peer section with the same spacing and weight as the other sections; interests now display as evergreen tag pills matching the site's tagging system.
-- Bumped the about page `h1` from `text-3xl sm:text-4xl` to `text-4xl sm:text-5xl` to restore a 1.6:1 ratio against section `h2` headings.
-- Updated DESIGN.md: two-family typography rule, section heading rule, page title hierarchy rule, and a seven-level type scale table.
+- Rebuilt the home, about, blog, projects, tags, 404, and content detail pages around a more editorial Swiss grid with split sections, stronger page headers, simplified navigation patterns, and a refreshed footer/header system.
+- Standardized all content authoring on MDX, converting existing Markdown entries, refreshing template documentation, and updating content-creation scripts to match the live schema.
+- Simplified the shared site architecture by centralizing site constants and route construction, extracting reusable content-detail and table-of-contents primitives, and tightening grouping, pagination, and content-tag helpers.
+- Refreshed `DESIGN.md` to match the current design direction and replaced brittle scaffold rendering with token-based template generation.
 
 ### Fixed
 
-- Removed `text-foreground/80` and `text-foreground/70` on the about page, which failed WCAG AA contrast on the light theme (3.21:1 and 2.69:1 respectively); replaced with full `text-foreground` (4.68:1).
-- Removed side-stripe accent divs (`w-[3px]` colored bars) from the about page, landing page, and recent posts component, in compliance with the design system's own ban on side-stripe borders.
+- Improved accessibility and consistency across breadcrumbs, tag handling, project ordering, mobile navigation, button borders, typography scaling, Expressive Code styling, pagination edge cases, and structured-data/type-check hints.
+
+### Removed
+
+- Light mode and the theme picker, along with the older theme-generation infrastructure they depended on.
+- Related-post recommendations, tag counts, detail-page back links, and other obsolete components and utilities that no longer fit the streamlined site structure.
+- Most automated tests, leaving only a placeholder test while the redesigned codebase settles.
 
 ## 2026-05-01 — Repository metadata cleanup
 
