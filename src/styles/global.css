@@ -184,15 +184,8 @@
     color: #111111;
   }
 
-  .tag-link:hover .tag-link-label,
-  .tag-link:hover .tag-link-count {
+  .tag-link:hover .tag-link-label {
     color: #111111;
-  }
-
-  .tag-link-count {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--color-muted);
   }
 
   /* ── Tag Pill ─────────────────────────────────────────────────────────── */
@@ -230,16 +223,6 @@
     color: var(--color-text);
     padding-bottom: 2px;
     border-bottom: 2px solid var(--color-accent);
-  }
-
-  /* ── Social Link ─────────────────────────────────────────────────────── */
-  .social-link {
-    color: var(--color-muted);
-    transition: color 150ms ease;
-  }
-
-  .social-link:hover {
-    color: var(--color-text);
   }
 
   /* ── Footer Link ──────────────────────────────────────────────────────── */

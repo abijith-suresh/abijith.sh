@@ -1,7 +1,5 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
-import { getAllTagsWithCount } from "@/lib/utils";
-
 type Blog = CollectionEntry<"blog">;
 
 export async function getAllBlogPosts(options?: {
@@ -21,15 +19,4 @@ export async function getAllBlogPosts(options?: {
   }
 
   return posts;
-}
-
-export async function getAllBlogTagsWithCount(): Promise<Array<{ tag: string; count: number }>> {
-  const posts = await getCollection("blog");
-  const publishedPosts = posts.filter((post) => !post.data.draft);
-  return getAllTagsWithCount(publishedPosts, (post) => post.data.tags);
-}
-
-export async function getAllBlogTags(): Promise<string[]> {
-  const tagsWithCount = await getAllBlogTagsWithCount();
-  return tagsWithCount.map((t) => t.tag);
 }

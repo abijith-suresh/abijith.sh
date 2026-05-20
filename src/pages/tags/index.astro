@@ -6,10 +6,10 @@ import EmptyState from "@/components/ui/EmptyState.astro";
 import PageShell from "@/components/ui/PageShell.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { getAllContentTagCounts } from "@/lib/content-tags";
+import { getAllContentTags } from "@/lib/content-tags";
 import { groupByFirstLetter } from "@/lib/group-by-letter";
 
-const tags = await getAllContentTagCounts();
+const tags = await getAllContentTags();
 const tagsByLetter = groupByFirstLetter(tags, (t) => t.label);
 ---
 
@@ -33,10 +33,9 @@ const tagsByLetter = groupByFirstLetter(tags, (t) => t.label);
           {tagsByLetter.map(({ letter, items }) => (
             <SplitSection label={letter}>
               <div class="flex flex-wrap gap-2">
-                {items.map(({ slug, label, totalCount }) => (
+                {items.map(({ slug, label }) => (
                   <Link href={`/tags/${slug}`} class="tag-link" prefetch="viewport">
                     <span class="tag-link-label">{label}</span>
-                    <span class="tag-link-count">{totalCount}</span>
                   </Link>
                 ))}
               </div>

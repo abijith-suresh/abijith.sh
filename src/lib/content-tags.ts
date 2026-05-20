@@ -1,46 +1,41 @@
-import { getAllBlogTagsWithCount } from "@/lib/blog";
-import { getAllProjectTagsWithCount } from "@/lib/projects";
-import { normalizeTagCounts } from "@/lib/tags";
+import { getCollection } from "astro:content";
+import { slugifyTag } from "@/lib/tags";
 
-export type TagCounts = {
+export type ContentTag = {
   slug: string;
   label: string;
-  blogCount: number;
-  projectCount: number;
-  totalCount: number;
 };
 
-export async function getAllContentTagCounts(): Promise<TagCounts[]> {
-  const blogTags = normalizeTagCounts(await getAllBlogTagsWithCount());
-  const projectTags = normalizeTagCounts(await getAllProjectTagsWithCount());
-  const tagMap = new Map<string, TagCounts>();
+function pickPreferredLabel(currentLabel: string, candidateLabel: string): string {
+  return currentLabel.localeCompare(candidateLabel, undefined, { sensitivity: "base" }) <= 0
+    ? currentLabel
+    : candidateLabel;
+}
 
-  for (const { slug, label, count } of blogTags) {
-    tagMap.set(slug, {
-      slug,
-      label,
-      blogCount: count,
-      projectCount: 0,
-      totalCount: count,
-    });
-  }
+export async function getAllContentTags(): Promise<ContentTag[]> {
+  const [posts, projects] = await Promise.all([getCollection("blog"), getCollection("projects")]);
 
-  for (const { slug, label, count } of projectTags) {
-    const existing = tagMap.get(slug);
-    if (existing) {
-      existing.projectCount = count;
-      existing.totalCount = existing.blogCount + count;
-      continue;
+  const tagMap = new Map<string, string>();
+
+  for (const post of posts) {
+    if (!post.data.draft) {
+      for (const tag of post.data.tags) {
+        const slug = slugifyTag(tag);
+        const existing = tagMap.get(slug);
+        tagMap.set(slug, existing ? pickPreferredLabel(existing, tag) : tag);
+      }
     }
-
-    tagMap.set(slug, {
-      slug,
-      label,
-      blogCount: 0,
-      projectCount: count,
-      totalCount: count,
-    });
   }
 
-  return Array.from(tagMap.values()).sort((a, b) => a.label.localeCompare(b.label));
+  for (const project of projects) {
+    for (const tag of project.data.tags) {
+      const slug = slugifyTag(tag);
+      const existing = tagMap.get(slug);
+      tagMap.set(slug, existing ? pickPreferredLabel(existing, tag) : tag);
+    }
+  }
+
+  return Array.from(tagMap.entries())
+    .map(([slug, label]) => ({ slug, label }))
+    .sort((a, b) => a.label.localeCompare(b.label));
 }

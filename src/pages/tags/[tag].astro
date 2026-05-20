@@ -8,20 +8,20 @@ import PageShell from "@/components/ui/PageShell.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getAllBlogPosts } from "@/lib/blog";
-import { getAllContentTagCounts } from "@/lib/content-tags";
+import { getAllContentTags } from "@/lib/content-tags";
 import { groupByYear } from "@/lib/group-by-year";
 import { getAllProjects, sortProjects } from "@/lib/projects";
 import { getTagHref, slugifyTag } from "@/lib/tags";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const [tagCounts, allPosts, allProjects] = await Promise.all([
-    getAllContentTagCounts(),
+  const [allContentTags, allPosts, allProjects] = await Promise.all([
+    getAllContentTags(),
     getAllBlogPosts(),
     getAllProjects(),
   ]);
 
-  return tagCounts.flatMap(({ slug, label }) => {
+  return allContentTags.flatMap(({ slug, label }) => {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.some((tag) => slugifyTag(tag) === slug)
     );
@@ -64,9 +64,6 @@ interface Props {
 }
 
 const { tagLabel, tagSlug, posts, projects, isAlias } = Astro.props;
-const postCount = posts.length;
-const projectCount = projects.length;
-const totalCount = postCount + projectCount;
 const canonicalURL = new URL(getTagHref(tagSlug), SITE.url).href;
 
 type ContentItem =
@@ -103,7 +100,7 @@ const contentByYear = groupByYear(allContent, (item) => item.date);
 
 <Layout
   title={`Tag: ${tagLabel} - ${SITE.title}`}
-  description={`Content tagged with "${tagLabel}" - ${postCount} ${postCount === 1 ? "post" : "posts"} and ${projectCount} ${projectCount === 1 ? "project" : "projects"}`}
+  description={`Content tagged with "${tagLabel}"`}
   canonicalURL={canonicalURL}
   noindex={isAlias}
   jsonLd={{ type: "website" }}
@@ -116,7 +113,6 @@ const contentByYear = groupByYear(allContent, (item) => item.date);
     ]}
     eyebrow="Tag"
     title={tagLabel}
-    subtitle={`${totalCount} ${totalCount === 1 ? "item" : "items"}${postCount > 0 && projectCount > 0 ? ` · ${postCount} ${postCount === 1 ? "post" : "posts"}, ${projectCount} ${projectCount === 1 ? "project" : "projects"}` : ""}`}
   >
     {
       allContent.length > 0 ? (
