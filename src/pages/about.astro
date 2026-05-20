@@ -1,94 +1,53 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import { AUTHOR, SITE } from "@/consts";
+import SplitSection from "@/components/SplitSection.astro";
+import Container from "@/components/ui/Container.astro";
+import PageShell from "@/components/ui/PageShell.astro";
+import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
   title={`About - ${SITE.title}`}
-  description={`Learn more about ${AUTHOR.name} - ${AUTHOR.tagline}`}
+  description={`Learn more about ${SITE.author} - ${SITE.tagline}`}
   type="profile"
   jsonLd={{ type: "person" }}
 >
-  <div class="w-full mx-auto flex grow flex-col gap-y-12 px-4 max-w-3xl pb-12 page-enter">
-    <Breadcrumb
-      items={[
-        { label: "Home", href: "/", icon: "home" },
-        { label: "About", icon: "about" },
-      ]}
-    />
-
-    <!-- Identity header: avatar + name side by side -->
-    <header class="flex items-center gap-6 page-enter page-enter-delay-1">
-      <img
-        src={AUTHOR.avatar}
-        alt={AUTHOR.name}
-        class="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover ring-2 ring-border flex-shrink-0"
-      />
-      <div>
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-foreground font-display">
-          {AUTHOR.fullName}
-        </h1>
-        <p class="mt-1.5 text-muted-foreground">{AUTHOR.tagline}</p>
-      </div>
-    </header>
-
-    <!-- Narrative sections -->
-    <div class="flex flex-col gap-12">
+  <PageShell
+    breadcrumbs={[
+      { label: "Home", href: "/", icon: "fa6-solid:house" },
+      { label: "About", icon: "fa6-solid:user" },
+    ]}
+    eyebrow={SITE.role}
+    title="About"
+    subtitle={SITE.aboutSubtitle}
+  >
+    <Container class="flex flex-col gap-12">
       <!-- Section: What I do -->
-      <section class="flex flex-col gap-4 page-enter page-enter-delay-2">
-        <div class="flex flex-col gap-1">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-display">
-            What I do
-          </h2>
-          <p class="text-base text-muted-foreground">The day job</p>
-        </div>
-        <p class="max-w-2xl text-foreground leading-relaxed">{AUTHOR.aboutWhatIDo}</p>
+      <section class="page-enter page-enter-delay-2">
+        <SplitSection label="The day job" sublabel="What I do">
+          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
+            {SITE.aboutWhatIDo}
+          </p>
+        </SplitSection>
       </section>
 
       <!-- Section: How I got here -->
-      <section class="flex flex-col gap-4 page-enter page-enter-delay-3">
-        <div class="flex flex-col gap-1">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-display">
-            How I got here
-          </h2>
-          <p class="text-base text-muted-foreground">The path</p>
-        </div>
-        <p class="max-w-2xl text-foreground leading-relaxed">{AUTHOR.aboutHowIGotHere}</p>
+      <section class="page-enter page-enter-delay-2">
+        <SplitSection label="The path" sublabel="How I got here">
+          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
+            {SITE.aboutHowIGotHere}
+          </p>
+        </SplitSection>
       </section>
 
       <!-- Section: This site -->
-      <section class="flex flex-col gap-4 page-enter page-enter-delay-3">
-        <div class="flex flex-col gap-1">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-display">
-            This site
-          </h2>
-          <p class="text-base text-muted-foreground">Why it exists</p>
-        </div>
-        <p class="max-w-2xl text-foreground leading-relaxed">{AUTHOR.aboutThisSite}</p>
+      <section class="page-enter page-enter-delay-3">
+        <SplitSection label="Why it exists" sublabel="This site">
+          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
+            {SITE.aboutThisSite}
+          </p>
+        </SplitSection>
       </section>
-
-      <!-- Section: Away from the keyboard -->
-      <section class="flex flex-col gap-4 page-enter page-enter-delay-3">
-        <div class="flex flex-col gap-1">
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-display">
-            Away from the keyboard
-          </h2>
-          <p class="text-base text-muted-foreground">When I'm not coding</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          {
-            AUTHOR.interests.map((interest) => (
-              <span
-                class="text-xs px-3 py-1.5 rounded-md font-medium"
-                style="background: var(--color-warm-muted); color: var(--color-warm);"
-              >
-                {interest}
-              </span>
-            ))
-          }
-        </div>
-      </section>
-    </div>
-  </div>
+    </Container>
+  </PageShell>
 </Layout>

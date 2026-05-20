@@ -14,7 +14,7 @@ export default [
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs["jsx-a11y-recommended"],
 
-  // Prettier integration (must be last)
+  // Prettier integration (must be last in general config)
   eslintConfigPrettier,
 
   {
@@ -51,16 +51,22 @@ export default [
     },
   },
 
+  // Scripts are Node.js CLI tools — override general rules for console and Node globals
+  {
+    files: [".scripts/**/*.js"],
+    languageOptions: {
+      globals: {
+        process: "readonly",
+        console: "readonly",
+      },
+    },
+    rules: {
+      "no-console": "off",
+    },
+  },
+
   // Ignore patterns
   {
-    ignores: [
-      "dist/",
-      ".astro/",
-      ".vercel/",
-      "node_modules/",
-      "*.config.js",
-      "*.config.mjs",
-      ".scripts/",
-    ],
+    ignores: ["dist/", ".astro/", ".vercel/", "node_modules/", "*.config.js", "*.config.mjs"],
   },
 ];

@@ -1,25 +1,27 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import Link from "@/components/Link.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
+import SplitSection from "@/components/SplitSection.astro";
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getAllBlogPosts } from "@/lib/blog";
-import { getAllContentTagCounts } from "@/lib/content-tags";
+import { getAllContentTags } from "@/lib/content-tags";
 import { groupByYear } from "@/lib/group-by-year";
 import { getAllProjects, sortProjects } from "@/lib/projects";
 import { getTagHref, slugifyTag } from "@/lib/tags";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const [tagCounts, allPosts, allProjects] = await Promise.all([
-    getAllContentTagCounts(),
+  const [allContentTags, allPosts, allProjects] = await Promise.all([
+    getAllContentTags(),
     getAllBlogPosts(),
     getAllProjects(),
   ]);
 
-  return tagCounts.flatMap(({ slug, label }) => {
+  return allContentTags.map(({ slug, label }) => {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.some((tag) => slugifyTag(tag) === slug)
     );
@@ -28,28 +30,15 @@ export async function getStaticPaths() {
       "date"
     );
 
-    const sharedProps = {
-      tagLabel: label,
-      tagSlug: slug,
-      posts: filteredPosts,
-      projects: filteredProjects,
-    };
-
-    const paths = [
-      {
-        params: { tag: slug },
-        props: { ...sharedProps, isAlias: false },
+    return {
+      params: { tag: slug },
+      props: {
+        tagLabel: label,
+        tagSlug: slug,
+        posts: filteredPosts,
+        projects: filteredProjects,
       },
-    ];
-
-    if (label !== slug) {
-      paths.push({
-        params: { tag: label },
-        props: { ...sharedProps, isAlias: true },
-      });
-    }
-
-    return paths;
+    };
   });
 }
 
@@ -58,13 +47,9 @@ interface Props {
   tagSlug: string;
   posts: CollectionEntry<"blog">[];
   projects: CollectionEntry<"projects">[];
-  isAlias: boolean;
 }
 
-const { tagLabel, tagSlug, posts, projects, isAlias } = Astro.props;
-const postCount = posts.length;
-const projectCount = projects.length;
-const totalCount = postCount + projectCount;
+const { tagLabel, tagSlug, posts, projects } = Astro.props;
 const canonicalURL = new URL(getTagHref(tagSlug), SITE.url).href;
 
 type ContentItem =
@@ -101,66 +86,35 @@ const contentByYear = groupByYear(allContent, (item) => item.date);
 
 <Layout
   title={`Tag: ${tagLabel} - ${SITE.title}`}
-  description={`Content tagged with "${tagLabel}" - ${postCount} ${postCount === 1 ? "post" : "posts"} and ${projectCount} ${projectCount === 1 ? "project" : "projects"}`}
+  description={`Content tagged with "${tagLabel}"`}
   canonicalURL={canonicalURL}
-  noindex={isAlias}
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col gap-y-8 px-4 max-w-3xl pb-12 page-enter">
-    <div class="page-enter page-enter-delay-1">
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/", icon: "home" },
-          { label: "Tags", href: "/tags", icon: "tags" },
-          { label: tagLabel, icon: "tag" },
-        ]}
-      />
-    </div>
-
-    <div class="flex flex-col gap-y-2 page-enter page-enter-delay-2">
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-display">
-        {tagLabel}
-      </h1>
-      <p class="text-base text-muted-foreground">
-        {totalCount}
-        {totalCount === 1 ? "item" : "items"}
-        {
-          postCount > 0 && projectCount > 0 && (
-            <span>
-              {" "}
-              &middot; {postCount} {postCount === 1 ? "post" : "posts"}, {projectCount}{" "}
-              {projectCount === 1 ? "project" : "projects"}
-            </span>
-          )
-        }
-      </p>
-    </div>
-
+  <PageShell
+    breadcrumbs={[
+      { label: "Home", href: "/", icon: "fa6-solid:house" },
+      { label: "Tags", href: "/tags", icon: "fa6-solid:tags" },
+      { label: tagLabel, icon: "fa6-solid:tag" },
+    ]}
+    eyebrow="Tag"
+    title={tagLabel}
+  >
     {
       allContent.length > 0 ? (
-        <div class="flex flex-col gap-8">
+        <Container class="flex flex-col gap-8">
           {contentByYear.map(({ year, items: yearContent }) => (
-            <div class="flex flex-col gap-6">
-              <div class="flex items-center gap-4 text-sm text-muted-foreground">
-                <span class="tabular-nums font-medium">{year}</span>
-                <div class="flex-1 border-t border-border/50" />
+            <SplitSection label={String(year)}>
+              <div class="flex flex-col gap-3">
+                {yearContent.map(({ type, item }) =>
+                  type === "blog" ? <BlogCard post={item} /> : <ProjectCard project={item} />
+                )}
               </div>
-              {yearContent.map(({ type, item }) =>
-                type === "blog" ? <BlogCard post={item} /> : <ProjectCard project={item} />
-              )}
-            </div>
+            </SplitSection>
           ))}
-        </div>
+        </Container>
       ) : (
-        <p class="text-muted-foreground text-center py-8">No content found with this tag.</p>
+        <EmptyState message="No content found with this tag." />
       )
     }
-
-    <Link
-      href="/tags"
-      class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-6 border-t border-border/50"
-    >
-      &larr; View all tags
-    </Link>
-  </div>
+  </PageShell>
 </Layout>

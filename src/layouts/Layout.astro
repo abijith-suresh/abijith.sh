@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import ScrollReveal from "@/components/ScrollReveal.astro";
 import SearchModal from "@/components/SearchModal.astro";
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
@@ -30,21 +31,17 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -70,40 +67,26 @@ const {
 
     <slot name="head" />
   </head>
-  <body class="flex h-fit min-h-screen flex-col gap-y-6">
+  <body class="flex h-fit min-h-screen flex-col">
     <header
-      class="bg-background/50 sticky top-0 z-50 backdrop-blur-sm"
+      class="bg-[var(--color-base)] sticky top-0 z-50 border-b border-[var(--color-border)]"
       style="view-transition-name: site-header;"
     >
       <Header />
       <slot name="table-of-contents" />
     </header>
-    <main
-      class="w-full mx-auto flex grow flex-col gap-y-6 px-4"
-      style="view-transition-name: page-main;"
-    >
+    <main class="w-full mx-auto flex grow flex-col" style="view-transition-name: page-main;">
       <slot />
     </main>
     <div style="view-transition-name: site-footer;">
       <Footer />
     </div>
     <SearchModal />
+    <ScrollReveal />
 
-    <script is:inline data-astro-rerun>
-      (() => {
-        function getSystemTheme() {
-          return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-
-        // Get stored theme or default to system preference
-        const storedTheme = localStorage?.getItem("theme");
-        const effectiveTheme =
-          storedTheme && ["dark", "light"].includes(storedTheme) ? storedTheme : getSystemTheme();
-
-        document.documentElement.setAttribute("data-theme", effectiveTheme);
-
-        // Don't set localStorage on first visit - let user's first manual toggle do that
-      })();
+    <script is:inline>
+      // Lock to dark theme always
+      document.documentElement.setAttribute("data-theme", "dark");
     </script>
 
     <script>

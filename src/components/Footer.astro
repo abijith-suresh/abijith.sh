@@ -1,22 +1,28 @@
 ---
-import SocialLinks from "@/components/SocialLinks.astro";
+import FooterLink from "@/components/FooterLink.astro";
+import Container from "@/components/ui/Container.astro";
 import { SITE } from "@/consts";
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-border/50">
-  <div class="mx-auto max-w-3xl px-4 py-8">
-    <div class="flex flex-col items-center gap-6">
-      <SocialLinks class="items-center" />
-
-      <div class="flex flex-col items-center gap-1">
-        <p class="text-sm text-muted-foreground">
-          &copy; {currentYear}
-          <span style="color: var(--color-warm);">&middot;</span>
-          {SITE.author}
-        </p>
+<footer class="mt-auto border-t border-[var(--color-border)]">
+  <Container class="py-8">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        {
+          SITE.socialLinks.map((link) => (
+            <FooterLink href={link.href} external={link.external}>
+              {link.label}
+            </FooterLink>
+          ))
+        }
       </div>
+
+      <p class="eyebrow">
+        &copy; {currentYear}
+        {SITE.author}
+      </p>
     </div>
-  </div>
+  </Container>
 </footer>

@@ -1,6 +1,6 @@
 ---
-import Link from "@/components/Link.astro";
-import RecentPosts from "@/components/RecentPosts.astro";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
@@ -12,44 +12,29 @@ import { Icon } from "astro-icon/components";
   noindex={true}
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col gap-y-6 px-4 max-w-3xl pb-12 page-enter">
-    <div class="flex flex-col items-center justify-center gap-y-6 py-20 page-enter">
+  <div class="w-full mx-auto flex grow flex-col page-enter">
+    <Container class="flex flex-col items-center justify-center gap-y-8 py-28 page-enter">
       <div
-        class="text-8xl font-bold select-none"
-        style="color: var(--color-warm); opacity: 0.5;"
+        class="text-[8rem] font-bold select-none leading-none"
+        style="color: var(--color-muted);"
         aria-hidden="true"
       >
         404
       </div>
 
       <div class="flex flex-col items-center gap-y-3 text-center">
-        <h1 class="text-3xl font-semibold text-foreground font-display">Page Not Found</h1>
-        <p class="text-lg text-muted-foreground max-w-md">
+        <h1 class="text-[clamp(1.875rem,4vw,3rem)] font-bold tracking-tight">Page Not Found</h1>
+        <p class="text-lg max-w-md" style="color: var(--color-muted-foreground);">
           The page you're looking for doesn't exist or has been moved.
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center gap-3 pt-6">
-        <Link
-          href="/"
-          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
-          prefetch="viewport"
-        >
+      <div class="pt-4">
+        <Button href="/" variant="primary" prefetch="viewport">
           <Icon name="fa6-solid:arrow-left" class="w-3.5 h-3.5" />
           Back to Home
-        </Link>
-        <button
-          onclick="window.openSearchModal?.()"
-          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-accent transition-colors cursor-pointer"
-        >
-          <Icon name="fa6-solid:magnifying-glass" class="w-3.5 h-3.5" />
-          Search the site
-        </button>
+        </Button>
       </div>
-    </div>
-
-    <section class="border-t border-border/50 pt-12">
-      <RecentPosts limit={3} />
-    </section>
+    </Container>
   </div>
 </Layout>

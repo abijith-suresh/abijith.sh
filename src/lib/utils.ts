@@ -19,7 +19,7 @@ function getOrdinalSuffix(day: number): string {
   }
 }
 
-export function formatBlogDate(date: Date): string {
+export function formatDate(date: Date): string {
   const month = date.toLocaleDateString("en-US", { month: "long" });
   const day = date.getDate();
   const year = date.getFullYear();
@@ -29,27 +29,11 @@ export function formatBlogDate(date: Date): string {
 }
 
 export function calculateReadingTime(content: string, wordsPerMinute = 200): number {
+  if (!content.trim()) return 0;
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / wordsPerMinute));
 }
 
 export function formatReadingTime(minutes: number): string {
   return `${minutes} min read`;
-}
-
-export function getAllTagsWithCount<T>(
-  items: T[],
-  getTagsFn: (item: T) => string[]
-): Array<{ tag: string; count: number }> {
-  const tagCounts = new Map<string, number>();
-
-  items.forEach((item) => {
-    getTagsFn(item).forEach((tag) => {
-      tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
-    });
-  });
-
-  return Array.from(tagCounts.entries())
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => a.tag.localeCompare(b.tag));
 }

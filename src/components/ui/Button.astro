@@ -1,0 +1,62 @@
+---
+import Link from "@/components/Link.astro";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  /** Visual variant */
+  variant?: "primary" | "secondary" | "ghost";
+  /** Link destination — when provided, renders as <a>; otherwise renders as <button> */
+  href?: string;
+  /** Open in new tab (only for <a>) */
+  external?: boolean;
+  /** Prefetch behavior for internal links */
+  prefetch?: boolean | "hover" | "tap" | "load" | "viewport";
+  /** Button type attribute (only for <button>) */
+  type?: "button" | "submit" | "reset";
+  /** Additional CSS class */
+  class?: string;
+  /** ARIA label */
+  ariaLabel?: string;
+  /** Disabled state (only for <button>) */
+  disabled?: boolean;
+  /** HTML id attribute */
+  id?: string;
+}
+
+const {
+  variant = "primary",
+  href,
+  external = false,
+  prefetch,
+  type: buttonType = "button",
+  class: className,
+  ariaLabel,
+  disabled = false,
+  id,
+} = Astro.props;
+---
+
+{
+  href ? (
+    <Link
+      href={href}
+      external={external}
+      prefetch={prefetch}
+      class:list={cn("btn", `btn-${variant}`, className)}
+      aria-label={ariaLabel}
+      id={id}
+    >
+      <slot />
+    </Link>
+  ) : (
+    <button
+      type={buttonType}
+      class:list={cn("btn", `btn-${variant}`, className)}
+      aria-label={ariaLabel}
+      disabled={disabled}
+      id={id}
+    >
+      <slot />
+    </button>
+  )
+}

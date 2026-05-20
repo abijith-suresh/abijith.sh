@@ -1,18 +1,10 @@
 ---
 import Hero from "@/components/Hero.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 import RecentPosts from "@/components/RecentPosts.astro";
-import Link from "@/components/Link.astro";
+import RecentProjects from "@/components/RecentProjects.astro";
+import Container from "@/components/ui/Container.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { getAllBlogPosts } from "@/lib/blog";
-import { getAllProjects } from "@/lib/projects";
-import { Icon } from "astro-icon/components";
-
-const allPosts = await getAllBlogPosts();
-const hasPosts = allPosts.length > 0;
-const allProjects = await getAllProjects();
-const hasProjects = allProjects.length > 0;
 ---
 
 <Layout
@@ -21,50 +13,19 @@ const hasProjects = allProjects.length > 0;
   type="website"
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col px-4 max-w-3xl page-enter">
+  <div class="w-full mx-auto flex grow flex-col page-enter">
     <Hero />
 
-    {
-      hasProjects && (
-        <section class="py-8 border-t border-border/50 page-enter page-enter-delay-1">
-          <div class="flex flex-col gap-y-4">
-            <div class="flex flex-col gap-1">
-              <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground font-display">
-                Projects
-              </h2>
-              <div class="flex items-baseline justify-between">
-                <p class="text-base text-muted-foreground">What I've built</p>
-                <Link
-                  href="/projects"
-                  class="group inline-flex items-center gap-1.5 text-sm transition-colors"
-                  style="color: var(--color-warm);"
-                  prefetch="viewport"
-                >
-                  View all
-                  <Icon
-                    name="fa6-solid:arrow-right"
-                    class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
-                  />
-                </Link>
-              </div>
-            </div>
+    <section class="pb-16 page-enter page-enter-delay-1">
+      <Container>
+        <RecentProjects />
+      </Container>
+    </section>
 
-            <div class="flex flex-col gap-4">
-              {allProjects.map((project) => (
-                <ProjectCard project={project} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )
-    }
-
-    {
-      hasPosts && (
-        <section class="py-8 border-t border-border/50 page-enter page-enter-delay-2">
-          <RecentPosts />
-        </section>
-      )
-    }
+    <section class="pb-16 page-enter page-enter-delay-2">
+      <Container>
+        <RecentPosts />
+      </Container>
+    </section>
   </div>
 </Layout>

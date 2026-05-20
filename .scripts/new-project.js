@@ -57,13 +57,16 @@ export async function main() {
     process.exit(1);
   }
 
+  const fileExtension = "mdx";
+
   const githubUrl = await prompt("GitHub URL (optional): ");
   const demoUrl = await prompt("Demo URL (optional): ");
+  const heroImage = await prompt("Hero image path (optional): ");
 
   // Generate slug and paths
   const slug = slugify(title);
   const targetDir = join(process.cwd(), "src", "content", "projects");
-  const targetFile = join(targetDir, `${slug}.md`);
+  const targetFile = join(targetDir, `${slug}.${fileExtension}`);
 
   // Check if file already exists
   if (existsSync(targetFile)) {
@@ -72,7 +75,7 @@ export async function main() {
   }
 
   // Read template
-  const templatePath = join(__dirname, "..", ".templates", "project.md");
+  const templatePath = join(__dirname, "..", ".templates", "project.mdx");
 
   if (!existsSync(templatePath)) {
     console.error(`❌ Error: Template not found: ${templatePath}`);
@@ -84,8 +87,9 @@ export async function main() {
     title,
     description,
     date: getCurrentDate(),
-    githubUrl,
-    demoUrl,
+    githubUrl: githubUrl || undefined,
+    demoUrl: demoUrl || undefined,
+    heroImage: heroImage || undefined,
   });
 
   // Write file

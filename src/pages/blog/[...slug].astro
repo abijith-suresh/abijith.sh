@@ -1,16 +1,12 @@
 ---
-import BackLink from "@/components/BackLink.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import ReadingProgress from "@/components/ReadingProgress.astro";
-import RelatedPosts from "@/components/RelatedPosts.astro";
+import ContentDetailPage from "@/components/ContentDetailPage.astro";
 import TagList from "@/components/TagList.astro";
 import TOCHeader from "@/components/TOCHeader.astro";
-import TOCSidebar from "@/components/TOCSidebar.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { getRelatedPosts } from "@/lib/recommendations";
 import { filterTocHeadings } from "@/lib/toc";
-import { calculateReadingTime, formatBlogDate, formatReadingTime } from "@/lib/utils";
+import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -26,17 +22,12 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, tags, publishDate } = post.data;
+const { title, description, tags, publishDate, heroImage } = post.data;
 const { Content, headings } = await render(post);
-const formattedDate = formatBlogDate(publishDate);
+const formattedDate = formatDate(publishDate);
 const readingTime = calculateReadingTime(post.body ?? "");
 
 const tocHeadings = filterTocHeadings(headings);
-
-// Get related posts
-const relatedPosts = await getRelatedPosts(post.id, 3);
-
-// Tags are included in search via the JSON index
 ---
 
 <Layout
@@ -61,49 +52,23 @@ const relatedPosts = await getRelatedPosts(post.id, 3);
   <ReadingProgress />
   {tocHeadings.length > 0 && <TOCHeader slot="table-of-contents" headings={tocHeadings} />}
 
-  <section
-    class="grid grid-cols-[minmax(0px,1fr)_min(768px,100%)_minmax(0px,1fr)] gap-y-6 pb-12 page-enter"
+  <ContentDetailPage
+    breadcrumbs={[
+      { label: "Home", href: "/", icon: "fa6-solid:house" },
+      { label: "Blog", href: "/blog", icon: "fa6-solid:book-open" },
+      { label: title, icon: "fa6-solid:file-lines" },
+    ]}
+    eyebrow="Writing"
+    title={title}
+    description={description}
+    meta={[
+      { type: "date", value: formattedDate, datetime: publishDate.toISOString() },
+      { type: "text", value: formatReadingTime(readingTime) },
+    ]}
+    heroImage={heroImage}
+    tocHeadings={tocHeadings}
   >
-    <div class="col-start-2 px-4 page-enter page-enter-delay-1">
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/", icon: "home" },
-          { label: "Blog", href: "/blog", icon: "blog" },
-          { label: title, icon: "blogpost" },
-        ]}
-      />
-    </div>
-
-    <header class="col-start-2 flex flex-col gap-y-4 px-4 page-enter page-enter-delay-2">
-      <h1 class="text-3xl sm:text-4xl font-semibold text-foreground font-display">{title}</h1>
-
-      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-        <time datetime={publishDate.toISOString()}>
-          {formattedDate}
-        </time>
-        <span>&middot;</span>
-        <span>{formatReadingTime(readingTime)}</span>
-      </div>
-
-      <p class="text-lg text-muted-foreground max-w-2xl">{description}</p>
-
-      <div>
-        <TagList tags={tags} />
-      </div>
-    </header>
-
-    {tocHeadings.length > 0 && <TOCSidebar headings={tocHeadings} />}
-
-    <article class="prose col-start-2 max-w-none px-4 page-enter page-enter-delay-2">
-      <Content />
-    </article>
-
-    <div class="col-start-2 px-4 page-enter page-enter-delay-3">
-      <RelatedPosts posts={relatedPosts} />
-    </div>
-
-    <div class="col-start-2 px-4 page-enter page-enter-delay-3">
-      <BackLink href="/blog" label="Back to Blog" />
-    </div>
-  </section>
+    <TagList slot="header-extras" tags={tags} />
+    <Content />
+  </ContentDetailPage>
 </Layout>

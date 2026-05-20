@@ -1,5 +1,5 @@
 ---
-import { AUTHOR, SITE } from "@/consts";
+import { SITE } from "@/consts";
 
 export interface SEOProps {
   title?: string;
@@ -82,5 +82,5 @@ const ogImage = new URL(ogImagePath, Astro.site).href;
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 <meta name="twitter:image:alt" content={imageAlt} />
-<meta name="twitter:creator" content={AUTHOR.twitterHandle} />
-<meta name="twitter:site" content={AUTHOR.twitterHandle} />
+<meta name="twitter:creator" content={SITE.twitterHandle} />
+<meta name="twitter:site" content={SITE.twitterHandle} />

@@ -26,48 +26,27 @@ const {
 
 {
   totalPages > 1 && (
-    <nav
-      aria-label={ariaLabel}
-      class="flex items-center justify-between pt-6 border-t border-border"
-    >
+    <nav aria-label={ariaLabel} class="flex items-center justify-between pt-10">
       <div class="flex-1">
         {hasPrev && prevUrl && (
-          <Link
-            href={prevUrl}
-            class:list={cn(
-              "inline-flex items-center gap-2 px-4 py-2 rounded-md",
-              "text-sm font-medium text-foreground",
-              "border border-border hover:border-[var(--color-warm)] hover:bg-[var(--color-warm-subtle)]",
-              "transition-colors"
-            )}
-            data-astro-prefetch="viewport"
-          >
-            <Icon name="fa6-solid:chevron-left" class="w-4 h-4" />
+          <Link href={prevUrl} class:list={cn("btn btn-secondary")} prefetch="viewport">
+            <Icon name="fa6-solid:chevron-left" class="w-3.5 h-3.5" />
             Previous
           </Link>
         )}
       </div>
 
-      <div class="flex items-center gap-2 text-sm text-muted-foreground">
+      <div class="flex items-center gap-2 eyebrow">
         <span>
-          Page {currentPage} of {totalPages}
+          {currentPage} / {totalPages}
         </span>
       </div>
 
       <div class="flex-1 flex justify-end">
         {hasNext && nextUrl && (
-          <Link
-            href={nextUrl}
-            class:list={cn(
-              "inline-flex items-center gap-2 px-4 py-2 rounded-md",
-              "text-sm font-medium text-foreground",
-              "border border-border hover:border-[var(--color-warm)] hover:bg-[var(--color-warm-subtle)]",
-              "transition-colors"
-            )}
-            data-astro-prefetch="viewport"
-          >
+          <Link href={nextUrl} class:list={cn("btn btn-secondary")} prefetch="viewport">
             Next
-            <Icon name="fa6-solid:chevron-right" class="w-4 h-4" />
+            <Icon name="fa6-solid:chevron-right" class="w-3.5 h-3.5" />
           </Link>
         )}
       </div>

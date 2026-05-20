@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, external = false, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={["footer-link", className]}
+  {...external ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+>
+  <span class="footer-link-text"><slot /></span>
+  <span class:list={external ? "footer-link-arrow-external" : "footer-link-arrow-internal"}
+    >{external ? "↗" : "→"}</span
+  >
+</a>

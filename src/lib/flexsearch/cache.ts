@@ -42,12 +42,3 @@ export function cacheIndex(payload: SearchIndexPayload): void {
     // localStorage not available or quota exceeded
   }
 }
-
-export function clearCachedIndex(): void {
-  try {
-    clearLegacyCache();
-    localStorage.removeItem(INDEX_CACHE_KEY);
-  } catch {
-    // localStorage not available
-  }
-}

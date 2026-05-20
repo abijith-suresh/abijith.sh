@@ -6,39 +6,59 @@ This changelog follows the categories and intent of [Keep a Changelog](https://k
 
 ## Unreleased
 
+## 2026-05-21 — Swiss redesign and MDX/content architecture overhaul
+
 ### Added
 
-- Featured Projects section on the landing page, pulling project cards from the projects collection.
-- Bricolage Grotesque variable font (weight 200–800, optical sizing 12–96) as the display typeface, establishing a two-family system: Bricolage for identity surfaces (hero, page titles, section headings), Satoshi for content surfaces (body, cards, nav, meta).
-- Two-layered section labels across all pages: a bold Bricolage Grotesque heading paired with a Satoshi muted sublabel on the row below, with "View all" utility links baseline-aligned to the sublabel.
+- A dark-only Swiss-inspired visual system with refreshed monogram/favicon assets, accent rules, noise texture, semantic MDX callout variants, scroll-reveal card motion, a mobile navigation drawer, a project TOC sidebar, and shared UI primitives such as `PageShell`, `PageHeader`, `Button`, `Tag`, `Container`, `SplitSection`, `EmptyState`, and `FooterLink`.
+- Optional `heroImage` support in both blog and project content schemas, plus an extracted `RecentProjects` homepage section and MDX-first scaffolding/templates for new content.
 
 ### Changed
 
-- Rewrote the hero greeting to a conversational first-person voice ("Hey, I'm Abijith"), shortened the intro copy, and updated the role from "Software Developer" to "Backend Engineer".
-- Widened the hero accent rule from `w-12` to `w-20` so it reads as a confident compositional element rather than a tick mark.
-- Adjusted hero spacing to `pt-24 md:pt-32` for generous breathing room; tightened content sections to `py-8`.
-- Made content card hover arrows visible at ~40% opacity at rest, transitioning to evergreen on hover.
-- Entrance animations now play only on the first page load per session; subsequent navigations skip the staggered reveal.
-- Replaced clay accent with deep evergreen (OKLCH hue 155, chroma 0.09) across both themes.
-- Card borders restored as a static 1px element; hover uses scale(1.015) with ease-out-quint (250ms) and a tonal background deepening instead of translate-y.
-- Reduced dark theme surface chroma to 0.006–0.010 (near-neutral warm bias) to eliminate the reddish-brown cast and let the green accent read clearly.
-- Removed forced transitions from `Link.astro` and moved `card-hover` to the article wrapper in `ContentCard.astro`, fixing a cascade conflict that blocked transform animations.
-- Replaced small uppercase tracked section labels with bold display headings site-wide. Section landmarks now use `text-2xl sm:text-3xl font-bold font-display` with a `text-base` Satoshi sublabel below.
-- Moved "View all" links from the heading row to the sublabel row (`items-baseline` aligned) so the heading owns its line without competition.
-- Updated homepage section sublabels: Projects → "What I've built", Writing → "Thoughts in public".
-- Updated blog listing sublabel to "Notes, write-ups, and the occasional opinion".
-- Updated projects listing sublabel to "Shipped work, side projects, and experiments".
-- Redesigned the about page header from a centered stack to a horizontal avatar-and-name layout.
-- Rewrote all about page copy with three named narrative sections replacing the previous single-blob origin story: "What I do" (current role and craft focus at UST), "How I got here" (honest path without the usual clichés), and "This site" (matter-of-fact about what the writing is for).
-- Updated the about page tagline from "Developer, builder, writer." to "Backend engineer at UST. Kochi, Kerala."
-- Promoted "Away from the keyboard" from a visually separated aside to a peer section with the same spacing and weight as the other sections; interests now display as evergreen tag pills matching the site's tagging system.
-- Bumped the about page `h1` from `text-3xl sm:text-4xl` to `text-4xl sm:text-5xl` to restore a 1.6:1 ratio against section `h2` headings.
-- Updated DESIGN.md: two-family typography rule, section heading rule, page title hierarchy rule, and a seven-level type scale table.
+- Rebuilt the home, about, blog, projects, tags, 404, header, footer, and content detail pages around a cleaner Swiss editorial grid with stronger hierarchy, simplified navigation patterns, and more consistent detail-page structure.
+- Standardized content authoring on MDX by converting existing `.md` entries, removing the old project Markdown template, updating barrel exports/imports, and refreshing template documentation and scripts to match the live schema.
+- Simplified site architecture by centralizing site constants and route construction, extracting shared content-detail, TOC, grouping, pagination, and search-result primitives, and refining helpers such as project sorting, reading progress, and tag handling.
+- Refreshed `DESIGN.md` to match the current direction and replaced brittle regex-based scaffolding with token-based template rendering.
 
 ### Fixed
 
-- Removed `text-foreground/80` and `text-foreground/70` on the about page, which failed WCAG AA contrast on the light theme (3.21:1 and 2.69:1 respectively); replaced with full `text-foreground` (4.68:1).
-- Removed side-stripe accent divs (`w-[3px]` colored bars) from the about page, landing page, and recent posts component, in compliance with the design system's own ban on side-stripe borders.
+- Canonicalized tag pages back to slug-only routes, eliminating duplicate static outputs such as `/tags/astro` and `/tags/Astro` while keeping tag links on the canonical path.
+- Improved consistency and accessibility across breadcrumbs, tag schema guards, project ordering, mobile nav link sizing, button borders, typography scaling, Expressive Code styling, pagination empty states, and Astro/Zod structured-data hints.
+
+### Removed
+
+- Light mode, the theme picker, and the older theme-generation infrastructure.
+- Related-post recommendations, tag counts, detail-page back links, and other obsolete components, files, and exports that no longer fit the streamlined site structure.
+- Most automated tests, leaving a placeholder test while the redesigned codebase settles.
+
+## 2026-05-04 — Editorial refresh and Astro 6 upgrade
+
+### Added
+
+- A Featured Projects section on the landing page, pulling project cards from the projects collection.
+- Bricolage Grotesque as the display typeface and a two-line section-label pattern pairing bold display headings with muted supporting sublabels.
+
+### Changed
+
+- Rewrote the homepage hero voice, spacing, accent rule, and hover affordances; replaced the clay accent with deep evergreen; refined card borders, hover motion, and dark-surface balance; and limited entrance animations to the first page load in a session.
+- Redesigned the About page layout, copy, and typography hierarchy around named narrative sections, updated role/location copy, and stronger page-title proportions.
+- Updated page and listing sublabels, section heading treatments, and `DESIGN.md` guidance to reflect the new editorial direction and typography rules.
+- Upgraded Astro to v6.2.1, updated the Vercel adapter, and aligned the content-config path and related integrations with the newer Astro APIs.
+
+### Fixed
+
+- Restored accessible foreground contrast on the About page and removed decorative side-stripe accents that conflicted with the design system.
+- Removed a transition cascade conflict in `Link.astro` / `ContentCard.astro` that had been blocking card transform animations.
+
+## 2026-05-03 — Ink & Clay design system
+
+### Added
+
+- Design documentation for the Ink & Clay direction in `DESIGN.md`, `DESIGN.json`, and `PRODUCT.md`.
+
+### Changed
+
+- Introduced the Ink & Clay palette across light and dark themes, applying the fired-clay accent to identity surfaces and interactive states such as links, tag pills, navigation underlines, reading progress, card hovers, TOC highlights, and generated OG imagery.
 
 ## 2026-05-01 — Repository metadata cleanup
 

@@ -1,0 +1,24 @@
+---
+interface Props {
+  /** The empty-state message to display */
+  message: string;
+  class?: string;
+}
+
+const { message, class: className } = Astro.props;
+---
+
+<div
+  class:list={["flex flex-col items-center gap-4 py-20", className]}
+  aria-label={`Empty: ${message}`}
+>
+  <div
+    class="text-[5rem] font-bold leading-none select-none tabular-nums"
+    style="color: var(--color-border);"
+    aria-hidden="true"
+  >
+    —
+  </div>
+  <div class="w-8 border-t border-[var(--color-border)]"></div>
+  <p class="eyebrow text-center" style="color: var(--color-muted);">{message}</p>
+</div>

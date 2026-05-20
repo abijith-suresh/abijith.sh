@@ -1,0 +1,74 @@
+---
+/**
+ * ScrollReveal
+ * Wires IntersectionObserver to [data-scroll-reveal] elements.
+ * No props — purely a client-side controller script.
+ */
+---
+
+<script>
+  import { applyRevealClasses, buildRevealConfig, shouldSkipReveal } from "@/lib/scroll-reveal";
+
+  const config = buildRevealConfig();
+
+  function initScrollReveal() {
+    // Respect reduced motion — skip observer, leave elements visible
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(config.selector).forEach((el) => {
+        el.classList.add(config.revealClass);
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldSkipReveal(entry.target)) {
+            // Find siblings in the same reveal group to apply staggered delays
+            const parent = entry.target.parentElement;
+            const siblings = parent
+              ? Array.from(
+                  parent.querySelectorAll(`${config.selector}:not(.${config.revealClass})`)
+                )
+              : [entry.target];
+
+            // If this is the first intersecting in its group, reveal siblings together
+            if (siblings.includes(entry.target)) {
+              const classMap = applyRevealClasses(siblings, config);
+              for (const [el, classes] of classMap) {
+                el.classList.add(...classes);
+              }
+            } else {
+              // Reveal solo
+              entry.target.classList.add(config.revealClass, `${config.staggerClass}-1`);
+            }
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: config.threshold,
+        rootMargin: config.rootMargin,
+      }
+    );
+
+    document.querySelectorAll(config.selector).forEach((el) => {
+      if (!shouldSkipReveal(el)) {
+        observer.observe(el);
+      }
+    });
+
+    return observer;
+  }
+
+  let observer: IntersectionObserver | undefined;
+
+  function init() {
+    observer?.disconnect();
+    observer = initScrollReveal();
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:after-swap", init);
+</script>

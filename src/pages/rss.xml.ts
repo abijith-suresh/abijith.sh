@@ -2,6 +2,7 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
+import { getBlogPostUrl } from "@/lib/routes";
 import { SITE } from "@/consts";
 
 export const prerender = true;
@@ -28,7 +29,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: post.data.publishDate,
       description: post.data.description,
-      link: `/blog/${post.id}/`,
+      link: `${getBlogPostUrl(post.id)}/`,
       categories: post.data.tags,
     })),
   });

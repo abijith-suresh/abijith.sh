@@ -25,10 +25,19 @@ type MobileTocConfig = HeadingConfig & {
   enableSmoothScroll?: boolean;
 };
 
-type TocController = {
+export type TocController = {
   init: () => void;
   cleanup: () => void;
 };
+
+export function attachTocLifecycle(controller: TocController): void {
+  document.addEventListener("astro:page-load", () => controller.init());
+  document.addEventListener("astro:after-swap", () => {
+    controller.cleanup();
+    controller.init();
+  });
+  document.addEventListener("astro:before-swap", () => controller.cleanup());
+}
 
 function getVisibleHeadingIds(headingElements: HTMLElement[], headerOffset: number): string[] {
   if (headingElements.length === 0) return [];

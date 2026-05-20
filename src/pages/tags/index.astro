@@ -1,11 +1,16 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import Link from "@/components/Link.astro";
+import SplitSection from "@/components/SplitSection.astro";
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { getAllContentTagCounts } from "@/lib/content-tags";
+import { getAllContentTags } from "@/lib/content-tags";
+import { groupByFirstLetter } from "@/lib/group-by-letter";
 
-const tags = await getAllContentTagCounts();
+const tags = await getAllContentTags();
+const tagsByLetter = groupByFirstLetter(tags, (t) => t.label);
 ---
 
 <Layout
@@ -13,41 +18,33 @@ const tags = await getAllContentTagCounts();
   description="Browse all blog posts and projects by topic. Explore tags and discover content that interests you."
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col gap-y-8 px-4 max-w-3xl pb-12 page-enter">
-    <div class="page-enter page-enter-delay-1">
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/", icon: "home" },
-          { label: "Tags", icon: "tags" },
-        ]}
-      />
-    </div>
-
-    <div class="flex flex-col gap-y-2 page-enter page-enter-delay-2">
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-display">
-        All Tags
-      </h1>
-      <p class="text-base text-muted-foreground">Browse posts and projects by topic</p>
-    </div>
-
+  <PageShell
+    breadcrumbs={[
+      { label: "Home", href: "/", icon: "fa6-solid:house" },
+      { label: "Tags", icon: "fa6-solid:tags" },
+    ]}
+    eyebrow="Browse"
+    title="All Tags"
+    subtitle="Browse posts and projects by topic"
+  >
     {
-      tags.length > 0 ? (
-        <div class="flex flex-wrap gap-2">
-          {tags.map(({ slug, label, totalCount }) => (
-            <Link
-              href={`/tags/${slug}`}
-              class="inline-flex items-center gap-2 px-3 py-2 border border-border/60 hover:border-border hover:bg-accent text-foreground rounded-lg transition-all"
-            >
-              <span class="text-sm">{label}</span>
-              <span class="text-xs" style="color: var(--color-warm);">
-                {totalCount}
-              </span>
-            </Link>
+      tagsByLetter.length > 0 ? (
+        <Container class="flex flex-col gap-8">
+          {tagsByLetter.map(({ letter, items }) => (
+            <SplitSection label={letter}>
+              <div class="flex flex-wrap gap-2">
+                {items.map(({ slug, label }) => (
+                  <Link href={`/tags/${slug}`} class="tag-link" prefetch="viewport">
+                    <span class="tag-link-label">{label}</span>
+                  </Link>
+                ))}
+              </div>
+            </SplitSection>
           ))}
-        </div>
+        </Container>
       ) : (
-        <p class="text-muted-foreground text-center py-8">No tags found.</p>
+        <EmptyState message="No tags found." />
       )
     }
-  </div>
+  </PageShell>
 </Layout>

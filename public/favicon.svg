@@ -1,10 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="16" fill="#2c2c2c"/>
-  <text x="64" y="82" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="64" fill="#faf8f5" letter-spacing="-2">AS</text>
-  <style>
-    @media (prefers-color-scheme: dark) {
-      rect { fill: #e8e4df; }
-      text { fill: #1a1a1d; }
-    }
-  </style>
+  <rect width="128" height="128" rx="16" fill="#111111"/>
+  <text
+    x="64"
+    y="84"
+    text-anchor="middle"
+    font-family="Manrope, ui-sans-serif, system-ui, -apple-system, sans-serif"
+    font-weight="800"
+    font-size="62"
+    letter-spacing="-3"
+    fill="#f5a623"
+  >AS</text>
 </svg>

@@ -1,45 +1,20 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import PaginatedListLayout from "@/components/PaginatedListLayout.astro";
+import SplitSection from "@/components/SplitSection.astro";
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getAllBlogPosts } from "@/lib/blog";
 import { groupByYear } from "@/lib/group-by-year";
-import { paginate } from "@/lib/pagination";
+import { buildPaginationUrls, generatePaginatedPaths } from "@/lib/paginated-routes";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const allPosts = await getAllBlogPosts();
-  const totalPosts = allPosts.length;
-  const totalPages = Math.ceil(totalPosts / SITE.postsPerPage);
-
-  // Always generate at least the first page, even when empty
-  if (totalPages === 0) {
-    return [
-      {
-        params: { page: undefined },
-        props: {
-          items: [],
-          currentPage: 1,
-          totalPages: 0,
-          hasNext: false,
-          hasPrev: false,
-        },
-      },
-    ];
-  }
-
-  // Generate paths for all pages
-  return Array.from({ length: totalPages }, (_, i) => {
-    const page = i + 1;
-    const paginatedPosts = paginate(allPosts, page);
-
-    return {
-      params: { page: page === 1 ? undefined : String(page) },
-      props: { ...paginatedPosts },
-    };
-  });
+  return generatePaginatedPaths(allPosts, SITE.postsPerPage);
 }
 
 interface Props {
@@ -52,9 +27,7 @@ interface Props {
 
 const { items: posts, currentPage, totalPages, hasNext, hasPrev } = Astro.props;
 
-const prevUrl = hasPrev ? (currentPage === 2 ? "/blog" : `/blog/${currentPage - 1}`) : null;
-const nextUrl = hasNext ? `/blog/${currentPage + 1}` : null;
-
+const { prevUrl, nextUrl } = buildPaginationUrls("/blog", currentPage, hasPrev, hasNext);
 const postsByYear = groupByYear(posts, (post) => post.data.publishDate);
 ---
 
@@ -63,28 +36,18 @@ const postsByYear = groupByYear(posts, (post) => post.data.publishDate);
   description="Articles, tutorials, and thoughts on web development, design, and technology."
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col gap-y-8 px-4 max-w-3xl pb-12 page-enter">
-    <div class="page-enter page-enter-delay-1">
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/", icon: "home" },
-          { label: "Blog", icon: "blog" },
-        ]}
-      />
-    </div>
-
-    <div class="flex flex-col gap-y-2 page-enter page-enter-delay-2">
-      <div class="flex flex-col gap-1">
-        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-display">
-          Blog
-        </h1>
-        <p class="text-base text-muted-foreground">Notes, write-ups, and the occasional opinion</p>
-      </div>
-    </div>
-
+  <PageShell
+    breadcrumbs={[
+      { label: "Home", href: "/", icon: "fa6-solid:house" },
+      { label: "Blog", icon: "fa6-solid:book-open" },
+    ]}
+    eyebrow="Writing"
+    title="Blog"
+    subtitle="Notes, write-ups, and the occasional opinion"
+  >
     {
       posts.length > 0 ? (
-        <>
+        <Container>
           <PaginatedListLayout
             currentPage={currentPage}
             totalPages={totalPages}
@@ -96,22 +59,20 @@ const postsByYear = groupByYear(posts, (post) => post.data.publishDate);
           >
             <div slot="items" class="flex flex-col gap-8">
               {postsByYear.map(({ year, items: yearPosts }) => (
-                <div class="flex flex-col gap-6">
-                  <div class="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span class="tabular-nums font-medium">{year}</span>
-                    <div class="flex-1 border-t border-border/50" />
+                <SplitSection label={String(year)}>
+                  <div class="flex flex-col gap-3">
+                    {yearPosts.map((post) => (
+                      <BlogCard post={post} />
+                    ))}
                   </div>
-                  {yearPosts.map((post) => (
-                    <BlogCard post={post} />
-                  ))}
-                </div>
+                </SplitSection>
               ))}
             </div>
           </PaginatedListLayout>
-        </>
+        </Container>
       ) : (
-        <p class="text-muted-foreground text-center py-8">No blog posts to display yet.</p>
+        <EmptyState message="No blog posts to display yet." />
       )
     }
-  </div>
+  </PageShell>
 </Layout>

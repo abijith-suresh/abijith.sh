@@ -31,37 +31,41 @@ export function getCurrentDate() {
   return new Date().toISOString().split("T")[0];
 }
 
-export function renderBlogTemplate(template, { title, description, date }) {
+export function renderBlogTemplate(template, { title, description, date, heroImage }) {
+  const heroImageLine = heroImage ? `heroImage: "${heroImage}"` : "";
   return replaceTemplateTokens(template, {
     TITLE: title,
     DESCRIPTION: description,
     DATE: date,
+    HERO_IMAGE: heroImageLine,
   });
 }
 
-export function renderProjectTemplate(template, { title, description, date, githubUrl, demoUrl }) {
-  let rendered = replaceTemplateTokens(template, {
+export function renderProjectTemplate(
+  template,
+  { title, description, date, githubUrl, demoUrl, heroImage }
+) {
+  const heroImageLine = heroImage ? `heroImage: "${heroImage}"` : "";
+
+  let result = replaceTemplateTokens(template, {
     TITLE: title,
     DESCRIPTION: description,
     DATE_FULL: date,
+    HERO_IMAGE: heroImageLine,
   });
 
-  rendered = githubUrl
-    ? rendered.replace(
-        /- \*\*Repository\*\*: \[GitHub\]\(\{\s*\{\s*GITHUB_URL\s*\}\s*\}\)/g,
-        `- **Repository**: [GitHub](${githubUrl})`
-      )
-    : rendered.replace(
-        /^- \*\*Repository\*\*: \[GitHub\]\(\{\s*\{\s*GITHUB_URL\s*\}\s*\}\)\n?/gm,
-        ""
-      );
+  // Build links section from provided URLs
+  const links = [];
+  if (githubUrl) {
+    links.push(`- **Repository**: [GitHub](${githubUrl})`);
+  }
+  if (demoUrl) {
+    links.push(`- **Live Demo**: [Demo](${demoUrl})`);
+  }
 
-  rendered = demoUrl
-    ? rendered.replace(
-        /- \*\*Live Demo\*\*: \[Demo\]\(\{\s*\{\s*DEMO_URL\s*\}\s*\}\)/g,
-        `- **Live Demo**: [Demo](${demoUrl})`
-      )
-    : rendered.replace(/^- \*\*Live Demo\*\*: \[Demo\]\(\{\s*\{\s*DEMO_URL\s*\}\s*\}\)\n?/gm, "");
+  const linksSection = links.length > 0 ? `## Links\n\n${links.join("\n")}` : "";
+  result = result.replace(/{{LINKS_SECTION}}/g, linksSection);
 
-  return rendered.replace(/\n{3,}/g, "\n\n");
+  // Clean up excessive blank lines
+  return result.replace(/\n{3,}/g, "\n\n");
 }

@@ -13,29 +13,29 @@ export default defineConfig({
     expressiveCode({
       themes: ["github-light", "github-dark"],
       useDarkModeMediaQuery: false,
-      themeCssSelector: (theme) => `[data-theme="${theme.name.split("-")[1]}"]`,
+      darkModeSelector: '[data-theme="dark"]',
       defaultProps: {
         wrap: true,
       },
       plugins: [],
       styleOverrides: {
         codeFontSize: "0.875rem",
-        borderColor: "var(--border)",
-        borderRadius: "0.5rem",
-        codeBackground: "color-mix(in oklab, var(--muted) 25%, transparent)",
+        borderColor: "var(--color-border)",
+        borderRadius: "0",
+        codeBackground: "color-mix(in oklab, var(--color-muted) 25%, transparent)",
         frames: {
-          editorActiveTabForeground: "var(--muted-foreground)",
-          editorActiveTabBackground: "color-mix(in oklab, var(--muted) 25%, transparent)",
+          editorActiveTabForeground: "var(--color-muted-foreground)",
+          editorActiveTabBackground: "color-mix(in oklab, var(--color-muted) 25%, transparent)",
           editorActiveTabIndicatorBottomColor: "transparent",
           editorActiveTabIndicatorTopColor: "transparent",
           editorTabBorderRadius: "0",
           editorTabBarBackground: "transparent",
           editorTabBarBorderBottomColor: "transparent",
           frameBoxShadowCssValue: "none",
-          terminalBackground: "color-mix(in oklab, var(--muted) 25%, transparent)",
+          terminalBackground: "color-mix(in oklab, var(--color-muted) 25%, transparent)",
           terminalTitlebarBackground: "transparent",
           terminalTitlebarBorderBottomColor: "transparent",
-          terminalTitlebarForeground: "var(--muted-foreground)",
+          terminalTitlebarForeground: "var(--color-muted-foreground)",
         },
       },
     }),
@@ -59,8 +59,6 @@ export default defineConfig({
           "chevron-down",
           "magnifying-glass",
           "xmark",
-          "sun",
-          "moon",
           "arrow-right",
           "arrow-left",
           "arrow-up-right-from-square",
@@ -68,6 +66,9 @@ export default defineConfig({
           "lightbulb",
           "triangle-exclamation",
           "circle-exclamation",
+          "sun",
+          "moon",
+          "bars",
         ],
       },
     }),
@@ -91,8 +92,13 @@ export default defineConfig({
     build: {
       rollupOptions: {
         onwarn(warning, warn) {
-          // Suppress warnings about unused imports from Astro internals
-          if (warning.code === "UNUSED_EXTERNAL_IMPORT") return;
+          // Suppress UNUSED_EXTERNAL_IMPORT only from Astro internals or dependencies
+          if (
+            warning.code === "UNUSED_EXTERNAL_IMPORT" &&
+            warning.id &&
+            (warning.id.includes("/.astro/") || warning.id.includes("/node_modules/"))
+          )
+            return;
           warn(warning);
         },
       },

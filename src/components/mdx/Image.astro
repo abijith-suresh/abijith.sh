@@ -1,28 +1,20 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import { cn } from "@/lib/utils";
 
 interface Props {
-  src: string;
+  src: ImageMetadata;
   alt: string;
   caption?: string;
   class?: string;
-  width?: number;
-  height?: number;
 }
 
-const { src, alt, caption, class: className, width, height } = Astro.props;
+const { src, alt, caption, class: className } = Astro.props;
 ---
 
 <figure class:list={cn("my-6", className)}>
-  <img
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    class="w-full rounded-lg border border-border"
-    loading="lazy"
-    decoding="async"
-  />
+  <Image src={src} alt={alt} class="w-full border border-border" loading="lazy" decoding="async" />
   {
     caption && (
       <figcaption class="mt-2 text-center text-sm text-muted-foreground">{caption}</figcaption>

@@ -1,7 +1,5 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
-import { getAllTagsWithCount } from "@/lib/utils";
-
 type Project = CollectionEntry<"projects">;
 
 export async function getAllProjects(options?: {
@@ -15,6 +13,8 @@ export async function getAllProjects(options?: {
       options.tags!.some((tag) => project.data.tags.includes(tag))
     );
   }
+
+  projects = projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
   if (options?.limit) {
     projects = projects.slice(0, options.limit);
@@ -34,14 +34,4 @@ export function sortProjects(projects: Project[], sortBy: "date" | "title" = "da
     default:
       return sorted;
   }
-}
-
-export async function getAllProjectTagsWithCount(): Promise<Array<{ tag: string; count: number }>> {
-  const projects = await getCollection("projects");
-  return getAllTagsWithCount(projects, (project) => project.data.tags);
-}
-
-export async function getAllProjectTags(): Promise<string[]> {
-  const tagsWithCount = await getAllProjectTagsWithCount();
-  return tagsWithCount.map((t) => t.tag);
 }

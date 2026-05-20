@@ -8,10 +8,11 @@ interface Props {
   style?: string;
   underline?: boolean;
   prefetch?: boolean | "hover" | "tap" | "load" | "viewport";
+  [key: string]: unknown;
 }
 
 const { href, external, class: className, style, underline, prefetch, ...rest } = Astro.props;
-const isExternal = external || href.startsWith("http");
+const isExternal = external;
 ---
 
 <a

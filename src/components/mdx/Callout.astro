@@ -1,31 +1,8 @@
 ---
 import { cn } from "@/lib/utils";
+import { calloutConfig } from "@/lib/callout-config";
+import type { CalloutVariant } from "@/lib/callout-config";
 import { Icon } from "astro-icon/components";
-
-const calloutConfig = {
-  note: {
-    style: "border-blue-500 bg-blue-500/5",
-    textColor: "text-blue-600 dark:text-blue-400",
-    icon: "fa6-solid:circle-info",
-  },
-  tip: {
-    style: "border-green-500 bg-green-500/5",
-    textColor: "text-green-600 dark:text-green-400",
-    icon: "fa6-solid:lightbulb",
-  },
-  warning: {
-    style: "border-amber-500 bg-amber-500/5",
-    textColor: "text-amber-600 dark:text-amber-400",
-    icon: "fa6-solid:triangle-exclamation",
-  },
-  danger: {
-    style: "border-red-500 bg-red-500/5",
-    textColor: "text-red-600 dark:text-red-400",
-    icon: "fa6-solid:circle-exclamation",
-  },
-} as const;
-
-type CalloutVariant = keyof typeof calloutConfig;
 
 interface Props {
   variant?: CalloutVariant;
@@ -51,41 +28,49 @@ const displayTitle = title || variant.charAt(0).toUpperCase() + variant.slice(1)
   collapsible ? (
     <details
       class:list={cn(
-        "relative px-4 py-3 my-6 border-l-4 rounded-r-lg text-sm",
-        config.style,
+        "relative px-4 py-3 my-6 border-l-4 text-sm",
+        config.borderClass,
+        config.bgClass,
         "[&[open]>summary_.chevron]:rotate-180 [&[open]>summary]:mb-3",
         className
       )}
       open={defaultOpen}
     >
       <summary class="flex cursor-pointer items-center font-medium list-none [&::-webkit-details-marker]:hidden">
-        <Icon name={config.icon} class:list={cn("w-4 h-4 mr-2 shrink-0", config.textColor)} />
-        <span class:list={cn("font-medium", config.textColor)}>{displayTitle}</span>
+        <Icon
+          name={config.icon}
+          class="w-4 h-4 mr-2 shrink-0"
+          style="color: var(--color-accent);"
+        />
+        <span class="font-medium">{displayTitle}</span>
         <Icon
           name="fa6-solid:chevron-down"
-          class:list={cn(
-            "chevron w-4 h-4 ml-auto shrink-0 transition-transform duration-200",
-            config.textColor
-          )}
+          class="chevron w-4 h-4 ml-auto shrink-0 transition-transform duration-200"
+          style="color: var(--color-muted);"
         />
       </summary>
-      <div class="text-foreground/80">
+      <div style="color: var(--color-muted-foreground);">
         <slot />
       </div>
     </details>
   ) : (
     <div
       class:list={cn(
-        "relative px-4 py-3 my-6 border-l-4 rounded-r-lg text-sm",
-        config.style,
+        "relative px-4 py-3 my-6 border-l-4 text-sm",
+        config.borderClass,
+        config.bgClass,
         className
       )}
     >
       <div class="flex items-center font-medium mb-2">
-        <Icon name={config.icon} class:list={cn("w-4 h-4 mr-2 shrink-0", config.textColor)} />
-        <span class:list={cn("font-medium", config.textColor)}>{displayTitle}</span>
+        <Icon
+          name={config.icon}
+          class="w-4 h-4 mr-2 shrink-0"
+          style="color: var(--color-accent);"
+        />
+        <span class="font-medium">{displayTitle}</span>
       </div>
-      <div class="text-foreground/80">
+      <div style="color: var(--color-muted-foreground);">
         <slot />
       </div>
     </div>

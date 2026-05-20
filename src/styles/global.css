@@ -1,127 +1,47 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+/* ==========================================================================
+   Swiss Style Design System
+   International Typographic Style — Manrope, dark-only
+   Base: #111111 / Text: #F4F4F4 / Accent: #F5A623
+   ========================================================================== */
 
 @theme inline {
-  --font-sans: "Satoshi", system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque", "Satoshi", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-base: #111111;
+  --color-text: #f4f4f4;
+  --color-accent: #f5a623;
 
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  /* Semantic tokens for components that reference these */
+  --color-background: var(--color-base);
+  --color-foreground: var(--color-text);
 
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--color-base);
+  --color-card-foreground: var(--color-text);
 
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-warm: var(--color-warm);
-  --color-warm-muted: var(--color-warm-muted);
+  --color-muted: #888888;
+  --color-muted-foreground: #999999;
+  --color-border: #2a2a2a;
+  --color-warning: #e67e22;
+  --color-danger: #e74c3c;
 }
 
+/* ==========================================================================
+   Theme — dark only
+   ========================================================================== */
 :root {
-  /* ── Light theme: Unbleached Paper ─────────────────────────────────────── */
-  --background: oklch(97.5% 0.007 80); /* barely-warm off-white, paper stock */
-  --foreground: oklch(17% 0.014 50); /* warm near-black, green-tinted ink    */
+  --color-base: #111111;
+  --color-text: #f4f4f4;
+  --color-accent: #f5a623;
+  --color-muted: #888888;
+  --color-muted-foreground: #999999;
+  --color-border: #2a2a2a;
+  --color-warning: #e67e22;
+  --color-danger: #e74c3c;
+  --color-card-hover-text: #111111;
 
-  --card: oklch(95% 0.01 80); /* one step deeper than background     */
-  --card-foreground: oklch(17% 0.014 50);
-
-  --popover: oklch(92% 0.013 78); /* hover / popover surface             */
-  --popover-foreground: oklch(17% 0.014 50);
-
-  --primary: oklch(17% 0.014 50);
-  --primary-foreground: oklch(97.5% 0.007 80);
-
-  --secondary: oklch(95% 0.01 80);
-  --secondary-foreground: oklch(17% 0.014 50);
-
-  --muted: oklch(95% 0.01 80);
-  --muted-foreground: oklch(54% 0.012 65); /* warm stone gray                    */
-
-  --accent: oklch(92% 0.013 78);
-  --accent-foreground: oklch(17% 0.014 50);
-
-  --destructive: oklch(45% 0.22 18); /* deep cardinal red                   */
-  --destructive-foreground: oklch(97.5% 0.007 80);
-
-  --border: oklch(88% 0.015 74); /* warm visible border                 */
-  --input: oklch(88% 0.015 74);
-  --ring: oklch(47% 0.09 155); /* green accent                        */
-
-  /* ── Green accent ────────────────────────────────────────────────────── */
-  --color-warm: oklch(47% 0.09 155); /* deep evergreen                      */
-  --color-warm-muted: oklch(47% 0.09 155 / 0.1);
-  --color-warm-subtle: oklch(47% 0.09 155 / 0.15);
-
-  --transition-fast: 150ms;
-  --transition-normal: 200ms;
-  --transition-slow: 300ms;
-  --ease-default: ease-out;
-}
-
-[data-theme="dark"] {
-  /* ── Dark theme: Workshop at Night ─────────────────────────────────────── */
-  --background: oklch(13.5% 0.006 50); /* near-neutral dark with warm bias   */
-  --foreground: oklch(93% 0.01 75); /* warm off-white                      */
-
-  --card: oklch(18% 0.008 50); /* slightly elevated surface           */
-  --card-foreground: oklch(93% 0.01 75);
-
-  --popover: oklch(22% 0.009 50); /* popover / deeper surface            */
-  --popover-foreground: oklch(93% 0.01 75);
-
-  --primary: oklch(93% 0.01 75);
-  --primary-foreground: oklch(13.5% 0.006 50);
-
-  --secondary: oklch(18% 0.008 50);
-  --secondary-foreground: oklch(93% 0.01 75);
-
-  --muted: oklch(22% 0.009 50);
-  --muted-foreground: oklch(58% 0.01 55); /* warm stone                         */
-
-  --accent: oklch(18% 0.008 50);
-  --accent-foreground: oklch(93% 0.01 75);
-
-  --destructive: oklch(63% 0.22 20); /* brighter red for dark mode          */
-  --destructive-foreground: oklch(13.5% 0.006 50);
-
-  --border: oklch(28% 0.01 50); /* subtle warm border                  */
-  --input: oklch(28% 0.01 50);
-  --ring: oklch(69% 0.09 155); /* lighter green — glows against warm dark */
-
-  /* ── Green accent (dark) ─────────────────────────────────────────────── */
-  --color-warm: oklch(69% 0.09 155); /* lighter evergreen for dark mode     */
-  --color-warm-muted: oklch(69% 0.09 155 / 0.15);
-  --color-warm-subtle: oklch(69% 0.09 155 / 0.2);
-}
-
-/* Smooth theme transitions */
-:root,
-[data-theme="dark"] {
-  transition:
-    background-color var(--transition-slow) ease-in-out,
-    color var(--transition-slow) ease-in-out,
-    border-color var(--transition-slow) ease-in-out;
+  color-scheme: dark;
 }
 
 /* ==========================================================================
@@ -129,17 +49,61 @@
    ========================================================================== */
 
 @layer base {
+  /*
+   * Swiss design principle: borders should be explicit, not default.
+   * Tailwind v4 defaults border-color to currentColor; we override to
+   * transparent so no element gets an unintended visible border from a
+   * bare `border-b` or `border-t` utility. Every visible border in this
+   * codebase is written with an explicit color — this is intentional.
+   */
   *,
   ::after,
   ::before {
-    @apply border-border;
+    border-color: transparent;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-sans);
+    background-color: var(--color-base);
+    color: var(--color-text);
+    line-height: 1.6;
+    position: relative;
   }
 
-  /* Typography base styles */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  /* Typography — Swiss hierarchy */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   p,
   h1,
   h2,
@@ -147,151 +111,274 @@
   h4,
   h5,
   h6 {
-    @apply wrap-break-word;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-balance;
-  }
-
-  p {
-    @apply text-pretty;
+    overflow-wrap: break-word;
   }
 }
 
 /* ==========================================================================
    Component Classes
-   Reusable patterns extracted from components
    ========================================================================== */
 
 @layer components {
+  /* ── Eyebrow / Section Label ─────────────────────────────────────────── */
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* ── Split Label ─────────────────────────────────────────────────────── */
+  .split-label {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+    width: fit-content;
+  }
+
+  /* ── Card ─────────────────────────────────────────────────────────────── */
   .card-hover {
-    @apply rounded-lg overflow-hidden border border-border;
-    background: var(--card);
-    @apply transition-all;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    background-color: var(--color-base);
+    border: 1px solid var(--color-border);
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease;
   }
 
   .card-hover:hover {
-    transform: scale(1.015);
-    background: var(--popover);
+    background-color: var(--color-accent);
   }
 
-  .group:hover .card-hover svg {
-    color: var(--color-warm);
+  .card-hover:hover,
+  .card-hover:hover * {
+    --color-text: var(--color-card-hover-text);
+    --color-muted: #333333;
+    --color-muted-foreground: #333333;
+    color: var(--color-card-hover-text) !important;
   }
 
+  .card-hover:hover .tag-pill {
+    background-color: color-mix(in srgb, var(--color-card-hover-text) 12%, transparent);
+    color: var(--color-card-hover-text) !important;
+  }
+
+  /* ── Tag Link (Tags page) ──────────────────────────────────────────────── */
+  .tag-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+    text-decoration: none;
+  }
+
+  .tag-link:hover {
+    background-color: var(--color-accent);
+    color: #111111;
+  }
+
+  .tag-link:hover .tag-link-label {
+    color: #111111;
+  }
+
+  /* ── Tag Pill ─────────────────────────────────────────────────────────── */
   .tag-pill {
-    @apply inline-flex items-center text-xs px-2 py-0.5 rounded-full;
-    background: var(--color-warm-muted);
-    color: var(--color-warm);
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
+    color: var(--color-text);
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
   }
 
+  /* ── Navigation ───────────────────────────────────────────────────────── */
+  .nav-link {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    transition: color 150ms ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .nav-link.active {
+    color: var(--color-text);
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  /* ── Footer Link ──────────────────────────────────────────────────────── */
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 150ms ease;
+  }
+
+  .footer-link:hover {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .footer-link-arrow-internal,
+  .footer-link-arrow-external {
+    font-size: 12px;
+    transition: transform 150ms ease;
+    display: inline-block;
+  }
+
+  .footer-link:hover .footer-link-arrow-internal {
+    transform: translateX(4px);
+  }
+
+  .footer-link:hover .footer-link-arrow-external {
+    transform: translate(2px, -2px);
+  }
+
+  /* ── Button ───────────────────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      transform 150ms ease;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    /* intentional: no transform on hover */
+  }
+
+  .btn-primary {
+    background-color: var(--color-text);
+    color: var(--color-base);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent);
+    color: #111111;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-accent);
+    color: #111111;
+    border-color: transparent;
+  }
+
+  /* ── Icon Button ──────────────────────────────────────────────────────── */
   .icon-button {
-    @apply inline-flex items-center justify-center;
-    @apply rounded-md transition-colors;
-    color: var(--color-warm);
-    opacity: 0.6;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+    cursor: pointer;
   }
 
   .icon-button:hover {
-    opacity: 1;
-    background: var(--color-warm-muted);
+    background-color: var(--color-accent);
+    color: #111111;
   }
 
-  .social-link {
-    @apply text-muted-foreground transition-colors;
-    transition-duration: var(--transition-normal);
-  }
-
-  .social-link:hover {
-    color: var(--color-warm);
+  /* ── TOC Sidebar ──────────────────────────────────────────────────────── */
+  .toc-sidebar-link {
+    color: var(--color-muted);
+    transition: color 150ms ease;
   }
 
   .toc-sidebar-link:hover {
-    text-decoration: inherit;
-    color: var(--color-warm);
+    color: var(--color-accent);
   }
 
   .toc-sidebar-link.active {
-    color: var(--color-warm);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    color: var(--color-accent);
   }
 
-  .back-link {
-    @apply inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors;
-    transition-duration: var(--transition-normal);
-  }
-
-  .back-link:hover {
-    color: var(--color-warm);
-  }
-
-  .nav-link {
-    @apply relative text-muted-foreground hover:text-foreground transition-colors;
-  }
-
-  .nav-link::after {
-    content: "";
-    @apply absolute -bottom-0.5 left-0 h-px w-0;
-    background: var(--color-warm);
-    transition: width 0.2s ease-out;
-  }
-
-  .nav-link:hover::after {
-    @apply w-full;
-  }
-
-  .fade-in {
-    animation: fadeIn 0.35s var(--ease-default) forwards;
+  /* ── Scroll Reveal Animation ────────────────────────────────────────── */
+  [data-scroll-reveal] {
     opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.4s ease-out,
+      transform 0.4s ease-out;
   }
 
+  [data-scroll-reveal].scroll-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-scroll-reveal].scroll-stagger-1 {
+    transition-delay: 0ms;
+  }
+  [data-scroll-reveal].scroll-stagger-2 {
+    transition-delay: 80ms;
+  }
+  [data-scroll-reveal].scroll-stagger-3 {
+    transition-delay: 160ms;
+  }
+  [data-scroll-reveal].scroll-stagger-4 {
+    transition-delay: 240ms;
+  }
+
+  /* ── Page Enter Animation ─────────────────────────────────────────────── */
   .page-enter {
-    animation: pageEnter 0.4s var(--ease-default) both;
+    animation: pageEnter 0.3s ease-out both;
   }
 
   .page-enter-delay-1 {
-    animation-delay: 0.06s;
+    animation-delay: 60ms;
   }
-
   .page-enter-delay-2 {
-    animation-delay: 0.12s;
+    animation-delay: 120ms;
   }
-
   .page-enter-delay-3 {
-    animation-delay: 0.18s;
-  }
-
-  .fade-in-delay-1 {
-    animation-delay: 0.06s;
-  }
-
-  .fade-in-delay-2 {
-    animation-delay: 0.12s;
-  }
-
-  .fade-in-delay-3 {
-    animation-delay: 0.18s;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    animation-delay: 180ms;
   }
 
   @keyframes pageEnter {
@@ -306,136 +393,224 @@
   }
 
   /* ==========================================================================
-     Prose Styles (Typography for blog content)
+     Prose Styles (Blog content typography)
      ========================================================================== */
 
   .prose {
-    @apply text-foreground text-base leading-relaxed;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 70ch;
+    color: var(--color-text);
+  }
 
-    :where(p):not(:where(.not-prose, .not-prose *)) {
-      @apply text-foreground/80 my-5;
-    }
+  .prose :where(p):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    color: color-mix(in srgb, var(--color-text) 80%, transparent);
+  }
 
-    :where(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
-      @apply text-foreground scroll-mt-24 font-semibold;
-    }
+  .prose :where(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
+    color: var(--color-text);
+    font-weight: 600;
+    scroll-margin-top: 6rem;
+  }
 
-    :first-child:not(:where(.not-prose, .not-prose *)) {
-      @apply mt-0;
-    }
+  .prose :first-child:not(:where(.not-prose, .not-prose *)) {
+    margin-top: 0;
+  }
 
-    :where(h1):not(:where(.not-prose, .not-prose *)) {
-      @apply mt-8 mb-6 text-4xl;
-    }
+  .prose :where(h1):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
 
-    :where(h2):not(:where(.not-prose, .not-prose *)) {
-      @apply mt-8 mb-4 text-2xl;
-    }
+  .prose :where(h2):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 
-    :where(h3):not(:where(.not-prose, .not-prose *)) {
-      @apply mt-8 mb-4 text-xl;
-    }
+  .prose :where(h3):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
 
-    :where(h4):not(:where(.not-prose, .not-prose *)) {
-      @apply mt-7 mb-3 text-lg;
-    }
+  .prose :where(h4):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
 
-    :where(h5, h6):not(:where(.not-prose, .not-prose *)) {
-      @apply mt-5 mb-3;
-    }
+  .prose :where(h5, h6):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
 
-    :where(a):not(:where(.not-prose, .not-prose *)) {
-      font-weight: 500;
-      color: var(--color-warm);
-      text-decoration-color: var(--color-warm-muted);
-      text-decoration-line: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-      transition:
-        color var(--transition-normal),
-        text-decoration-color var(--transition-normal);
-      overflow-wrap: break-word;
-    }
+  .prose :where(a):not(:where(.not-prose, .not-prose *)) {
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    text-decoration-skip-ink: none;
+    transition: text-decoration-color 150ms ease;
+    overflow-wrap: break-word;
+  }
 
-    :where(a:hover):not(:where(.not-prose, .not-prose *)) {
-      text-decoration-color: var(--color-warm);
-    }
+  .prose :where(a:hover):not(:where(.not-prose, .not-prose *)) {
+    background-color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
+  }
 
-    :where(strong):not(:where(.not-prose, .not-prose *)) {
-      @apply text-foreground font-medium;
-    }
+  .prose :where(strong):not(:where(.not-prose, .not-prose *)) {
+    font-weight: 600;
+    color: var(--color-text);
+  }
 
-    :where(ul):not(:where(.not-prose, .not-prose *)) {
-      @apply marker:text-foreground/30 my-5 ml-6 list-disc [&>li]:mt-2;
-    }
+  .prose :where(ul):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: 1.5em;
+    list-style-type: disc;
+  }
 
-    :where(ol):not(:where(.not-prose, .not-prose *)) {
-      @apply marker:text-foreground/30 my-5 ml-6 list-decimal [&>li]:mt-2;
-      @apply [[type="A"]]:list-[upper-alpha] [[type="I"]]:list-[upper-roman] [[type="a"]]:list-[lower-alpha] [[type="i"]]:list-[lower-roman];
-    }
+  .prose :where(ul > li):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 0.5em;
+    padding-left: 0.5em;
+    color: color-mix(in srgb, var(--color-text) 80%, transparent);
+  }
 
-    :where(li):not(:where(.not-prose, .not-prose *)) {
-      @apply text-foreground/80 pl-2 [&>p]:my-0;
-    }
+  .prose :where(ul > li > p):not(:where(.not-prose, .not-prose *)) {
+    margin: 0;
+  }
 
-    :where(ul ul, ol ol, ul ol, ol ul):not(:where(.not-prose, .not-prose *)) {
-      @apply marker:text-foreground/30 my-2 ml-6;
-    }
+  .prose :where(ol):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: 1.5em;
+    list-style-type: decimal;
+  }
 
-    :where(code):not(:where(.not-prose, .not-prose *)) {
-      @apply bg-muted/50 text-foreground relative rounded-sm px-[0.3rem] py-[0.2rem] text-sm font-medium wrap-break-word;
-    }
+  .prose :where(ol > li):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 0.5em;
+    padding-left: 0.5em;
+    color: color-mix(in srgb, var(--color-text) 80%, transparent);
+  }
 
-    :where(blockquote):not(:where(.not-prose, .not-prose *)) {
-      @apply **:text-muted-foreground my-6 pl-6;
-      border-left: 2px solid var(--color-warm);
-    }
+  .prose :where(ol > li > p):not(:where(.not-prose, .not-prose *)) {
+    margin: 0;
+  }
 
-    :where(hr):not(:where(.not-prose, .not-prose *)) {
-      @apply my-8 border-t;
-    }
+  .prose :where(ul ul, ol ol, ul ol, ol ul):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.5em;
+  }
 
-    :where(table):not(:where(.not-prose, .not-prose *)) {
-      @apply mx-auto my-6 block max-w-fit overflow-x-auto text-sm;
-    }
+  .prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--color-accent);
+    font-style: normal;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  }
 
-    :where(thead):not(:where(.not-prose, .not-prose *)) {
-      @apply border-muted-foreground/30 border-b;
-    }
+  .prose :where(blockquote > *):not(:where(.not-prose, .not-prose *)) {
+    color: inherit;
+  }
 
-    :where(th):not(:where(.not-prose, .not-prose *)) {
-      @apply px-4 py-2 font-medium;
-      @apply text-left [[align="center"]]:text-center [[align="right"]]:text-right;
-    }
+  .prose :where(hr):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border: none;
+    border-top: 1px solid var(--color-border);
+  }
 
-    :where(tr):not(:where(.not-prose, .not-prose *)) {
-      @apply border-muted-foreground/30 border-y first:border-t-0 last:border-b-0;
-    }
+  .prose :where(code):not(:where(.not-prose, .not-prose *)) {
+    font-family:
+      ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono",
+      monospace;
+    font-size: 0.875em;
+    font-weight: 500;
+    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
+    padding: 0.15em 0.35em;
+    overflow-wrap: break-word;
+  }
 
-    :where(td):not(:where(.not-prose, .not-prose *)) {
-      @apply text-foreground/80 px-4 py-2 align-top wrap-break-word *:first:mt-0! *:last:mb-0!;
-      @apply text-left [[align="center"]]:text-center [[align="right"]]:text-right;
-    }
+  .prose :where(pre):not(:where(.not-prose, .not-prose *)) {
+    max-height: min(68vh, 1000px);
+    overflow-y: auto;
+  }
 
-    :where(img, video, figure, .expressive-code):not(:where(.not-prose, .not-prose *)) {
-      @apply mx-auto my-6;
-    }
+  .prose :where(table):not(:where(.not-prose, .not-prose *)) {
+    margin: 1.5em auto;
+    display: block;
+    max-width: fit-content;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
 
-    :where(pre):not(:where(.not-prose, .not-prose *)) {
-      @apply max-h-[min(68vh,1000px)]! overflow-y-auto;
-    }
+  .prose :where(thead):not(:where(.not-prose, .not-prose *)) {
+    border-bottom: 1px solid var(--color-border);
+  }
 
-    :where(kbd):not(:where(.not-prose, .not-prose *)) {
-      @apply text-foreground bg-muted rounded-md border px-2 py-1 text-xs font-medium;
-    }
+  .prose :where(th):not(:where(.not-prose, .not-prose *)) {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-text);
+  }
+
+  .prose :where(tr):not(:where(.not-prose, .not-prose *)) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose :where(tr:first-child):not(:where(.not-prose, .not-prose *)) {
+    border-top: none;
+  }
+
+  .prose :where(td):not(:where(.not-prose, .not-prose *)) {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    color: color-mix(in srgb, var(--color-text) 80%, transparent);
+    overflow-wrap: break-word;
+  }
+
+  .prose :where(img, video, figure, .expressive-code):not(:where(.not-prose, .not-prose *)) {
+    margin: 1.5em auto;
+  }
+
+  .prose :where(kbd):not(:where(.not-prose, .not-prose *)) {
+    font-family:
+      ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono",
+      monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.15em 0.5em;
+    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
+    color: var(--color-text);
   }
 }
+
+/* ==========================================================================
+   View Transitions
+   ========================================================================== */
 
 @layer base {
   ::view-transition-old(page-main),
   ::view-transition-new(page-main) {
     animation-duration: 200ms;
-    animation-timing-function: var(--ease-default);
+    animation-timing-function: ease-out;
   }
 
   ::view-transition-old(page-main) {
@@ -446,11 +621,10 @@
     animation-name: viewFadeIn;
   }
 
-  /* Theme transition animations */
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 300ms;
-    animation-timing-function: var(--ease-default);
+    animation-duration: 200ms;
+    animation-timing-function: ease-out;
   }
 
   ::view-transition-old(root) {
@@ -480,20 +654,10 @@
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 /* ==========================================================================
    Accessibility
    ========================================================================== */
 
-/* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -503,8 +667,23 @@
     transition-duration: 0.01ms !important;
   }
 
+  /* Immediately reveal scroll-reveal elements when motion is reduced */
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation-duration: 0.01ms !important;
   }
+}
+
+/* ==========================================================================
+   Focus styles — Accent focus rings for accessibility
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }

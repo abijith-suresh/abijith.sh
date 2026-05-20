@@ -1,13 +1,13 @@
 <div id="search-skeleton" class="hidden">
   {
     [1, 2, 3, 4].map((_i) => (
-      <div class="p-4 border-b border-border animate-pulse">
+      <div class="p-4 animate-pulse" style="border-bottom: 1px solid var(--color-border);">
         <div class="flex items-start gap-3">
-          <div class="w-4 h-4 bg-muted rounded mt-1 shrink-0" />
+          <div class="w-4 h-4 rounded mt-1 shrink-0" style="background: var(--color-border);" />
           <div class="flex-1 space-y-2">
-            <div class="h-4 bg-muted rounded w-3/4" />
-            <div class="h-3 bg-muted rounded w-full" />
-            <div class="h-3 bg-muted rounded w-2/3" />
+            <div class="h-4 rounded w-3/4" style="background: var(--color-border);" />
+            <div class="h-3 rounded w-full" style="background: var(--color-border);" />
+            <div class="h-3 rounded w-2/3" style="background: var(--color-border);" />
           </div>
         </div>
       </div>

@@ -6,11 +6,11 @@
  */
 ---
 
-<div id="reading-progress-container" class="fixed top-0 left-0 right-0 z-50 h-0.5">
+<div id="reading-progress-container" class="fixed top-0 left-0 right-0 z-50 h-[3px]">
   <div
     id="reading-progress-bar"
     class="h-full origin-left transition-transform"
-    style="background: var(--color-warm); transform: scaleX(0); transition-duration: var(--transition-fast); transition-timing-function: var(--ease-default);"
+    style="background: var(--color-accent); transform: scaleX(0); transition-duration: 150ms; transition-timing-function: ease-out;"
   >
   </div>
 </div>
@@ -33,11 +33,30 @@
     static updateProgress() {
       if (!state.progressBar) return;
 
-      const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollProgress =
-        scrollableDistance > 0 ? Math.min(Math.max(window.scrollY / scrollableDistance, 0), 1) : 0;
+      const target = document.querySelector<HTMLElement>("[data-reading-target]");
+      if (!target) {
+        // Fallback to full-page scroll when no target element exists
+        const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollProgress =
+          scrollableDistance > 0
+            ? Math.min(Math.max(window.scrollY / scrollableDistance, 0), 1)
+            : 0;
+        state.progressBar.style.transform = `scaleX(${scrollProgress})`;
+        return;
+      }
 
-      state.progressBar.style.transform = `scaleX(${scrollProgress})`;
+      const { offsetTop, offsetHeight } = target;
+      const scrollableDistance = offsetHeight - window.innerHeight;
+
+      if (scrollableDistance <= 0) {
+        // Article fits in the viewport — fully read
+        state.progressBar.style.transform = "scaleX(1)";
+        return;
+      }
+
+      const scrolled = window.scrollY - offsetTop;
+      const progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
+      state.progressBar.style.transform = `scaleX(${progress})`;
     }
 
     static init() {
