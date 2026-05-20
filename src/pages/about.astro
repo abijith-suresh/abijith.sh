@@ -2,7 +2,6 @@
 import SplitSection from "@/components/SplitSection.astro";
 import Container from "@/components/ui/Container.astro";
 import PageShell from "@/components/ui/PageShell.astro";
-import Tag from "@/components/ui/Tag.astro";
 import { AUTHOR, SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
@@ -19,8 +18,8 @@ import Layout from "@/layouts/Layout.astro";
       { label: "About", icon: "fa6-solid:user" },
     ]}
     eyebrow={SITE.role}
-    title={AUTHOR.fullName}
-    subtitle={AUTHOR.tagline}
+    title="About"
+    subtitle={AUTHOR.aboutSubtitle}
   >
     <Container class="flex flex-col gap-12">
       <!-- Section: What I do -->
@@ -47,15 +46,6 @@ import Layout from "@/layouts/Layout.astro";
           <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
             {AUTHOR.aboutThisSite}
           </p>
-        </SplitSection>
-      </section>
-
-      <!-- Section: Away from the keyboard -->
-      <section class="page-enter page-enter-delay-3">
-        <SplitSection label="When I'm not coding" sublabel="Away from the keyboard">
-          <div class="flex flex-wrap gap-2">
-            {AUTHOR.interests.map((interest) => <Tag label={interest} />)}
-          </div>
         </SplitSection>
       </section>
     </Container>
