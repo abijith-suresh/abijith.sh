@@ -1,7 +1,7 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import SplitSection from "@/components/SplitSection.astro";
 import Container from "@/components/ui/Container.astro";
+import PageShell from "@/components/ui/PageShell.astro";
 import Tag from "@/components/ui/Tag.astro";
 import { AUTHOR, SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
@@ -13,46 +13,15 @@ import Layout from "@/layouts/Layout.astro";
   type="profile"
   jsonLd={{ type: "person" }}
 >
-  <div class="w-full mx-auto flex grow flex-col gap-y-16 pb-16 page-enter">
-    <Container class="pt-8">
-      <div class="page-enter page-enter-delay-1">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/", icon: "fa6-solid:house" },
-            { label: "About", icon: "fa6-solid:user" },
-          ]}
-        />
-      </div>
-    </Container>
-
-    <!-- Identity block — side-by-side: text left, portrait right -->
-    <Container class="page-enter page-enter-delay-1">
-      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-start">
-        <!-- Text column -->
-        <div class="flex flex-col gap-4">
-          <span class="eyebrow">{SITE.role}</span>
-          <div class="w-12 border-t-2 border-[var(--color-accent)]"></div>
-          <h1 class="text-[clamp(2.25rem,5vw,4rem)] font-bold tracking-tight leading-[1.05]">
-            {AUTHOR.fullName}
-          </h1>
-          <p
-            class="text-lg leading-relaxed max-w-[52ch]"
-            style="color: var(--color-muted-foreground);"
-          >
-            {AUTHOR.tagline}
-          </p>
-        </div>
-
-        <!-- Portrait column -->
-        <img
-          src={AUTHOR.avatar}
-          alt={AUTHOR.fullName}
-          class="w-48 h-60 md:w-56 md:h-72 object-cover object-top"
-        />
-      </div>
-    </Container>
-
-    <!-- Narrative sections — 25/75 split -->
+  <PageShell
+    breadcrumbs={[
+      { label: "Home", href: "/", icon: "fa6-solid:house" },
+      { label: "About", icon: "fa6-solid:user" },
+    ]}
+    eyebrow={SITE.role}
+    title={AUTHOR.fullName}
+    subtitle={AUTHOR.tagline}
+  >
     <Container class="flex flex-col gap-12">
       <!-- Section: What I do -->
       <section class="page-enter page-enter-delay-2">
@@ -90,5 +59,5 @@ import Layout from "@/layouts/Layout.astro";
         </SplitSection>
       </section>
     </Container>
-  </div>
+  </PageShell>
 </Layout>
