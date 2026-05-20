@@ -17,27 +17,11 @@ export function generatePaginatedPaths<T>(
     hasPrev: boolean;
   };
 }[] {
-  const totalPages = Math.ceil(items.length / perPage);
+  const firstPage = paginate(items, 1, perPage);
 
-  // Always generate at least the first page, even when empty
-  if (totalPages === 0) {
-    return [
-      {
-        params: { page: undefined },
-        props: {
-          items: [],
-          currentPage: 1,
-          totalPages: 0,
-          hasNext: false,
-          hasPrev: false,
-        },
-      },
-    ];
-  }
-
-  return Array.from({ length: totalPages }, (_, i) => {
+  return Array.from({ length: firstPage.totalPages }, (_, i) => {
     const page = i + 1;
-    const paginatedResult = paginate(items, page, perPage);
+    const paginatedResult = page === 1 ? firstPage : paginate(items, page, perPage);
 
     return {
       params: { page: page === 1 ? undefined : String(page) },

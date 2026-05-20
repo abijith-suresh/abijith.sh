@@ -22,7 +22,7 @@ export function paginate<T>(
   // Ensure page is at least 1
   const validPage = Math.max(1, Math.floor(page));
 
-  const totalPages = Math.ceil(items.length / perPage);
+  const totalPages = Math.max(1, Math.ceil(items.length / perPage));
   const currentPage = Math.max(1, Math.min(validPage, totalPages));
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
