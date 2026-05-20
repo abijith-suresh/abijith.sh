@@ -15,7 +15,7 @@ Quick reference for all available MDX components in this project.
 Import:
 
 ```mdx
-import Callout from "@/components/mdx/Callout.astro";
+import { Callout } from "@/components/mdx";
 ```
 
 ### Basic Usage
@@ -82,7 +82,7 @@ import hero from "./hero.png";
 Import:
 
 ```mdx
-import Video from "@/components/mdx/Video.astro";
+import { Video } from "@/components/mdx";
 ```
 
 ### YouTube Embed
@@ -114,8 +114,7 @@ tags: []
 draft: true
 ---
 
-import Callout from "@/components/mdx/Callout.astro";
-import Video from "@/components/mdx/Video.astro";
+import { Callout, Video } from "@/components/mdx";
 import hero from "./hero.png";
 import { Image } from "astro:assets";
 
