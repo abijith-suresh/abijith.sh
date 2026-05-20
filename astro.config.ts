@@ -92,8 +92,13 @@ export default defineConfig({
     build: {
       rollupOptions: {
         onwarn(warning, warn) {
-          // Suppress warnings about unused imports from Astro internals
-          if (warning.code === "UNUSED_EXTERNAL_IMPORT") return;
+          // Suppress UNUSED_EXTERNAL_IMPORT only from Astro internals or dependencies
+          if (
+            warning.code === "UNUSED_EXTERNAL_IMPORT" &&
+            warning.id &&
+            (warning.id.includes("/.astro/") || warning.id.includes("/node_modules/"))
+          )
+            return;
           warn(warning);
         },
       },

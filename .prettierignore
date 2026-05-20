@@ -6,7 +6,6 @@ dist/
 node_modules/
 
 # Lock files
-bun.lockb
 package-lock.json
 yarn.lock
 
