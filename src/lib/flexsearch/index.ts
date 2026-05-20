@@ -207,4 +207,4 @@ export function clearSearchIndex(): void {
   }
 }
 
-export { extractSnippet, highlightText } from "./highlighting";
+export { highlightText } from "./highlighting";
