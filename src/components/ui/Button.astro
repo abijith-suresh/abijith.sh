@@ -5,9 +5,7 @@ import { cn } from "@/lib/utils";
 interface Props {
   /** Visual variant */
   variant?: "primary" | "secondary" | "ghost";
-  /** HTML element to render — inferred from href if not set */
-  as?: "a" | "button";
-  /** Link destination (renders as <a> when provided) */
+  /** Link destination — when provided, renders as <a>; otherwise renders as <button> */
   href?: string;
   /** Open in new tab (only for <a>) */
   external?: boolean;
@@ -27,7 +25,6 @@ interface Props {
 
 const {
   variant = "primary",
-  as,
   href,
   external = false,
   prefetch,
@@ -37,12 +34,10 @@ const {
   disabled = false,
   id,
 } = Astro.props;
-
-const isLink = as === "a" || href !== undefined;
 ---
 
 {
-  isLink && href ? (
+  href ? (
     <Link
       href={href}
       external={external}
