@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
-import { filterTocHeadings } from "@/lib/toc";
+import TOCList from "@/components/TOCList.astro";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -9,15 +9,10 @@ interface Props {
 }
 
 const { headings, class: className } = Astro.props;
-const filteredHeadings = filterTocHeadings(headings);
-
-function getIndent(depth: number): string {
-  return depth === 3 ? "ml-4" : "";
-}
 ---
 
 {
-  filteredHeadings.length > 0 && (
+  headings.length > 0 && (
     <div
       id="toc-sidebar-container"
       class:list={cn(
@@ -27,29 +22,19 @@ function getIndent(depth: number): string {
     >
       <div class="flex max-h-[calc(100vh-8rem)] flex-col overflow-y-auto pr-4">
         <span class="eyebrow mb-4">On this page</span>
-        <ul class="flex list-none flex-col gap-y-2" id="toc-sidebar-list">
-          {filteredHeadings.map((heading) => (
-            <li
-              class:list={["text-sm", getIndent(heading.depth)]}
-              style="color: var(--color-muted-foreground);"
-            >
-              <a
-                href={`#${heading.slug}`}
-                class="toc-sidebar-link transition-all duration-200"
-                data-heading-link={heading.slug}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <TOCList
+          headings={headings}
+          listId="toc-sidebar-list"
+          linkClass="toc-sidebar-link transition-all duration-200"
+          dataAttr="data-heading-link"
+        />
       </div>
     </div>
   )
 }
 
 <script>
-  import { createDesktopTocController } from "@/lib/toc";
+  import { attachTocLifecycle, createDesktopTocController } from "@/lib/toc";
 
   const controller = createDesktopTocController({
     headingSelector: ".prose h2[id], .prose h3[id]",
@@ -60,10 +45,5 @@ function getIndent(depth: number): string {
     enableSmoothScroll: true,
   });
 
-  document.addEventListener("astro:page-load", () => controller.init());
-  document.addEventListener("astro:after-swap", () => {
-    controller.cleanup();
-    controller.init();
-  });
-  document.addEventListener("astro:before-swap", () => controller.cleanup());
+  attachTocLifecycle(controller);
 </script>

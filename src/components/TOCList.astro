@@ -1,0 +1,42 @@
+---
+import type { MarkdownHeading } from "astro";
+import { filterTocHeadings } from "@/lib/toc";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  headings: MarkdownHeading[];
+  listId: string;
+  /** Extra classes on the <ul> */
+  listClass?: string;
+  /** Classes on each <a> */
+  linkClass: string;
+  /** Data attribute name on each <a>, e.g. "data-heading-id" */
+  dataAttr: string;
+  /** Extra classes on each <li> */
+  itemClass?: string;
+}
+
+const { headings, listId, listClass, linkClass, dataAttr, itemClass } = Astro.props;
+const filteredHeadings = filterTocHeadings(headings);
+
+function getIndent(depth: number): string {
+  return depth === 3 ? "ml-4" : "";
+}
+---
+
+{
+  filteredHeadings.length > 0 && (
+    <ul id={listId} class:list={cn("flex list-none flex-col gap-y-2", listClass)}>
+      {filteredHeadings.map((heading) => (
+        <li
+          class:list={cn("text-sm", getIndent(heading.depth), itemClass)}
+          style="color: var(--color-muted-foreground);"
+        >
+          <a href={`#${heading.slug}`} class:list={[linkClass]} {...{ [dataAttr]: heading.slug }}>
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
