@@ -49,6 +49,13 @@
    ========================================================================== */
 
 @layer base {
+  /*
+   * Swiss design principle: borders should be explicit, not default.
+   * Tailwind v4 defaults border-color to currentColor; we override to
+   * transparent so no element gets an unintended visible border from a
+   * bare `border-b` or `border-t` utility. Every visible border in this
+   * codebase is written with an explicit color — this is intentional.
+   */
   *,
   ::after,
   ::before {
