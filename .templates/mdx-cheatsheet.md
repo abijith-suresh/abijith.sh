@@ -26,10 +26,10 @@ import Callout from "@/components/mdx/Callout.astro";
 
 ### Variants
 
-- `variant="note"` - Blue, informational
-- `variant="tip"` - Green, helpful suggestions
-- `variant="warning"` - Yellow, cautions
-- `variant="danger"` - Red, critical warnings
+- `variant="note"` - Informational
+- `variant="tip"` - Helpful suggestions
+- `variant="warning"` - Cautions
+- `variant="danger"` - Critical warnings
 
 ### Custom Title
 
@@ -54,7 +54,7 @@ import Callout from "@/components/mdx/Callout.astro";
 Import:
 
 ```mdx
-import Image from "@/components/mdx/Image.astro";
+import { Image } from "astro:assets";
 ```
 
 ### Basic Usage
@@ -67,12 +67,12 @@ import hero from "./hero.png";
 <Image src={hero} alt="Descriptive text" />
 ```
 
-### With Caption
+### With Alt Text
 
 ```mdx
 import hero from "./hero.png";
 
-<Image src={hero} alt="Descriptive text" caption="Photo by Author" />
+<Image src={hero} alt="Descriptive alt text" />
 ```
 
 ---
@@ -88,15 +88,16 @@ import Video from "@/components/mdx/Video.astro";
 ### YouTube Embed
 
 ```mdx
-<Video id="YOUTUBE_VIDEO_ID" title="Video Title" />
+<Video id="dsTXcSeAZq8" title="Video Title" />
 ```
 
-**Note:** Use only the video ID, not the full URL.
+The `id` prop accepts both raw YouTube video IDs and full YouTube URLs. The component automatically extracts the video ID from any supported URL format.
 
-**Example:**
+**Examples:**
 
-- URL: `https://www.youtube.com/watch?v=dsTXcSeAZq8`
-- ID: `dsTXcSeAZq8`
+- Raw ID: `dsTXcSeAZq8`
+- Watch URL: `https://www.youtube.com/watch?v=dsTXcSeAZq8`
+- Short URL: `https://youtu.be/dsTXcSeAZq8`
 
 ---
 
@@ -114,8 +115,9 @@ draft: true
 ---
 
 import Callout from "@/components/mdx/Callout.astro";
-import Image from "@/components/mdx/Image.astro";
 import Video from "@/components/mdx/Video.astro";
+import hero from "./hero.png";
+import { Image } from "astro:assets";
 
 ## Introduction
 
@@ -123,11 +125,11 @@ import Video from "@/components/mdx/Video.astro";
 
 ## Visual Demo
 
-<Image src="/images/demo.jpg" alt="Demo screenshot" caption="The final result" />
+<Image src={hero} alt="Demo screenshot" />
 
 ## Video Tutorial
 
-<Video id="abc123" title="Step-by-step guide" />
+<Video id="dsTXcSeAZq8" title="Step-by-step guide" />
 ```
 
 ---
@@ -148,4 +150,4 @@ All components support Markdown formatting inside:
 2. **Use descriptive** alt text for images
 3. **Keep callouts** concise and focused
 4. **Test locally** before setting `draft: false`
-5. **Use captions** to add context to images
+5. **Do not use curly braces** (`{` and `}`) in plain MDX content — they are parsed as expressions. Escape them with `{'{'}` and `{'}'}` if needed.

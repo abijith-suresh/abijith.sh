@@ -4,11 +4,10 @@ description: "{{DESCRIPTION}}"
 publishDate: { { DATE } }
 tags: []
 draft: true
+{{HERO_IMAGE}}
 ---
 
 import Callout from "@/components/mdx/Callout.astro";
-import Image from "@/components/mdx/Image.astro";
-import Video from "@/components/mdx/Video.astro";
 
 Write your content here using Markdown and MDX components.
 
@@ -46,13 +45,16 @@ Images must be imported locally for optimization:
 
 ```mdx
 import hero from "./hero.png";
+import { Image } from "astro:assets";
 
-<Image src={hero} alt="Descriptive alt text" caption="Optional caption" />
+<Image src={hero} alt="Descriptive alt text" />
 ```
 
 ### Videos
 
 ```mdx
+import Video from "@/components/mdx/Video.astro";
+
 <Video id="YOUTUBE_VIDEO_ID" title="Video Title" />
 ```
 

@@ -4,7 +4,7 @@ This directory contains templates for creating new blog posts and projects.
 
 ## Quick Start
 
-Use the npm scripts to create new content:
+Use the following commands to create new content:
 
 ```bash
 # Create a new blog post
@@ -16,14 +16,14 @@ bun run new:project
 
 ## Available Templates
 
-### Blog Templates
+### Blog Template
 
-- **`blog-post.md`** - Basic Markdown template with standard frontmatter
-- **`blog-post.mdx`** - MDX template with component imports pre-configured
+- **`blog-post.mdx`** - MDX template with Callout component import pre-configured
 
-### Project Template
+### Project Templates
 
-- **`project.md`** - Standard project template with all frontmatter fields
+- **`project.mdx`** - MDX template with component import pre-configured (recommended)
+- **`project.md`** - Markdown template for simpler projects
 
 ### Reference
 
@@ -34,7 +34,7 @@ bun run new:project
 If you prefer not to use the scripts, you can copy these templates manually:
 
 1. Copy the appropriate template file
-2. Rename it with your content slug (e.g., `my-new-post.md`)
+2. Rename it with your content slug (e.g., `my-new-post.mdx`)
 3. Place it in the correct directory:
    - Blog posts: `src/content/blog/YYYY/`
    - Projects: `src/content/projects/`
@@ -52,6 +52,7 @@ If you prefer not to use the scripts, you can copy these templates manually:
 | `publishDate` | date     | Yes      | Current date |
 | `tags`        | string[] | No       | []           |
 | `draft`       | boolean  | No       | true         |
+| `heroImage`   | string   | No       | -            |
 
 ### Projects
 
@@ -60,13 +61,14 @@ If you prefer not to use the scripts, you can copy these templates manually:
 | `title`       | string   | Yes      | -            |
 | `description` | string   | Yes      | -            |
 | `date`        | date     | Yes      | Current date |
-| `tags`        | string[] | No       | []           |
+| `tags`        | string[] | Yes      | -            |
 | `github`      | URL      | No       | -            |
 | `demo`        | URL      | No       | -            |
+| `heroImage`   | string   | No       | -            |
 
 ## Tips
 
 - Set `draft: false` when you're ready to publish
-- Use kebab-case for file names (e.g., `my-awesome-post.md`)
+- Use kebab-case for file names (e.g., `my-awesome-post.mdx`)
 - Keep descriptions under 160 characters for SEO
 - Use 3-5 relevant tags for better discoverability
