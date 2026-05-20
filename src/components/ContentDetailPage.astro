@@ -112,7 +112,10 @@ const {
   {tocHeadings.length > 0 && <TOCSidebar headings={tocHeadings} />}
 
   <!-- Prose Content -->
-  <article class="prose col-start-2 max-w-none px-6 md:px-8 page-enter page-enter-delay-2">
+  <article
+    data-reading-target
+    class="prose col-start-2 max-w-none px-6 md:px-8 page-enter page-enter-delay-2"
+  >
     <div class="border-t border-[var(--color-border)] mb-8"></div>
     <slot />
   </article>
