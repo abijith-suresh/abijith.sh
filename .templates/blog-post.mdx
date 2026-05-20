@@ -42,8 +42,12 @@ Your content goes here...
 
 ### Images
 
+Images must be imported locally for optimization:
+
 ```mdx
-<Image src="/path/to/image.jpg" alt="Descriptive alt text" caption="Optional caption" />
+import hero from "./hero.png";
+
+<Image src={hero} alt="Descriptive alt text" caption="Optional caption" />
 ```
 
 ### Videos

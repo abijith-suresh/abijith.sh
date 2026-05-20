@@ -59,20 +59,20 @@ import Image from "@/components/mdx/Image.astro";
 
 ### Basic Usage
 
+Images must be imported locally for optimization:
+
 ```mdx
-<Image src="/path/to/image.jpg" alt="Descriptive text" />
+import hero from "./hero.png";
+
+<Image src={hero} alt="Descriptive text" />
 ```
 
 ### With Caption
 
 ```mdx
-<Image src="/path/to/image.jpg" alt="Descriptive text" caption="Photo by Author" />
-```
+import hero from "./hero.png";
 
-### External Images
-
-```mdx
-<Image src="https://example.com/image.jpg" alt="Descriptive text" />
+<Image src={hero} alt="Descriptive text" caption="Photo by Author" />
 ```
 
 ---
