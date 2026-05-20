@@ -14,6 +14,8 @@ export async function getAllProjects(options?: {
     );
   }
 
+  projects = projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
   if (options?.limit) {
     projects = projects.slice(0, options.limit);
   }
