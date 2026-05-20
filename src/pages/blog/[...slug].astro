@@ -1,12 +1,10 @@
 ---
 import ReadingProgress from "@/components/ReadingProgress.astro";
-import RelatedPosts from "@/components/RelatedPosts.astro";
 import ContentDetailPage from "@/components/ContentDetailPage.astro";
 import TagList from "@/components/TagList.astro";
 import TOCHeader from "@/components/TOCHeader.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { getRelatedPosts } from "@/lib/recommendations";
 import { filterTocHeadings } from "@/lib/toc";
 import { calculateReadingTime, formatBlogDate, formatReadingTime } from "@/lib/utils";
 import { type CollectionEntry, getCollection, render } from "astro:content";
@@ -30,8 +28,6 @@ const formattedDate = formatBlogDate(publishDate);
 const readingTime = calculateReadingTime(post.body ?? "");
 
 const tocHeadings = filterTocHeadings(headings);
-
-const relatedPosts = await getRelatedPosts(post.id, 3);
 ---
 
 <Layout
@@ -74,6 +70,5 @@ const relatedPosts = await getRelatedPosts(post.id, 3);
   >
     <TagList slot="header-extras" tags={tags} />
     <Content />
-    <RelatedPosts slot="after-content" posts={relatedPosts} />
   </ContentDetailPage>
 </Layout>
