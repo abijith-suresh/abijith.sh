@@ -20,10 +20,9 @@ bun run new:project
 
 - **`blog-post.mdx`** - MDX template with Callout component import pre-configured
 
-### Project Templates
+### Project Template
 
-- **`project.mdx`** - MDX template with component import pre-configured (recommended)
-- **`project.md`** - Markdown template for simpler projects
+- **`project.mdx`** - MDX template with Callout component import pre-configured
 
 ### Reference
 

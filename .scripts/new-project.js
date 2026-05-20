@@ -57,8 +57,7 @@ export async function main() {
     process.exit(1);
   }
 
-  const format = await prompt("Format (md/mdx) [mdx]: ");
-  const fileExtension = format.toLowerCase() === "md" ? "md" : "mdx";
+  const fileExtension = "mdx";
 
   const githubUrl = await prompt("GitHub URL (optional): ");
   const demoUrl = await prompt("Demo URL (optional): ");
@@ -76,7 +75,7 @@ export async function main() {
   }
 
   // Read template
-  const templatePath = join(__dirname, "..", ".templates", `project.${fileExtension}`);
+  const templatePath = join(__dirname, "..", ".templates", "project.mdx");
 
   if (!existsSync(templatePath)) {
     console.error(`❌ Error: Template not found: ${templatePath}`);
