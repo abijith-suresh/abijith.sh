@@ -2,13 +2,13 @@
 import SplitSection from "@/components/SplitSection.astro";
 import Container from "@/components/ui/Container.astro";
 import PageShell from "@/components/ui/PageShell.astro";
-import { AUTHOR, SITE } from "@/consts";
+import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
   title={`About - ${SITE.title}`}
-  description={`Learn more about ${AUTHOR.name} - ${AUTHOR.tagline}`}
+  description={`Learn more about ${SITE.author} - ${SITE.tagline}`}
   type="profile"
   jsonLd={{ type: "person" }}
 >
@@ -19,14 +19,14 @@ import Layout from "@/layouts/Layout.astro";
     ]}
     eyebrow={SITE.role}
     title="About"
-    subtitle={AUTHOR.aboutSubtitle}
+    subtitle={SITE.aboutSubtitle}
   >
     <Container class="flex flex-col gap-12">
       <!-- Section: What I do -->
       <section class="page-enter page-enter-delay-2">
         <SplitSection label="The day job" sublabel="What I do">
           <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {AUTHOR.aboutWhatIDo}
+            {SITE.aboutWhatIDo}
           </p>
         </SplitSection>
       </section>
@@ -35,7 +35,7 @@ import Layout from "@/layouts/Layout.astro";
       <section class="page-enter page-enter-delay-2">
         <SplitSection label="The path" sublabel="How I got here">
           <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {AUTHOR.aboutHowIGotHere}
+            {SITE.aboutHowIGotHere}
           </p>
         </SplitSection>
       </section>
@@ -44,7 +44,7 @@ import Layout from "@/layouts/Layout.astro";
       <section class="page-enter page-enter-delay-3">
         <SplitSection label="Why it exists" sublabel="This site">
           <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {AUTHOR.aboutThisSite}
+            {SITE.aboutThisSite}
           </p>
         </SplitSection>
       </section>

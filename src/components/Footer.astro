@@ -1,7 +1,7 @@
 ---
 import FooterLink from "@/components/FooterLink.astro";
 import Container from "@/components/ui/Container.astro";
-import { SITE, SOCIAL_LINKS } from "@/consts";
+import { SITE } from "@/consts";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -10,11 +10,13 @@ const currentYear = new Date().getFullYear();
   <Container class="py-8">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-        <FooterLink href={SOCIAL_LINKS.github} external>GitHub</FooterLink>
-        <FooterLink href={SOCIAL_LINKS.x} external>X</FooterLink>
-        <FooterLink href={SOCIAL_LINKS.linkedin} external>LinkedIn</FooterLink>
-        <FooterLink href={SOCIAL_LINKS.bluesky} external>Bluesky</FooterLink>
-        <FooterLink href="/rss.xml">RSS</FooterLink>
+        {
+          SITE.socialLinks.map((link) => (
+            <FooterLink href={link.href} external={link.external}>
+              {link.label}
+            </FooterLink>
+          ))
+        }
       </div>
 
       <p class="eyebrow">

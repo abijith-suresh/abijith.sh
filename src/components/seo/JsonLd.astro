@@ -1,5 +1,5 @@
 ---
-import { AUTHOR, SITE, SOCIAL_LINKS } from "@/consts";
+import { SITE } from "@/consts";
 
 interface WebSiteSchema {
   "@context": "https://schema.org";
@@ -81,7 +81,7 @@ if (type === "website") {
     url: SITE.url,
     author: {
       "@type": "Person",
-      name: AUTHOR.name,
+      name: SITE.author,
       url: SITE.url,
     },
     inLanguage: SITE.locale,
@@ -97,7 +97,7 @@ if (type === "website") {
     dateModified: article.dateModified?.toISOString() || article.datePublished.toISOString(),
     author: {
       "@type": "Person",
-      name: AUTHOR.name,
+      name: SITE.author,
       url: SITE.url,
     },
     publisher: {
@@ -115,17 +115,12 @@ if (type === "website") {
   schema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: AUTHOR.fullName,
+    name: SITE.fullName,
     url: SITE.url,
-    jobTitle: person?.jobTitle || AUTHOR.tagline,
-    description: person?.description || AUTHOR.tagline,
-    sameAs: [
-      SOCIAL_LINKS.github,
-      SOCIAL_LINKS.x,
-      SOCIAL_LINKS.linkedin,
-      SOCIAL_LINKS.bluesky,
-    ].filter(Boolean),
-    image: AUTHOR.avatar ? new URL(AUTHOR.avatar, Astro.site).href : undefined,
+    jobTitle: person?.jobTitle || SITE.tagline,
+    description: person?.description || SITE.tagline,
+    sameAs: [SITE.github, SITE.x, SITE.linkedin, SITE.bluesky].filter(Boolean),
+    image: SITE.avatar ? new URL(SITE.avatar, Astro.site).href : undefined,
   };
 }
 ---
