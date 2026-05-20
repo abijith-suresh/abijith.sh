@@ -6,7 +6,7 @@ import TOCHeader from "@/components/TOCHeader.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { filterTocHeadings } from "@/lib/toc";
-import { calculateReadingTime, formatBlogDate, formatReadingTime } from "@/lib/utils";
+import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -24,7 +24,7 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, tags, publishDate, heroImage } = post.data;
 const { Content, headings } = await render(post);
-const formattedDate = formatBlogDate(publishDate);
+const formattedDate = formatDate(publishDate);
 const readingTime = calculateReadingTime(post.body ?? "");
 
 const tocHeadings = filterTocHeadings(headings);

@@ -18,14 +18,7 @@ import Container from "@/components/ui/Container.astro";
         class="text-lg leading-relaxed max-w-[75ch] page-enter page-enter-delay-1"
         style="color: var(--color-muted-foreground);"
       >
-        {
-          SITE.heroIntro.split("\n").map((line: string) => (
-            <>
-              {line}
-              <br />
-            </>
-          ))
-        }
+        {SITE.heroIntro}
       </p>
     </div>
   </Container>

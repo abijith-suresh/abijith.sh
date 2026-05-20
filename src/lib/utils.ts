@@ -19,7 +19,7 @@ function getOrdinalSuffix(day: number): string {
   }
 }
 
-export function formatBlogDate(date: Date): string {
+export function formatDate(date: Date): string {
   const month = date.toLocaleDateString("en-US", { month: "long" });
   const day = date.getDate();
   const year = date.getFullYear();
@@ -29,6 +29,7 @@ export function formatBlogDate(date: Date): string {
 }
 
 export function calculateReadingTime(content: string, wordsPerMinute = 200): number {
+  if (!content.trim()) return 0;
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / wordsPerMinute));
 }

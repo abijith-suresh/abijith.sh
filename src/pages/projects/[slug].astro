@@ -6,7 +6,7 @@ import TOCHeader from "@/components/TOCHeader.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { filterTocHeadings } from "@/lib/toc";
-import { formatBlogDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import { Icon } from "astro-icon/components";
 
@@ -25,7 +25,7 @@ interface Props {
 const { project } = Astro.props;
 const { title, description, tags, date, github, demo, heroImage } = project.data;
 const { Content, headings } = await render(project);
-const formattedDate = formatBlogDate(date);
+const formattedDate = formatDate(date);
 
 const tocHeadings = filterTocHeadings(headings);
 ---
