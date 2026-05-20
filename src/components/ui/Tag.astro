@@ -5,19 +5,17 @@ import { cn } from "@/lib/utils";
 interface Props {
   /** The tag label */
   label: string;
-  /** Render as a link (interactive) or a span (static) */
-  interactive?: boolean;
-  /** Link href (only used when interactive) */
+  /** Link href — when provided, renders as a link; otherwise renders as a span */
   href?: string;
   /** Additional CSS class */
   class?: string;
 }
 
-const { label, interactive = false, href, class: className } = Astro.props;
+const { label, href, class: className } = Astro.props;
 ---
 
 {
-  interactive && href ? (
+  href ? (
     <Link
       href={href}
       class:list={cn(
