@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     getAllProjects(),
   ]);
 
-  return allContentTags.flatMap(({ slug, label }) => {
+  return allContentTags.map(({ slug, label }) => {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.some((tag) => slugifyTag(tag) === slug)
     );
@@ -30,28 +30,15 @@ export async function getStaticPaths() {
       "date"
     );
 
-    const sharedProps = {
-      tagLabel: label,
-      tagSlug: slug,
-      posts: filteredPosts,
-      projects: filteredProjects,
-    };
-
-    const paths = [
-      {
-        params: { tag: slug },
-        props: { ...sharedProps, isAlias: false },
+    return {
+      params: { tag: slug },
+      props: {
+        tagLabel: label,
+        tagSlug: slug,
+        posts: filteredPosts,
+        projects: filteredProjects,
       },
-    ];
-
-    if (label !== slug) {
-      paths.push({
-        params: { tag: label },
-        props: { ...sharedProps, isAlias: true },
-      });
-    }
-
-    return paths;
+    };
   });
 }
 
@@ -60,10 +47,9 @@ interface Props {
   tagSlug: string;
   posts: CollectionEntry<"blog">[];
   projects: CollectionEntry<"projects">[];
-  isAlias: boolean;
 }
 
-const { tagLabel, tagSlug, posts, projects, isAlias } = Astro.props;
+const { tagLabel, tagSlug, posts, projects } = Astro.props;
 const canonicalURL = new URL(getTagHref(tagSlug), SITE.url).href;
 
 type ContentItem =
@@ -102,7 +88,6 @@ const contentByYear = groupByYear(allContent, (item) => item.date);
   title={`Tag: ${tagLabel} - ${SITE.title}`}
   description={`Content tagged with "${tagLabel}"`}
   canonicalURL={canonicalURL}
-  noindex={isAlias}
   jsonLd={{ type: "website" }}
 >
   <PageShell
