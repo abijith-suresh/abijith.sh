@@ -3,7 +3,7 @@
 /**
  * New Blog Post Generator
  *
- * Creates a new blog post from templates with user input.
+ * Creates a new blog post from template with user input.
  *
  * Usage:
  *   bun run new:blog
@@ -65,14 +65,13 @@ export async function main() {
     process.exit(1);
   }
 
-  const format = await prompt("Format (md/mdx) [md]: ");
-  const fileExtension = format.toLowerCase() === "mdx" ? "mdx" : "md";
+  const heroImage = await prompt("Hero image path (optional): ");
 
   // Generate slug and paths
   const slug = slugify(title);
   const year = getCurrentYear();
   const targetDir = join(process.cwd(), "src", "content", "blog", year);
-  const targetFile = join(targetDir, `${slug}.${fileExtension}`);
+  const targetFile = join(targetDir, `${slug}.mdx`);
 
   // Check if file already exists
   if (existsSync(targetFile)) {
@@ -81,7 +80,7 @@ export async function main() {
   }
 
   // Read template
-  const templatePath = join(__dirname, "..", ".templates", `blog-post.${fileExtension}`);
+  const templatePath = join(__dirname, "..", ".templates", "blog-post.mdx");
 
   if (!existsSync(templatePath)) {
     console.error(`❌ Error: Template not found: ${templatePath}`);
@@ -93,6 +92,7 @@ export async function main() {
     title,
     description,
     date: getCurrentDate(),
+    heroImage: heroImage || undefined,
   });
 
   // Ensure directory exists
