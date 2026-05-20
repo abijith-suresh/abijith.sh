@@ -1,5 +1,6 @@
 ---
 import ContentCard from "@/components/ContentCard.astro";
+import { getBlogPostUrl } from "@/lib/routes";
 import { calculateReadingTime, formatBlogDate, formatReadingTime } from "@/lib/utils";
 import type { CollectionEntry } from "astro:content";
 
@@ -10,7 +11,7 @@ interface Props {
 
 const { post, class: className } = Astro.props;
 const { title, description, tags, publishDate } = post.data;
-const postUrl = `/blog/${post.id}`;
+const postUrl = getBlogPostUrl(post.id);
 const formattedDate = formatBlogDate(publishDate);
 const readingTime = calculateReadingTime(post.body ?? "");
 const meta = `${formattedDate} · ${formatReadingTime(readingTime)}`;

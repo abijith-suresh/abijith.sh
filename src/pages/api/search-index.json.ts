@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
+import { getBlogPostUrl, getProjectUrl } from "@/lib/routes";
 import { toSearchableText } from "@/lib/search/text";
 import type { SearchIndexPayload, SearchResult } from "@/lib/search/types";
 
@@ -25,7 +26,7 @@ async function generateSearchIndex(): Promise<SearchResult[]> {
       description: post.data.description,
       date: post.data.publishDate.toISOString(),
       tags: post.data.tags,
-      url: `/blog/${post.id}`,
+      url: getBlogPostUrl(post.id),
       content: toSearchableText(post.body || ""),
       type: "blog",
     });
@@ -38,7 +39,7 @@ async function generateSearchIndex(): Promise<SearchResult[]> {
       description: project.data.description,
       date: project.data.date.toISOString(),
       tags: project.data.tags,
-      url: `/projects/${project.id}`,
+      url: getProjectUrl(project.id),
       content: toSearchableText(project.body || ""),
       type: "project",
     });
