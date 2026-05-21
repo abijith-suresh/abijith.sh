@@ -20,12 +20,6 @@ export const SITE = {
   heroIntro:
     "Based in Kochi, Kerala. I work on the backend, the part that keeps things running while everything else stays visible. Java and Spring Boot, mostly.",
 
-  // Social
-  github: "https://github.com/abijith-suresh",
-  x: "https://x.com/abijith_sh",
-  linkedin: "https://linkedin.com/in/abijith-suresh",
-  bluesky: "https://bsky.app/profile/abijith.bsky.social",
-
   // About page
   aboutSubtitle: "Backend by trade, builder by nature",
   aboutWhatIDo:
