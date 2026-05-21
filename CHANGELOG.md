@@ -6,6 +6,9 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-05-21
 
+- Remove unused `jsdom` and `@vitest/ui` devDependencies.
+- Replace `clsx` and `tailwind-merge` with a hand-rolled `cn()` utility,
+  removing two unnecessary dependencies.
 - Remove unused options (`limit`, `includeDrafts`) from `getAllBlogPosts`
   and unused options (`tags`, `limit`) from `getAllProjects`.
 - Remove unused `sortBy` parameter from `sortProjects`; always sort by date.
