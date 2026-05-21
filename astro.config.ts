@@ -57,7 +57,6 @@ export default defineConfig({
           "chevron-right",
           "chevron-left",
           "chevron-down",
-          "magnifying-glass",
           "xmark",
           "arrow-right",
           "arrow-left",

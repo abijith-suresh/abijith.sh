@@ -38,7 +38,6 @@
     "astro-expressive-code": "^0.41.7",
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
-    "flexsearch": "^0.8.212",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
