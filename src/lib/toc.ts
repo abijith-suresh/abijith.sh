@@ -25,7 +25,7 @@ type MobileTocConfig = HeadingConfig & {
   enableSmoothScroll?: boolean;
 };
 
-export type TocController = {
+type TocController = {
   init: () => void;
   cleanup: () => void;
 };

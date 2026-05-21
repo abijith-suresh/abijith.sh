@@ -26,8 +26,7 @@ export async function getStaticPaths() {
       post.data.tags.some((tag) => slugifyTag(tag) === slug)
     );
     const filteredProjects = sortProjects(
-      allProjects.filter((project) => project.data.tags.some((tag) => slugifyTag(tag) === slug)),
-      "date"
+      allProjects.filter((project) => project.data.tags.some((tag) => slugifyTag(tag) === slug))
     );
 
     return {

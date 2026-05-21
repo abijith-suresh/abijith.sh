@@ -14,7 +14,7 @@ import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const allProjects = await getAllProjects();
-  const sortedProjects = sortProjects(allProjects, "date");
+  const sortedProjects = sortProjects(allProjects);
   return generatePaginatedPaths(sortedProjects, SITE.projectsPerPage);
 }
 

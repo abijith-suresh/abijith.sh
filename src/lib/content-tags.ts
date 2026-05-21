@@ -1,7 +1,7 @@
 import { getCollection } from "astro:content";
 import { slugifyTag } from "@/lib/tags";
 
-export type ContentTag = {
+type ContentTag = {
   slug: string;
   label: string;
 };
