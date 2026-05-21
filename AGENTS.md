@@ -1,47 +1,30 @@
-# Agent Instructions — abijith.sh
+# Agent Instructions
 
-## Overview
+Personal portfolio and blog built with Astro.
 
-- Personal portfolio and blog built with Astro.
-- Most changes are in content collections, Astro components, and site presentation.
+## Quick Start
 
-## Stack
+- `bun install` — install dependencies
+- `bun run dev` — start dev server
+- `bun run verify` — run type-check, lint, format check, tests, and build
 
-- Astro 6
-- TypeScript
-- Tailwind CSS v4
-- MDX
-- Bun
+## Sources of Truth
 
-## Commands
+| What                                                   | Where                                                |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| Content schemas (frontmatter validation)               | `src/content.config.ts`                              |
+| Site-wide config (URLs, social links, nav, pagination) | `src/consts.ts`                                      |
+| Changelog — add entries under `## [Unreleased]`        | `CHANGELOG.md`                                       |
+| Scaffolding CLI scripts                                | `.scripts/new-blog.js`, `.scripts/new-project.js`    |
+| Content templates                                      | `.templates/blog-post.mdx`, `.templates/project.mdx` |
 
-- Install deps: `bun install`
-- Dev server: `bun run dev`
-- Quality gate: `bun run verify`
-- Individual steps: `bun run type-check`, `bun run lint`, `bun run format:check`, `bun run test`, `bun run build`
+Browse `src/components/` and `src/lib/` for existing patterns before introducing new abstractions.
 
-## Project Map
+## Rules
 
-- `src/content.config.ts`: content collection schemas
-- `src/content/blog/`: blog posts
-- `src/content/projects/`: project entries
-- `src/components/`: Astro components and MDX helpers
-- `src/lib/`: blog, project, TOC, and utility helpers
-- `.templates/` and `.scripts/`: content scaffolding utilities
-
-## Hard Rules
-
-- Use the `@/` path alias for `src` imports.
-- Keep content frontmatter valid against `src/content.config.ts` schemas.
-- Prefer existing Astro component and content patterns over new abstractions.
-- If you change collection schemas, update affected content and validation paths together.
-
-## Git And CI
-
-- Branch from the latest `main` before starting changes.
-- Never commit directly to `main`.
-- Commit and PR titles must use Conventional Commits: `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `ci`.
-- Before push, run `bun run verify`.
-- `pre-commit` runs `lint-staged`, `commit-msg` runs `commitlint`, and `pre-push` runs `bun run verify`.
-- CI enforces `quality` and `pr-title` checks on pull requests.
+- Use `@/` path alias for all imports from `src/`.
+- Update `CHANGELOG.md` under `## [Unreleased]` with every notable change.
+- Run `bun run verify` before every push.
+- Commit and PR titles must use Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`).
+- Branch from the latest `main`; never commit directly to `main`.
 - Squash merge is the expected merge strategy.

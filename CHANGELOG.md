@@ -6,9 +6,31 @@ This changelog follows the categories and intent of [Keep a Changelog](https://k
 
 ## Unreleased
 
-### Removed
+### Changed — 2026-05-21
 
-- FlexSearch-powered search modal, search index API endpoint, icon trigger, and all related infrastructure to simplify the codebase until more content is available.
+- Remove unused options (`limit`, `includeDrafts`) from `getAllBlogPosts`
+  and unused options (`tags`, `limit`) from `getAllProjects`.
+- Remove unused `sortBy` parameter from `sortProjects`; always sort by date.
+- Remove redundant TOC heading filter in `TOCList` — callers already
+  pre-filter headings.
+- Deduplicate social URLs by deriving JSON-LD `sameAs` from `socialLinks`
+  instead of separate top-level fields.
+- Extract shared prompt, template, and file-writing helpers into
+  `scaffold-utils.js`, reducing duplication between content scaffolding
+  CLI scripts.
+- Unexport `ContentTag`, `ScrollRevealOptions`, and `TocController` types
+  that had no external consumers.
+
+### Fixed — 2026-05-21
+
+- Resolve iPhone header transparency issue near the dynamic island where
+  the status bar area showed through the navigation bar.
+
+### Removed — 2026-05-21
+
+- FlexSearch-powered search modal, search index API endpoint, icon trigger,
+  and all related infrastructure to simplify the codebase until more
+  content is available.
 
 ## 2026-05-21 — Swiss redesign and MDX/content architecture overhaul
 
