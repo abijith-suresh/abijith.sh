@@ -1,6 +1,6 @@
 // Scroll-reveal controller — pure logic, no DOM side-effects
 
-export interface ScrollRevealOptions {
+interface ScrollRevealOptions {
   /** CSS selector for elements to observe */
   selector: string;
   /** Class added when element enters viewport */
