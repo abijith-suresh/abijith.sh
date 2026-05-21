@@ -35,30 +35,10 @@ const currentPath = Astro.url.pathname;
         })
       }
     </nav>
-
-    <div class="flex items-center gap-1">
-      <button
-        onclick="window.openSearchModal?.()"
-        aria-label="Open search"
-        class="icon-button p-2"
-        title="Search"
-      >
-        <Icon name="fa6-solid:magnifying-glass" class="w-4 h-4" />
-      </button>
-    </div>
   </div>
 
   <!-- Mobile controls -->
   <div class="flex md:hidden items-center gap-1">
-    <button
-      onclick="window.openSearchModal?.()"
-      aria-label="Open search"
-      class="icon-button p-2"
-      title="Search"
-    >
-      <Icon name="fa6-solid:magnifying-glass" class="w-4 h-4" />
-    </button>
-
     <button
       id="mobile-nav-open"
       aria-label="Open navigation menu"

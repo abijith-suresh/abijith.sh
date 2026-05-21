@@ -6,6 +6,10 @@ This changelog follows the categories and intent of [Keep a Changelog](https://k
 
 ## Unreleased
 
+### Removed
+
+- FlexSearch-powered search modal, search index API endpoint, icon trigger, and all related infrastructure to simplify the codebase until more content is available.
+
 ## 2026-05-21 — Swiss redesign and MDX/content architecture overhaul
 
 ### Added

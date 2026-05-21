@@ -3,7 +3,6 @@ import { ClientRouter } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import ScrollReveal from "@/components/ScrollReveal.astro";
-import SearchModal from "@/components/SearchModal.astro";
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import { SITE } from "@/consts";
@@ -81,7 +80,6 @@ const {
     <div style="view-transition-name: site-footer;">
       <Footer />
     </div>
-    <SearchModal />
     <ScrollReveal />
 
     <script is:inline>
