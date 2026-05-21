@@ -20,6 +20,9 @@ This changelog follows the categories and intent of [Keep a Changelog](https://k
   CLI scripts.
 - Unexport `ContentTag`, `ScrollRevealOptions`, and `TocController` types
   that had no external consumers.
+- Standardise changelog format around dated category entries
+  (`### Changed — YYYY-MM-DD`) across the full history and rewrite
+  AGENTS.md as a lean pointer file with explicit changelog instructions.
 
 ### Fixed — 2026-05-21
 
