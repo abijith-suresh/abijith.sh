@@ -1,6 +1,5 @@
 ---
 import type { MarkdownHeading } from "astro";
-import { filterTocHeadings } from "@/lib/toc";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -17,7 +16,6 @@ interface Props {
 }
 
 const { headings, listId, listClass, linkClass, dataAttr, itemClass } = Astro.props;
-const filteredHeadings = filterTocHeadings(headings);
 
 function getIndent(depth: number): string {
   return depth === 3 ? "ml-4" : "";
@@ -25,9 +23,9 @@ function getIndent(depth: number): string {
 ---
 
 {
-  filteredHeadings.length > 0 && (
+  headings.length > 0 && (
     <ul id={listId} class:list={cn("flex list-none flex-col gap-y-2", listClass)}>
-      {filteredHeadings.map((heading) => (
+      {headings.map((heading) => (
         <li
           class:list={cn("text-sm", getIndent(heading.depth), itemClass)}
           style="color: var(--color-muted-foreground);"
