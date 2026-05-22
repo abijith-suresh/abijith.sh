@@ -21,6 +21,13 @@ All notable changes to this site are documented in this file.
 - Harden active-link matching in the header nav: replace brittle
   `startsWith()` with exact match + guarded prefix matching, handle
   `BASE_URL`, and add `aria-current="page"` for accessibility.
+- Refactor `attachTocLifecycle()` to use a module-level controller
+  registry — registers Astro lifecycle listeners once and shares them
+  across all TOC controllers, preventing duplicate anonymous listeners.
+- Add `astro:before-swap` observer disconnect to `ScrollReveal` for
+  proper teardown during view transitions.
+- Hoist anonymous Astro lifecycle event handlers to named functions in
+  `ScrollReveal` and `ReadingProgress`, providing a clear cleanup path.
 
 ### Removed — 2026-05-22
 
