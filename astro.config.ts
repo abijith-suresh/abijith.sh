@@ -84,10 +84,6 @@ export default defineConfig({
         clientFiles: ["./src/components/**/*.astro", "./src/layouts/**/*.astro"],
       },
     },
-    optimizeDeps: {
-      // Pre-bundle these dependencies
-      include: ["clsx", "tailwind-merge"],
-    },
     build: {
       rollupOptions: {
         onwarn(warning, warn) {
