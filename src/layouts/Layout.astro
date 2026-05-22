@@ -30,7 +30,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -81,11 +81,6 @@ const {
       <Footer />
     </div>
     <ScrollReveal />
-
-    <script is:inline>
-      // Lock to dark theme always
-      document.documentElement.setAttribute("data-theme", "dark");
-    </script>
 
     <script>
       // First-load entrance animation: play once per session, skip on back-navigation

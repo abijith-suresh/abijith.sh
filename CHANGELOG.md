@@ -13,6 +13,15 @@ All notable changes to this site are documented in this file.
   and redundant `sortProjects()` wrapper in tags page — `getAllProjects()`
   already returns projects sorted by date descending.
 
+### Fixed — 2026-05-22
+
+- Prevent flash of unstyled content by setting `data-theme="dark"` directly
+  on the `<html>` element instead of via a late inline script at the end of
+  `<body>` — the attribute is now present at first paint.
+- Harden active-link matching in the header nav: replace brittle
+  `startsWith()` with exact match + guarded prefix matching, handle
+  `BASE_URL`, and add `aria-current="page"` for accessibility.
+
 ### Removed — 2026-05-22
 
 - Remove stale `clsx` and `tailwind-merge` entries from
