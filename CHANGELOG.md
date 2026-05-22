@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-05-22
+
+- Remove standalone `DESIGN.md` design spec — design tokens are now
+  maintained in the source code and Tailwind config.
+
 ### Changed — 2026-05-21
 
 - Remove unused `jsdom` and `@vitest/ui` devDependencies.
