@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-05-22
+
+- Clarify changelog category guidance in AGENTS.md — spell out which
+  category (`Added`, `Changed`, `Removed`, `Fixed`) fits which scenario
+  instead of a single `Changed` example.
+
 ### Removed — 2026-05-22
 
 - Remove stale `clsx` and `tailwind-merge` entries from
