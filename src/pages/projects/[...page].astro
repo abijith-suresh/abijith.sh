@@ -9,13 +9,12 @@ import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { groupByYear } from "@/lib/group-by-year";
 import { buildPaginationUrls, generatePaginatedPaths } from "@/lib/paginated-routes";
-import { getAllProjects, sortProjects } from "@/lib/projects";
+import { getAllProjects } from "@/lib/projects";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const allProjects = await getAllProjects();
-  const sortedProjects = sortProjects(allProjects);
-  return generatePaginatedPaths(sortedProjects, SITE.projectsPerPage);
+  return generatePaginatedPaths(allProjects, SITE.projectsPerPage);
 }
 
 interface Props {

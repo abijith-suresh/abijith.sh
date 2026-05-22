@@ -9,6 +9,9 @@ All notable changes to this site are documented in this file.
 - Clarify changelog category guidance in AGENTS.md — spell out which
   category (`Added`, `Changed`, `Removed`, `Fixed`) fits which scenario
   instead of a single `Changed` example.
+- Remove redundant `sortProjects()` call in projects pagination page
+  and redundant `sortProjects()` wrapper in tags page — `getAllProjects()`
+  already returns projects sorted by date descending.
 
 ### Removed — 2026-05-22
 

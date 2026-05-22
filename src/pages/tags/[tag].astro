@@ -10,7 +10,7 @@ import Layout from "@/layouts/Layout.astro";
 import { getAllBlogPosts } from "@/lib/blog";
 import { getAllContentTags } from "@/lib/content-tags";
 import { groupByYear } from "@/lib/group-by-year";
-import { getAllProjects, sortProjects } from "@/lib/projects";
+import { getAllProjects } from "@/lib/projects";
 import { getTagHref, slugifyTag } from "@/lib/tags";
 import type { CollectionEntry } from "astro:content";
 
@@ -25,8 +25,8 @@ export async function getStaticPaths() {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.some((tag) => slugifyTag(tag) === slug)
     );
-    const filteredProjects = sortProjects(
-      allProjects.filter((project) => project.data.tags.some((tag) => slugifyTag(tag) === slug))
+    const filteredProjects = allProjects.filter((project) =>
+      project.data.tags.some((tag) => slugifyTag(tag) === slug)
     );
 
     return {
