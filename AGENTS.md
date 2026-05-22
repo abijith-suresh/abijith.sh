@@ -24,10 +24,16 @@ Browse `src/components/` and `src/lib/` for existing patterns before introducing
 
 - Use `@/` path alias for all imports from `src/`.
 - Update `CHANGELOG.md` for every notable change. Add entries under
-  `## Unreleased`, grouped by category (`### Added`, `### Changed`,
-  `### Fixed`, `### Removed`). Each category header must include today's
-  date: `### Changed — YYYY-MM-DD`. If a subsection with today's date
-  already exists, append to it instead of creating a duplicate.
+  `## Unreleased`, grouped by the category that best describes the
+  change:
+  - `### Added` for new features
+  - `### Changed` for modifications to existing functionality
+  - `### Removed` for deleted files, dependencies, or features
+  - `### Fixed` for bug fixes
+    Each category header must include today's date
+    (e.g., `### Removed — YYYY-MM-DD`). If a subsection with today's
+    date and the same category already exists, append to it instead of
+    creating a duplicate.
 - Run `bun run verify` before every push.
 - Commit and PR titles must use Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`).
 - Branch from the latest `main`; never commit directly to `main`.
