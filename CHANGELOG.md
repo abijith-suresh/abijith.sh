@@ -36,6 +36,8 @@ All notable changes to this site are documented in this file.
   removed in a previous cleanup.
 - Remove standalone `DESIGN.md` design spec — design tokens are now
   maintained in the source code and Tailwind config.
+- Remove `PRODUCT.md` and `CLAUDE.md` (symlink to `AGENTS.md`) from
+  repository root — superseded by `AGENTS.md`.
 
 ### Changed — 2026-05-21
 
