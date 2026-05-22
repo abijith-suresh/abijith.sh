@@ -4,8 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
-### Changed — 2026-05-22
+### Removed — 2026-05-22
 
+- Remove stale `clsx` and `tailwind-merge` entries from
+  `vite.optimizeDeps.include` in Astro config — these packages were
+  removed in a previous cleanup.
 - Remove standalone `DESIGN.md` design spec — design tokens are now
   maintained in the source code and Tailwind config.
 
