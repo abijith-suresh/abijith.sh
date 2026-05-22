@@ -30,13 +30,42 @@ type TocController = {
   cleanup: () => void;
 };
 
-export function attachTocLifecycle(controller: TocController): void {
-  document.addEventListener("astro:page-load", () => controller.init());
-  document.addEventListener("astro:after-swap", () => {
-    controller.cleanup();
-    controller.init();
+const controllers: TocController[] = [];
+let listenersAttached = false;
+
+function onPageLoad() {
+  controllers.forEach((c) => c.init());
+}
+
+function onAfterSwap() {
+  controllers.forEach((c) => {
+    c.cleanup();
+    c.init();
   });
-  document.addEventListener("astro:before-swap", () => controller.cleanup());
+}
+
+function onBeforeSwap() {
+  controllers.forEach((c) => c.cleanup());
+}
+
+/**
+ * Register a TOC controller with the module-level lifecycle listeners.
+ * The Astro lifecycle events are attached only once; subsequent calls
+ * add the controller to a shared registry. Returns a cleanup function
+ * to deregister the controller.
+ */
+export function attachTocLifecycle(controller: TocController): () => void {
+  controllers.push(controller);
+  if (!listenersAttached) {
+    document.addEventListener("astro:page-load", onPageLoad);
+    document.addEventListener("astro:after-swap", onAfterSwap);
+    document.addEventListener("astro:before-swap", onBeforeSwap);
+    listenersAttached = true;
+  }
+  return () => {
+    const idx = controllers.indexOf(controller);
+    if (idx !== -1) controllers.splice(idx, 1);
+  };
 }
 
 function getVisibleHeadingIds(headingElements: HTMLElement[], headerOffset: number): string[] {
