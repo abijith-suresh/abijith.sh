@@ -11,11 +11,13 @@ All notable changes to this site are documented in this file.
   double-tap zoom delay on mobile.
 - `overscroll-behavior: contain` on mobile navigation drawer to prevent
   background scroll bleed.
+- 200ms slide-down animation for mobile table of contents dropdown,
+  matching the site's view-transition duration.
 
 ### Fixed — 2026-05-24
 
 - Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
-  `FooterLink`, `TOCHeader`, and `Callout` components.
+  `FooterLink`, `TOCHeader`, `Callout`, and `Header` components.
 - Update URL hash via `history.replaceState` on TOC link clicks to
   preserve deep-linking while maintaining smooth-scroll behavior.
 - Replace hardcoded `formatDate` with `Intl.DateTimeFormat` and
@@ -26,6 +28,16 @@ All notable changes to this site are documented in this file.
 - Replace hyphen with em-dash and straight quotes with curly quotes in
   site description and tag-page metadata.
 - Remove unused `getOrdinalSuffix` utility.
+- Raise body noise/grain overlay z-index to 100 so the header
+  shares the same texture as the rest of the page.
+- Fix mobile TOC current-heading detection by switching from layout-
+  dependent `offsetTop` to viewport-relative `getBoundingClientRect`,
+  and suppress scroll-driven updates after the `<details>` toggles.
+- Redesign `.btn-secondary` to use a subtle muted fill instead of a
+  white border, and implement the previously declared `.btn-ghost`
+  variant (amber text, translucent accent tint on hover).
+- Remove amber background fill from `.prose` link hover — instead
+  increase underline thickness from 2px to 3px on hover.
 
 ### Changed — 2026-05-22
 
