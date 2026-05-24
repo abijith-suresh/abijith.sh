@@ -148,7 +148,11 @@ export function createDesktopTocController(config: DesktopTocConfig): TocControl
         if (!headingId) return;
         event.preventDefault();
         const heading = document.getElementById(headingId);
-        heading?.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (!heading) return;
+        const url = new URL(window.location.href);
+        url.hash = headingId;
+        history.replaceState(null, "", url.toString());
+        heading.scrollIntoView({ behavior: "smooth", block: "start" });
       };
       linkListeners.set(link, handler);
       link.addEventListener("click", handler);
@@ -287,7 +291,11 @@ export function createMobileTocController(config: MobileTocConfig): TocControlle
           if (headingId) {
             event.preventDefault();
             const heading = document.getElementById(headingId);
-            heading?.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (!heading) return;
+            const url = new URL(window.location.href);
+            url.hash = headingId;
+            history.replaceState(null, "", url.toString());
+            heading.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         }
         if (state.detailsElement) state.detailsElement.open = false;

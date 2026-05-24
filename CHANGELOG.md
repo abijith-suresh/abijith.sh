@@ -4,6 +4,29 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-05-24
+
+- Skip-to-content link for keyboard accessibility.
+- `touch-action: manipulation` on interactive elements to prevent
+  double-tap zoom delay on mobile.
+- `overscroll-behavior: contain` on mobile navigation drawer to prevent
+  background scroll bleed.
+
+### Fixed — 2026-05-24
+
+- Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
+  `FooterLink`, `TOCHeader`, and `Callout` components.
+- Update URL hash via `history.replaceState` on TOC link clicks to
+  preserve deep-linking while maintaining smooth-scroll behavior.
+- Replace hardcoded `formatDate` with `Intl.DateTimeFormat` and
+  hardcoded reading-time string with `Intl.NumberFormat`.
+- Add `fetchpriority="high"` and `aspect-video` to hero images for CLS
+  prevention.
+- Add `<meta name="theme-color">` matching the dark background.
+- Replace hyphen with em-dash and straight quotes with curly quotes in
+  site description and tag-page metadata.
+- Remove unused `getOrdinalSuffix` utility.
+
 ### Changed — 2026-05-22
 
 - Clarify changelog category guidance in AGENTS.md — spell out which

@@ -35,6 +35,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#111111" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -67,6 +68,12 @@ const {
     <slot name="head" />
   </head>
   <body class="flex h-fit min-h-screen flex-col">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-base)] focus:font-medium"
+    >
+      Skip to content
+    </a>
     <header
       class="bg-[var(--color-base)] sticky top-0 z-50 border-b border-[var(--color-border)]"
       style="view-transition-name: site-header; padding-top: env(safe-area-inset-top, 0px);"
@@ -74,7 +81,11 @@ const {
       <Header />
       <slot name="table-of-contents" />
     </header>
-    <main class="w-full mx-auto flex grow flex-col" style="view-transition-name: page-main;">
+    <main
+      id="main-content"
+      class="w-full mx-auto flex grow flex-col"
+      style="view-transition-name: page-main;"
+    >
       <slot />
     </main>
     <div style="view-transition-name: site-footer;">

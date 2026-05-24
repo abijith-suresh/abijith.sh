@@ -76,6 +76,16 @@
     position: relative;
   }
 
+  button,
+  a,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  summary {
+    touch-action: manipulation;
+  }
+
   body::before {
     content: "";
     position: fixed;
