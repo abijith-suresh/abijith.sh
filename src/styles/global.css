@@ -674,6 +674,11 @@
    Mobile TOC Animation
    ========================================================================== */
 
+.toc-wrapper {
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease-out;
+}
+
 details[open] > .toc-wrapper {
   grid-template-rows: 1fr;
 }
