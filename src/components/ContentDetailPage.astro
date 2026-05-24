@@ -100,7 +100,13 @@ const {
   {
     heroImage && (
       <div class="col-start-2 px-6 md:px-8 page-enter page-enter-delay-2">
-        <img src={heroImage} alt={title} class="w-full object-cover" />
+        <img
+          src={heroImage}
+          alt={title}
+          class="w-full object-cover aspect-video"
+          fetchpriority="high"
+          loading="eager"
+        />
       </div>
     )
   }

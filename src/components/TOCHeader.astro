@@ -21,7 +21,7 @@ const { headings, class: className } = Astro.props;
           <Container class="flex items-center py-3">
             {/* Progress circle */}
             <div class="relative mr-2 size-4">
-              <svg class="h-4 w-4" viewBox="0 0 24 24">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
                 <circle
                   class="opacity-20"
                   cx="12"
@@ -56,6 +56,7 @@ const { headings, class: className } = Astro.props;
               <Icon
                 name="fa6-solid:chevron-down"
                 class="w-4 h-4 transition-transform duration-200 group-open:rotate-180"
+                aria-hidden="true"
               />
             </span>
           </Container>

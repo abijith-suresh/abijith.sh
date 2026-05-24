@@ -2,27 +2,12 @@ export function cn(...inputs: (string | undefined | null | false)[]) {
   return inputs.filter(Boolean).join(" ");
 }
 
-function getOrdinalSuffix(day: number): string {
-  if (day > 3 && day < 21) return "th";
-  switch (day % 10) {
-    case 1:
-      return "st";
-    case 2:
-      return "nd";
-    case 3:
-      return "rd";
-    default:
-      return "th";
-  }
-}
-
 export function formatDate(date: Date): string {
-  const month = date.toLocaleDateString("en-US", { month: "long" });
-  const day = date.getDate();
-  const year = date.getFullYear();
-  const suffix = getOrdinalSuffix(day);
-
-  return `${month} ${day}${suffix}, ${year}`;
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
 }
 
 export function calculateReadingTime(content: string, wordsPerMinute = 200): number {
@@ -32,5 +17,5 @@ export function calculateReadingTime(content: string, wordsPerMinute = 200): num
 }
 
 export function formatReadingTime(minutes: number): string {
-  return `${minutes} min read`;
+  return new Intl.NumberFormat("en-US").format(minutes) + " min read";
 }

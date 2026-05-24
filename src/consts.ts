@@ -2,7 +2,7 @@
 export const SITE = {
   // Meta
   title: "Abijith S",
-  description: "Personal portfolio and blog of Abijith S - developer, builder, writer.",
+  description: "Personal portfolio and blog of Abijith S — developer, builder, writer.",
   url: "https://abijith.sh",
   domain: "abijith.sh",
   locale: "en-US",

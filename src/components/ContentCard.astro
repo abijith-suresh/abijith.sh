@@ -27,6 +27,7 @@ const { title, description, tags, href, meta, class: className } = Astro.props;
           name="fa6-solid:arrow-right"
           class="w-4 h-4 shrink-0 mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
           style="color: var(--color-card-hover-text);"
+          aria-hidden="true"
         />
       </div>
       {meta && <p class="eyebrow">{meta}</p>}
