@@ -71,22 +71,14 @@ export function attachTocLifecycle(controller: TocController): () => void {
 function getVisibleHeadingIds(headingElements: HTMLElement[], headerOffset: number): string[] {
   if (headingElements.length === 0) return [];
 
-  const viewportTop = window.scrollY + headerOffset;
-  const visibleIds: string[] = [];
-
   for (let i = headingElements.length - 1; i >= 0; i--) {
-    const heading = headingElements[i];
-    if (heading.offsetTop <= viewportTop) {
-      visibleIds.push(heading.id);
-      break;
+    const rect = headingElements[i].getBoundingClientRect();
+    if (rect.top <= headerOffset) {
+      return [headingElements[i].id];
     }
   }
 
-  if (visibleIds.length === 0 && headingElements.length > 0) {
-    visibleIds.push(headingElements[0].id);
-  }
-
-  return visibleIds;
+  return [headingElements[0].id];
 }
 
 function areIdsEqual(a: string[], b: string[]): boolean {
@@ -195,6 +187,7 @@ export function createDesktopTocController(config: DesktopTocConfig): TocControl
 export function createMobileTocController(config: MobileTocConfig): TocController {
   const PROGRESS_CIRCLE_RADIUS = 10;
   const PROGRESS_CIRCLE_CIRCUMFERENCE = 2 * Math.PI * PROGRESS_CIRCLE_RADIUS;
+  let toggleSuppressUntil = 0;
 
   const state = {
     progressCircle: null as HTMLElement | null,
@@ -306,6 +299,13 @@ export function createMobileTocController(config: MobileTocConfig): TocControlle
   };
 
   const handleScroll = () => {
+    if (Date.now() < toggleSuppressUntil) return;
+    updateActiveIds();
+    updateProgressCircle();
+  };
+
+  const handleToggle = () => {
+    toggleSuppressUntil = Date.now() + 200;
     updateActiveIds();
     updateProgressCircle();
   };
@@ -333,6 +333,10 @@ export function createMobileTocController(config: MobileTocConfig): TocControlle
     updateProgressCircle();
     setupInteraction();
 
+    if (state.detailsElement) {
+      state.detailsElement.addEventListener("toggle", handleToggle);
+    }
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize, { passive: true });
   };
@@ -341,6 +345,7 @@ export function createMobileTocController(config: MobileTocConfig): TocControlle
     window.removeEventListener("scroll", handleScroll);
     window.removeEventListener("scroll", updateProgressCircle);
     window.removeEventListener("resize", handleResize);
+    state.detailsElement?.removeEventListener("toggle", handleToggle);
     linkListeners.forEach((handler, link) => {
       link.removeEventListener("click", handler);
     });
