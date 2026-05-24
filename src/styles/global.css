@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ==========================================================================
    Swiss Style Design System
@@ -8,6 +9,8 @@
 
 @theme inline {
   --font-sans: "Manrope", system-ui, sans-serif;
+  --font-mono:
+    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 
   --color-base: #111111;
   --color-text: #f4f4f4;
@@ -25,22 +28,21 @@
   --color-border: #2a2a2a;
   --color-warning: #e67e22;
   --color-danger: #e74c3c;
+
+  --color-card-hover-text: #111111;
+
+  /* Shared design tokens */
+  --transition-fast: 150ms ease;
+  --letter-spacing-uppercase: 0.04em;
+  --color-surface: color-mix(in srgb, var(--color-text) 6%, transparent);
+  --color-surface-strong: color-mix(in srgb, var(--color-text) 8%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--color-text) 80%, transparent);
 }
 
 /* ==========================================================================
    Theme — dark only
    ========================================================================== */
 :root {
-  --color-base: #111111;
-  --color-text: #f4f4f4;
-  --color-accent: #f5a623;
-  --color-muted: #888888;
-  --color-muted-foreground: #999999;
-  --color-border: #2a2a2a;
-  --color-warning: #e67e22;
-  --color-danger: #e74c3c;
-  --color-card-hover-text: #111111;
-
   color-scheme: dark;
 }
 
@@ -73,7 +75,6 @@
     background-color: var(--color-base);
     color: var(--color-text);
     line-height: 1.6;
-    position: relative;
   }
 
   button,
@@ -95,7 +96,6 @@
     height: 100%;
     pointer-events: none;
     z-index: 100;
-    opacity: 1;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     background-repeat: repeat;
   }
@@ -132,16 +132,16 @@
 @layer components {
   /* ── Eyebrow / Section Label ─────────────────────────────────────────── */
   .eyebrow {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--letter-spacing-uppercase);
     text-transform: uppercase;
     color: var(--color-muted);
   }
 
   /* ── Split Label ─────────────────────────────────────────────────────── */
   .split-label {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -157,8 +157,8 @@
     background-color: var(--color-base);
     border: 1px solid var(--color-border);
     transition:
-      background-color 150ms ease,
-      border-color 150ms ease;
+      background-color var(--transition-fast),
+      border-color var(--transition-fast);
   }
 
   .card-hover:hover {
@@ -170,12 +170,12 @@
     --color-text: var(--color-card-hover-text);
     --color-muted: #333333;
     --color-muted-foreground: #333333;
-    color: var(--color-card-hover-text) !important;
+    color: var(--color-card-hover-text);
   }
 
   .card-hover:hover .tag-pill {
     background-color: color-mix(in srgb, var(--color-card-hover-text) 12%, transparent);
-    color: var(--color-card-hover-text) !important;
+    color: var(--color-card-hover-text);
   }
 
   /* ── Tag Link (Tags page) ──────────────────────────────────────────────── */
@@ -184,51 +184,51 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--letter-spacing-uppercase);
     text-transform: uppercase;
     color: var(--color-text);
-    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
+    background-color: var(--color-surface);
     transition:
-      background-color 150ms ease,
-      color 150ms ease;
+      background-color var(--transition-fast),
+      color var(--transition-fast);
     text-decoration: none;
   }
 
   .tag-link:hover {
     background-color: var(--color-accent);
-    color: #111111;
+    color: var(--color-base);
   }
 
   .tag-link:hover .tag-link-label {
-    color: #111111;
+    color: var(--color-base);
   }
 
   /* ── Tag Pill ─────────────────────────────────────────────────────────── */
   .tag-pill {
     display: inline-flex;
     align-items: center;
-    font-size: 11px;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--letter-spacing-uppercase);
     padding: 3px 8px;
     text-transform: uppercase;
-    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
+    background-color: var(--color-surface);
     color: var(--color-text);
     transition:
-      background-color 150ms ease,
-      color 150ms ease;
+      background-color var(--transition-fast),
+      color var(--transition-fast);
   }
 
   /* ── Navigation ───────────────────────────────────────────────────────── */
   .nav-link {
-    font-size: 13px;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--letter-spacing-uppercase);
     text-transform: uppercase;
     color: var(--color-muted);
-    transition: color 150ms ease;
+    transition: color var(--transition-fast);
     position: relative;
   }
 
@@ -247,13 +247,13 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text);
     text-decoration: none;
     padding-bottom: 2px;
     border-bottom: 2px solid transparent;
-    transition: border-color 150ms ease;
+    transition: border-color var(--transition-fast);
   }
 
   .footer-link:hover {
@@ -262,8 +262,8 @@
 
   .footer-link-arrow-internal,
   .footer-link-arrow-external {
-    font-size: 12px;
-    transition: transform 150ms ease;
+    font-size: 0.75rem;
+    transition: transform var(--transition-fast);
     display: inline-block;
   }
 
@@ -280,20 +280,16 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: var(--letter-spacing-uppercase);
     text-transform: uppercase;
     padding: 10px 20px;
     transition:
-      background-color 150ms ease,
-      color 150ms ease,
-      transform 150ms ease;
+      background-color var(--transition-fast),
+      color var(--transition-fast),
+      transform var(--transition-fast);
     cursor: pointer;
-  }
-
-  .btn:hover {
-    /* intentional: no transform on hover */
   }
 
   .btn-primary {
@@ -303,11 +299,11 @@
 
   .btn-primary:hover {
     background-color: var(--color-accent);
-    color: #111111;
+    color: var(--color-base);
   }
 
   .btn-secondary {
-    background-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+    background-color: var(--color-surface-strong);
     color: var(--color-text);
   }
 
@@ -332,20 +328,20 @@
     justify-content: center;
     color: var(--color-muted);
     transition:
-      background-color 150ms ease,
-      color 150ms ease;
+      background-color var(--transition-fast),
+      color var(--transition-fast);
     cursor: pointer;
   }
 
   .icon-button:hover {
     background-color: var(--color-accent);
-    color: #111111;
+    color: var(--color-base);
   }
 
   /* ── TOC Sidebar ──────────────────────────────────────────────────────── */
   .toc-sidebar-link {
     color: var(--color-muted);
-    transition: color 150ms ease;
+    transition: color var(--transition-fast);
   }
 
   .toc-sidebar-link:hover {
@@ -408,214 +404,109 @@
       transform: translateY(0);
     }
   }
+}
 
-  /* ==========================================================================
-     Prose Styles (Blog content typography)
-     ========================================================================== */
+/* ==========================================================================
+   Prose overrides — powered by @tailwindcss/typography
+   ========================================================================== */
 
-  .prose {
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 70ch;
-    color: var(--color-text);
-  }
+.prose {
+  max-width: 70ch;
+  line-height: 1.7;
+  --tw-prose-body: var(--color-text-muted);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--color-text-muted);
+  --tw-prose-links: var(--color-text);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-text-muted);
+  --tw-prose-bullets: var(--color-text-muted);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: color-mix(in srgb, var(--color-text) 70%, transparent);
+  --tw-prose-quote-borders: var(--color-accent);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: var(--color-text);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+}
 
-  .prose :where(p):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    color: color-mix(in srgb, var(--color-text) 80%, transparent);
-  }
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+  scroll-margin-top: 6rem; /* offset for sticky header height */
+}
 
-  .prose :where(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
-    color: var(--color-text);
-    font-weight: 600;
-    scroll-margin-top: 6rem;
-  }
+.prose :where(h1) {
+  font-size: 2rem;
+  font-weight: 700;
+}
 
-  .prose :first-child:not(:where(.not-prose, .not-prose *)) {
-    margin-top: 0;
-  }
+.prose :where(h2) {
+  font-size: 1.5rem;
+}
 
-  .prose :where(h1):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    font-weight: 700;
-  }
+.prose :where(h3) {
+  font-size: 1.25rem;
+}
 
-  .prose :where(h2):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
+.prose :where(h4) {
+  font-size: 1.125rem;
+}
 
-  .prose :where(h3):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
+.prose :where(a) {
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: none;
+  transition: text-decoration-color var(--transition-fast);
+  overflow-wrap: break-word;
+}
 
-  .prose :where(h4):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 1.75rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-  }
+.prose :where(a:hover) {
+  text-decoration-thickness: 3px;
+}
 
-  .prose :where(h5, h6):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
+.prose :where(strong) {
+  font-weight: 600;
+  color: var(--color-text);
+}
 
-  .prose :where(a):not(:where(.not-prose, .not-prose *)) {
-    font-weight: 500;
-    color: var(--color-text);
-    text-decoration-line: underline;
-    text-decoration-color: var(--color-accent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
-    text-decoration-skip-ink: none;
-    transition: text-decoration-color 150ms ease;
-    overflow-wrap: break-word;
-  }
+.prose :where(code):not(:where(pre code)) {
+  background-color: var(--color-surface);
+  padding: 0.15em 0.35em;
+}
 
-  .prose :where(a:hover):not(:where(.not-prose, .not-prose *)) {
-    text-decoration-thickness: 3px;
-  }
+.prose :where(pre) {
+  max-height: min(68vh, 1000px);
+  overflow-y: auto;
+}
 
-  .prose :where(strong):not(:where(.not-prose, .not-prose *)) {
-    font-weight: 600;
-    color: var(--color-text);
-  }
+.prose :where(table) {
+  font-size: 0.875rem;
+}
 
-  .prose :where(ul):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    margin-left: 1.5em;
-    list-style-type: disc;
-  }
+.prose :where(th) {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  color: var(--color-text);
+}
 
-  .prose :where(ul > li):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 0.5em;
-    padding-left: 0.5em;
-    color: color-mix(in srgb, var(--color-text) 80%, transparent);
-  }
+.prose :where(td) {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  color: var(--color-text-muted);
+  overflow-wrap: break-word;
+}
 
-  .prose :where(ul > li > p):not(:where(.not-prose, .not-prose *)) {
-    margin: 0;
-  }
-
-  .prose :where(ol):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    margin-left: 1.5em;
-    list-style-type: decimal;
-  }
-
-  .prose :where(ol > li):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 0.5em;
-    padding-left: 0.5em;
-    color: color-mix(in srgb, var(--color-text) 80%, transparent);
-  }
-
-  .prose :where(ol > li > p):not(:where(.not-prose, .not-prose *)) {
-    margin: 0;
-  }
-
-  .prose :where(ul ul, ol ol, ul ol, ol ul):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: 1.5em;
-  }
-
-  .prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    padding-left: 1.25rem;
-    border-left: 3px solid var(--color-accent);
-    font-style: normal;
-    color: color-mix(in srgb, var(--color-text) 70%, transparent);
-  }
-
-  .prose :where(blockquote > *):not(:where(.not-prose, .not-prose *)) {
-    color: inherit;
-  }
-
-  .prose :where(hr):not(:where(.not-prose, .not-prose *)) {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    border: none;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .prose :where(code):not(:where(.not-prose, .not-prose *)) {
-    font-family:
-      ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono",
-      monospace;
-    font-size: 0.875em;
-    font-weight: 500;
-    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
-    padding: 0.15em 0.35em;
-    overflow-wrap: break-word;
-  }
-
-  .prose :where(pre):not(:where(.not-prose, .not-prose *)) {
-    max-height: min(68vh, 1000px);
-    overflow-y: auto;
-  }
-
-  .prose :where(table):not(:where(.not-prose, .not-prose *)) {
-    margin: 1.5em auto;
-    display: block;
-    max-width: fit-content;
-    overflow-x: auto;
-    font-size: 0.875rem;
-  }
-
-  .prose :where(thead):not(:where(.not-prose, .not-prose *)) {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .prose :where(th):not(:where(.not-prose, .not-prose *)) {
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    text-align: left;
-    color: var(--color-text);
-  }
-
-  .prose :where(tr):not(:where(.not-prose, .not-prose *)) {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .prose :where(tr:first-child):not(:where(.not-prose, .not-prose *)) {
-    border-top: none;
-  }
-
-  .prose :where(td):not(:where(.not-prose, .not-prose *)) {
-    padding: 0.5rem 1rem;
-    text-align: left;
-    vertical-align: top;
-    color: color-mix(in srgb, var(--color-text) 80%, transparent);
-    overflow-wrap: break-word;
-  }
-
-  .prose :where(img, video, figure, .expressive-code):not(:where(.not-prose, .not-prose *)) {
-    margin: 1.5em auto;
-  }
-
-  .prose :where(kbd):not(:where(.not-prose, .not-prose *)) {
-    font-family:
-      ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono",
-      monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.15em 0.5em;
-    background-color: color-mix(in srgb, var(--color-text) 6%, transparent);
-    color: var(--color-text);
-  }
+.prose :where(kbd) {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15em 0.5em;
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
 /* ==========================================================================

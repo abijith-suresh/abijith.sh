@@ -22,6 +22,22 @@ All notable changes to this site are documented in this file.
 
 ### Fixed — 2026-05-24
 
+- Removed `!important` from card hover cascade; CSS custom property
+  reassignments handle text color propagation without specificity wars.
+- Eliminated duplicate theme variable block (`:root` duplicating
+  `@theme inline`); merged `--color-card-hover-text` into `@theme inline`.
+- Replaced 4 hardcoded `#111111` values with `var(--color-base)` across
+  tag-link, tag-link-label, button, and icon-button hover states.
+- Removed dead code: empty `.btn:hover` block, unnecessary `opacity: 1`
+  on body noise pseudo-element, orphan `position: relative` on `body`.
+- Extracted 6 shared design tokens: `--transition-fast` (150ms ease),
+  `--letter-spacing-uppercase` (0.04em), `--color-surface`,
+  `--color-surface-strong`, `--color-text-muted`, `--font-mono`.
+- Standardized font sizes to Tailwind scale — `xs` (0.75rem) for
+  eyebrow/tag-pill/arrow, `sm` (0.875rem) for nav/btn/link, `lg`
+  (1.125rem) for split-label.
+- Added explanatory comment for `scroll-margin-top: 6rem` heading anchor
+  offset.
 - Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
   `FooterLink`, `TOCHeader`, `Callout`, and `Header` components.
 - Update URL hash via `history.replaceState` on TOC link clicks to
@@ -44,6 +60,13 @@ All notable changes to this site are documented in this file.
   variant (amber text, translucent accent tint on hover).
 - Remove amber background fill from `.prose` link hover — instead
   increase underline thickness from 2px to 3px on hover.
+
+### Changed — 2026-05-24
+
+- Replaced ~200 lines of hand-written `.prose` content typography CSS
+  with the `@tailwindcss/typography` plugin, retaining custom accent
+  link underlines, heading sizes, code styling, and scroll-margin
+  offsets via plugin overrides.
 
 ### Changed — 2026-05-22
 
