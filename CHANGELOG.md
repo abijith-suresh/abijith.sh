@@ -6,6 +6,8 @@ All notable changes to this site are documented in this file.
 
 ### Added — 2026-05-24
 
+- Project pages: Reshrimp, Interleaf, Microbreak, Tailory, Skills, Prompts
+  with placeholder hero images and basic descriptions.
 - Skip-to-content link for keyboard accessibility.
 - `touch-action: manipulation` on interactive elements to prevent
   double-tap zoom delay on mobile.
@@ -13,6 +15,10 @@ All notable changes to this site are documented in this file.
   background scroll bleed.
 - 200ms slide-down animation for mobile table of contents dropdown,
   matching the site's view-transition duration.
+
+### Removed — 2026-05-24
+
+- Personal Portfolio Website project page.
 
 ### Fixed — 2026-05-24
 
