@@ -37,7 +37,6 @@ interface ArticleSchema {
     "@type": "WebPage";
     "@id": string;
   };
-  keywords?: string;
 }
 
 interface PersonSchema {
@@ -59,7 +58,6 @@ export interface JsonLdProps {
     image?: string;
     datePublished: Date;
     dateModified?: Date;
-    keywords?: string[];
   };
   person?: {
     jobTitle?: string;
@@ -109,7 +107,6 @@ if (type === "website") {
       "@type": "WebPage",
       "@id": currentUrl,
     },
-    keywords: article.keywords?.join(", "),
   };
 } else {
   schema = {

@@ -12,7 +12,6 @@ export interface SEOProps {
     publishedTime: Date;
     modifiedTime?: Date;
     authors?: string[];
-    tags?: string[];
   };
   type?: "website" | "article" | "profile";
 }
@@ -67,9 +66,6 @@ const ogImage = new URL(ogImagePath, Astro.site).href;
       )}
       {article.authors?.map((author: string) => (
         <meta property="article:author" content={author} />
-      ))}
-      {article.tags?.map((tag: string) => (
-        <meta property="article:tag" content={tag} />
       ))}
     </>
   )

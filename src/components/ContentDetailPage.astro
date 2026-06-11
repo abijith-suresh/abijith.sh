@@ -1,9 +1,4 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import TOCSidebar from "@/components/TOCSidebar.astro";
-import type { BreadcrumbItem } from "@/lib/types";
-import type { MarkdownHeading } from "astro";
-
 interface MetaItem {
   type: "date" | "text";
   value: string;
@@ -11,73 +6,39 @@ interface MetaItem {
 }
 
 interface Props {
-  /** Breadcrumb trail */
-  breadcrumbs: BreadcrumbItem[];
-  /** Small uppercase category label above the title */
-  eyebrow?: string;
   /** Page title */
   title: string;
   /** Description paragraph */
   description?: string;
   /** Meta items (date, reading time, etc.) */
   meta?: MetaItem[];
-  /** Hero image URL */
-  heroImage?: string;
-  /** TOC headings */
-  tocHeadings?: MarkdownHeading[];
   class?: string;
 }
 
-const {
-  breadcrumbs,
-  eyebrow,
-  title,
-  description,
-  meta,
-  heroImage,
-  tocHeadings = [],
-  class: className,
-} = Astro.props;
+const { title, description, meta, class: className } = Astro.props;
 ---
 
-<section
-  class:list={[
-    "grid grid-cols-[minmax(0px,1fr)_min(768px,100%)_minmax(0px,1fr)] gap-y-6 pb-16 page-enter",
-    className,
-  ]}
->
-  <!-- Breadcrumb -->
-  <div class="col-start-2 px-6 md:px-8 pt-8 page-enter page-enter-delay-1">
-    <Breadcrumb items={breadcrumbs} />
-  </div>
-
+<section class:list={["mx-auto w-full max-w-[640px] px-6 flex flex-col gap-y-8 pb-16", className]}>
   <!-- Header -->
-  <header class="col-start-2 flex flex-col gap-y-5 px-6 md:px-8 pt-4 page-enter page-enter-delay-2">
-    {
-      eyebrow && (
-        <div class="flex flex-col gap-3">
-          <span class="eyebrow">{eyebrow}</span>
-          <div class="w-12 border-t-2 border-[var(--color-accent)]" />
-        </div>
-      )
-    }
-    <h1 class="text-[clamp(2rem,4.5vw,3.5rem)] font-bold tracking-tight leading-tight">
+  <header class="flex flex-col gap-y-5 pt-4">
+    <h1 class="text-[clamp(2rem,4.5vw,3.5rem)] font-medium tracking-tight leading-tight">
       {title}
     </h1>
 
     {
       meta && meta.length > 0 && (
-        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <div
+          class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm"
+          style="color: var(--color-muted-foreground);"
+        >
           {meta.map((item, index) => (
             <>
               {item.type === "date" ? (
-                <time class="eyebrow" datetime={item.datetime}>
-                  {item.value}
-                </time>
+                <time datetime={item.datetime}>{item.value}</time>
               ) : (
-                <span class="eyebrow">{item.value}</span>
+                <span>{item.value}</span>
               )}
-              {index < meta.length - 1 && <span style="color: var(--color-muted);">&middot;</span>}
+              {index < meta.length - 1 && <span>&middot;</span>}
             </>
           ))}
         </div>
@@ -86,41 +47,18 @@ const {
 
     {
       description && (
-        <p class="text-lg leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
+        <p
+          class="text-lg leading-[calc(0.65rem+1em)] max-w-none"
+          style="color: var(--color-muted-foreground);"
+        >
           {description}
         </p>
       )
     }
-
-    <!-- Slot for header extras: buttons, tag lists, etc. -->
-    <slot name="header-extras" />
   </header>
 
-  <!-- Hero Image -->
-  {
-    heroImage && (
-      <div class="col-start-2 px-6 md:px-8 page-enter page-enter-delay-2">
-        <img
-          src={heroImage}
-          alt={title}
-          width="1200"
-          height="675"
-          class="w-full object-cover aspect-video"
-          fetchpriority="high"
-          loading="eager"
-        />
-      </div>
-    )
-  }
-
-  <!-- TOC Sidebar (desktop) -->
-  {tocHeadings.length > 0 && <TOCSidebar headings={tocHeadings} />}
-
   <!-- Prose Content -->
-  <article
-    data-reading-target
-    class="prose col-start-2 max-w-none px-6 md:px-8 page-enter page-enter-delay-2"
-  >
+  <article data-reading-target class="prose max-w-none">
     <div class="border-t border-[var(--color-border)] mb-8"></div>
     <slot />
   </article>

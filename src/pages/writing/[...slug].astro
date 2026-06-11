@@ -1,11 +1,7 @@
 ---
-import ReadingProgress from "@/components/ReadingProgress.astro";
 import ContentDetailPage from "@/components/ContentDetailPage.astro";
-import TagList from "@/components/TagList.astro";
-import TOCHeader from "@/components/TOCHeader.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { filterTocHeadings } from "@/lib/toc";
 import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 
@@ -22,22 +18,19 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, tags, publishDate, heroImage } = post.data;
-const { Content, headings } = await render(post);
+const { title, description, publishDate } = post.data;
+const { Content } = await render(post);
 const formattedDate = formatDate(publishDate);
 const readingTime = calculateReadingTime(post.body ?? "");
-
-const tocHeadings = filterTocHeadings(headings);
 ---
 
 <Layout
-  title={`${title} - Blog - ${SITE.title}`}
+  title={`${title} - Writing - ${SITE.title}`}
   description={description}
   type="article"
   article={{
     publishedTime: publishDate,
     authors: [SITE.author],
-    tags: tags,
   }}
   jsonLd={{
     type: "article",
@@ -45,30 +38,18 @@ const tocHeadings = filterTocHeadings(headings);
       headline: title,
       description: description,
       datePublished: publishDate,
-      keywords: tags,
     },
   }}
 >
-  <ReadingProgress />
-  {tocHeadings.length > 0 && <TOCHeader slot="table-of-contents" headings={tocHeadings} />}
-
   <ContentDetailPage
-    breadcrumbs={[
-      { label: "Home", href: "/", icon: "fa6-solid:house" },
-      { label: "Blog", href: "/blog", icon: "fa6-solid:book-open" },
-      { label: title, icon: "fa6-solid:file-lines" },
-    ]}
-    eyebrow="Writing"
+    class=""
     title={title}
     description={description}
     meta={[
       { type: "date", value: formattedDate, datetime: publishDate.toISOString() },
       { type: "text", value: formatReadingTime(readingTime) },
     ]}
-    heroImage={heroImage}
-    tocHeadings={tocHeadings}
   >
-    <TagList slot="header-extras" tags={tags} />
     <Content />
   </ContentDetailPage>
 </Layout>

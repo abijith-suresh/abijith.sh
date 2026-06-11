@@ -4,6 +4,73 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Removed — 2026-06-11
+
+- Remove tag pages (`/tags/`, `/tags/[tag]`), `TagList`, `Tag` component,
+  `content-tags.ts`, `tags.ts`, `group-by-letter.ts`, and all tag-related UI
+  from `ContentCard`, `BlogCard`, `ProjectCard`, `ContentDetailPage`,
+  project/writing detail pages, SEO, JSON-LD, and RSS feed.
+- Make `tags` optional in projects schema (`default([])`).
+- Remove `@astrojs/mdx` dependency; migrate all content from `.mdx` to `.md`.
+- Remove `@iconify-json/fa6-brands` dependency; strip unused brand icons from
+  icon configuration.
+- Remove About page from nav links and about content from site config.
+
+### Changed — 2026-06-11
+
+- Redesign toward authentic Swiss / International Typographic Style principles:
+  - Replace `@tailwindcss/typography` plugin with fully hand-written prose CSS
+    for explicit control over every element.
+  - Introduce strict modular type scale using Major Third ratio (1.25×) with
+    `--text-xs` through `--text-4xl` tokens.
+  - Introduce 4px base spacing scale (`--space-1` through `--space-16`) and
+    line-height tokens (`--leading-tight`, `--leading-normal`,
+    `--leading-relaxed`, `--leading-none`).
+  - Replace warm amber accent (`#f5a623`) with Basel Orange (`#ec6b2d`) for
+    better contrast on dark backgrounds and stronger Swiss heritage.
+  - Remove `--color-warning` and `--color-danger` tokens; reduce palette to
+    base + text + accent + muted + border.
+  - Remove decorative fractal-noise SVG overlay from `body::before`.
+  - Remove all decorative motion — scroll-reveal animations, page-enter
+    staggered fades, and Astro view transitions. Keep only functional hover
+    states (50ms instant transitions).
+  - Formalize border tokens (`--radius-none: 0`, `--border-width: 1px`).
+  - Enforce flush-left text alignment for body text and headings.
+  - Update callout-config warning/danger variants to use accent color.
+  - Delete `ScrollReveal.astro` component and `scroll-reveal.ts` utility.
+  - Implement 12-column grid system (max-w-[1440px], gap-x-8) across all
+    pages. Content detail pages use col-span-6 col-start-4 for articles.
+  - Replace `Container` with grid-based container (12 columns, 1440px).
+  - Remove `SplitSection` component. About page uses h2 headings; listing
+    pages use eyebrow labels for year groups.
+  - Remove `ReadingProgress` component. Decorative progress bar.
+  - Update TOC sidebar to grid-aligned col-span-2 col-start-1.
+  - Update Hero padding to token-based values (--space-12 top, --space-8
+    bottom).
+  - Update card padding to --space-4 (16px) instead of p-6 (24px).
+  - Update pagination spacing to token-based values.
+  - Revert 12-column grid to single centered container (max-w-[900px], px-6).
+  - Remove all TOC components (desktop + mobile). No TOC needed.
+  - Remove hero images from article/project detail pages.
+  - Reduce hero title size from clamp(3.5rem, 8vw, 6rem) to clamp(2rem, 4vw, 3rem).
+  - Remove all Button components. Replace with text links using border-bottom.
+  - Fix prose link underline: 1px muted color instead of 2px accent.
+  - Fix tag hover: subtle background shift instead of accent color.
+  - Fix footer and "View all" links: border-bottom underline style.
+  - Add subtle page-enter fade-in animation (400ms).
+  - Unify CSS design tokens with Tailwind v4 namespaces: rename `--space-*`
+    to `--spacing-*`, `--color-base` to `--color-bg`, and switch `@theme
+inline` to `@theme static` so utilities generate correctly.
+  - Migrate blog routes from `/blog/` to `/writing/` for URL consistency.
+  - Migrate all content files (blog posts, project pages) from `.mdx` to `.md`;
+    convert `.mdx` content templates to `.md`.
+
+### Added — 2026-06-11
+
+- New `/now` page for current-status ("what I'm doing now") updates.
+- New `/writing/` routes (paginated listing + detail pages) replacing former
+  `/blog/` routes.
+
 ### Added — 2026-05-24
 
 - Project pages: Reshrimp, Interleaf, Microbreak, Tailory, Skills, Prompts
@@ -38,8 +105,8 @@ All notable changes to this site are documented in this file.
   (1.125rem) for split-label.
 - Added explanatory comment for `scroll-margin-top: 6rem` heading anchor
   offset.
-- Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
-  `FooterLink`, `TOCHeader`, `Callout`, and `Header` components.
+  - Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
+    `FooterLink`, `TOCHeader`, `Callout`, and `Header` components.
 - Update URL hash via `history.replaceState` on TOC link clicks to
   preserve deep-linking while maintaining smooth-scroll behavior.
 - Replace hardcoded `formatDate` with `Intl.DateTimeFormat` and

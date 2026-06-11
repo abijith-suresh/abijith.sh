@@ -4,13 +4,13 @@ import { z } from "astro/zod";
 
 const projects = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
+    pattern: "**/*.md",
     base: "./src/content/projects",
   }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    tags: z.array(z.string().min(1).trim()),
+    tags: z.array(z.string().min(1).trim()).default([]),
     date: z.coerce.date(),
     github: z.url().optional(),
     demo: z.url().optional(),
@@ -20,7 +20,7 @@ const projects = defineCollection({
 
 const blog = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
+    pattern: "**/*.md",
     base: "./src/content/blog",
   }),
   schema: z.object({

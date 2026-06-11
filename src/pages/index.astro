@@ -1,10 +1,11 @@
 ---
-import Hero from "@/components/Hero.astro";
-import RecentPosts from "@/components/RecentPosts.astro";
-import RecentProjects from "@/components/RecentProjects.astro";
 import Container from "@/components/ui/Container.astro";
+import { getAllBlogPosts } from "@/lib/blog";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+
+const allPosts = await getAllBlogPosts();
+const recentPosts = allPosts.slice(0, 5);
 ---
 
 <Layout
@@ -13,18 +14,102 @@ import Layout from "@/layouts/Layout.astro";
   type="website"
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col page-enter">
-    <Hero />
-
-    <section class="pb-16 page-enter page-enter-delay-1">
-      <Container>
-        <RecentProjects />
+  <div class="w-full mx-auto flex grow flex-col">
+    <section class="pt-16 pb-8">
+      <Container class="flex flex-col gap-6">
+        <div class="flex flex-col gap-3">
+          <h1 class="text-[clamp(2rem,4vw,3rem)] font-medium tracking-tight leading-[1.1]">
+            {SITE.author}
+          </h1>
+          <p
+            class="text-base leading-[calc(0.65rem+1em)]"
+            style="color: var(--color-muted-foreground);"
+          >
+            {SITE.role}
+          </p>
+        </div>
       </Container>
     </section>
 
-    <section class="pb-16 page-enter page-enter-delay-2">
-      <Container>
-        <RecentPosts />
+    <section class="pb-16">
+      <Container class="flex flex-col gap-6">
+        <p
+          class="text-base leading-[calc(0.65rem+1em)]"
+          style="color: var(--color-muted-foreground);"
+        >
+          Backend engineer at <a
+            href="https://ust.com"
+            class="font-medium text-[var(--color-text)]"
+            target="_blank"
+            rel="noopener noreferrer">UST</a
+          >. I work on backend systems, mostly Java and Spring Boot. Currently building things and
+          writing about them.
+        </p>
+
+        <p
+          class="text-base leading-[calc(0.65rem+1em)]"
+          style="color: var(--color-muted-foreground);"
+        >
+          You can see my <a href="/projects" class="font-medium text-[var(--color-text)]"
+            >projects</a
+          >, read my <a href="/writing" class="font-medium text-[var(--color-text)]">writing</a>, or
+          check <a href="/now" class="font-medium text-[var(--color-text)]">what I'm doing now</a>.
+        </p>
+
+        <p
+          class="text-base leading-[calc(0.65rem+1em)]"
+          style="color: var(--color-muted-foreground);"
+        >
+          Find me on{" "}
+          <a
+            href="https://github.com/abijith-suresh"
+            class="font-medium text-[var(--color-text)]"
+            target="_blank"
+            rel="noopener noreferrer">GitHub</a
+          >,{" "}
+          <a
+            href="https://x.com/abijith_sh"
+            class="font-medium text-[var(--color-text)]"
+            target="_blank"
+            rel="noopener noreferrer">X</a
+          >,{" "}
+          <a
+            href="https://linkedin.com/in/abijith-suresh"
+            class="font-medium text-[var(--color-text)]"
+            target="_blank"
+            rel="noopener noreferrer">LinkedIn</a
+          >,{" "}
+          <a
+            href="https://bsky.app/profile/abijith.bsky.social"
+            class="font-medium text-[var(--color-text)]"
+            target="_blank"
+            rel="noopener noreferrer">Bluesky</a
+          >,{" "}
+          or subscribe via{" "}
+          <a href="/rss.xml" class="font-medium text-[var(--color-text)]">RSS</a>.
+        </p>
+
+        {
+          recentPosts.length > 0 && (
+            <div class="flex flex-col gap-3">
+              <p
+                class="text-base leading-[calc(0.65rem+1em)]"
+                style="color: var(--color-muted-foreground);"
+              >
+                Some recent writing:
+              </p>
+              <ul class="flex flex-col gap-2">
+                {recentPosts.map((post) => (
+                  <li>
+                    <a href={`/writing/${post.id}`} class="font-medium text-[var(--color-text)]">
+                      {post.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
       </Container>
     </section>
   </div>

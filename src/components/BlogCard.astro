@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { post, class: className } = Astro.props;
-const { title, description, tags, publishDate } = post.data;
+const { title, description, publishDate } = post.data;
 const postUrl = getBlogPostUrl(post.id);
 const formattedDate = formatDate(publishDate);
 const readingTime = calculateReadingTime(post.body ?? "");
@@ -20,7 +20,6 @@ const meta = `${formattedDate} · ${formatReadingTime(readingTime)}`;
 <ContentCard
   title={title}
   description={description}
-  tags={tags}
   href={postUrl}
   meta={meta}
   class:list={className}

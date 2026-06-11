@@ -57,7 +57,7 @@ export async function main() {
     heroImage: heroImage || undefined,
   });
 
-  const targetFile = await writeScaffoldFile(targetDir, `${slug}.mdx`, content);
+  const targetFile = await writeScaffoldFile(targetDir, `${slug}.md`, content);
 
   printCreated({
     type: "Blog post",

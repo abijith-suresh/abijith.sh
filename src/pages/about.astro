@@ -1,53 +1,14 @@
 ---
-import SplitSection from "@/components/SplitSection.astro";
-import Container from "@/components/ui/Container.astro";
-import PageShell from "@/components/ui/PageShell.astro";
-import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout
-  title={`About - ${SITE.title}`}
-  description={`Learn more about ${SITE.author} - ${SITE.tagline}`}
-  type="profile"
-  jsonLd={{ type: "person" }}
->
-  <PageShell
-    breadcrumbs={[
-      { label: "Home", href: "/", icon: "fa6-solid:house" },
-      { label: "About", icon: "fa6-solid:user" },
-    ]}
-    eyebrow={SITE.role}
-    title="About"
-    subtitle={SITE.aboutSubtitle}
-  >
-    <Container class="flex flex-col gap-12">
-      <!-- Section: What I do -->
-      <section class="page-enter page-enter-delay-2">
-        <SplitSection label="The day job" sublabel="What I do">
-          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {SITE.aboutWhatIDo}
-          </p>
-        </SplitSection>
-      </section>
-
-      <!-- Section: How I got here -->
-      <section class="page-enter page-enter-delay-2">
-        <SplitSection label="The path" sublabel="How I got here">
-          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {SITE.aboutHowIGotHere}
-          </p>
-        </SplitSection>
-      </section>
-
-      <!-- Section: This site -->
-      <section class="page-enter page-enter-delay-3">
-        <SplitSection label="Why it exists" sublabel="This site">
-          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {SITE.aboutThisSite}
-          </p>
-        </SplitSection>
-      </section>
-    </Container>
-  </PageShell>
+<Layout title="404" noindex>
+  <div class="w-full mx-auto flex grow flex-col items-center justify-center py-32">
+    <div class="flex flex-col gap-4 text-center">
+      <h1 class="text-4xl font-medium tracking-tight">404</h1>
+      <p class="text-base" style="color: var(--color-muted-foreground);">
+        This page does not exist.
+      </p>
+    </div>
+  </div>
 </Layout>

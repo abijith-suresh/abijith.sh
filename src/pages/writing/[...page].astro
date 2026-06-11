@@ -1,7 +1,6 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import PaginatedListLayout from "@/components/PaginatedListLayout.astro";
-import SplitSection from "@/components/SplitSection.astro";
 import Container from "@/components/ui/Container.astro";
 import EmptyState from "@/components/ui/EmptyState.astro";
 import PageShell from "@/components/ui/PageShell.astro";
@@ -27,27 +26,19 @@ interface Props {
 
 const { items: posts, currentPage, totalPages, hasNext, hasPrev } = Astro.props;
 
-const { prevUrl, nextUrl } = buildPaginationUrls("/blog", currentPage, hasPrev, hasNext);
+const { prevUrl, nextUrl } = buildPaginationUrls("/writing", currentPage, hasPrev, hasNext);
 const postsByYear = groupByYear(posts, (post) => post.data.publishDate);
 ---
 
 <Layout
-  title={`Blog${currentPage > 1 ? ` - Page ${currentPage}` : ""} - ${SITE.title}`}
+  title={`Writing${currentPage > 1 ? ` - Page ${currentPage}` : ""} - ${SITE.title}`}
   description="Articles, tutorials, and thoughts on web development, design, and technology."
   jsonLd={{ type: "website" }}
 >
-  <PageShell
-    breadcrumbs={[
-      { label: "Home", href: "/", icon: "fa6-solid:house" },
-      { label: "Blog", icon: "fa6-solid:book-open" },
-    ]}
-    eyebrow="Writing"
-    title="Blog"
-    subtitle="Notes, write-ups, and the occasional opinion"
-  >
+  <PageShell class="" title="Writing" subtitle="Notes, write-ups, and the occasional opinion">
     {
       posts.length > 0 ? (
-        <Container>
+        <Container class="flex flex-col gap-8">
           <PaginatedListLayout
             currentPage={currentPage}
             totalPages={totalPages}
@@ -55,23 +46,24 @@ const postsByYear = groupByYear(posts, (post) => post.data.publishDate);
             nextUrl={nextUrl}
             hasPrev={hasPrev}
             hasNext={hasNext}
-            ariaLabel="Blog pagination"
+            ariaLabel="Writing pagination"
           >
             <div slot="items" class="flex flex-col gap-8">
               {postsByYear.map(({ year, items: yearPosts }) => (
-                <SplitSection label={String(year)}>
+                <div class="flex flex-col gap-4">
+                  <span class="eyebrow">{year}</span>
                   <div class="flex flex-col gap-3">
                     {yearPosts.map((post) => (
                       <BlogCard post={post} />
                     ))}
                   </div>
-                </SplitSection>
+                </div>
               ))}
             </div>
           </PaginatedListLayout>
         </Container>
       ) : (
-        <EmptyState message="No blog posts to display yet." />
+        <EmptyState message="No posts to display yet." />
       )
     }
   </PageShell>

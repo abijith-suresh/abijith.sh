@@ -30,7 +30,6 @@ export async function GET(context: APIContext) {
       pubDate: post.data.publishDate,
       description: post.data.description,
       link: `${getBlogPostUrl(post.id)}/`,
-      categories: post.data.tags,
     })),
   });
 }

@@ -75,7 +75,7 @@ export function createPrompter() {
  * Resolves from .templates/{name}.mdx.
  */
 export function readScaffoldTemplate(name) {
-  const templatePath = join(__dirname, "..", ".templates", `${name}.mdx`);
+  const templatePath = join(__dirname, "..", ".templates", `${name}.md`);
 
   if (!existsSync(templatePath)) {
     console.error(`❌ Error: Template not found: ${templatePath}`);

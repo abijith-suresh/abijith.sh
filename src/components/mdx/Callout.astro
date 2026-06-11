@@ -40,14 +40,14 @@ const displayTitle = title || variant.charAt(0).toUpperCase() + variant.slice(1)
         <Icon
           name={config.icon}
           class="w-4 h-4 mr-2 shrink-0"
-          style="color: var(--color-accent);"
+          style="color: var(--color-text);"
           aria-hidden="true"
         />
         <span class="font-medium">{displayTitle}</span>
         <Icon
           name="fa6-solid:chevron-down"
           class="chevron w-4 h-4 ml-auto shrink-0 transition-transform duration-200"
-          style="color: var(--color-muted);"
+          style="color: var(--color-muted-foreground);"
           aria-hidden="true"
         />
       </summary>
@@ -68,7 +68,7 @@ const displayTitle = title || variant.charAt(0).toUpperCase() + variant.slice(1)
         <Icon
           name={config.icon}
           class="w-4 h-4 mr-2 shrink-0"
-          style="color: var(--color-accent);"
+          style="color: var(--color-text);"
           aria-hidden="true"
         />
         <span class="font-medium">{displayTitle}</span>

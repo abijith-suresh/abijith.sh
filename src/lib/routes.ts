@@ -6,7 +6,7 @@
  */
 
 export function getBlogPostUrl(id: string): string {
-  return `/blog/${id}`;
+  return `/writing/${id}`;
 }
 
 export function getProjectUrl(id: string): string {

@@ -1,8 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header.astro";
-import ScrollReveal from "@/components/ScrollReveal.astro";
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import { SITE } from "@/consts";
@@ -62,52 +58,17 @@ const {
     <!-- Structured Data -->
     {jsonLd && <JsonLd {...jsonLd} />}
 
-    <!-- View Transitions -->
-    <ClientRouter fallback="swap" />
-
     <slot name="head" />
   </head>
   <body class="flex h-fit min-h-screen flex-col">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-base)] focus:font-medium"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-text)] focus:text-[var(--color-bg)] focus:font-medium"
     >
       Skip to content
     </a>
-    <header
-      class="bg-[var(--color-base)] sticky top-0 z-50 border-b border-[var(--color-border)]"
-      style="view-transition-name: site-header; padding-top: env(safe-area-inset-top, 0px);"
-    >
-      <Header />
-      <slot name="table-of-contents" />
-    </header>
-    <main
-      id="main-content"
-      class="w-full mx-auto flex grow flex-col"
-      style="view-transition-name: page-main;"
-    >
+    <main id="main-content" class="w-full mx-auto flex grow flex-col">
       <slot />
     </main>
-    <div style="view-transition-name: site-footer;">
-      <Footer />
-    </div>
-    <ScrollReveal />
-
-    <script>
-      // First-load entrance animation: play once per session, skip on back-navigation
-      const entered = sessionStorage.getItem("site-entered");
-      if (!entered) {
-        sessionStorage.setItem("site-entered", "1");
-      } else {
-        document.querySelectorAll(".page-enter").forEach((el) => {
-          el.classList.remove(
-            "page-enter",
-            "page-enter-delay-1",
-            "page-enter-delay-2",
-            "page-enter-delay-3"
-          );
-        });
-      }
-    </script>
   </body>
 </html>
