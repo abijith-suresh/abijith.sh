@@ -1,6 +1,5 @@
 ---
 import Link from "@/components/Link.astro";
-import { cn } from "@/lib/utils";
 
 interface Props {
   title: string;
@@ -13,18 +12,17 @@ interface Props {
 const { title, description, href, meta, class: className } = Astro.props;
 ---
 
-<article class:list={cn("group card-hover", className)}>
-  <Link href={href} class="block p-4" prefetch="hover">
-    <div class="flex flex-col gap-3">
-      <div class="flex items-start justify-between gap-3">
-        <h3 class="text-lg font-medium leading-snug">
+<article class:list={["group card-hover", className]}>
+  <Link href={href} style="display:block;padding:var(--spacing-4)" prefetch="hover">
+    <div style="display:flex;flex-direction:column;gap:var(--spacing-3)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--spacing-3)">
+        <h3 style="font-size:var(--text-lg);font-weight:500;line-height:1.375">
           {title}
         </h3>
       </div>
       {meta && <p class="eyebrow">{meta}</p>}
       <p
-        class="text-sm leading-[calc(0.65rem+1em)] line-clamp-2"
-        style="color: var(--color-muted-foreground);"
+        style="font-size:var(--text-sm);line-height:calc(0.65rem+1em);overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:var(--color-muted-foreground)"
       >
         {description}
       </p>

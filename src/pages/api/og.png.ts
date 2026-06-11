@@ -1,5 +1,5 @@
-import type { APIRoute } from "astro";
 import { ImageResponse } from "@vercel/og";
+import type { APIRoute } from "astro";
 import { SITE } from "@/consts";
 
 export const prerender = false;

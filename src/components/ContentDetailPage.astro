@@ -18,18 +18,17 @@ interface Props {
 const { title, description, meta, class: className } = Astro.props;
 ---
 
-<section class:list={["mx-auto w-full max-w-[640px] px-6 flex flex-col gap-y-8 pb-16", className]}>
+<section class:list={["detail-section", className]}>
   <!-- Header -->
-  <header class="flex flex-col gap-y-5 pt-4">
-    <h1 class="text-[clamp(2rem,4.5vw,3.5rem)] font-medium tracking-tight leading-tight">
+  <header style="display:flex;flex-direction:column;row-gap:1.25rem;padding-top:var(--spacing-4)">
+    <h1 style="font-size:clamp(2rem,4.5vw,3.5rem);font-weight:500;letter-spacing:-0.025em;line-height:1.25">
       {title}
     </h1>
 
     {
       meta && meta.length > 0 && (
         <div
-          class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm"
-          style="color: var(--color-muted-foreground);"
+          style="display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--spacing-3);row-gap:var(--spacing-1);font-size:var(--text-sm);color:var(--color-muted-foreground)"
         >
           {meta.map((item, index) => (
             <>
@@ -48,8 +47,7 @@ const { title, description, meta, class: className } = Astro.props;
     {
       description && (
         <p
-          class="text-lg leading-[calc(0.65rem+1em)] max-w-none"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-lg);line-height:calc(0.65rem+1em);max-width:none;color:var(--color-muted-foreground)"
         >
           {description}
         </p>
@@ -58,8 +56,21 @@ const { title, description, meta, class: className } = Astro.props;
   </header>
 
   <!-- Prose Content -->
-  <article class="prose max-w-none">
-    <div class="border-t border-[var(--color-border)] mb-8"></div>
+  <article class="prose" style="max-width:none">
+    <div style="border-top:var(--border-width)solid var(--color-border);margin-bottom:var(--spacing-8)"></div>
     <slot />
   </article>
 </section>
+
+<style>
+  .detail-section {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 640px;
+    padding-inline: var(--spacing-6);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacing-8);
+    padding-bottom: var(--spacing-16);
+  }
+</style>

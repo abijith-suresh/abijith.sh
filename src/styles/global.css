@@ -1,15 +1,16 @@
-@import "tailwindcss";
+@import "./fonts.css";
 
 /* ==========================================================================
    Swiss Style Design System
    Minimal, dark-only, accent-less. Neutral grays in OKLCH.
    ========================================================================== */
 
-@theme static {
+:root {
   /* Typography */
-  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
   --font-mono:
-    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    "DejaVu Sans Mono", monospace;
 
   /* Color palette — neutral grays, OKLCH, dark only */
   --color-bg: oklch(14.5% 0 0);
@@ -60,117 +61,105 @@
   --transition-fast: 50ms ease;
   --transition-base: 150ms ease;
   --letter-spacing-uppercase: 0.04em;
-}
-
-/* ==========================================================================
-   Theme — dark only
-   ========================================================================== */
-:root {
   color-scheme: dark;
 }
 
 /* ==========================================================================
    Base Styles
    ========================================================================== */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-@layer base {
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--leading-text);
+  font-size: var(--text-base);
+}
 
-  body {
-    font-family: var(--font-sans);
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    line-height: var(--leading-text);
-    font-size: var(--text-base);
-  }
+button,
+a,
+[role="button"],
+input,
+select,
+textarea,
+summary {
+  touch-action: manipulation;
+}
 
-  button,
-  a,
-  [role="button"],
-  input,
-  select,
-  textarea,
-  summary {
-    touch-action: manipulation;
-  }
+/* Typography — Swiss hierarchy through opacity, not weight */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  line-height: var(--leading-text);
+  text-align: left;
+  font-weight: 500;
+}
 
-  /* Typography — Swiss hierarchy through opacity, not weight */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-wrap: balance;
-    line-height: var(--leading-text);
-    text-align: left;
-    font-weight: 500;
-  }
+p {
+  text-wrap: pretty;
+  text-align: left;
+}
 
-  p {
-    text-wrap: pretty;
-    text-align: left;
-  }
-
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    overflow-wrap: break-word;
-  }
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 
 /* ==========================================================================
    Component Classes
    ========================================================================== */
+/* ── Eyebrow / Section Label ─────────────────────────────────────────── */
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-uppercase);
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  line-height: var(--leading-none);
+}
 
-@layer components {
-  /* ── Eyebrow / Section Label ─────────────────────────────────────────── */
-  .eyebrow {
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: var(--letter-spacing-uppercase);
-    text-transform: uppercase;
-    color: var(--color-muted-foreground);
-    line-height: var(--leading-none);
-  }
+/* ── Card ─────────────────────────────────────────────────────────────── */
+.card-hover {
+  background-color: var(--color-bg);
+  border: var(--border-width) solid var(--color-border);
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+  border-radius: var(--radius-none);
+}
 
-  /* ── Card ─────────────────────────────────────────────────────────────── */
-  .card-hover {
-    background-color: var(--color-bg);
-    border: var(--border-width) solid var(--color-border);
-    transition:
-      background-color var(--transition-base),
-      border-color var(--transition-base);
-    border-radius: var(--radius-none);
-  }
+.card-hover:hover {
+  background-color: var(--color-surface-strong);
+}
 
-  .card-hover:hover {
-    background-color: var(--color-surface-strong);
-  }
+/* ── Footer Link ──────────────────────────────────────────────────────── */
+.footer-link {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  padding-bottom: var(--spacing-1);
+  border-bottom: var(--border-width) solid var(--color-muted-foreground);
+  transition: border-color var(--transition-base);
+  line-height: var(--leading-none);
+}
 
-  /* ── Footer Link ──────────────────────────────────────────────────────── */
-  .footer-link {
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-text);
-    text-decoration: none;
-    padding-bottom: var(--spacing-1);
-    border-bottom: var(--border-width) solid var(--color-muted-foreground);
-    transition: border-color var(--transition-base);
-    line-height: var(--leading-none);
-  }
-
-  .footer-link:hover {
-    border-bottom-color: var(--color-text);
-  }
+.footer-link:hover {
+  border-bottom-color: var(--color-text);
 }
 
 /* ==========================================================================
@@ -385,9 +374,9 @@
   *,
   ::before,
   ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }
 

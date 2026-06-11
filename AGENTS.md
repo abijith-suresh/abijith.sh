@@ -10,13 +10,11 @@ Personal portfolio and blog built with Astro.
 
 ## Sources of Truth
 
-| What                                                   | Where                                                |
-| ------------------------------------------------------ | ---------------------------------------------------- |
-| Content schemas (frontmatter validation)               | `src/content.config.ts`                              |
-| Site-wide config (URLs, social links, nav, pagination) | `src/consts.ts`                                      |
-| Changelog — add dated entries under `## Unreleased`    | `CHANGELOG.md`                                       |
-| Scaffolding CLI scripts                                | `.scripts/new-blog.js`, `.scripts/new-project.js`    |
-| Content templates                                      | `.templates/blog-post.mdx`, `.templates/project.mdx` |
+| What                                                   | Where                   |
+| ------------------------------------------------------ | ----------------------- |
+| Content schemas (frontmatter validation)               | `src/content.config.ts` |
+| Site-wide config (URLs, social links, nav, pagination) | `src/consts.ts`         |
+| Changelog — add dated entries under `## Unreleased`    | `CHANGELOG.md`          |
 
 Browse `src/components/` and `src/lib/` for existing patterns before introducing new abstractions.
 

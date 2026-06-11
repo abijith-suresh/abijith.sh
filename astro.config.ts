@@ -1,51 +1,53 @@
+import { satteri } from "@astrojs/markdown-satteri";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
-import tailwindcss from "@tailwindcss/vite";
-import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
+import expressiveCode from "satteri-expressive-code";
 
 export default defineConfig({
   site: "https://abijith.sh",
-  adapter: vercel(),
-  integrations: [
-    expressiveCode({
-      themes: ["github-light", "github-dark"],
-      useDarkModeMediaQuery: false,
-      darkModeSelector: '[data-theme="dark"]',
-      defaultProps: {
-        wrap: true,
-      },
-      plugins: [],
-      styleOverrides: {
-        codeFontSize: "0.875rem",
-        borderColor: "var(--color-border)",
-        borderRadius: "0",
-        codeBackground: "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
-        frames: {
-          editorActiveTabForeground: "var(--color-muted-foreground)",
-          editorActiveTabBackground:
-            "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
-          editorActiveTabIndicatorBottomColor: "transparent",
-          editorActiveTabIndicatorTopColor: "transparent",
-          editorTabBorderRadius: "0",
-          editorTabBarBackground: "transparent",
-          editorTabBarBorderBottomColor: "transparent",
-          frameBoxShadowCssValue: "none",
-          terminalBackground: "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
-          terminalTitlebarBackground: "transparent",
-          terminalTitlebarBorderBottomColor: "transparent",
-          terminalTitlebarForeground: "var(--color-muted-foreground)",
-        },
-      },
+  markdown: {
+    syntaxHighlight: false,
+    processor: satteri({
+      hastPlugins: [
+        expressiveCode({
+          themes: ["github-dark"],
+          defaultProps: {
+            wrap: true,
+          },
+          styleOverrides: {
+            codeFontSize: "0.875rem",
+            borderColor: "var(--color-border)",
+            borderRadius: "0",
+            codeBackground: "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
+            frames: {
+              editorActiveTabForeground: "var(--color-muted-foreground)",
+              editorActiveTabBackground:
+                "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
+              editorActiveTabIndicatorBottomColor: "transparent",
+              editorActiveTabIndicatorTopColor: "transparent",
+              editorTabBorderRadius: "0",
+              editorTabBarBackground: "transparent",
+              editorTabBarBorderBottomColor: "transparent",
+              frameBoxShadowCssValue: "none",
+              terminalBackground:
+                "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
+              terminalTitlebarBackground: "transparent",
+              terminalTitlebarBorderBottomColor: "transparent",
+              terminalTitlebarForeground: "var(--color-muted-foreground)",
+            },
+          },
+        }),
+      ],
     }),
-    sitemap(),
-  ],
+  },
+  adapter: vercel(),
+  integrations: [sitemap()],
   prefetch: {
     prefetchAll: false,
     defaultStrategy: "hover",
   },
   vite: {
-    plugins: [tailwindcss()],
     server: {
       // Improve dev server performance
       warmup: {

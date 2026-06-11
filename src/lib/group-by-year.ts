@@ -1,15 +1,22 @@
-import { groupBy } from "@/lib/group-by";
-
 type YearGroup<T> = {
   year: number;
   items: T[];
 };
 
 export function groupByYear<T>(items: T[], getDate: (item: T) => Date): YearGroup<T>[] {
-  return groupBy(items, (item) => getDate(item).getFullYear())
-    .map((group) => ({
-      year: group.key,
-      items: group.items,
-    }))
+  const groups = new Map<number, T[]>();
+
+  for (const item of items) {
+    const year = getDate(item).getFullYear();
+    const group = groups.get(year);
+    if (group) {
+      group.push(item);
+    } else {
+      groups.set(year, [item]);
+    }
+  }
+
+  return Array.from(groups.entries())
+    .map(([year, groupItems]) => ({ year, items: groupItems }))
     .toSorted((a, b) => b.year - a.year);
 }

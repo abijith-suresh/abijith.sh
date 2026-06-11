@@ -10,26 +10,35 @@ import Layout from "@/layouts/Layout.astro";
   noindex={true}
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col">
-    <Container class="flex flex-col items-center justify-center gap-y-8 py-28">
+  <div style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
+    <Container class="page-404-container">
       <div
-        class="text-[8rem] font-medium select-none leading-none"
-        style="color: var(--color-muted-foreground);"
+        style="font-size:8rem;font-weight:500;user-select:none;line-height:var(--leading-none);color:var(--color-muted-foreground)"
         aria-hidden="true"
       >
         404
       </div>
 
-      <div class="flex flex-col items-center gap-y-3 text-center">
-        <h1 class="text-[clamp(1.875rem,4vw,3rem)] font-medium tracking-tight">Page Not Found</h1>
-        <p class="text-lg max-w-md" style="color: var(--color-muted-foreground);">
+      <div style="display:flex;flex-direction:column;align-items:center;row-gap:var(--spacing-3);text-align:center">
+        <h1 style="font-size:clamp(1.875rem,4vw,3rem);font-weight:500;letter-spacing:-0.025em">Page Not Found</h1>
+        <p style="font-size:var(--text-lg);max-width:28rem;color:var(--color-muted-foreground)">
           The page you're looking for doesn't exist or has been moved.
         </p>
       </div>
 
-      <div class="pt-4">
+      <div style="padding-top:var(--spacing-4)">
         <a href="/" class="footer-link">← Back to Home</a>
       </div>
     </Container>
   </div>
 </Layout>
+<style>
+  .page-404-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: var(--spacing-8);
+    padding-block: 7rem;
+  }
+</style>

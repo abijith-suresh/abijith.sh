@@ -34,12 +34,6 @@ const {
     <meta name="theme-color" content="#111111" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
 
     <title>{title}</title>
 
@@ -60,15 +54,28 @@ const {
 
     <slot name="head" />
   </head>
-  <body class="flex h-fit min-h-screen flex-col">
+  <body style="display:flex;height:fit-content;min-height:100vh;flex-direction:column">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-text)] focus:text-[var(--color-bg)] focus:font-medium"
+      class="skip-link"
     >
       Skip to content
     </a>
-    <main id="main-content" class="w-full mx-auto flex grow flex-col">
+    <main id="main-content" style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
       <slot />
     </main>
   </body>
 </html>
+<style>
+  .skip-link {
+    position: absolute;
+    width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+  }
+  .skip-link:focus {
+    position: fixed; top: var(--spacing-4); left: var(--spacing-4); z-index: 50;
+    width: auto; height: auto; padding: var(--spacing-4) var(--spacing-2); margin: 0;
+    overflow: visible; clip: auto; white-space: normal;
+    background-color: var(--color-text); color: var(--color-bg); font-weight: 500;
+  }
+</style>

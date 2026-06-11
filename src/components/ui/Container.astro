@@ -1,11 +1,12 @@
 ---
 interface Props {
   class?: string;
+  style?: string;
 }
 
-const { class: className } = Astro.props;
+const { class: className, style: styleStr } = Astro.props;
 ---
 
-<div class:list={["mx-auto w-full max-w-[640px] px-6", className]}>
+<div style={`margin-inline:auto; width:100%; max-width:640px; padding-inline:var(--spacing-6);${styleStr ? ` ${styleStr}` : ''}`} class={className}>
   <slot />
 </div>

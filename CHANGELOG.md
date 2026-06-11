@@ -15,6 +15,20 @@ All notable changes to this site are documented in this file.
 - Remove `@iconify-json/fa6-brands` dependency; strip unused brand icons from
   icon configuration.
 - Remove About page from nav links and about content from site config.
+- Remove dead exports from `consts.ts`: `SITE.greeting`, `SITE.heroIntro`, `NAV_LINKS`.
+- Remove stale `.scripts/**/*.js` override block from `eslint.config.ts`.
+- Remove `astro-icon` dependency (unused after pagination and MDX component removal).
+- Remove stale scaffolding/template references from `AGENTS.md`.
+- Remove unused `eslint-plugin-jsx-a11y` devDependency.
+- Remove Tailwind CSS and all Tailwind utility classes from all files.
+- Remove Prettier (`prettier`, `prettier-plugin-astro`) — consolidated to Biome.
+- Remove `astro-expressive-code`; replaced with `satteri-expressive-code`.
+- Remove `@tailwindcss/vite` and `tailwindcss` devDependencies.
+- Remove `cn()` utility (no longer needed after Tailwind removal).
+- Remove `src/lib/group-by.ts` (inlined into `groupByYear`).
+- Remove placeholder test file `src/test/placeholder.test.ts`.
+- Remove ESLint + Prettier + Tailwind VS Code extension recommendations.
+- Remove Google Fonts HTTP request for Manrope (now self-hosted).
 
 ### Changed — 2026-06-11
 
@@ -64,12 +78,30 @@ inline` to `@theme static` so utilities generate correctly.
   - Migrate blog routes from `/blog/` to `/writing/` for URL consistency.
   - Migrate all content files (blog posts, project pages) from `.mdx` to `.md`;
     convert `.mdx` content templates to `.md`.
+  - Suppress deprecation warning by migrating `markdown.remarkPlugins` to
+    explicit `markdown.processor: unified()` in `astro.config.ts`.
+- Migrate from `astro-expressive-code` (Astro integration) to `satteri-expressive-code` (satteri HAST plugin); eliminates the rehype plugin mismatch warning.
+- Consolidate linting and formatting to Biome for all file types including `.astro`.
+- Fix husky `pre-commit` and `pre-push` hooks (were not executable, silently skipped).
+- Convert all Tailwind utility classes across 13 `.astro` files to inline `style` attributes and `<style>` blocks.
+- Replace `@theme static` block with plain `:root` custom properties in `global.css`.
+- Remove `@layer base` and `@layer components` wrappers (standard CSS cascade).
+- Inline `groupBy()` logic into `groupByYear()`; delete `group-by.ts`.
+- Update VS Code settings and DevContainer config for Biome-only tooling.
+- Remove stale `eslint.config.ts` and remaining scaffolding references from `AGENTS.md`.
 
 ### Added — 2026-06-11
 
 - New `/now` page for current-status ("what I'm doing now") updates.
 - New `/writing/` routes (paginated listing + detail pages) replacing former
   `/blog/` routes.
+- Self-host IBM Plex Sans (variable, Roman + Italic) and IBM Plex Mono
+  (Regular, Italic, Medium, Medium Italic) fonts from `public/fonts/`;
+  remove Google Fonts HTTP request.
+- Add `satteri-expressive-code` HAST plugin for native satteri expressive-code
+  integration.
+- Add real unit tests (17 tests) for all `src/lib/` utility functions.
+- Add `.vscode/extensions.json` with curated recommendations.
 
 ### Added — 2026-05-24
 

@@ -10,14 +10,13 @@ import Layout from "@/layouts/Layout.astro";
   type="website"
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col">
-    <section class="pt-16 pb-8">
-      <Container class="flex flex-col gap-6">
-        <div class="flex flex-col gap-3">
-          <h1 class="text-[clamp(2rem,4vw,3rem)] font-medium tracking-tight leading-[1.1]">Now</h1>
+  <div style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
+    <section style="padding-top:var(--spacing-16);padding-bottom:var(--spacing-8)">
+      <Container class="section-flow">
+        <div style="display:flex;flex-direction:column;gap:var(--spacing-3)">
+          <h1 style="font-size:clamp(2rem,4vw,3rem);font-weight:500;letter-spacing:-0.025em;line-height:1.1">Now</h1>
           <p
-            class="text-base leading-[calc(0.65rem+1em)]"
-            style="color: var(--color-muted-foreground);"
+            style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
           >
             What I'm doing right now.
           </p>
@@ -25,54 +24,47 @@ import Layout from "@/layouts/Layout.astro";
       </Container>
     </section>
 
-    <section class="pb-16">
-      <Container class="flex flex-col gap-6">
+    <section style="padding-bottom:var(--spacing-16)">
+      <Container class="section-flow">
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Last updated: June 2026
         </p>
 
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Working as a backend engineer at UST in Kochi, Kerala. Building backend systems with Java
           and Spring Boot.
         </p>
 
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Currently learning [add what you're learning here].
         </p>
 
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Reading [add book here].
         </p>
 
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Working on [add project here].
         </p>
 
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Listening to [add music/podcast here].
         </p>
 
         <p
-          class="text-base leading-[calc(0.65rem+1em)]"
-          style="color: var(--color-muted-foreground);"
+          style="font-size:var(--text-base);line-height:calc(0.65rem+1em);color:var(--color-muted-foreground)"
         >
           Based in Kochi, Kerala. The weather is [add weather here].
         </p>
@@ -80,3 +72,10 @@ import Layout from "@/layouts/Layout.astro";
     </section>
   </div>
 </Layout>
+<style>
+  .section-flow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+</style>

@@ -15,10 +15,7 @@ export const SITE = {
   twitterHandle: "@abijith_sh", // Kept for SEO compatibility (twitter:creator metadata)
 
   // Hero
-  greeting: "Hey, I'm Abijith",
   role: "Backend Engineer",
-  heroIntro:
-    "Based in Kochi, Kerala. I work on the backend, the part that keeps things running while everything else stays visible. Java and Spring Boot, mostly.",
 
   // Footer navigation links
   socialLinks: [
@@ -29,9 +26,3 @@ export const SITE = {
     { label: "RSS", href: "/rss.xml", external: false },
   ] as const,
 } as const;
-
-// Navigation
-export const NAV_LINKS = [
-  { href: "/projects", label: "Projects" },
-  { href: "/writing", label: "Writing" },
-] as const;

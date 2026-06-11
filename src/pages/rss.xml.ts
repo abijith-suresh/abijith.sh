@@ -1,9 +1,8 @@
+import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
-import { getCollection } from "astro:content";
-
-import { getBlogPostUrl } from "@/lib/routes";
 import { SITE } from "@/consts";
+import { getBlogPostUrl } from "@/lib/routes";
 
 export const prerender = true;
 
