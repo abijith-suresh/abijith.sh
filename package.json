@@ -20,16 +20,13 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "verify": "bun run type-check && bun run lint && bun run format:check && bun run test && bun run build",
-    "prepare": "husky",
-    "new:blog": "node .scripts/new-blog.js",
-    "new:project": "node .scripts/new-project.js"
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.6",
-    "@iconify-json/fa6-solid": "^1.2.4",
     "@vercel/og": "^0.11.1",
     "astro": "^6.4.6",
     "astro-expressive-code": "^0.41.7",

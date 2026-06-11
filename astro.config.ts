@@ -1,7 +1,6 @@
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-import icon from "astro-icon";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 
@@ -40,19 +39,6 @@ export default defineConfig({
       },
     }),
     sitemap(),
-    icon({
-      include: {
-        "fa6-solid": [
-          "chevron-right",
-          "chevron-left",
-          "chevron-down",
-          "circle-info",
-          "lightbulb",
-          "triangle-exclamation",
-          "circle-exclamation",
-        ],
-      },
-    }),
   ],
   prefetch: {
     prefetchAll: false,

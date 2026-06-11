@@ -1,0 +1,39 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getAllBlogPosts } from "@/lib/blog";
+import { groupByYear } from "@/lib/group-by-year";
+
+const allPosts = await getAllBlogPosts();
+const postsByYear = groupByYear(allPosts, (post) => post.data.publishDate);
+---
+
+<Layout
+  title="Writing - Abijith S"
+  description="Articles, tutorials, and thoughts on web development, design, and technology."
+  jsonLd={{ type: "website" }}
+>
+  <PageShell class="" title="Writing" subtitle="Notes, write-ups, and the occasional opinion">
+    {
+      allPosts.length > 0 ? (
+        <Container class="flex flex-col gap-8">
+          {postsByYear.map(({ year, items: yearPosts }) => (
+            <div class="flex flex-col gap-4">
+              <span class="eyebrow">{year}</span>
+              <div class="flex flex-col gap-3">
+                {yearPosts.map((post) => (
+                  <BlogCard post={post} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </Container>
+      ) : (
+        <EmptyState message="No posts to display yet." />
+      )
+    }
+  </PageShell>
+</Layout>

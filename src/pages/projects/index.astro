@@ -1,0 +1,39 @@
+---
+import ProjectCard from "@/components/ProjectCard.astro";
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
+import Layout from "@/layouts/Layout.astro";
+import { groupByYear } from "@/lib/group-by-year";
+import { getAllProjects } from "@/lib/projects";
+
+const allProjects = await getAllProjects();
+const projectsByYear = groupByYear(allProjects, (project) => project.data.date);
+---
+
+<Layout
+  title="Projects - Abijith S"
+  description="A collection of projects I've built, including web applications, tools, and experiments."
+  jsonLd={{ type: "website" }}
+>
+  <PageShell class="" title="Projects" subtitle="Shipped work, side projects, and experiments">
+    {
+      allProjects.length > 0 ? (
+        <Container class="flex flex-col gap-8">
+          {projectsByYear.map(({ year, items: yearProjects }) => (
+            <div class="flex flex-col gap-4">
+              <span class="eyebrow">{year}</span>
+              <div class="flex flex-col gap-3">
+                {yearProjects.map((project) => (
+                  <ProjectCard project={project} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </Container>
+      ) : (
+        <EmptyState message="No projects to display yet." />
+      )
+    }
+  </PageShell>
+</Layout>
