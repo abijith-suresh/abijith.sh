@@ -7,7 +7,3 @@ export async function getAllProjects(): Promise<Project[]> {
 
   return projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
-
-export function sortProjects(projects: Project[]): Project[] {
-  return [...projects].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-}
