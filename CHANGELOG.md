@@ -47,6 +47,8 @@ All notable changes to this site are documented in this file.
 
 ### Fixed — 2026-06-12
 
+- Prevent page containers with inline padding from causing horizontal scrolling
+  on mobile viewports.
 - Restore CI compatibility with Biome 2.5 by migrating the Biome config,
   removing unsupported ARIA from the empty-state container, and adding an
   accessible title to the generated favicon SVG.
