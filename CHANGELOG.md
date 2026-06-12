@@ -4,6 +4,55 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-06-12
+
+- New `/notes` route with full-content-inline listing and individual permalink
+  pages. Notes use their own content collection (`src/content/notes/`) with
+  `date`, `updatedDate`, and `tags` fields. Listing follows the Ledger block
+  pattern (clickable full-width rows, ruled bottom-border, hover tint). Markdown
+  rendered via satteri to HTML strings (avoids `<Content />` component issues
+  inside `<a>` tags). Date serves as the primary note identifier (no title
+  field). Landing page link added. No nav link (text-link only).
+- Static route-mapped Open Graph PNG generation through a prerendered Astro
+  endpoint backed by content collections.
+- Local Astro integration for generated `AS` monogram favicon assets:
+  `favicon.svg`, `favicon.ico`, and Apple touch icon.
+- Dedicated `/about/` page linked from the homepage sentence navigation.
+- Route metadata manifest for static page SEO fallbacks and generated OG image
+  metadata.
+- Root content templates for writing, project, and note entries.
+
+### Changed — 2026-06-12
+
+- Introduce fluid Utopia-inspired typography and spacing tokens, semantic rhythm
+  tokens, and a base margin reset so page headers, landing content, list pages,
+  and prose spacing are driven by the design system instead of browser defaults.
+- Reuse shared page/header primitives on the landing and now pages, and replace
+  repeated inline text-link styling with a token-backed `.text-link` class.
+- Increase page top placement through a dedicated `--page-block-start`
+  semantic token shared by landing, list, detail, and now pages.
+- Replace runtime OG image generation with generated static OG image URLs while
+  preserving the existing SEO `image` override API.
+- Flatten writing content paths, use filename-derived trailing-slash URLs, and
+  standardize writing/project frontmatter on `publishedDate`.
+- Simplify content schemas to strict minimal fields and require at least one tag
+  for every content entry.
+- Keep notes titleless with full datetime frontmatter, timestamp filenames,
+  sitemap inclusion, and lightweight `h-entry` markup.
+- Resolve SEO and JSON-LD metadata through shared route metadata fallbacks while
+  preserving explicit page overrides.
+- Configure Astro trailing slash handling explicitly with canonical internal page
+  links and URL helpers.
+- Update generated site icons only when file contents change.
+
+### Removed — 2026-06-12
+
+- Remove the dynamic `/api/og.png` endpoint, `@astrojs/vercel`, and
+  `@vercel/og`; the site now builds as fully static output and can use
+  standard `astro preview` again.
+- Remove unused project hero image assets and project frontmatter fields for
+  `heroImage`, `github`, and `demo`; project links now live in Markdown content.
+
 ### Removed — 2026-06-11
 
 - Remove tag pages (`/tags/`, `/tags/[tag]`), `TagList`, `Tag` component,
@@ -29,6 +78,10 @@ All notable changes to this site are documented in this file.
 - Remove placeholder test file `src/test/placeholder.test.ts`.
 - Remove ESLint + Prettier + Tailwind VS Code extension recommendations.
 - Remove Google Fonts HTTP request for Manrope (now self-hosted).
+- Remove `Link.astro` component (no longer used after ContentCard rewrite).
+- Remove `.card-hover` CSS class from `global.css` (replaced by Ledger row hover).
+- Remove `/playground` route.
+- Remove `BlogCard.astro` (renamed to `WritingCard.astro`).
 
 ### Changed — 2026-06-11
 
@@ -89,6 +142,11 @@ inline` to `@theme static` so utilities generate correctly.
 - Inline `groupBy()` logic into `groupByYear()`; delete `group-by.ts`.
 - Update VS Code settings and DevContainer config for Biome-only tooling.
 - Remove stale `eslint.config.ts` and remaining scaffolding references from `AGENTS.md`.
+- Replace `ContentCard` boxed-card pattern with The Ledger — ruled full-width rows
+  with hover tint (`--color-surface-strong`).
+- Rename internal collection key, components, and helpers from `blog` to `writing`
+  (`BlogCard` → `WritingCard`, `getBlogPostUrl` → `getWritingUrl`,
+  `getAllBlogPosts` → `getAllWriting`, `getCollection("blog")` → `getCollection("writing")`).
 
 ### Added — 2026-06-11
 

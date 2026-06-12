@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@/consts";
+import { getRouteMetadata, normalizePagePath } from "@/lib/route-metadata";
 
 interface WebSiteSchema {
   "@context": "https://schema.org";
@@ -19,7 +20,7 @@ interface ArticleSchema {
   "@context": "https://schema.org";
   "@type": "BlogPosting";
   headline: string;
-  description: string;
+  description?: string;
   image?: string;
   datePublished: string;
   dateModified?: string;
@@ -54,7 +55,7 @@ export interface JsonLdProps {
   type: "website" | "article" | "person";
   article?: {
     headline: string;
-    description: string;
+    description?: string;
     image?: string;
     datePublished: Date;
     dateModified?: Date;
@@ -66,7 +67,8 @@ export interface JsonLdProps {
 }
 
 const { type, article, person } = Astro.props as JsonLdProps;
-const currentUrl = new URL(Astro.url.pathname, Astro.site).href;
+const routeMetadata = getRouteMetadata(Astro.url.pathname);
+const currentUrl = new URL(normalizePagePath(Astro.url.pathname), Astro.site).href;
 
 let schema: WebSiteSchema | ArticleSchema | PersonSchema;
 
@@ -74,8 +76,8 @@ if (type === "website") {
   schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: SITE.title,
-    description: SITE.description,
+    name: routeMetadata?.title ?? SITE.title,
+    description: routeMetadata?.description ?? SITE.description,
     url: SITE.url,
     author: {
       "@type": "Person",
@@ -89,7 +91,7 @@ if (type === "website") {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: article.headline,
-    description: article.description,
+    description: article.description || SITE.description,
     image: article.image ? new URL(article.image, Astro.site).href : undefined,
     datePublished: article.datePublished.toISOString(),
     dateModified: article.dateModified?.toISOString() || article.datePublished.toISOString(),

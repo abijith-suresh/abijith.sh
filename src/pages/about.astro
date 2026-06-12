@@ -1,0 +1,42 @@
+---
+import ContentDetailPage from "@/components/ContentDetailPage.astro";
+import { SITE } from "@/consts";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title={`About - ${SITE.title}`}
+  description="About Abijith S, this site, and the work behind it."
+  type="profile"
+  jsonLd={{
+    type: "person",
+    person: {
+      jobTitle: SITE.role,
+      description: SITE.tagline,
+    },
+  }}
+>
+  <ContentDetailPage
+    title="About"
+    description="Backend engineer, builder, and writer based in Kochi, Kerala."
+  >
+    <p>
+      I am Abijith S, a backend engineer at UST. I work mostly with Java, Spring Boot,
+      and backend systems, and I use this site as a place to collect the work I build
+      and the things I learn along the way.
+    </p>
+
+    <p>
+      The site is intentionally small. Projects are the proof, writing is where I
+      develop ideas, and notes are for smaller thoughts that still deserve a stable
+      place on the web.
+    </p>
+
+    <p>
+      You can find me on <a href="https://github.com/abijith-suresh">GitHub</a>,
+      <a href="https://x.com/abijith_sh">X</a>,
+      <a href="https://linkedin.com/in/abijith-suresh">LinkedIn</a>, and
+      <a href="https://bsky.app/profile/abijith.bsky.social">Bluesky</a>.
+    </p>
+  </ContentDetailPage>
+</Layout>

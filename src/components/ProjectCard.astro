@@ -10,9 +10,9 @@ interface Props {
 }
 
 const { project, class: className } = Astro.props;
-const { title, description, date } = project.data;
+const { title, description, publishedDate } = project.data;
 const projectUrl = getProjectUrl(project.id);
-const formattedDate = formatDate(date);
+const formattedDate = formatDate(publishedDate);
 ---
 
 <ContentCard

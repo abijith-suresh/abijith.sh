@@ -1,11 +1,12 @@
 import { satteri } from "@astrojs/markdown-satteri";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
 import { defineConfig } from "astro/config";
 import expressiveCode from "satteri-expressive-code";
+import generatedAssets from "./src/integrations/generated-assets";
 
 export default defineConfig({
   site: "https://abijith.sh",
+  trailingSlash: "always",
   markdown: {
     syntaxHighlight: false,
     processor: satteri({
@@ -41,8 +42,7 @@ export default defineConfig({
       ],
     }),
   },
-  adapter: vercel(),
-  integrations: [sitemap()],
+  integrations: [generatedAssets(), sitemap()],
   prefetch: {
     prefetchAll: false,
     defaultStrategy: "hover",

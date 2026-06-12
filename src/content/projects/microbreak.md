@@ -1,11 +1,8 @@
 ---
 title: "Microbreak"
 description: "Short, non-addictive puzzle games for build wait times."
-date: 2026-04-24
+publishedDate: 2026-04-24
 tags: ["Games", "Puzzles", "Browser"]
-github: "https://github.com/abijith-suresh/microbreak"
-demo: "https://microbreak.vercel.app"
-heroImage: "/images/projects/microbreak-hero.png"
 ---
 
 Microbreak offers a collection of short, non-addictive puzzle games designed to fill those brief moments during build wait times. Instead of doom-scrolling, spend a couple of minutes solving a quick puzzle and get back to work refreshed.

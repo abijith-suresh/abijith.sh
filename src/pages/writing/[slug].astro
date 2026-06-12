@@ -6,7 +6,7 @@ import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils
 import { type CollectionEntry, getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", (post) => !post.data.draft);
+  const posts = await getCollection("writing");
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -14,13 +14,13 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<"writing">;
 }
 
 const { post } = Astro.props;
-const { title, description, publishDate } = post.data;
+const { title, description, publishedDate } = post.data;
 const { Content } = await render(post);
-const formattedDate = formatDate(publishDate);
+const formattedDate = formatDate(publishedDate);
 const readingTime = calculateReadingTime(post.body ?? "");
 ---
 
@@ -29,7 +29,7 @@ const readingTime = calculateReadingTime(post.body ?? "");
   description={description}
   type="article"
   article={{
-    publishedTime: publishDate,
+    publishedTime: publishedDate,
     authors: [SITE.author],
   }}
   jsonLd={{
@@ -37,18 +37,19 @@ const readingTime = calculateReadingTime(post.body ?? "");
     article: {
       headline: title,
       description: description,
-      datePublished: publishDate,
+      datePublished: publishedDate,
     },
   }}
 >
   <ContentDetailPage
-    class=""
     title={title}
     description={description}
     meta={[
-      { type: "date", value: formattedDate, datetime: publishDate.toISOString() },
+      { type: "date", value: formattedDate, datetime: publishedDate.toISOString() },
       { type: "text", value: formatReadingTime(readingTime) },
     ]}
+    microformat="h-entry"
+    titleClass="p-name"
   >
     <Content />
   </ContentDetailPage>

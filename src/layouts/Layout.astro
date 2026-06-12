@@ -1,7 +1,6 @@
 ---
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
-import { SITE } from "@/consts";
 import type { SEOProps } from "@/components/seo/SEO.astro";
 import type { JsonLdProps } from "@/components/seo/JsonLd.astro";
 import "@/styles/global.css";
@@ -13,8 +12,8 @@ interface Props extends SEOProps {
 }
 
 const {
-  title = SITE.title,
-  description = SITE.description,
+  title,
+  description,
   image,
   imageAlt,
   canonicalURL,
@@ -23,6 +22,10 @@ const {
   type,
   jsonLd,
 } = Astro.props as Props;
+
+const resolvedJsonLd = jsonLd ?? {
+  type: type === "profile" ? "person" : "website",
+};
 ---
 
 <!doctype html>
@@ -34,8 +37,6 @@ const {
     <meta name="theme-color" content="#111111" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-
-    <title>{title}</title>
 
     <!-- SEO Meta Tags -->
     <SEO
@@ -50,7 +51,7 @@ const {
     />
 
     <!-- Structured Data -->
-    {jsonLd && <JsonLd {...jsonLd} />}
+    <JsonLd {...resolvedJsonLd} />
 
     <slot name="head" />
   </head>

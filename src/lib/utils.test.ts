@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { groupByYear } from "./group-by-year";
-import { getBlogPostUrl, getProjectUrl } from "./routes";
+import { getNoteUrl, getProjectUrl, getWritingUrl } from "./routes";
 import { calculateReadingTime, formatDate, formatReadingTime } from "./utils";
 
 describe("formatDate", () => {
@@ -104,16 +104,22 @@ describe("groupByYear", () => {
   });
 });
 
-describe("getBlogPostUrl", () => {
-  it("returns the correct URL for a blog post", () => {
-    expect(getBlogPostUrl("why-i-built-my-own-website")).toBe(
-      "/writing/why-i-built-my-own-website"
+describe("getWritingUrl", () => {
+  it("returns the correct URL for a writing entry", () => {
+    expect(getWritingUrl("why-i-built-my-own-website")).toBe(
+      "/writing/why-i-built-my-own-website/"
     );
   });
 });
 
 describe("getProjectUrl", () => {
   it("returns the correct URL for a project", () => {
-    expect(getProjectUrl("interleaf")).toBe("/projects/interleaf");
+    expect(getProjectUrl("interleaf")).toBe("/projects/interleaf/");
+  });
+});
+
+describe("getNoteUrl", () => {
+  it("returns the correct URL for a note", () => {
+    expect(getNoteUrl("2026-06-12-0000")).toBe("/notes/2026-06-12-0000/");
   });
 });

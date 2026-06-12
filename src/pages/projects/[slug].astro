@@ -18,17 +18,16 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, date } = project.data;
+const { title, description, publishedDate } = project.data;
 const { Content } = await render(project);
-const formattedDate = formatDate(date);
+const formattedDate = formatDate(publishedDate);
 ---
 
 <Layout title={`${title} - Projects - ${SITE.title}`} description={description}>
   <ContentDetailPage
-    class=""
     title={title}
     description={description}
-    meta={[{ type: "date", value: formattedDate, datetime: date.toISOString() }]}
+    meta={[{ type: "date", value: formattedDate, datetime: publishedDate.toISOString() }]}
   >
     <Content />
   </ContentDetailPage>

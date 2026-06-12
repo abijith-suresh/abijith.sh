@@ -1,10 +1,8 @@
 ---
 title: "Skills"
 description: "My personal collection of AI skills"
-date: 2026-03-01
+publishedDate: 2026-03-01
 tags: ["agent-skills", "ai"]
-github: "https://github.com/abijith-suresh/skills"
-heroImage: "/images/projects/skills-hero.png"
 ---
 
 Skills is a personal collection of reusable AI agent skills, designed to extend AI coding assistants with specialized capabilities and domain knowledge. Each skill encapsulates task-specific instructions, workflows, and resources.

@@ -1,7 +1,7 @@
 ---
 title: "Tailory"
 description: "Client-side resume editor — upload, edit, preview, and export your resume as PDF. No account, no server, all local."
-date: 2026-03-01
+publishedDate: 2026-03-01
 tags:
   [
     "astro",
@@ -14,9 +14,6 @@ tags:
     "tailwindcss",
     "typescript",
   ]
-github: "https://github.com/abijith-suresh/tailory"
-demo: "https://tailory-nine.vercel.app"
-heroImage: "/images/projects/tailory-hero.png"
 ---
 
 Tailory is a client-side resume editor that lets you upload an existing resume, edit the content, preview changes in real time, and export the final result as a polished PDF. Everything runs locally in your browser — no accounts, no servers, and no data leaves your machine.

@@ -1,9 +1,8 @@
 ---
 title: "Why I Built My Own Website"
 description: "On the value of owning your own corner of the internet, learning in public, and the satisfaction of building something for yourself."
-publishDate: 2026-02-11
+publishedDate: 2026-02-11
 tags: ["personal", "meta", "web development", "career"]
-draft: false
 ---
 
 A few months ago, I decided to build my own website. Not a portfolio on some platform, but a real, self-owned space on the internet. Here's why I did it and why I think more developers should consider doing the same.

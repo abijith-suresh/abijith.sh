@@ -1,0 +1,24 @@
+---
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
+import Layout from "@/layouts/Layout.astro";
+import NoteCard from "@/components/NoteCard.astro";
+import { getAllNotes } from "@/lib/notes";
+
+const allNotes = await getAllNotes();
+---
+
+<Layout>
+  <PageShell title="Notes" subtitle="Short thoughts and quick posts">
+    {allNotes.length > 0 ? (
+      <Container>
+        {allNotes.map((entry) => (
+          <NoteCard note={entry} />
+        ))}
+      </Container>
+    ) : (
+      <EmptyState message="No notes yet." />
+    )}
+  </PageShell>
+</Layout>

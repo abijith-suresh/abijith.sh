@@ -2,14 +2,14 @@ import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { SITE } from "@/consts";
-import { getBlogPostUrl } from "@/lib/routes";
+import { getWritingUrl } from "@/lib/routes";
 
 export const prerender = true;
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const posts = await getCollection("writing");
   const sortedPosts = posts.sort(
-    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+    (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
   );
 
   return rss({
@@ -26,9 +26,9 @@ export async function GET(context: APIContext) {
     `,
     items: sortedPosts.map((post) => ({
       title: post.data.title,
-      pubDate: post.data.publishDate,
+      pubDate: post.data.publishedDate,
       description: post.data.description,
-      link: `${getBlogPostUrl(post.id)}/`,
+      link: getWritingUrl(post.id),
     })),
   });
 }

@@ -1,6 +1,4 @@
 ---
-import Link from "@/components/Link.astro";
-
 interface Props {
   title: string;
   description: string;
@@ -12,20 +10,49 @@ interface Props {
 const { title, description, href, meta, class: className } = Astro.props;
 ---
 
-<article class:list={["group card-hover", className]}>
-  <Link href={href} style="display:block;padding:var(--spacing-4)" prefetch="hover">
-    <div style="display:flex;flex-direction:column;gap:var(--spacing-3)">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--spacing-3)">
-        <h3 style="font-size:var(--text-lg);font-weight:500;line-height:1.375">
-          {title}
-        </h3>
-      </div>
-      {meta && <p class="eyebrow">{meta}</p>}
-      <p
-        style="font-size:var(--text-sm);line-height:calc(0.65rem+1em);overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:var(--color-muted-foreground)"
-      >
-        {description}
-      </p>
-    </div>
-  </Link>
-</article>
+<a
+  href={href}
+  class:list={["ledger-row", className]}
+  data-astro-prefetch="hover"
+>
+  <span class="ledger-title">{title}</span>
+  {meta && <span class="ledger-meta">{meta}</span>}
+  <span class="ledger-desc">{description}</span>
+</a>
+
+<style>
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    column-gap: var(--space-s);
+    padding-block: var(--space-xs);
+    border-bottom: var(--border-width) solid var(--color-border);
+    text-decoration: none;
+    transition: background-color var(--transition-base);
+    margin-inline: calc(-1 * var(--page-inline));
+    padding-inline: var(--page-inline);
+  }
+  .ledger-row:hover {
+    background-color: var(--color-surface-strong);
+  }
+  .ledger-title {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: var(--leading-text);
+  }
+  .ledger-meta {
+    font-size: var(--text-xs);
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-none);
+    white-space: nowrap;
+  }
+  .ledger-desc {
+    grid-column: 1 / -1;
+    font-size: var(--text-sm);
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-text);
+    margin-top: var(--space-3xs);
+  }
+</style>

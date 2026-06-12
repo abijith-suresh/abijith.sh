@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@/consts";
+import { getOgImagePath, getRouteMetadata, normalizePagePath } from "@/lib/route-metadata";
 
 export interface SEOProps {
   title?: string;
@@ -17,43 +18,45 @@ export interface SEOProps {
 }
 
 const {
-  title = SITE.title,
-  description = SITE.description,
+  title,
+  description,
   image,
-  imageAlt = `${SITE.title} - ${SITE.description}`,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  imageAlt,
+  canonicalURL,
   noindex = false,
   article,
-  type = "website",
+  type,
 } = Astro.props;
 
-const ogType = article ? "article" : type;
+const routeMetadata = getRouteMetadata(Astro.url.pathname);
+const resolvedTitle = title ?? routeMetadata?.title ?? SITE.title;
+const resolvedDescription = description ?? routeMetadata?.description ?? SITE.description;
+const resolvedType = type ?? routeMetadata?.type ?? "website";
+const resolvedImageAlt = imageAlt ?? `${resolvedTitle} - ${resolvedDescription}`;
+const resolvedCanonicalURL =
+  canonicalURL ?? new URL(normalizePagePath(Astro.url.pathname), Astro.site).href;
 
-// Generate dynamic OG image URL if no custom image provided
-const ogImagePath = image
-  ? image
-  : `/api/og.png?${new URLSearchParams({
-      title,
-      description,
-      type: ogType,
-    }).toString()}`;
+const ogType = article ? "article" : resolvedType;
+const ogImagePath = image ?? getOgImagePath(Astro.url.pathname);
 
 const ogImage = new URL(ogImagePath, Astro.site).href;
 ---
 
+<title>{resolvedTitle}</title>
+
 <!-- Primary Meta Tags -->
-<meta name="title" content={title} />
-<meta name="description" content={description} />
-<link rel="canonical" href={canonicalURL} />
+<meta name="title" content={resolvedTitle} />
+<meta name="description" content={resolvedDescription} />
+<link rel="canonical" href={resolvedCanonicalURL} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
-<meta property="og:url" content={canonicalURL} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:url" content={resolvedCanonicalURL} />
+<meta property="og:title" content={resolvedTitle} />
+<meta property="og:description" content={resolvedDescription} />
 <meta property="og:image" content={ogImage} />
-<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:image:alt" content={resolvedImageAlt} />
 <meta property="og:site_name" content={SITE.title} />
 <meta property="og:locale" content={SITE.locale} />
 
@@ -73,10 +76,10 @@ const ogImage = new URL(ogImagePath, Astro.site).href;
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonicalURL} />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:url" content={resolvedCanonicalURL} />
+<meta name="twitter:title" content={resolvedTitle} />
+<meta name="twitter:description" content={resolvedDescription} />
 <meta name="twitter:image" content={ogImage} />
-<meta name="twitter:image:alt" content={imageAlt} />
+<meta name="twitter:image:alt" content={resolvedImageAlt} />
 <meta name="twitter:creator" content={SITE.twitterHandle} />
 <meta name="twitter:site" content={SITE.twitterHandle} />

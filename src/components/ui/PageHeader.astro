@@ -11,7 +11,7 @@ interface Props {
 const { title, subtitle, class: className } = Astro.props;
 ---
 
-<div style="display:flex; flex-direction:column; row-gap:var(--spacing-3)" class={className}>
-  <h1 style="font-size:clamp(1.875rem,4vw,3rem); font-weight:500; letter-spacing:-0.025em">{title}</h1>
+<div style="display:flex; flex-direction:column; row-gap:var(--title-subtitle-gap)" class={className}>
+  <h1 style="font-size:var(--heading-1); letter-spacing:0; line-height:var(--leading-heading)">{title}</h1>
   {subtitle && <p style="color:var(--color-muted-foreground)">{subtitle}</p>}
 </div>

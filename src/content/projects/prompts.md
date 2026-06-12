@@ -1,10 +1,8 @@
 ---
 title: "Prompts"
 description: "A collection of reusable AI agent prompts for coding agents and chat applications"
-date: 2026-05-16
+publishedDate: 2026-05-16
 tags: ["AI", "Prompts", "Coding"]
-github: "https://github.com/abijith-suresh/prompts"
-heroImage: "/images/projects/prompts-hero.png"
 ---
 
 Prompts is a curated collection of reusable AI agent prompts designed for coding agents and chat applications. It provides battle-tested prompt templates that help AI assistants produce more consistent, high-quality output across various software engineering tasks.
