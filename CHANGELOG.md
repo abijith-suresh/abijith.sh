@@ -45,6 +45,12 @@ All notable changes to this site are documented in this file.
   links and URL helpers.
 - Update generated site icons only when file contents change.
 
+### Fixed — 2026-06-12
+
+- Restore CI compatibility with Biome 2.5 by migrating the Biome config,
+  removing unsupported ARIA from the empty-state container, and adding an
+  accessible title to the generated favicon SVG.
+
 ### Removed — 2026-06-12
 
 - Remove the dynamic `/api/og.png` endpoint, `@astrojs/vercel`, and

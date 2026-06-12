@@ -24,7 +24,7 @@ export async function renderOgPng(route: OgRoute): Promise<Buffer> {
 }
 
 export async function generateSiteIcons(): Promise<void> {
-  const faviconSvg = await renderIconSvg(512);
+  const faviconSvg = withSvgTitle(await renderIconSvg(512), SITE.title);
   const publicDir = path.join(process.cwd(), PUBLIC_DIR);
   const faviconPath = path.join(publicDir, "favicon.svg");
   const appleIconPath = path.join(publicDir, "apple-touch-icon.png");
@@ -293,6 +293,17 @@ function renderPng(svg: string, width: number): Buffer {
   })
     .render()
     .asPng();
+}
+
+function withSvgTitle(svg: string, title: string): string {
+  const escapedTitle = title
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+
+  return svg.replace(/<svg([^>]*)>/, `<svg$1><title>${escapedTitle}</title>`);
 }
 
 function createIco(png: Buffer, width: number, height: number): Buffer {
