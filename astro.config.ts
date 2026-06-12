@@ -1,83 +1,53 @@
-import mdx from "@astrojs/mdx";
+import { satteri } from "@astrojs/markdown-satteri";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
-import tailwindcss from "@tailwindcss/vite";
-import icon from "astro-icon";
-import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
+import expressiveCode from "satteri-expressive-code";
+import generatedAssets from "./src/integrations/generated-assets";
 
 export default defineConfig({
   site: "https://abijith.sh",
-  adapter: vercel(),
-  integrations: [
-    expressiveCode({
-      themes: ["github-light", "github-dark"],
-      useDarkModeMediaQuery: false,
-      darkModeSelector: '[data-theme="dark"]',
-      defaultProps: {
-        wrap: true,
-      },
-      plugins: [],
-      styleOverrides: {
-        codeFontSize: "0.875rem",
-        borderColor: "var(--color-border)",
-        borderRadius: "0",
-        codeBackground: "color-mix(in oklab, var(--color-muted) 25%, transparent)",
-        frames: {
-          editorActiveTabForeground: "var(--color-muted-foreground)",
-          editorActiveTabBackground: "color-mix(in oklab, var(--color-muted) 25%, transparent)",
-          editorActiveTabIndicatorBottomColor: "transparent",
-          editorActiveTabIndicatorTopColor: "transparent",
-          editorTabBorderRadius: "0",
-          editorTabBarBackground: "transparent",
-          editorTabBarBorderBottomColor: "transparent",
-          frameBoxShadowCssValue: "none",
-          terminalBackground: "color-mix(in oklab, var(--color-muted) 25%, transparent)",
-          terminalTitlebarBackground: "transparent",
-          terminalTitlebarBorderBottomColor: "transparent",
-          terminalTitlebarForeground: "var(--color-muted-foreground)",
-        },
-      },
+  trailingSlash: "always",
+  markdown: {
+    syntaxHighlight: false,
+    processor: satteri({
+      hastPlugins: [
+        expressiveCode({
+          themes: ["github-dark"],
+          defaultProps: {
+            wrap: true,
+          },
+          styleOverrides: {
+            codeFontSize: "0.875rem",
+            borderColor: "var(--color-border)",
+            borderRadius: "0",
+            codeBackground: "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
+            frames: {
+              editorActiveTabForeground: "var(--color-muted-foreground)",
+              editorActiveTabBackground:
+                "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
+              editorActiveTabIndicatorBottomColor: "transparent",
+              editorActiveTabIndicatorTopColor: "transparent",
+              editorTabBorderRadius: "0",
+              editorTabBarBackground: "transparent",
+              editorTabBarBorderBottomColor: "transparent",
+              frameBoxShadowCssValue: "none",
+              terminalBackground:
+                "color-mix(in oklab, var(--color-muted-foreground) 25%, transparent)",
+              terminalTitlebarBackground: "transparent",
+              terminalTitlebarBorderBottomColor: "transparent",
+              terminalTitlebarForeground: "var(--color-muted-foreground)",
+            },
+          },
+        }),
+      ],
     }),
-    mdx(),
-    sitemap(),
-    icon({
-      include: {
-        "fa6-brands": ["bluesky", "x-twitter", "linkedin", "github"],
-        "fa6-solid": [
-          "rss",
-          "house",
-          "book-open",
-          "file-lines",
-          "code",
-          "folder-open",
-          "tags",
-          "tag",
-          "user",
-          "chevron-right",
-          "chevron-left",
-          "chevron-down",
-          "xmark",
-          "arrow-right",
-          "arrow-left",
-          "arrow-up-right-from-square",
-          "circle-info",
-          "lightbulb",
-          "triangle-exclamation",
-          "circle-exclamation",
-          "sun",
-          "moon",
-          "bars",
-        ],
-      },
-    }),
-  ],
+  },
+  integrations: [generatedAssets(), sitemap()],
   prefetch: {
     prefetchAll: false,
     defaultStrategy: "hover",
   },
   vite: {
-    plugins: [tailwindcss()],
     server: {
       // Improve dev server performance
       warmup: {

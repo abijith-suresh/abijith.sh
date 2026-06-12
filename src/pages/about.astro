@@ -1,53 +1,42 @@
 ---
-import SplitSection from "@/components/SplitSection.astro";
-import Container from "@/components/ui/Container.astro";
-import PageShell from "@/components/ui/PageShell.astro";
+import ContentDetailPage from "@/components/ContentDetailPage.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
   title={`About - ${SITE.title}`}
-  description={`Learn more about ${SITE.author} - ${SITE.tagline}`}
+  description="About Abijith S, this site, and the work behind it."
   type="profile"
-  jsonLd={{ type: "person" }}
+  jsonLd={{
+    type: "person",
+    person: {
+      jobTitle: SITE.role,
+      description: SITE.tagline,
+    },
+  }}
 >
-  <PageShell
-    breadcrumbs={[
-      { label: "Home", href: "/", icon: "fa6-solid:house" },
-      { label: "About", icon: "fa6-solid:user" },
-    ]}
-    eyebrow={SITE.role}
+  <ContentDetailPage
     title="About"
-    subtitle={SITE.aboutSubtitle}
+    description="Backend engineer, builder, and writer based in Kochi, Kerala."
   >
-    <Container class="flex flex-col gap-12">
-      <!-- Section: What I do -->
-      <section class="page-enter page-enter-delay-2">
-        <SplitSection label="The day job" sublabel="What I do">
-          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {SITE.aboutWhatIDo}
-          </p>
-        </SplitSection>
-      </section>
+    <p>
+      I am Abijith S, a backend engineer at UST. I work mostly with Java, Spring Boot,
+      and backend systems, and I use this site as a place to collect the work I build
+      and the things I learn along the way.
+    </p>
 
-      <!-- Section: How I got here -->
-      <section class="page-enter page-enter-delay-2">
-        <SplitSection label="The path" sublabel="How I got here">
-          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {SITE.aboutHowIGotHere}
-          </p>
-        </SplitSection>
-      </section>
+    <p>
+      The site is intentionally small. Projects are the proof, writing is where I
+      develop ideas, and notes are for smaller thoughts that still deserve a stable
+      place on the web.
+    </p>
 
-      <!-- Section: This site -->
-      <section class="page-enter page-enter-delay-3">
-        <SplitSection label="Why it exists" sublabel="This site">
-          <p class="leading-relaxed max-w-2xl" style="color: var(--color-muted-foreground);">
-            {SITE.aboutThisSite}
-          </p>
-        </SplitSection>
-      </section>
-    </Container>
-  </PageShell>
+    <p>
+      You can find me on <a href="https://github.com/abijith-suresh">GitHub</a>,
+      <a href="https://x.com/abijith_sh">X</a>,
+      <a href="https://linkedin.com/in/abijith-suresh">LinkedIn</a>, and
+      <a href="https://bsky.app/profile/abijith.bsky.social">Bluesky</a>.
+    </p>
+  </ContentDetailPage>
 </Layout>

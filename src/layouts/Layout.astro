@@ -1,11 +1,6 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header.astro";
-import ScrollReveal from "@/components/ScrollReveal.astro";
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
-import { SITE } from "@/consts";
 import type { SEOProps } from "@/components/seo/SEO.astro";
 import type { JsonLdProps } from "@/components/seo/JsonLd.astro";
 import "@/styles/global.css";
@@ -17,8 +12,8 @@ interface Props extends SEOProps {
 }
 
 const {
-  title = SITE.title,
-  description = SITE.description,
+  title,
+  description,
   image,
   imageAlt,
   canonicalURL,
@@ -27,6 +22,10 @@ const {
   type,
   jsonLd,
 } = Astro.props as Props;
+
+const resolvedJsonLd = jsonLd ?? {
+  type: type === "profile" ? "person" : "website",
+};
 ---
 
 <!doctype html>
@@ -38,14 +37,6 @@ const {
     <meta name="theme-color" content="#111111" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>{title}</title>
 
     <!-- SEO Meta Tags -->
     <SEO
@@ -60,54 +51,32 @@ const {
     />
 
     <!-- Structured Data -->
-    {jsonLd && <JsonLd {...jsonLd} />}
-
-    <!-- View Transitions -->
-    <ClientRouter fallback="swap" />
+    <JsonLd {...resolvedJsonLd} />
 
     <slot name="head" />
   </head>
-  <body class="flex h-fit min-h-screen flex-col">
+  <body style="display:flex;height:fit-content;min-height:100vh;flex-direction:column">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-base)] focus:font-medium"
+      class="skip-link"
     >
       Skip to content
     </a>
-    <header
-      class="bg-[var(--color-base)] sticky top-0 z-50 border-b border-[var(--color-border)]"
-      style="view-transition-name: site-header; padding-top: env(safe-area-inset-top, 0px);"
-    >
-      <Header />
-      <slot name="table-of-contents" />
-    </header>
-    <main
-      id="main-content"
-      class="w-full mx-auto flex grow flex-col"
-      style="view-transition-name: page-main;"
-    >
+    <main id="main-content" style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
       <slot />
     </main>
-    <div style="view-transition-name: site-footer;">
-      <Footer />
-    </div>
-    <ScrollReveal />
-
-    <script>
-      // First-load entrance animation: play once per session, skip on back-navigation
-      const entered = sessionStorage.getItem("site-entered");
-      if (!entered) {
-        sessionStorage.setItem("site-entered", "1");
-      } else {
-        document.querySelectorAll(".page-enter").forEach((el) => {
-          el.classList.remove(
-            "page-enter",
-            "page-enter-delay-1",
-            "page-enter-delay-2",
-            "page-enter-delay-3"
-          );
-        });
-      }
-    </script>
   </body>
 </html>
+<style>
+  .skip-link {
+    position: absolute;
+    width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+  }
+  .skip-link:focus {
+    position: fixed; top: var(--spacing-4); left: var(--spacing-4); z-index: 50;
+    width: auto; height: auto; padding: var(--spacing-4) var(--spacing-2); margin: 0;
+    overflow: visible; clip: auto; white-space: normal;
+    background-color: var(--color-text); color: var(--color-bg); font-weight: 500;
+  }
+</style>

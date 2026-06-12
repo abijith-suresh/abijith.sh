@@ -1,14 +1,8 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import Container from "@/components/ui/Container.astro";
 import PageHeader from "@/components/ui/PageHeader.astro";
-import type { BreadcrumbItem } from "@/lib/types";
 
 interface Props {
-  /** Breadcrumb trail items */
-  breadcrumbs: BreadcrumbItem[];
-  /** Small uppercase label above the title */
-  eyebrow?: string;
   /** Page title */
   title: string;
   /** Subtitle / description below the title */
@@ -17,20 +11,12 @@ interface Props {
   class?: string;
 }
 
-const { breadcrumbs, eyebrow, title, subtitle, class: className } = Astro.props;
+const { title, subtitle, class: className } = Astro.props;
 ---
 
-<div class:list={["w-full mx-auto flex grow flex-col gap-y-10 pb-16 page-enter", className]}>
-  <Container class="pt-8 flex flex-col gap-y-8">
-    <div class="page-enter page-enter-delay-1">
-      <Breadcrumb items={breadcrumbs} />
-    </div>
-    <PageHeader
-      eyebrow={eyebrow}
-      title={title}
-      subtitle={subtitle}
-      class="page-enter page-enter-delay-2"
-    />
+<div style="width:100%; margin-inline:auto; display:flex; flex-grow:1; flex-direction:column; row-gap:var(--content-gap); padding-bottom:var(--page-block-end)" class={className}>
+  <Container style="padding-top:var(--page-block-start); display:flex; flex-direction:column; row-gap:var(--content-gap)">
+    <PageHeader title={title} subtitle={subtitle} />
   </Container>
 
   <slot />

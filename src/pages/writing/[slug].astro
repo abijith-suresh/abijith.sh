@@ -1,0 +1,56 @@
+---
+import ContentDetailPage from "@/components/ContentDetailPage.astro";
+import { SITE } from "@/consts";
+import Layout from "@/layouts/Layout.astro";
+import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"writing">;
+}
+
+const { post } = Astro.props;
+const { title, description, publishedDate } = post.data;
+const { Content } = await render(post);
+const formattedDate = formatDate(publishedDate);
+const readingTime = calculateReadingTime(post.body ?? "");
+---
+
+<Layout
+  title={`${title} - Writing - ${SITE.title}`}
+  description={description}
+  type="article"
+  article={{
+    publishedTime: publishedDate,
+    authors: [SITE.author],
+  }}
+  jsonLd={{
+    type: "article",
+    article: {
+      headline: title,
+      description: description,
+      datePublished: publishedDate,
+    },
+  }}
+>
+  <ContentDetailPage
+    title={title}
+    description={description}
+    meta={[
+      { type: "date", value: formattedDate, datetime: publishedDate.toISOString() },
+      { type: "text", value: formatReadingTime(readingTime) },
+    ]}
+    microformat="h-entry"
+    titleClass="p-name"
+  >
+    <Content />
+  </ContentDetailPage>
+</Layout>

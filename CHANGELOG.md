@@ -4,6 +4,163 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-06-12
+
+- New `/notes` route with full-content-inline listing and individual permalink
+  pages. Notes use their own content collection (`src/content/notes/`) with
+  `date`, `updatedDate`, and `tags` fields. Listing follows the Ledger block
+  pattern (clickable full-width rows, ruled bottom-border, hover tint). Markdown
+  rendered via satteri to HTML strings (avoids `<Content />` component issues
+  inside `<a>` tags). Date serves as the primary note identifier (no title
+  field). Landing page link added. No nav link (text-link only).
+- Static route-mapped Open Graph PNG generation through a prerendered Astro
+  endpoint backed by content collections.
+- Local Astro integration for generated `AS` monogram favicon assets:
+  `favicon.svg`, `favicon.ico`, and Apple touch icon.
+- Dedicated `/about/` page linked from the homepage sentence navigation.
+- Route metadata manifest for static page SEO fallbacks and generated OG image
+  metadata.
+- Root content templates for writing, project, and note entries.
+
+### Changed — 2026-06-12
+
+- Introduce fluid Utopia-inspired typography and spacing tokens, semantic rhythm
+  tokens, and a base margin reset so page headers, landing content, list pages,
+  and prose spacing are driven by the design system instead of browser defaults.
+- Reuse shared page/header primitives on the landing and now pages, and replace
+  repeated inline text-link styling with a token-backed `.text-link` class.
+- Increase page top placement through a dedicated `--page-block-start`
+  semantic token shared by landing, list, detail, and now pages.
+- Replace runtime OG image generation with generated static OG image URLs while
+  preserving the existing SEO `image` override API.
+- Flatten writing content paths, use filename-derived trailing-slash URLs, and
+  standardize writing/project frontmatter on `publishedDate`.
+- Simplify content schemas to strict minimal fields and require at least one tag
+  for every content entry.
+- Keep notes titleless with full datetime frontmatter, timestamp filenames,
+  sitemap inclusion, and lightweight `h-entry` markup.
+- Resolve SEO and JSON-LD metadata through shared route metadata fallbacks while
+  preserving explicit page overrides.
+- Configure Astro trailing slash handling explicitly with canonical internal page
+  links and URL helpers.
+- Update generated site icons only when file contents change.
+
+### Removed — 2026-06-12
+
+- Remove the dynamic `/api/og.png` endpoint, `@astrojs/vercel`, and
+  `@vercel/og`; the site now builds as fully static output and can use
+  standard `astro preview` again.
+- Remove unused project hero image assets and project frontmatter fields for
+  `heroImage`, `github`, and `demo`; project links now live in Markdown content.
+
+### Removed — 2026-06-11
+
+- Remove tag pages (`/tags/`, `/tags/[tag]`), `TagList`, `Tag` component,
+  `content-tags.ts`, `tags.ts`, `group-by-letter.ts`, and all tag-related UI
+  from `ContentCard`, `BlogCard`, `ProjectCard`, `ContentDetailPage`,
+  project/writing detail pages, SEO, JSON-LD, and RSS feed.
+- Make `tags` optional in projects schema (`default([])`).
+- Remove `@astrojs/mdx` dependency; migrate all content from `.mdx` to `.md`.
+- Remove `@iconify-json/fa6-brands` dependency; strip unused brand icons from
+  icon configuration.
+- Remove About page from nav links and about content from site config.
+- Remove dead exports from `consts.ts`: `SITE.greeting`, `SITE.heroIntro`, `NAV_LINKS`.
+- Remove stale `.scripts/**/*.js` override block from `eslint.config.ts`.
+- Remove `astro-icon` dependency (unused after pagination and MDX component removal).
+- Remove stale scaffolding/template references from `AGENTS.md`.
+- Remove unused `eslint-plugin-jsx-a11y` devDependency.
+- Remove Tailwind CSS and all Tailwind utility classes from all files.
+- Remove Prettier (`prettier`, `prettier-plugin-astro`) — consolidated to Biome.
+- Remove `astro-expressive-code`; replaced with `satteri-expressive-code`.
+- Remove `@tailwindcss/vite` and `tailwindcss` devDependencies.
+- Remove `cn()` utility (no longer needed after Tailwind removal).
+- Remove `src/lib/group-by.ts` (inlined into `groupByYear`).
+- Remove placeholder test file `src/test/placeholder.test.ts`.
+- Remove ESLint + Prettier + Tailwind VS Code extension recommendations.
+- Remove Google Fonts HTTP request for Manrope (now self-hosted).
+- Remove `Link.astro` component (no longer used after ContentCard rewrite).
+- Remove `.card-hover` CSS class from `global.css` (replaced by Ledger row hover).
+- Remove `/playground` route.
+- Remove `BlogCard.astro` (renamed to `WritingCard.astro`).
+
+### Changed — 2026-06-11
+
+- Redesign toward authentic Swiss / International Typographic Style principles:
+  - Replace `@tailwindcss/typography` plugin with fully hand-written prose CSS
+    for explicit control over every element.
+  - Introduce strict modular type scale using Major Third ratio (1.25×) with
+    `--text-xs` through `--text-4xl` tokens.
+  - Introduce 4px base spacing scale (`--space-1` through `--space-16`) and
+    line-height tokens (`--leading-tight`, `--leading-normal`,
+    `--leading-relaxed`, `--leading-none`).
+  - Replace warm amber accent (`#f5a623`) with Basel Orange (`#ec6b2d`) for
+    better contrast on dark backgrounds and stronger Swiss heritage.
+  - Remove `--color-warning` and `--color-danger` tokens; reduce palette to
+    base + text + accent + muted + border.
+  - Remove decorative fractal-noise SVG overlay from `body::before`.
+  - Remove all decorative motion — scroll-reveal animations, page-enter
+    staggered fades, and Astro view transitions. Keep only functional hover
+    states (50ms instant transitions).
+  - Formalize border tokens (`--radius-none: 0`, `--border-width: 1px`).
+  - Enforce flush-left text alignment for body text and headings.
+  - Update callout-config warning/danger variants to use accent color.
+  - Delete `ScrollReveal.astro` component and `scroll-reveal.ts` utility.
+  - Implement 12-column grid system (max-w-[1440px], gap-x-8) across all
+    pages. Content detail pages use col-span-6 col-start-4 for articles.
+  - Replace `Container` with grid-based container (12 columns, 1440px).
+  - Remove `SplitSection` component. About page uses h2 headings; listing
+    pages use eyebrow labels for year groups.
+  - Remove `ReadingProgress` component. Decorative progress bar.
+  - Update TOC sidebar to grid-aligned col-span-2 col-start-1.
+  - Update Hero padding to token-based values (--space-12 top, --space-8
+    bottom).
+  - Update card padding to --space-4 (16px) instead of p-6 (24px).
+  - Update pagination spacing to token-based values.
+  - Revert 12-column grid to single centered container (max-w-[900px], px-6).
+  - Remove all TOC components (desktop + mobile). No TOC needed.
+  - Remove hero images from article/project detail pages.
+  - Reduce hero title size from clamp(3.5rem, 8vw, 6rem) to clamp(2rem, 4vw, 3rem).
+  - Remove all Button components. Replace with text links using border-bottom.
+  - Fix prose link underline: 1px muted color instead of 2px accent.
+  - Fix tag hover: subtle background shift instead of accent color.
+  - Fix footer and "View all" links: border-bottom underline style.
+  - Add subtle page-enter fade-in animation (400ms).
+  - Unify CSS design tokens with Tailwind v4 namespaces: rename `--space-*`
+    to `--spacing-*`, `--color-base` to `--color-bg`, and switch `@theme
+inline` to `@theme static` so utilities generate correctly.
+  - Migrate blog routes from `/blog/` to `/writing/` for URL consistency.
+  - Migrate all content files (blog posts, project pages) from `.mdx` to `.md`;
+    convert `.mdx` content templates to `.md`.
+  - Suppress deprecation warning by migrating `markdown.remarkPlugins` to
+    explicit `markdown.processor: unified()` in `astro.config.ts`.
+- Migrate from `astro-expressive-code` (Astro integration) to `satteri-expressive-code` (satteri HAST plugin); eliminates the rehype plugin mismatch warning.
+- Consolidate linting and formatting to Biome for all file types including `.astro`.
+- Fix husky `pre-commit` and `pre-push` hooks (were not executable, silently skipped).
+- Convert all Tailwind utility classes across 13 `.astro` files to inline `style` attributes and `<style>` blocks.
+- Replace `@theme static` block with plain `:root` custom properties in `global.css`.
+- Remove `@layer base` and `@layer components` wrappers (standard CSS cascade).
+- Inline `groupBy()` logic into `groupByYear()`; delete `group-by.ts`.
+- Update VS Code settings and DevContainer config for Biome-only tooling.
+- Remove stale `eslint.config.ts` and remaining scaffolding references from `AGENTS.md`.
+- Replace `ContentCard` boxed-card pattern with The Ledger — ruled full-width rows
+  with hover tint (`--color-surface-strong`).
+- Rename internal collection key, components, and helpers from `blog` to `writing`
+  (`BlogCard` → `WritingCard`, `getBlogPostUrl` → `getWritingUrl`,
+  `getAllBlogPosts` → `getAllWriting`, `getCollection("blog")` → `getCollection("writing")`).
+
+### Added — 2026-06-11
+
+- New `/now` page for current-status ("what I'm doing now") updates.
+- New `/writing/` routes (paginated listing + detail pages) replacing former
+  `/blog/` routes.
+- Self-host IBM Plex Sans (variable, Roman + Italic) and IBM Plex Mono
+  (Regular, Italic, Medium, Medium Italic) fonts from `public/fonts/`;
+  remove Google Fonts HTTP request.
+- Add `satteri-expressive-code` HAST plugin for native satteri expressive-code
+  integration.
+- Add real unit tests (17 tests) for all `src/lib/` utility functions.
+- Add `.vscode/extensions.json` with curated recommendations.
+
 ### Added — 2026-05-24
 
 - Project pages: Reshrimp, Interleaf, Microbreak, Tailory, Skills, Prompts
@@ -22,8 +179,24 @@ All notable changes to this site are documented in this file.
 
 ### Fixed — 2026-05-24
 
-- Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
-  `FooterLink`, `TOCHeader`, `Callout`, and `Header` components.
+- Removed `!important` from card hover cascade; CSS custom property
+  reassignments handle text color propagation without specificity wars.
+- Eliminated duplicate theme variable block (`:root` duplicating
+  `@theme inline`); merged `--color-card-hover-text` into `@theme inline`.
+- Replaced 4 hardcoded `#111111` values with `var(--color-base)` across
+  tag-link, tag-link-label, button, and icon-button hover states.
+- Removed dead code: empty `.btn:hover` block, unnecessary `opacity: 1`
+  on body noise pseudo-element, orphan `position: relative` on `body`.
+- Extracted 6 shared design tokens: `--transition-fast` (150ms ease),
+  `--letter-spacing-uppercase` (0.04em), `--color-surface`,
+  `--color-surface-strong`, `--color-text-muted`, `--font-mono`.
+- Standardized font sizes to Tailwind scale — `xs` (0.75rem) for
+  eyebrow/tag-pill/arrow, `sm` (0.875rem) for nav/btn/link, `lg`
+  (1.125rem) for split-label.
+- Added explanatory comment for `scroll-margin-top: 6rem` heading anchor
+  offset.
+  - Apply `aria-hidden="true"` to decorative icons in `ContentCard`,
+    `FooterLink`, `TOCHeader`, `Callout`, and `Header` components.
 - Update URL hash via `history.replaceState` on TOC link clicks to
   preserve deep-linking while maintaining smooth-scroll behavior.
 - Replace hardcoded `formatDate` with `Intl.DateTimeFormat` and
@@ -44,6 +217,13 @@ All notable changes to this site are documented in this file.
   variant (amber text, translucent accent tint on hover).
 - Remove amber background fill from `.prose` link hover — instead
   increase underline thickness from 2px to 3px on hover.
+
+### Changed — 2026-05-24
+
+- Replaced ~200 lines of hand-written `.prose` content typography CSS
+  with the `@tailwindcss/typography` plugin, retaining custom accent
+  link underlines, heading sizes, code styling, and scroll-margin
+  offsets via plugin overrides.
 
 ### Changed — 2026-05-22
 

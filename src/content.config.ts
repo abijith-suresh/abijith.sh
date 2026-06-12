@@ -1,36 +1,48 @@
-import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 const projects = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
+    pattern: "*.md",
     base: "./src/content/projects",
   }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    tags: z.array(z.string().min(1).trim()),
-    date: z.coerce.date(),
-    github: z.url().optional(),
-    demo: z.url().optional(),
-    heroImage: z.string().optional(),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      publishedDate: z.coerce.date(),
+      tags: z.array(z.string().min(1).trim()).min(1),
+    })
+    .strict(),
 });
 
-const blog = defineCollection({
+const writing = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
-    base: "./src/content/blog",
+    pattern: "*.md",
+    base: "./src/content/writing",
   }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    publishDate: z.coerce.date(),
-    tags: z.array(z.string().min(1).trim()).default([]),
-    draft: z.boolean().default(false),
-    heroImage: z.string().optional(),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      publishedDate: z.coerce.date(),
+      tags: z.array(z.string().min(1).trim()).min(1),
+    })
+    .strict(),
 });
 
-export const collections = { projects, blog };
+const notes = defineCollection({
+  loader: glob({
+    pattern: "*.md",
+    base: "./src/content/notes",
+  }),
+  schema: z
+    .object({
+      date: z.coerce.date(),
+      tags: z.array(z.string().min(1).trim()).min(1),
+    })
+    .strict(),
+});
+
+export const collections = { projects, writing, notes };

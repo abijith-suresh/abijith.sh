@@ -1,0 +1,33 @@
+---
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import { groupByYear } from "@/lib/group-by-year";
+import { getAllProjects } from "@/lib/projects";
+
+const allProjects = await getAllProjects();
+const projectsByYear = groupByYear(allProjects, (project) => project.data.publishedDate);
+---
+
+<Layout>
+  <PageShell title="Projects" subtitle="Shipped work, side projects, and experiments">
+    {
+      allProjects.length > 0 ? (
+        <Container>
+          {projectsByYear.map(({ year, items: yearProjects }) => (
+            <div style="padding-bottom:var(--content-gap)">
+              <span style="display:block;margin-bottom:var(--section-gap)" class="eyebrow">{year}</span>
+              {yearProjects.map((project) => (
+                <ProjectCard project={project} />
+              ))}
+            </div>
+          ))}
+        </Container>
+      ) : (
+        <EmptyState message="No projects to display yet." />
+      )
+    }
+  </PageShell>
+</Layout>

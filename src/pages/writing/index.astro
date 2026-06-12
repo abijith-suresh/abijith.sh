@@ -1,0 +1,33 @@
+---
+import Container from "@/components/ui/Container.astro";
+import EmptyState from "@/components/ui/EmptyState.astro";
+import PageShell from "@/components/ui/PageShell.astro";
+import WritingCard from "@/components/WritingCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getAllWriting } from "@/lib/writing";
+import { groupByYear } from "@/lib/group-by-year";
+
+const allPosts = await getAllWriting();
+const postsByYear = groupByYear(allPosts, (post) => post.data.publishedDate);
+---
+
+<Layout>
+  <PageShell title="Writing" subtitle="Notes, write-ups, and the occasional opinion">
+    {
+      allPosts.length > 0 ? (
+        <Container>
+          {postsByYear.map(({ year, items: yearPosts }) => (
+            <div style="padding-bottom:var(--content-gap)">
+              <span style="display:block;margin-bottom:var(--section-gap)" class="eyebrow">{year}</span>
+              {yearPosts.map((post) => (
+                <WritingCard post={post} />
+              ))}
+            </div>
+          ))}
+        </Container>
+      ) : (
+        <EmptyState message="No posts to display yet." />
+      )
+    }
+  </PageShell>
+</Layout>

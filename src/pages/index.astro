@@ -1,8 +1,6 @@
 ---
-import Hero from "@/components/Hero.astro";
-import RecentPosts from "@/components/RecentPosts.astro";
-import RecentProjects from "@/components/RecentProjects.astro";
 import Container from "@/components/ui/Container.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
@@ -13,19 +11,55 @@ import Layout from "@/layouts/Layout.astro";
   type="website"
   jsonLd={{ type: "website" }}
 >
-  <div class="w-full mx-auto flex grow flex-col page-enter">
-    <Hero />
-
-    <section class="pb-16 page-enter page-enter-delay-1">
-      <Container>
-        <RecentProjects />
-      </Container>
-    </section>
-
-    <section class="pb-16 page-enter page-enter-delay-2">
-      <Container>
-        <RecentPosts />
-      </Container>
-    </section>
+  <div style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column;padding-top:var(--page-block-start);padding-bottom:var(--page-block-end)">
+    <Container class="section-flow">
+      <PageHeader title={SITE.author} subtitle={SITE.role} />
+      <p style="color:var(--color-muted-foreground)">
+        Backend engineer at <a
+          href="https://ust.com"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">UST</a
+        >. I work on backend systems, mostly Java and Spring Boot. Currently building things and
+        writing about them.
+      </p>
+      <p style="color:var(--color-muted-foreground)">
+        You can read more <a href="/about/" class="text-link">about me</a>,
+        see my <a href="/projects/" class="text-link"
+          >projects</a
+        >, read my <a href="/writing/" class="text-link">writing</a>,
+        browse my <a href="/notes/" class="text-link">notes</a>, or
+        check <a href="/now/" class="text-link">what I'm doing now</a>.
+      </p>
+      <p style="color:var(--color-muted-foreground)">
+        Find me on{" "}
+        <a
+          href="https://github.com/abijith-suresh"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a
+        >,{" "}
+        <a
+          href="https://x.com/abijith_sh"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">X</a
+        >,{" "}
+        <a
+          href="https://linkedin.com/in/abijith-suresh"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">LinkedIn</a
+        >,{" "}
+        <a
+          href="https://bsky.app/profile/abijith.bsky.social"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">Bluesky</a
+        >,{" "}
+        or subscribe via{" "}
+        <a href="/rss.xml" class="text-link">RSS</a>.
+      </p>
+    </Container>
   </div>
 </Layout>

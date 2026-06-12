@@ -1,7 +1,3 @@
-export function cn(...inputs: (string | undefined | null | false)[]) {
-  return inputs.filter(Boolean).join(" ");
-}
-
 export function formatDate(date: Date): string {
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -17,5 +13,5 @@ export function calculateReadingTime(content: string, wordsPerMinute = 200): num
 }
 
 export function formatReadingTime(minutes: number): string {
-  return new Intl.NumberFormat("en-US").format(minutes) + " min read";
+  return `${new Intl.NumberFormat("en-US").format(minutes)} min read`;
 }

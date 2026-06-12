@@ -5,10 +5,14 @@
  * requires editing one file.
  */
 
-export function getBlogPostUrl(id: string): string {
-  return `/blog/${id}`;
+export function getWritingUrl(id: string): string {
+  return `/writing/${id}/`;
 }
 
 export function getProjectUrl(id: string): string {
-  return `/projects/${id}`;
+  return `/projects/${id}/`;
+}
+
+export function getNoteUrl(id: string): string {
+  return `/notes/${id}/`;
 }

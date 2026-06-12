@@ -7,9 +7,6 @@
     "vscode": {
       "extensions": [
         "astro-build.astro-vscode",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "bradlc.vscode-tailwindcss",
         "editorconfig.editorconfig",
         "unifiedjs.vscode-mdx",
         "christian-kohler.path-intellisense",
@@ -19,17 +16,10 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "biomejs.biome",
         "[astro]": {
-          "editor.defaultFormatter": "astro-build.astro-vscode"
+          "editor.defaultFormatter": "biomejs.biome"
         },
-        "eslint.validate": [
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-          "astro"
-        ],
         "typescript.preferences.importModuleSpecifier": "non-relative",
         "path-intellisense.mappings": {
           "@": "${workspaceFolder}/src"

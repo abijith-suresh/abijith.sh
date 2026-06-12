@@ -1,14 +1,9 @@
 ---
 import ContentDetailPage from "@/components/ContentDetailPage.astro";
-import TagList from "@/components/TagList.astro";
-import Button from "@/components/ui/Button.astro";
-import TOCHeader from "@/components/TOCHeader.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
-import { filterTocHeadings } from "@/lib/toc";
 import { formatDate } from "@/lib/utils";
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -23,52 +18,17 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, tags, date, github, demo, heroImage } = project.data;
-const { Content, headings } = await render(project);
-const formattedDate = formatDate(date);
-
-const tocHeadings = filterTocHeadings(headings);
+const { title, description, publishedDate } = project.data;
+const { Content } = await render(project);
+const formattedDate = formatDate(publishedDate);
 ---
 
 <Layout title={`${title} - Projects - ${SITE.title}`} description={description}>
-  {tocHeadings.length > 0 && <TOCHeader slot="table-of-contents" headings={tocHeadings} />}
-
   <ContentDetailPage
-    breadcrumbs={[
-      { label: "Home", href: "/", icon: "fa6-solid:house" },
-      { label: "Projects", href: "/projects", icon: "fa6-solid:code" },
-      { label: title, icon: "fa6-solid:folder-open" },
-    ]}
-    eyebrow="Project"
     title={title}
     description={description}
-    meta={[{ type: "date", value: formattedDate, datetime: date.toISOString() }]}
-    heroImage={heroImage}
-    tocHeadings={tocHeadings}
+    meta={[{ type: "date", value: formattedDate, datetime: publishedDate.toISOString() }]}
   >
-    <div slot="header-extras" class="flex flex-col gap-4">
-      {
-        (github || demo) && (
-          <div class="flex flex-wrap gap-3">
-            {github && (
-              <Button href={github} external variant="secondary">
-                <Icon name="fa6-brands:github" class="w-4 h-4" />
-                Source
-              </Button>
-            )}
-            {demo && (
-              <Button href={demo} external variant="primary">
-                <Icon name="fa6-solid:arrow-up-right-from-square" class="w-4 h-4" />
-                Live Demo
-              </Button>
-            )}
-          </div>
-        )
-      }
-      <div>
-        <TagList tags={tags} />
-      </div>
-    </div>
     <Content />
   </ContentDetailPage>
 </Layout>
