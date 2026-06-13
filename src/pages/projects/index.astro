@@ -6,13 +6,15 @@ import ProjectCard from "@/components/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { groupByYear } from "@/lib/group-by-year";
 import { getAllProjects } from "@/lib/projects";
+import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
 const allProjects = await getAllProjects();
 const projectsByYear = groupByYear(allProjects, (project) => project.data.publishedDate);
+const routeMetadata = getStaticRouteMetadata("/projects/");
 ---
 
 <Layout>
-  <PageShell title="Projects" subtitle="Shipped work, side projects, and experiments">
+  <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
     {
       allProjects.length > 0 ? (
         <Container>
