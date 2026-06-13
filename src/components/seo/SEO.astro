@@ -29,12 +29,13 @@ const {
 } = Astro.props;
 
 const routeMetadata = getRouteMetadata(Astro.url.pathname);
-const resolvedTitle = title ?? routeMetadata?.title ?? SITE.title;
+const resolvedTitle = title ?? routeMetadata?.seoTitle ?? routeMetadata?.title ?? SITE.title;
 const resolvedDescription = description ?? routeMetadata?.description ?? SITE.description;
 const resolvedType = type ?? routeMetadata?.type ?? "website";
 const resolvedImageAlt = imageAlt ?? `${resolvedTitle} - ${resolvedDescription}`;
 const resolvedCanonicalURL =
   canonicalURL ?? new URL(normalizePagePath(Astro.url.pathname), Astro.site).href;
+const resolvedSocialTitle = title ? resolvedTitle : routeMetadata?.title ?? resolvedTitle;
 
 const ogType = article ? "article" : resolvedType;
 const ogImagePath = image ?? getOgImagePath(Astro.url.pathname);
@@ -53,7 +54,7 @@ const ogImage = new URL(ogImagePath, Astro.site).href;
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={resolvedCanonicalURL} />
-<meta property="og:title" content={resolvedTitle} />
+<meta property="og:title" content={resolvedSocialTitle} />
 <meta property="og:description" content={resolvedDescription} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:alt" content={resolvedImageAlt} />
@@ -77,7 +78,7 @@ const ogImage = new URL(ogImagePath, Astro.site).href;
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content={resolvedCanonicalURL} />
-<meta name="twitter:title" content={resolvedTitle} />
+<meta name="twitter:title" content={resolvedSocialTitle} />
 <meta name="twitter:description" content={resolvedDescription} />
 <meta name="twitter:image" content={ogImage} />
 <meta name="twitter:image:alt" content={resolvedImageAlt} />

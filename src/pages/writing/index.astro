@@ -6,13 +6,15 @@ import WritingCard from "@/components/WritingCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllWriting } from "@/lib/writing";
 import { groupByYear } from "@/lib/group-by-year";
+import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
 const allPosts = await getAllWriting();
 const postsByYear = groupByYear(allPosts, (post) => post.data.publishedDate);
+const routeMetadata = getStaticRouteMetadata("/writing/");
 ---
 
 <Layout>
-  <PageShell title="Writing" subtitle="Notes, write-ups, and the occasional opinion">
+  <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
     {
       allPosts.length > 0 ? (
         <Container>

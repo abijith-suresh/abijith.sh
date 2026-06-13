@@ -2,11 +2,13 @@
 import ContentDetailPage from "@/components/ContentDetailPage.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { getStaticRouteMetadata } from "@/lib/route-metadata";
+
+const routeMetadata = getStaticRouteMetadata("/about/");
 ---
 
 <Layout
-  title={`About - ${SITE.title}`}
-  description="About Abijith S, this site, and the work behind it."
+  description={routeMetadata.description}
   type="profile"
   jsonLd={{
     type: "person",
@@ -17,26 +19,46 @@ import Layout from "@/layouts/Layout.astro";
   }}
 >
   <ContentDetailPage
-    title="About"
-    description="Backend engineer, builder, and writer based in Kochi, Kerala."
+    title={routeMetadata.title}
+    description={routeMetadata.description}
   >
     <p>
-      I am Abijith S, a backend engineer at UST. I work mostly with Java, Spring Boot,
-      and backend systems, and I use this site as a place to collect the work I build
-      and the things I learn along the way.
+      I'm a backend engineer at <a
+        href="https://ust.com"
+        target="_blank"
+        rel="noopener noreferrer">UST</a
+      > — born in <a
+        href="https://en.wikipedia.org/wiki/Kochi"
+        target="_blank"
+        rel="noopener noreferrer">Kochi</a
+      >, still here. I got into programming through QBasic in Class 9. The teacher set
+      problems just past what you could do. That stuck.
     </p>
 
     <p>
-      The site is intentionally small. Projects are the proof, writing is where I
-      develop ideas, and notes are for smaller thoughts that still deserve a stable
-      place on the web.
+      On the side I've built tools that run entirely in your browser. No servers, no
+      accounts, files stay local. It started because I couldn't find a simple image
+      resizer I trusted, so I built one. That kept going.
     </p>
 
     <p>
-      You can find me on <a href="https://github.com/abijith-suresh">GitHub</a>,
-      <a href="https://x.com/abijith_sh">X</a>,
-      <a href="https://linkedin.com/in/abijith-suresh">LinkedIn</a>, and
-      <a href="https://bsky.app/profile/abijith.bsky.social">Bluesky</a>.
+      You can find me on <a
+        href="https://github.com/abijith-suresh"
+        target="_blank"
+        rel="noopener noreferrer">GitHub</a
+      >, <a
+        href="https://x.com/abijith_sh"
+        target="_blank"
+        rel="noopener noreferrer">X</a
+      >, <a
+        href="https://linkedin.com/in/abijith-suresh"
+        target="_blank"
+        rel="noopener noreferrer">LinkedIn</a
+      >, and <a
+        href="https://bsky.app/profile/abijith.bsky.social"
+        target="_blank"
+        rel="noopener noreferrer">Bluesky</a
+      >.
     </p>
   </ContentDetailPage>
 </Layout>

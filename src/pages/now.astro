@@ -2,38 +2,49 @@
 import Container from "@/components/ui/Container.astro";
 import PageShell from "@/components/ui/PageShell.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getStaticRouteMetadata } from "@/lib/route-metadata";
+
+const routeMetadata = getStaticRouteMetadata("/now/");
 ---
 
 <Layout>
-  <PageShell title="Now" subtitle="What I'm doing right now.">
+  <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
     <Container class="section-flow">
       <p style="color:var(--color-muted-foreground)">
         Last updated: June 2026
       </p>
 
       <p style="color:var(--color-muted-foreground)">
-        Working as a backend engineer at UST in Kochi, Kerala. Building backend systems with Java
-        and Spring Boot.
+        At work, I'm working with Java and Spring Boot at <a
+          href="https://ust.com"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">UST</a
+        >.
       </p>
 
       <p style="color:var(--color-muted-foreground)">
-        Currently learning [add what you're learning here].
+        Building — <a
+          href="https://github.com/abijith-suresh/interleaf"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">Interleaf</a
+        >, a client-side PDF editor. Also early days on something new for the CLI. Not ready to
+        say much yet.
       </p>
 
       <p style="color:var(--color-muted-foreground)">
-        Reading [add book here].
-      </p>
-
-      <p style="color:var(--color-muted-foreground)">
-        Working on [add project here].
-      </p>
-
-      <p style="color:var(--color-muted-foreground)">
-        Listening to [add music/podcast here].
-      </p>
-
-      <p style="color:var(--color-muted-foreground)">
-        Based in Kochi, Kerala. The weather is [add weather here].
+        Playing — <a
+          href="https://store.steampowered.com/app/365590/Tom_Clancys_The_Division/"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">The Division</a
+        > and <a
+          href="https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer">Civilization VI</a
+        >.
       </p>
     </Container>
   </PageShell>

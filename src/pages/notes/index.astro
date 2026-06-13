@@ -5,12 +5,14 @@ import PageShell from "@/components/ui/PageShell.astro";
 import Layout from "@/layouts/Layout.astro";
 import NoteCard from "@/components/NoteCard.astro";
 import { getAllNotes } from "@/lib/notes";
+import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
 const allNotes = await getAllNotes();
+const routeMetadata = getStaticRouteMetadata("/notes/");
 ---
 
 <Layout>
-  <PageShell title="Notes" subtitle="Short thoughts and quick posts">
+  <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
     {allNotes.length > 0 ? (
       <Container>
         {allNotes.map((entry) => (

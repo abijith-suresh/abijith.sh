@@ -3,6 +3,7 @@ import { SITE } from "@/consts";
 export interface RouteMetadata {
   path: string;
   title: string;
+  seoTitle?: string;
   description: string;
   type?: "website" | "article" | "profile";
 }
@@ -16,32 +17,38 @@ export const STATIC_ROUTE_METADATA = [
   {
     path: "/about/",
     title: "About",
-    description: "About Abijith S, this site, and the work behind it.",
+    seoTitle: `About - ${SITE.title}`,
+    description: "Backend engineer based in Kochi, Kerala.",
     type: "profile",
   },
   {
     path: "/writing/",
     title: "Writing",
-    description: "Standalone pieces, technical notes, and reflections.",
+    seoTitle: `Writing - ${SITE.title}`,
+    description: "Things I've written.",
   },
   {
     path: "/projects/",
     title: "Projects",
-    description: "Shipped work, side projects, and experiments.",
+    seoTitle: `Projects - ${SITE.title}`,
+    description: "Things I've built and shipped.",
   },
   {
     path: "/notes/",
     title: "Notes",
-    description: "Short thoughts and quick posts.",
+    seoTitle: `Notes - ${SITE.title}`,
+    description: "Short thoughts.",
   },
   {
     path: "/now/",
     title: "Now",
-    description: "What I'm doing right now.",
+    seoTitle: `Now - ${SITE.title}`,
+    description: "What I'm currently up to.",
   },
   {
     path: "/404/",
     title: "Page Not Found",
+    seoTitle: `Page Not Found - ${SITE.title}`,
     description: "The page you are looking for does not exist.",
   },
 ] satisfies RouteMetadata[];
@@ -56,6 +63,12 @@ export function normalizePagePath(pathname: string): string {
 export function getRouteMetadata(pathname: string): RouteMetadata | undefined {
   const normalizedPath = normalizePagePath(pathname);
   return STATIC_ROUTE_METADATA.find((route) => route.path === normalizedPath);
+}
+
+export function getStaticRouteMetadata(pathname: string): RouteMetadata {
+  const metadata = getRouteMetadata(pathname);
+  if (!metadata) throw new Error(`Missing static route metadata for ${pathname}`);
+  return metadata;
 }
 
 export function getOgImagePath(pathname: string): string {

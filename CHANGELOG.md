@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-06-13
+
+- Refresh static page copy, route metadata, and social preview titles around a
+  backend-engineer positioning while keeping page headings concise.
+
 ### Added — 2026-06-12
 
 - New `/notes` route with full-content-inline listing and individual permalink
