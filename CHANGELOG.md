@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-06-14
+
+- Update the about page to use the same top-level page layout as other static
+  pages, removing the article-style divider and extra header spacing.
+
 ### Changed — 2026-06-13
 
 - Refresh static page copy, route metadata, and social preview titles around a
