@@ -6,16 +6,13 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-07-14
 
-- Refresh the about page subtitle and related metadata to "My life in a minute."
-- Update the now page with current games (Call of Duty: Modern Warfare 2019, The Division)
-  and reading (Deep Work by Cal Newport).
-
-### Changed — 2026-07-14
-
 - Migrate to Astro v7 (upgrade from v6.4.6). Change `trailingSlash` from `"always"`
   to `"ignore"` to fix `NoMatchingStaticPathFound` error with prerendered OG
   image endpoints, which no longer support forced trailing slashes on file-type
   routes.
+- Refresh the about page subtitle and related metadata to "My life in a minute."
+- Update the now page with current games (Call of Duty: Modern Warfare 2019, The Division)
+  and reading (Deep Work by Cal Newport).
 
 ### Changed — 2026-06-14
 

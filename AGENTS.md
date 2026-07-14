@@ -32,6 +32,11 @@ Browse `src/components/` and `src/lib/` for existing patterns before introducing
     (e.g., `### Removed — YYYY-MM-DD`). If a subsection with today's
     date and the same category already exists, append to it instead of
     creating a duplicate.
+- Never create duplicate subsection headers for the same date in `CHANGELOG.md`.
+  If a subsection with today's date and category already exists, append entries
+  to it instead of creating a new one.
+- Do not use Goodreads links. Prefer Wikipedia, Google Books, or official publisher
+  links for book references.
 - Run `bun run verify` before every push.
 - Commit and PR titles must use Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`).
 - Branch from the latest `main`; never commit directly to `main`.
