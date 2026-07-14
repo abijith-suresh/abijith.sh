@@ -10,7 +10,7 @@ export const SITE = {
   // Author
   author: "Abijith S",
   fullName: "Abijith Suresh",
-  tagline: "Backend engineer based in Kochi, Kerala.",
+  tagline: "My life in a minute.",
   avatar: "/avatar.jpg",
   twitterHandle: "@abijith_sh", // Kept for SEO compatibility (twitter:creator metadata)
 
