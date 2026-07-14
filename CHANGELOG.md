@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-07-14
+
+- Configure dependabot on a weekly schedule (Mondays), increase open-PR limits
+  (bun: 5→10, actions: 2→5), and enable auto-merge for minor/patch groups.
+
 ### Fixed — 2026-07-14
 
 - Correct the Call of Duty: Modern Warfare Steam link to the correct app ID
