@@ -18,7 +18,7 @@ export const STATIC_ROUTE_METADATA = [
     path: "/about/",
     title: "About",
     seoTitle: `About - ${SITE.title}`,
-    description: "Backend engineer based in Kochi, Kerala.",
+    description: "My life in a minute.",
     type: "profile",
   },
   {
