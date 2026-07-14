@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Fixed — 2026-07-14
+
+- Correct the Call of Duty: Modern Warfare Steam link to the correct app ID
+  (2000950 instead of 1385850).
+- Rephrase the work entry on the now page for a more casual, concise tone.
+
 ### Changed — 2026-07-14
 
 - Migrate to Astro v7 (upgrade from v6.4.6). Change `trailingSlash` from `"always"`
