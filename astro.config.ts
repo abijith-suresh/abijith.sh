@@ -6,7 +6,7 @@ import generatedAssets from "./src/integrations/generated-assets";
 
 export default defineConfig({
   site: "https://abijith.sh",
-  trailingSlash: "always",
+  trailingSlash: "ignore",
   markdown: {
     syntaxHighlight: false,
     processor: satteri({
