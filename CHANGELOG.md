@@ -4,6 +4,13 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-07-14
+
+- Migrate to Astro v7 (upgrade from v6.4.6). Change `trailingSlash` from `"always"`
+  to `"ignore"` to fix `NoMatchingStaticPathFound` error with prerendered OG
+  image endpoints, which no longer support forced trailing slashes on file-type
+  routes.
+
 ### Changed — 2026-06-14
 
 - Update the about page to use the same top-level page layout as other static
