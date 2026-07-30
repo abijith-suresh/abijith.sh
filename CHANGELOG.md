@@ -4,6 +4,13 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-07-30
+
+- Standardize DevOps configuration: add `.gitattributes`, enforce PR title
+  validation for Dependabot-exempt PRs, add CI concurrency, switch Dependabot
+  auto-merge to `pull_request_target` with a 3-tier merge strategy, and add
+  `build` to commitlint types.
+
 ### Changed — 2026-07-14
 
 - Configure dependabot on a weekly schedule (Mondays), increase open-PR limits
