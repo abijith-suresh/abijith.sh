@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-08-03
+
+- Migrate generic Bun quality and Conventional Commit title checks to the
+  pinned `abijith-suresh/workflows` v0.3.0 reusable workflows while retaining
+  local dependency review and required-check aliases.
+
 ### Changed — 2026-07-30
 
 - Standardize DevOps configuration: add `.gitattributes`, enforce PR title

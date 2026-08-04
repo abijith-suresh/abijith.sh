@@ -8,29 +8,25 @@ permissions:
   pull-requests: read
 
 jobs:
+  title-check:
+    uses: abijith-suresh/workflows/.github/workflows/conventional-commit-title.yml@0f257b2642d2a010fefe0ff9d03374799d73eb44 # v0.3.0
+
   pr-title:
     name: pr-title
+    if: ${{ always() }}
+    needs: title-check
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login != 'dependabot[bot]'
 
     steps:
-      - name: Validate PR title
+      - name: Aggregate title check
         env:
-          PR_TITLE: ${{ github.event.pull_request.title }}
+          TITLE_CHECK_RESULT: ${{ needs.title-check.result }}
         run: |
-          pattern='^(feat|fix|docs|refactor|chore|test|ci|build)(\([a-z0-9][a-z0-9/-]*\))?(!)?: .+$'
+          set -euo pipefail
 
-          if [[ ! "$PR_TITLE" =~ $pattern ]]; then
-            printf 'PR title must match Conventional Commits: type(optional-scope): subject\n' >&2
+          if [[ "$TITLE_CHECK_RESULT" != "success" ]]; then
+            printf 'Conventional Commit title check: %s\n' "$TITLE_CHECK_RESULT" >&2
             exit 1
           fi
 
-          if (( ${#PR_TITLE} > 72 )); then
-            printf 'PR title must be 72 characters or fewer\n' >&2
-            exit 1
-          fi
-
-          if [[ "$PR_TITLE" == *. ]]; then
-            printf 'PR title subject must not end with a period\n' >&2
-            exit 1
-          fi
+          echo 'Conventional Commit title check passed.'
