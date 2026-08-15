@@ -1,9 +1,7 @@
 import { getCollection } from "astro:content";
 import type { APIRoute, GetStaticPaths } from "astro";
-import { extractExcerpt } from "@/lib/extract-excerpt";
 import { type OgRoute, renderOgPng } from "@/lib/og";
 import { STATIC_ROUTE_METADATA } from "@/lib/route-metadata";
-import { formatDate } from "@/lib/utils";
 
 export const prerender = true;
 
@@ -19,7 +17,6 @@ interface OgStaticPath {
 export const getStaticPaths: GetStaticPaths = async () => {
   const writing = await getCollection("writing");
   const projects = await getCollection("projects");
-  const notes = await getCollection("notes");
 
   const paths: OgStaticPath[] = [
     ...STATIC_ROUTE_METADATA.map((route) =>
@@ -43,14 +40,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         type: "website",
       })
     ),
-    ...notes.map((entry) => {
-      const title = formatDate(entry.data.date);
-      return path(`notes/${entry.id}`, {
-        title,
-        description: extractExcerpt(entry.body ?? "") ?? `A note from ${title}`,
-        type: "article",
-      });
-    }),
   ];
 
   return paths;

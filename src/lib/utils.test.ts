@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { groupByYear } from "./group-by-year";
-import { getNoteUrl, getProjectUrl, getWritingUrl } from "./routes";
+import { getProjectUrl, getWritingUrl } from "./routes";
 import { calculateReadingTime, formatDate, formatReadingTime } from "./utils";
 
 describe("formatDate", () => {
@@ -115,11 +115,5 @@ describe("getWritingUrl", () => {
 describe("getProjectUrl", () => {
   it("returns the correct URL for a project", () => {
     expect(getProjectUrl("interleaf")).toBe("/projects/interleaf/");
-  });
-});
-
-describe("getNoteUrl", () => {
-  it("returns the correct URL for a note", () => {
-    expect(getNoteUrl("2026-06-12-0000")).toBe("/notes/2026-06-12-0000/");
   });
 });
