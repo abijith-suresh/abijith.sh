@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-08-15
+
+- Refresh the now page: work (Java only), building (Interleaf only), playing
+  (The Division 2), watching (Frieren season 2), and reading (Better Than the
+  Movies by Lynn Painter).
+
 ### Removed — 2026-08-15
 
 - Notes route, content collection, pages, components, and all related links.
