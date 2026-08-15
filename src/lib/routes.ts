@@ -12,7 +12,3 @@ export function getWritingUrl(id: string): string {
 export function getProjectUrl(id: string): string {
   return `/projects/${id}/`;
 }
-
-export function getNoteUrl(id: string): string {
-  return `/notes/${id}/`;
-}

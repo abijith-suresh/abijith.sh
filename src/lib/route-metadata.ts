@@ -34,12 +34,6 @@ export const STATIC_ROUTE_METADATA = [
     description: "Things I've built and shipped.",
   },
   {
-    path: "/notes/",
-    title: "Notes",
-    seoTitle: `Notes - ${SITE.title}`,
-    description: "Short thoughts.",
-  },
-  {
     path: "/now/",
     title: "Now",
     seoTitle: `Now - ${SITE.title}`,

@@ -4,6 +4,10 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Removed — 2026-08-15
+
+- Notes route, content collection, pages, components, and all related links.
+
 ### Changed — 2026-08-03
 
 - Migrate generic Bun quality and Conventional Commit title checks to the

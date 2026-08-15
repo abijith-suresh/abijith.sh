@@ -32,17 +32,4 @@ const writing = defineCollection({
     .strict(),
 });
 
-const notes = defineCollection({
-  loader: glob({
-    pattern: "*.md",
-    base: "./src/content/notes",
-  }),
-  schema: z
-    .object({
-      date: z.coerce.date(),
-      tags: z.array(z.string().min(1).trim()).min(1),
-    })
-    .strict(),
-});
-
-export const collections = { projects, writing, notes };
+export const collections = { projects, writing };

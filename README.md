@@ -12,14 +12,13 @@ I built this site as a home for my thinking. It is where I collect:
 
 - Reflections from my work and life
 - Things I am learning
-- Notes that help me understand better
 - Occasional technical posts
 
 I am not on video or social media much. Writing helps me articulate things clearly, and this felt like the right format.
 
 ## What You Will Find Here
 
-This site is lightly opinionated and intentionally simple. Some content will be polished; other posts may be drafts or personal notes. All of it is here because it helped me think, and I hope it helps readers too.
+This site is lightly opinionated and intentionally simple. Some content will be polished; other posts may be drafts. All of it is here because it helped me think, and I hope it helps readers too.
 
 ## Running Locally
 
