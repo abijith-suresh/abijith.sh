@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Fixed — 2026-08-18
+
+- Limit writing and project list row hover backgrounds to fine-pointer devices so
+  touch scrolling no longer leaves a stuck highlight on mobile.
+
 ### Changed — 2026-08-15
 
 - Refresh the now page: work (Java only), building (Interleaf only), playing

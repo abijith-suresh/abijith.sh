@@ -33,8 +33,10 @@ const { title, description, href, meta, class: className } = Astro.props;
     margin-inline: calc(-1 * var(--page-inline));
     padding-inline: var(--page-inline);
   }
-  .ledger-row:hover {
-    background-color: var(--color-surface-strong);
+  @media (hover: hover) and (pointer: fine) {
+    .ledger-row:hover {
+      background-color: var(--color-surface-strong);
+    }
   }
   .ledger-title {
     font-size: var(--text-base);
