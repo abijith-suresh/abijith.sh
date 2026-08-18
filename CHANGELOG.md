@@ -6,6 +6,10 @@ All notable changes to this site are documented in this file.
 
 ### Fixed — 2026-08-18
 
+- Inline critical design tokens and base styles so layout no longer shifts while the
+  main stylesheet loads on hard reload.
+- Preload IBM Plex Sans and add a metric-matched fallback font to reduce text reflow
+  when the webfont finishes loading.
 - Limit writing and project list row hover backgrounds to fine-pointer devices so
   touch scrolling no longer leaves a stuck highlight on mobile.
 

@@ -1,131 +1,11 @@
 @import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
 
 /* ==========================================================================
    Swiss Style Design System
    Minimal, dark-only, accent-less. Neutral grays in OKLCH.
    ========================================================================== */
-
-:root {
-  /* Typography */
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono:
-    "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "DejaVu Sans Mono", monospace;
-
-  /* Color palette — neutral grays, OKLCH, dark only */
-  --color-bg: oklch(14.5% 0 0);
-  --color-text: oklch(98.5% 0 0);
-  --color-border: oklch(25% 0 0);
-
-  /* Semantic tokens */
-  --color-background: var(--color-bg);
-  --color-foreground: var(--color-text);
-  --color-muted-foreground: color-mix(in oklch, var(--color-text) 60%, transparent);
-
-  /* Surface tokens */
-  --color-surface: color-mix(in oklch, var(--color-text) 6%, transparent);
-  --color-surface-strong: color-mix(in oklch, var(--color-text) 8%, transparent);
-  --color-text-muted: color-mix(in oklch, var(--color-text) 80%, transparent);
-
-  /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site */
-  --step--1: clamp(0.875rem, 0.8519rem + 0.1127vw, 0.9375rem);
-  --step-0: clamp(1rem, 0.9538rem + 0.2255vw, 1.125rem);
-  --step-1: clamp(1.125rem, 1.0418rem + 0.4059vw, 1.35rem);
-  --step-2: clamp(1.2656rem, 1.1346rem + 0.6392vw, 1.62rem);
-  --step-3: clamp(1.4238rem, 1.2309rem + 0.941vw, 1.944rem);
-
-  /* Type aliases */
-  --heading-1: var(--step-3);
-  --text-xs: var(--step--1);
-  --text-sm: var(--step--1);
-  --text-base: var(--step-0);
-  --text-lg: var(--step-1);
-  --text-xl: var(--step-2);
-  --text-2xl: var(--step-3);
-  --text-3xl: var(--step-3);
-  --text-4xl: var(--step-3);
-
-  /* Line-height */
-  --leading-text: calc(0.65rem + 1em);
-  --leading-heading: calc(0.35rem + 1em);
-  --leading-none: 1;
-
-  /* Fluid spacing scale */
-  --space-3xs: clamp(0.25rem, 0.2269rem + 0.1127vw, 0.3125rem);
-  --space-2xs: clamp(0.5rem, 0.4769rem + 0.1127vw, 0.5625rem);
-  --space-xs: clamp(0.75rem, 0.7038rem + 0.2255vw, 0.875rem);
-  --space-s: clamp(1rem, 0.9538rem + 0.2255vw, 1.125rem);
-  --space-m: clamp(1.5rem, 1.4307rem + 0.3382vw, 1.6875rem);
-  --space-l: clamp(2rem, 1.9076rem + 0.451vw, 2.25rem);
-  --space-xl: clamp(3rem, 2.8613rem + 0.6764vw, 3.375rem);
-  --space-2xl: clamp(4rem, 3.8151rem + 0.9019vw, 4.5rem);
-
-  /* Semantic rhythm */
-  --page-inline: var(--space-m);
-  --page-block-start: clamp(5rem, 4.5377rem + 2.255vw, 6.25rem);
-  --page-block-end: var(--space-2xl);
-  --title-subtitle-gap: var(--space-2xs);
-  --section-gap: var(--space-m);
-  --content-gap: var(--space-l);
-  --measure: 40rem;
-
-  /* Compatibility aliases while components migrate to semantic tokens */
-  --spacing-1: var(--space-3xs);
-  --spacing-2: var(--space-2xs);
-  --spacing-3: var(--space-xs);
-  --spacing-4: var(--space-s);
-  --spacing-6: var(--space-m);
-  --spacing-8: var(--space-l);
-  --spacing-12: var(--space-xl);
-  --spacing-16: var(--space-2xl);
-
-  /* Border tokens */
-  --border-width: 1px;
-
-  /* Motion tokens */
-  --transition-base: 150ms ease;
-  --letter-spacing-uppercase: 0.04em;
-  color-scheme: dark;
-}
-
-/* ==========================================================================
-   Base Styles
-   ========================================================================== */
-html {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: var(--leading-text);
-  font-size: var(--text-base);
-}
 
 a {
   text-decoration: none;
@@ -155,34 +35,6 @@ select,
 textarea,
 summary {
   touch-action: manipulation;
-}
-
-/* Typography — Swiss hierarchy through opacity, not weight */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-  line-height: var(--leading-heading);
-  text-align: left;
-  font-weight: 500;
-}
-
-p {
-  text-wrap: pretty;
-  text-align: left;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
 }
 
 /* ==========================================================================
