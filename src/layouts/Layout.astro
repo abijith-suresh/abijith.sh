@@ -3,7 +3,11 @@ import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import type { SEOProps } from "@/components/seo/SEO.astro";
 import type { JsonLdProps } from "@/components/seo/JsonLd.astro";
+import baseCss from "@/styles/base.css?raw";
+import tokensCss from "@/styles/tokens.css?raw";
 import "@/styles/global.css";
+
+const criticalCss = `${tokensCss}\n${baseCss}`;
 
 interface Props extends SEOProps {
   title?: string;
@@ -37,6 +41,15 @@ const resolvedJsonLd = jsonLd ?? {
     <meta name="theme-color" content="#111111" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/IBMPlexSansVar-Roman.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <style is:inline set:html={criticalCss}></style>
 
     <!-- SEO Meta Tags -->
     <SEO
