@@ -4,6 +4,10 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-08-22
+
+- Update the now page current watching entry to Journal with Witch.
+
 ### Fixed — 2026-08-18
 
 - Inline critical design tokens and base styles so layout no longer shifts while the
