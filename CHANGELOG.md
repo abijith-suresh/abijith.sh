@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-08-31
+
+- Update the now page current watching entry to The Apothecary Diaries and
+  reading entry to Essentialism by Greg McKeown.
+
 ### Changed — 2026-08-22
 
 - Update the now page current watching entry to Journal with Witch.
