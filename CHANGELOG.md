@@ -4,6 +4,10 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-08-31
+
+- Add a Vercel header baseline for static security headers and revalidation-friendly caching of generated OG images, site icons, and fonts.
+
 ### Changed — 2026-08-31
 
 - Standardize runtime and tooling pins with Bun 1.3.14, Node 24.19.0, and
@@ -11,6 +15,8 @@ All notable changes to this site are documented in this file.
   request title workflows with read-only permissions.
 - Update the now page current watching entry to The Apothecary Diaries and
   reading entry to Essentialism by Greg McKeown.
+- Use revalidation-friendly caching for prerendered OG images instead of a
+  year-long immutable browser cache.
 
 ### Changed — 2026-08-22
 
