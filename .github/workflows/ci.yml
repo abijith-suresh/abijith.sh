@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
@@ -15,21 +14,21 @@ concurrency:
 jobs:
   bun-quality:
     uses: abijith-suresh/workflows/.github/workflows/bun-quality.yml@0f257b2642d2a010fefe0ff9d03374799d73eb44 # v0.3.0
+    permissions:
+      contents: read
 
   dependency-review:
-    name: dependency-review
-    needs: bun-quality
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Dependency review
-        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+    uses: abijith-suresh/workflows/.github/workflows/dependency-review.yml@0f257b2642d2a010fefe0ff9d03374799d73eb44 # v0.3.0
+    permissions:
+      contents: read
 
   quality:
     name: quality
     if: ${{ always() }}
     needs: [bun-quality, dependency-review]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Aggregate quality checks

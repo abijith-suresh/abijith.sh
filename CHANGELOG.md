@@ -6,6 +6,9 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-08-31
 
+- Standardize runtime and tooling pins with Bun 1.3.14, Node 24.19.0, and
+  TypeScript 6.0.3. Use the pinned shared quality, dependency review, and pull
+  request title workflows with read-only permissions.
 - Update the now page current watching entry to The Apothecary Diaries and
   reading entry to Essentialism by Greg McKeown.
 

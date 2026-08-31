@@ -1,7 +1,7 @@
 name: PR Title
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, edited, synchronize, reopened]
 
 permissions:
@@ -10,12 +10,16 @@ permissions:
 jobs:
   title-check:
     uses: abijith-suresh/workflows/.github/workflows/conventional-commit-title.yml@0f257b2642d2a010fefe0ff9d03374799d73eb44 # v0.3.0
+    permissions:
+      pull-requests: read
 
   pr-title:
     name: pr-title
     if: ${{ always() }}
     needs: title-check
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
 
     steps:
       - name: Aggregate title check
