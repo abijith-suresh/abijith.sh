@@ -1,0 +1,338 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title="Design 1 Signal Ledger"
+  description="Design exploration 01, a dark ledger layout for abijith.sh with small tools and projects."
+  type="website"
+  noindex={true}
+>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </Fragment>
+
+  <div class="r1">
+    <div class="r1-inner">
+      <header class="r1-top">
+        <p class="r1-eyebrow">
+          <span class="r1-dot" aria-hidden="true"></span>
+          design exploration 01 / signal ledger
+        </p>
+        <h1 class="r1-title">
+          Abijith S keeps a <mark class="r1-mark">ledger</mark> of working software.
+        </h1>
+        <p class="r1-sub">
+          Backend engineer in Kochi. I work in Java and Spring Boot at UST.
+        </p>
+        <ul class="r1-pills" aria-label="Related sites">
+          <li>
+            <a class="r1-pill" href="https://skills.abijith.sh">skills.abijith.sh</a>
+          </li>
+          <li>
+            <a class="r1-pill" href="https://prompts.abijith.sh">prompts.abijith.sh</a>
+          </li>
+        </ul>
+      </header>
+
+      <main>
+        <section class="r1-section" aria-labelledby="r1-tools">
+          <h2 class="r1-h2" id="r1-tools">small tools</h2>
+          <ul class="r1-cards">
+            <li class="r1-card">
+              <h3 class="r1-cardname">fieldnotes</h3>
+              <p class="r1-carddesc">Plaintext notes that stay readable in ten years.</p>
+              <p class="r1-cardmeta">
+                <span class="r1-ver">v0.3.1</span>
+                <span aria-hidden="true">·</span>
+                <span>updated Mar 2026</span>
+              </p>
+              <a class="r1-arrow" href="https://skills.abijith.sh" aria-label="Open fieldnotes">
+                Open <span aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="r1-card">
+              <h3 class="r1-cardname">monsoon</h3>
+              <p class="r1-carddesc">A small rain log for Kochi, kept by hand.</p>
+              <p class="r1-cardmeta">
+                <span class="r1-ver">v0.2.0</span>
+                <span aria-hidden="true">·</span>
+                <span>updated Feb 2026</span>
+              </p>
+              <a class="r1-arrow" href="https://prompts.abijith.sh" aria-label="Open monsoon">
+                Open <span aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="r1-card">
+              <h3 class="r1-cardname">postbox</h3>
+              <p class="r1-carddesc">Drafts, sent mail, and loose ends in one list.</p>
+              <p class="r1-cardmeta">
+                <span class="r1-ver">v0.1.4</span>
+                <span aria-hidden="true">·</span>
+                <span>updated Jan 2026</span>
+              </p>
+              <a class="r1-arrow" href="/projects/" aria-label="Open postbox">
+                Open <span aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="r1-section" aria-labelledby="r1-projects">
+          <h2 class="r1-h2" id="r1-projects">projects</h2>
+          <ul class="r1-rows">
+            <li class="r1-row">
+              <span class="r1-rowname">interleaf</span>
+              <span class="r1-rowdesc">Reading notes kept beside the books.</span>
+            </li>
+            <li class="r1-row">
+              <span class="r1-rowname">reshrimp</span>
+              <span class="r1-rowdesc">Small image resizer for the web.</span>
+            </li>
+            <li class="r1-row">
+              <span class="r1-rowname">tailory</span>
+              <span class="r1-rowdesc">Measurement log for clothes that fit.</span>
+            </li>
+            <li class="r1-row">
+              <span class="r1-rowname">microbreak</span>
+              <span class="r1-rowdesc">A timer for short breaks between work.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="r1-section" aria-labelledby="r1-elsewhere">
+          <h2 class="r1-h2" id="r1-elsewhere">elsewhere</h2>
+          <ul class="r1-socials">
+            <li><a class="r1-link" href="https://github.com/abijith-suresh">GitHub</a></li>
+            <li><a class="r1-link" href="https://x.com/abijith_sh">X</a></li>
+            <li><a class="r1-link" href="https://linkedin.com/in/abijith-suresh">LinkedIn</a></li>
+            <li>
+              <a class="r1-link" href="https://bsky.app/profile/abijith.bsky.social">Bluesky</a>
+            </li>
+            <li><a class="r1-link" href="/rss.xml">RSS</a></li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="r1-footer">
+        <p>route 01, explore route 02 at <a class="r1-link" href="/2/">/2/</a></p>
+      </footer>
+    </div>
+  </div>
+
+  <style>
+    .r1 {
+      --r1-bg: oklch(14.5% 0 0);
+      --r1-text: oklch(98.5% 0 0);
+      --r1-muted: oklch(80% 0 0);
+      --r1-line: oklch(25% 0 0);
+      --r1-amber: oklch(82% 0.16 84);
+      --r1-amber-ink: oklch(20% 0.05 84);
+      background: var(--r1-bg);
+      color: var(--r1-text);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      width: 100%;
+    }
+    .r1 ::selection {
+      background: var(--r1-amber);
+      color: var(--r1-amber-ink);
+    }
+    .r1 :focus-visible {
+      outline: 2px solid var(--r1-amber);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .r1-inner {
+      max-width: 40rem;
+      margin-inline: auto;
+      padding: 4rem 1.25rem 3rem;
+    }
+    .r1-top {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--r1-line);
+    }
+    .r1-eyebrow {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--r1-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1.25rem;
+    }
+    .r1-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      background: var(--r1-amber);
+      flex: none;
+    }
+    .r1-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.9rem, 1.3rem + 2.5vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 1rem;
+      max-width: 22ch;
+    }
+    .r1-mark {
+      background: none;
+      color: var(--r1-amber);
+    }
+    .r1-sub {
+      color: var(--r1-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin: 0 0 1.5rem;
+      max-width: 38ch;
+    }
+    .r1-pills {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0;
+      padding: 0;
+    }
+    .r1-pill {
+      display: inline-block;
+      border: 1px solid var(--r1-line);
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.82rem;
+      color: var(--r1-text);
+      text-decoration: none;
+    }
+    .r1-pill:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .r1-section {
+      padding-top: 2.25rem;
+    }
+    .r1-h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1.25rem;
+      letter-spacing: -0.005em;
+      margin: 0 0 1rem;
+    }
+    .r1-cards {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+      margin: 0;
+      padding: 0;
+    }
+    .r1-card {
+      border: 1px solid var(--r1-line);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.15rem;
+      background: color-mix(in oklch, var(--r1-text) 4%, transparent);
+      transition: transform 200ms ease;
+    }
+    .r1-card:hover {
+      transform: translateY(-1px);
+    }
+    .r1-cardname {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin: 0 0 0.3rem;
+    }
+    .r1-carddesc {
+      color: var(--r1-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0 0 0.8rem;
+    }
+    .r1-cardmeta {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      color: var(--r1-muted);
+      display: flex;
+      gap: 0.5rem;
+      margin: 0 0 0.8rem;
+    }
+    .r1-ver {
+      color: var(--r1-amber);
+    }
+    .r1-arrow {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.82rem;
+      color: var(--r1-text);
+      text-decoration: none;
+    }
+    .r1-arrow:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .r1-rows {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--r1-line);
+    }
+    .r1-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      align-items: baseline;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--r1-line);
+    }
+    .r1-rowname {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.9rem;
+      min-width: 7rem;
+    }
+    .r1-rowdesc {
+      color: var(--r1-muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .r1-socials {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin: 0;
+      padding: 0;
+    }
+    .r1-link {
+      color: var(--r1-text);
+      text-underline-offset: 3px;
+    }
+    .r1-link:hover {
+      text-decoration-thickness: 2px;
+    }
+    .r1-footer {
+      border-top: 1px solid var(--r1-line);
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.8rem;
+      color: var(--r1-muted);
+    }
+    .r1-footer p {
+      margin: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .r1-card {
+        transition: none;
+      }
+      .r1-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+</Layout>
