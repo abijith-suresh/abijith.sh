@@ -7,6 +7,7 @@ All notable changes to this site are documented in this file.
 ### Added — 2026-09-03
 
 - Add five standalone homepage design explorations at `/1` through `/5` for review: Soft Signature (light, addi.lol-inspired), Terminal Quiet (dark mono), Paper Editorial (serif literary), Grid Marker (Swiss), and Violet Night (dark lavender). Each is self-contained and `noindex`ed.
+- Add three Dusk Aurora v2 explorations at `/6`–`/8` evolving the Violet Night direction: generative per-project cover art, featured-projects model with straight-out GitHub links, no tag chips, and three living-detail variants (time-aware greeting, breathing aurora, one clock driving both).
 
 ### Added — 2026-08-31
 
