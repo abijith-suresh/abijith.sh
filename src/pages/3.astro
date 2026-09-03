@@ -1,0 +1,598 @@
+---
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+
+const socials = [
+  { label: 'GitHub', href: 'https://github.com/abijith-suresh', external: true },
+  { label: 'X', href: 'https://x.com/abijith_sh', external: true },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/abijith-suresh', external: true },
+  { label: 'Bluesky', href: 'https://bsky.app/profile/abijith.bsky.social', external: true },
+  { label: 'RSS', href: '/rss.xml', external: false },
+];
+
+const projects = [
+  {
+    title: 'Interleaf',
+    description: 'Client-side PDF manipulation tool — merge, split, reorder, rotate, and more',
+    year: '2026',
+    href: 'https://github.com/abijith-suresh/interleaf',
+  },
+  {
+    title: 'Microbreak',
+    description: 'Short, non-addictive puzzle games for build wait times.',
+    year: '2026',
+    href: 'https://github.com/abijith-suresh/microbreak',
+  },
+  {
+    title: 'Prompts',
+    description: 'A collection of reusable AI agent prompts for coding agents and chat applications',
+    year: '2026',
+    href: 'https://github.com/abijith-suresh/prompts',
+  },
+  {
+    title: 'Reshrimp',
+    description: 'Client-side image manipulation tool — resize, compress, convert formats in your browser',
+    year: '2026',
+    href: 'https://github.com/abijith-suresh/reshrimp',
+  },
+  {
+    title: 'Skills',
+    description: 'My personal collection of AI skills',
+    year: '2026',
+    href: 'https://github.com/abijith-suresh/skills',
+  },
+  {
+    title: 'Tailory',
+    description:
+      'Client-side resume editor — upload, edit, preview, and export your resume as PDF. No account, no server, all local.',
+    year: '2026',
+    href: 'https://github.com/abijith-suresh/tailory',
+  },
+];
+
+const designs = ['/', '/1', '/2', '/3', '/4', '/5'];
+const innerPages = [
+  { label: 'Writing', href: '/writing/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Now', href: '/now/' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abijith S — Design 3</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style is:global>
+      :root {
+        --paper: oklch(97.3% 0.009 85);
+        --ink: oklch(24% 0.012 60);
+        --ink-soft: oklch(43% 0.018 60);
+        --rust: oklch(48% 0.13 35);
+        --hairline: oklch(24% 0.012 60 / 0.15);
+        --serif-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+        --serif-body: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+      }
+
+      ::selection {
+        background: var(--rust);
+        color: var(--paper);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--rust);
+        outline-offset: 2px;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <header class="masthead reveal" style="--d: 0ms">
+        <div class="masthead-row">
+          <p class="masthead-side">Kochi, Kerala</p>
+          <p class="masthead-name">Abijith S</p>
+          <p class="masthead-side">Est. 2026</p>
+        </div>
+      </header>
+
+      <main id="main">
+        <h1 class="headline reveal" style="--d: 110ms">
+          Backend engineer, writing and <em>building</em> from Kochi.
+        </h1>
+
+        <p class="standfirst reveal" style="--d: 220ms">
+          I&rsquo;m Abijith S, a backend engineer at UST in Kochi, Kerala, India. My days are spent
+          in Java and Spring Boot; outside work you&rsquo;ll find me playing games or building
+          something.
+        </p>
+
+        <nav class="socials reveal" style="--d: 330ms" aria-label="Social links">
+          {socials.map((s, i) => (
+            <>
+              {i > 0 && <span class="dot" aria-hidden="true">·</span>}
+              <a
+                href={s.href}
+                {...(s.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {s.label}
+              </a>
+            </>
+          ))}
+        </nav>
+
+        <section class="section" aria-labelledby="work-label">
+          <h2 class="section-label reveal" style="--d: 440ms" id="work-label"><span>§01 — Selected Work</span></h2>
+          <ul class="index">
+            {projects.map((p, i) => (
+              <li class="index-item reveal" style={`--d: ${520 + i * 100}ms`}>
+                <a class="row" href={p.href} target="_blank" rel="noopener noreferrer">
+                  <span class="row-main">
+                    <span class="row-title">{p.title}</span>
+                    <span class="row-dash" aria-hidden="true">—</span>
+                    <span class="row-desc">{p.description}</span>
+                  </span>
+                  <span class="row-year">{p.year}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="section reveal" style="--d: 1180ms" aria-labelledby="writing-label">
+          <h2 class="section-label" id="writing-label"><span>§02 — Writing</span></h2>
+          <article class="essay">
+            <h3 class="essay-title">
+              <a href="/writing/why-i-built-my-own-website/">Why I Built My Own Website</a>
+            </h3>
+            <p class="essay-meta">11 February 2026</p>
+            <p class="essay-desc">
+              On the value of owning your own corner of the internet, learning in public, and the
+              satisfaction of building something for yourself.
+            </p>
+          </article>
+          <p class="more">
+            <a href="/writing/">more essays →</a>
+          </p>
+        </section>
+      </main>
+
+      <footer class="colophon reveal" style="--d: 1300ms">
+        <nav class="pages" aria-label="Site pages">
+          {innerPages.map((p, i) => (
+            <>
+              {i > 0 && <span class="dot" aria-hidden="true">·</span>}
+              <a href={p.href}>{p.label}</a>
+            </>
+          ))}
+        </nav>
+        <p class="colophon-line">
+          Set in Fraunces &amp; Newsreader — Kochi, Kerala — © 2026 Abijith S
+        </p>
+      </footer>
+    </div>
+
+    <nav class="switcher" aria-label="Design switcher">
+      {designs.map((d) => (
+        <>
+          {d !== '/' && <span class="dot" aria-hidden="true">·</span>}
+          <a href={d} aria-current={d === '/3' ? 'page' : undefined}>{d === '/' ? '/' : d.slice(1)}</a>
+        </>
+      ))}
+    </nav>
+
+    <style>
+      /* ---------- shell ---------- */
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif-body);
+        font-optical-sizing: auto;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap {
+        max-width: 56rem;
+        margin-inline: auto;
+        padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--paper);
+        color: var(--rust);
+        padding: 0.5rem 1rem;
+        z-index: 20;
+      }
+
+      .skip:focus-visible {
+        left: 0;
+      }
+
+      /* ---------- paper grain ---------- */
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      /* ---------- reveals ---------- */
+
+      .reveal {
+        animation: rise 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: var(--d, 0ms);
+      }
+
+      /* ---------- masthead ---------- */
+
+      .masthead {
+        margin-top: clamp(1.25rem, 3vw, 2rem);
+        border-top: 2px solid var(--ink);
+      }
+
+      .masthead-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.35rem 1.5rem;
+        margin-top: 3px;
+        border-top: 1px solid var(--ink);
+        padding-block: 0.8rem;
+      }
+
+      .masthead-name {
+        margin: 0;
+        font-family: var(--serif-display);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .masthead-side {
+        margin: 0;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      @media (max-width: 40rem) {
+        .masthead-row {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .masthead-name {
+          order: -1;
+        }
+      }
+
+      /* ---------- headline & standfirst ---------- */
+
+      .headline {
+        margin: clamp(2.5rem, 7vw, 4.5rem) 0 0;
+        font-family: var(--serif-display);
+        font-size: clamp(2.4rem, 6vw, 4rem);
+        font-weight: 550;
+        line-height: 1.1;
+        letter-spacing: -0.015em;
+        text-wrap: balance;
+      }
+
+      .headline em {
+        font-style: italic;
+        font-weight: 500;
+        color: var(--rust);
+      }
+
+      .standfirst {
+        max-width: 58ch;
+        margin: 1.5rem 0 0;
+        font-size: 1.15rem;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        text-wrap: pretty;
+      }
+
+      /* ---------- shared link & dot treatment ---------- */
+
+      .socials a,
+      .pages a,
+      .more a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .socials a:hover,
+      .pages a:hover,
+      .more a:hover {
+        color: var(--rust);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        text-decoration-color: var(--rust);
+      }
+
+      .dot {
+        color: var(--ink-soft);
+        opacity: 0.7;
+      }
+
+      /* ---------- socials ---------- */
+
+      .socials {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.4rem 0.75rem;
+        margin-top: 1.75rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+      }
+
+      /* ---------- sections ---------- */
+
+      .section {
+        margin-top: clamp(3.5rem, 8vw, 5.5rem);
+      }
+
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin: 0;
+        font-family: var(--serif-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rust);
+      }
+
+      .section-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--hairline);
+      }
+
+      /* ---------- project index ---------- */
+
+      .index {
+        list-style: none;
+        margin: 0.5rem 0 0;
+        padding: 0;
+      }
+
+      .index-item {
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .index-item:first-child {
+        border-top: 1px solid var(--hairline);
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 2rem;
+        align-items: baseline;
+        padding-block: 1.1rem;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .row-main {
+        min-width: 0;
+      }
+
+      .row-title {
+        font-family: var(--serif-display);
+        font-size: 1.25rem;
+        font-weight: 500;
+        transition: color 200ms ease;
+      }
+
+      .row:hover .row-title,
+      .row:focus-visible .row-title {
+        font-style: italic;
+        color: var(--rust);
+      }
+
+      .row-dash {
+        color: oklch(24% 0.012 60 / 0.35);
+        padding-inline: 0.35rem;
+      }
+
+      .row-desc {
+        font-size: 1.02rem;
+        color: var(--ink-soft);
+      }
+
+      .row-year {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        text-align: right;
+      }
+
+      @media (max-width: 40rem) {
+        .row {
+          grid-template-columns: 1fr;
+          row-gap: 0.3rem;
+        }
+
+        .row-year {
+          order: -1;
+          text-align: left;
+        }
+
+        .row-dash {
+          display: none;
+        }
+
+        .row-title,
+        .row-desc {
+          display: block;
+        }
+      }
+
+      /* ---------- writing ---------- */
+
+      .essay {
+        margin-top: 1.25rem;
+      }
+
+      .essay-title {
+        margin: 0;
+        font-family: var(--serif-display);
+        font-size: 1.35rem;
+        font-weight: 500;
+        line-height: 1.25;
+      }
+
+      .essay-title a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .essay-title a:hover {
+        color: var(--rust);
+        font-style: italic;
+      }
+
+      .essay-meta {
+        margin: 0.2rem 0 0;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      .essay-desc {
+        max-width: 58ch;
+        margin: 0.5rem 0 0;
+        font-style: italic;
+        font-size: 1.08rem;
+        color: var(--ink-soft);
+        text-wrap: pretty;
+      }
+
+      .more {
+        margin: 1.5rem 0 0;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- footer ---------- */
+
+      .colophon {
+        margin-top: clamp(3.5rem, 8vw, 5.5rem);
+        border-top: 1px solid var(--hairline);
+        padding-block: 1.75rem 2.25rem;
+        text-align: center;
+      }
+
+      .pages {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.4rem 0.75rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .colophon-line {
+        margin: 1rem 0 0;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- design switcher ---------- */
+
+      .switcher {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 15;
+        display: flex;
+        align-items: baseline;
+        gap: 0.45rem;
+        padding: 0.45rem 0.75rem;
+        background: var(--paper);
+        border: 1px solid var(--hairline);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+      }
+
+      .switcher a {
+        color: var(--ink-soft);
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .switcher a:hover {
+        color: var(--rust);
+      }
+
+      .switcher a[aria-current='page'] {
+        color: var(--ink);
+        border-bottom: 1px solid var(--rust);
+        padding-bottom: 1px;
+      }
+
+      @media (max-width: 40rem) {
+        .switcher {
+          right: 0.75rem;
+          bottom: 0.75rem;
+        }
+      }
+    </style>
+  </body>
+</html>

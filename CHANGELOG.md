@@ -4,6 +4,10 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-09-03
+
+- Add five standalone homepage design explorations at `/1` through `/5` for review: Soft Signature (light, addi.lol-inspired), Terminal Quiet (dark mono), Paper Editorial (serif literary), Grid Marker (Swiss), and Violet Night (dark lavender). Each is self-contained and `noindex`ed.
+
 ### Added — 2026-08-31
 
 - Add a Vercel header baseline for static security headers and revalidation-friendly caching of generated OG images, site icons, and fonts.
