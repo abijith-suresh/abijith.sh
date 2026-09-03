@@ -1,0 +1,328 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Route 4 Raw Terminal" description="Design exploration" type="website" noindex={true}>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" />
+  </Fragment>
+
+  <div class="v4">
+    <div class="v4-col">
+      <div class="v4-status" role="status" aria-label="System status">
+        <span class="v4-status-host">abijith@kochi:tty0</span>
+        <span class="v4-status-mid">up 42d 07:13 · load 0.12</span>
+        <span class="v4-status-dot" aria-hidden="true"></span>
+      </div>
+
+      <section class="v4-panel" aria-label="Boot log">
+        <h2 class="v4-label">/var/log/boot</h2>
+        <ol class="v4-boot">
+          <li class="v4-boot-row"><span>[ OK ] void black mounted · #080A08</span></li>
+          <li class="v4-boot-row"><span>[ OK ] phosphor grid live · #33FF66</span></li>
+          <li class="v4-boot-row is-fail"><span>[FAIL] pleasantries not found · skipping</span></li>
+          <li class="v4-boot-row"><span>[ OK ] user abijith loaded from kochi</span></li>
+          <li class="v4-boot-row v4-boot-last"><span class="v4-prompt">root@void:~$</span> <span>boot into human_</span><span class="v4-cursor" aria-hidden="true"></span></li>
+        </ol>
+      </section>
+
+      <header class="v4-panel v4-hero">
+        <p class="v4-cmd">$ whoami</p>
+        <h1 class="v4-h1">Abijith.</h1>
+        <p class="v4-lede">Backend. Java + Spring Boot. Kochi, India.</p>
+        <p class="v4-body">
+          Machine booted into a human. I build boring systems that survive
+          Mondays. No hero animation. No manifesto. Read the log and move.
+        </p>
+        <ul class="v4-inline-cmds">
+          <li><code class="v4-code">curl skills.abijith.sh</code></li>
+          <li><code class="v4-code">curl prompts.abijith.sh</code></li>
+        </ul>
+      </header>
+
+      <section class="v4-panel" aria-labelledby="v4-tools">
+        <h2 id="v4-tools" class="v4-label">~/tools — type to run</h2>
+        <ul class="v4-tools">
+          <li>
+            <code class="v4-code">$ run pdf-shrink input.pdf</code>
+            <p>12MB → 1.1MB in ~4s. Local only. Your file never leaves the box.</p>
+          </li>
+          <li>
+            <code class="v4-code">$ run md-publish notes/</code>
+            <p>Markdown folder → static site in ~2s. 38KB binary. No config.</p>
+          </li>
+          <li>
+            <code class="v4-code">$ run port-watch --watch 8080</code>
+            <p>Spring port monitor. 92KB. Beeps when 8080 dies. It will die.</p>
+          </li>
+        </ul>
+        <p class="v4-warn">! warning: tools do exactly what they say. Nothing else.</p>
+      </section>
+
+      <section class="v4-panel" aria-labelledby="v4-projects">
+        <h2 id="v4-projects" class="v4-label">~/projects — ls -l</h2>
+        <ul class="v4-ls">
+          <li>
+            <a href="/projects/interleaf/">
+              <span class="v4-perms">drwxr-xr-x</span>
+              <span class="v4-date">2025-11-02</span>
+              <span class="v4-name">interleaf/</span>
+              <span class="v4-desc">book knowledge system — you forget, it doesn't</span>
+            </a>
+          </li>
+          <li>
+            <a href="/projects/reshrimp/">
+              <span class="v4-perms">drwxr-xr-x</span>
+              <span class="v4-date">2025-06-14</span>
+              <span class="v4-name">reshrimp/</span>
+              <span class="v4-desc">resume diff tool — recruiters lie, diffs don't</span>
+            </a>
+          </li>
+          <li>
+            <a href="/projects/tailory/">
+              <span class="v4-perms">drwxr-xr-x</span>
+              <span class="v4-date">2024-12-09</span>
+              <span class="v4-name">tailory/</span>
+              <span class="v4-desc">resume tailor — one job, one resume, no spam</span>
+            </a>
+          </li>
+          <li>
+            <a href="/projects/microbreak/">
+              <span class="v4-perms">-rwxr-xr-x</span>
+              <span class="v4-date">2024-08-21</span>
+              <span class="v4-name">microbreak*</span>
+              <span class="v4-desc">break enforcer — stand up before your back quits</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="v4-panel" aria-labelledby="v4-now">
+        <h2 id="v4-now" class="v4-label">~/now</h2>
+        <p class="v4-cmd">$ cat now.txt</p>
+        <p class="v4-body">Spring Boot by day. Small CLI tools by night. Kochi heat, cold coffee, uptime obsession.</p>
+      </section>
+
+      <section class="v4-panel" aria-labelledby="v4-contact">
+        <h2 id="v4-contact" class="v4-label">~/contact — links list</h2>
+        <ul class="v4-links">
+          <li><a href="mailto:hello@abijith.sh">hello@abijith.sh</a><span> — fastest. I reply in plain text.</span></li>
+          <li><a href="https://github.com/abijith">github.com/abijith</a><span> — code, no selfies.</span></li>
+          <li><a href="https://linkedin.com/in/abijith">linkedin.com/in/abijith</a><span> — formal mask on.</span></li>
+          <li><a href="https://skills.abijith.sh">skills.abijith.sh</a><span> — what I can actually do.</span></li>
+          <li><a href="https://prompts.abijith.sh">prompts.abijith.sh</a><span> — how I talk to machines.</span></li>
+        </ul>
+      </section>
+
+      <footer class="v4-panel v4-foot">
+        <p class="v4-cmd">$ ls /routes</p>
+        <nav aria-label="Design explorations">
+          <ul>
+            <li><a href="/1/">/1/</a></li>
+            <li><a href="/2/">/2/</a></li>
+            <li><a href="/3/">/3/</a></li>
+            <li><a href="/5/" aria-current="false">/5/</a></li>
+          </ul>
+        </nav>
+        <p class="v4-dim">route 4 · raw terminal · session ends when you close it</p>
+      </footer>
+    </div>
+  </div>
+
+  <style>
+    .v4 {
+      --bg: #080a08;
+      --phos: #33ff66;
+      --phos-dim: #1fae46;
+      --panel: #0e2a18;
+      --bone: #e8ede8;
+      --mut: #a9bfae;
+      --amber: #ffb000;
+      position: relative;
+      background: var(--bg);
+      color: var(--bone);
+      font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      padding: 0 1rem 4rem;
+      overflow: clip;
+    }
+    .v4::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(51, 255, 102, 0.07) 0 1px, transparent 1px 3px);
+      mix-blend-mode: screen;
+    }
+    .v4::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 52%, rgba(0, 0, 0, 0.72) 100%);
+    }
+    .v4 .v4-col {
+      position: relative;
+      z-index: 1;
+      max-width: 72ch;
+      margin: 0 auto;
+    }
+    .v4 .v4-status {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border: 1px solid var(--phos-dim);
+      background: #0a120c;
+      color: var(--phos);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.82rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 0;
+    }
+    .v4 .v4-status-dot {
+      width: 0.65em;
+      height: 0.65em;
+      background: var(--phos);
+      box-shadow: 0 0 10px var(--phos);
+    }
+    .v4 .v4-panel {
+      border: 1px solid var(--phos-dim);
+      background: rgba(14, 42, 24, 0.42);
+      padding: 1rem 1rem 1.15rem;
+      margin-top: 1rem;
+      border-radius: 0;
+    }
+    .v4 .v4-label,
+    .v4 .v4-cmd {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: var(--phos);
+      font-size: 0.85rem;
+      margin: 0 0 0.7rem;
+    }
+    .v4 .v4-h1 {
+      font-family: "VT323", "IBM Plex Mono", monospace;
+      font-size: clamp(3.4rem, 12vw, 5.5rem);
+      line-height: 0.9;
+      color: var(--phos);
+      text-shadow: 0 0 18px rgba(51, 255, 102, 0.45);
+      margin: 0 0 0.4rem;
+      font-weight: 400;
+    }
+    .v4 .v4-lede {
+      font-family: "VT323", monospace;
+      font-size: 1.5rem;
+      line-height: 1.1;
+      color: var(--bone);
+      margin: 0 0 0.7rem;
+    }
+    .v4 .v4-body {
+      color: var(--bone);
+      line-height: 1.6;
+      margin: 0 0 0.8rem;
+      max-width: 62ch;
+    }
+    .v4 .v4-boot {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: "VT323", "IBM Plex Mono", monospace;
+      font-size: 1.25rem;
+      line-height: 1.35;
+      color: var(--phos);
+    }
+    .v4 .v4-boot-row {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      max-width: 100%;
+      animation: v4-type 0.9s steps(36, end) forwards;
+    }
+    .v4 .v4-boot-row:nth-child(2) { animation-delay: 0.35s; }
+    .v4 .v4-boot-row:nth-child(3) { animation-delay: 0.7s; }
+    .v4 .v4-boot-row:nth-child(4) { animation-delay: 1.05s; }
+    .v4 .v4-boot-row:nth-child(5) { animation-delay: 1.4s; }
+    .v4 .v4-boot-row.is-fail {
+      border: 3px double var(--amber);
+      color: var(--amber);
+      padding: 0 0.5rem;
+      margin: 0.35rem 0;
+    }
+    .v4 .v4-prompt { color: var(--mut); }
+    .v4 .v4-cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1em;
+      background: var(--phos);
+      vertical-align: text-bottom;
+      animation: v4-blink 1s steps(1) infinite;
+    }
+    .v4 .v4-inline-cmds {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.9rem 0 0;
+      padding: 0;
+    }
+    .v4 .v4-code {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.88rem;
+      color: var(--phos);
+      background: #060c07;
+      border: 1px solid var(--phos-dim);
+      padding: 0.35rem 0.6rem;
+      border-radius: 0;
+      user-select: all;
+    }
+    .v4 .v4-tools {
+      list-style: square;
+      margin: 0 0 0 1.1rem;
+      padding: 0;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .v4 .v4-tools p { margin: 0.35rem 0 0; color: var(--mut); font-size: 0.95rem; }
+    .v4 .v4-warn { color: var(--amber); font-family: "IBM Plex Mono", monospace; font-size: 0.85rem; margin: 0.9rem 0 0; }
+    .v4 .v4-ls { list-style: none; margin: 0; padding: 0; display: grid; }
+    .v4 .v4-ls a {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      padding: 0.55rem 0.6rem;
+      border-top: 1px solid rgba(51, 255, 102, 0.25);
+      color: var(--bone);
+      text-decoration: none;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.88rem;
+    }
+    .v4 .v4-ls li:last-child a { border-bottom: 1px solid rgba(51, 255, 102, 0.25); }
+    .v4 .v4-ls a:hover { background: var(--phos); color: #080a08; }
+    .v4 .v4-ls a:hover .v4-desc { color: #080a08; }
+    .v4 .v4-perms { color: var(--phos-dim); }
+    .v4 .v4-ls a:hover .v4-perms { color: #080a08; }
+    .v4 .v4-date { color: var(--mut); }
+    .v4 .v4-ls a:hover .v4-date { color: #080a08; }
+    .v4 .v4-name { color: var(--phos); font-weight: 600; }
+    .v4 .v4-ls a:hover .v4-name { color: #080a08; }
+    /* biome-ignore lint/style/noDescendingSpecificity: exploration cascade */
+    .v4 .v4-desc { flex-basis: 100%; color: var(--mut); font-family: "IBM Plex Sans", sans-serif; }
+    .v4 .v4-links { list-style: square; margin: 0 0 0 1.1rem; padding: 0; display: grid; gap: 0.5rem; }
+    .v4 .v4-links span { color: var(--mut); }
+    /* biome-ignore lint/style/noDescendingSpecificity: exploration cascade */
+    .v4 a { color: var(--phos); border-radius: 0; }
+    .v4 a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+    .v4 .v4-foot nav ul { list-style: none; display: flex; gap: 1rem; margin: 0 0 0.7rem; padding: 0; font-family: "IBM Plex Mono", monospace; }
+    .v4 .v4-dim { color: var(--mut); font-size: 0.85rem; margin: 0; font-family: "IBM Plex Mono", monospace; }
+    @keyframes v4-type { to { width: 100%; } }
+    @keyframes v4-blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .v4 .v4-boot-row { width: auto; white-space: normal; animation: none; }
+      .v4 .v4-cursor { animation: none; }
+    }
+    @media (max-width: 560px) {
+      .v4 .v4-boot { font-size: 1.05rem; }
+      .v4 .v4-boot-row { white-space: normal; }
+    }
+  </style>
+</Layout>

@@ -1,0 +1,271 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Route 5 Bench Plate" description="Design exploration" type="website" noindex={true}>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap" />
+  </Fragment>
+
+  <div class="v5">
+    <header class="plate">
+      <p class="eyebrow">Bench Plate // Route 5 // Workshop Wall</p>
+      <h1>Abijith S</h1>
+      <p class="role">Backend engineer, Kochi. Java + Spring Boot. Work bolted down, no wobble.</p>
+      <p class="coords" role="img" aria-label="Kochi coordinates">9.93&deg;N 76.27&deg;E — Kochi Shop</p>
+      <ul class="shop-links">
+        <li><a href="https://skills.abijith.sh">skills.abijith.sh</a></li>
+        <li><a href="https://prompts.abijith.sh">prompts.abijith.sh</a></li>
+      </ul>
+    </header>
+
+    <div class="stripe" aria-hidden="true"></div>
+
+    <div class="rail">
+      <aside class="tools" aria-label="Tool rail">
+        <h2>Tool Rail</h2>
+        <ul>
+          <li class="peg">
+            <span class="hook" aria-hidden="true"></span>
+            <h3>API Jig</h3>
+            <p>Spring Boot REST, Postgres, clean contracts.</p>
+            <p class="specs"><span>In: spec</span><span>Out: ship</span></p>
+          </li>
+          <li class="peg">
+            <span class="hook" aria-hidden="true"></span>
+            <h3>Queue Vise</h3>
+            <p>Workers, retries, backpressure held tight.</p>
+            <p class="specs"><span>In: jobs</span><span>Out: done</span></p>
+          </li>
+          <li class="peg">
+            <span class="hook" aria-hidden="true"></span>
+            <h3>Prompt Clamp</h3>
+            <p>Grounded AI helpers, measured output.</p>
+            <p class="specs"><span>In: notes</span><span>Out: draft</span></p>
+          </li>
+        </ul>
+      </aside>
+
+      <section class="work" aria-label="Work bolted down">
+        <h2>Work Bolted Down</h2>
+        <ul>
+          <li class="ticket">
+            <div class="ticket-top"><h3>Interleaf</h3><span class="stamp">In use</span></div>
+            <p>Reading notes that file themselves. Markdown in, spaced recall out.</p>
+            <p class="meta">Astro / Markdown</p>
+          </li>
+          <li class="ticket">
+            <div class="ticket-top"><h3>Reshrimp</h3><span class="stamp alt">Shipped</span></div>
+            <p>Small web tools, trimmed down. Fast pages, no bloat left on.</p>
+            <p class="meta">Java / Web</p>
+          </li>
+          <li class="ticket">
+            <div class="ticket-top"><h3>Tailory</h3><span class="stamp">WIP</span></div>
+            <p>Cut-to-fit templates and shop patterns. Measured twice.</p>
+            <p class="meta">Astro / CSS</p>
+          </li>
+          <li class="ticket">
+            <div class="ticket-top"><h3>Microbreak</h3><span class="stamp alt">Shipped</span></div>
+            <p>Hourly nudge to stand, stretch, unclamp your shoulders.</p>
+            <p class="meta">JS / PWA</p>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="now" aria-label="Now">
+      <h2>Now</h2>
+      <p>Now: tuning Spring Boot APIs in Kochi, lifting after hours, writing plain notes.</p>
+    </section>
+
+    <section class="contact" aria-label="Contact">
+      <h2>Find Me</h2>
+      <ul class="socials">
+        <li><a href="https://github.com">GitHub</a></li>
+        <li><a href="https://x.com">X</a></li>
+        <li><a href="https://linkedin.com">LinkedIn</a></li>
+        <li><a href="https://bsky.app">Bluesky</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+      <nav aria-label="Design routes">
+        <ul class="routes">
+          <li><a href="/1/">/1/</a></li>
+          <li><a href="/2/">/2/</a></li>
+          <li><a href="/3/">/3/</a></li>
+          <li><a href="/4/">/4/</a></li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+
+  <style>
+    .v5 {
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 5px),
+        radial-gradient(120% 90% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+        #15181a;
+      color: #ede8df;
+      font-family: "Archivo", system-ui, sans-serif;
+      padding: 2rem 1rem 3rem;
+    }
+    .v5 :focus-visible { outline: 3px solid #ffc400; outline-offset: 3px; }
+    .v5 a { color: #ffc400; }
+    .v5 .plate,
+    .v5 .peg,
+    .v5 .ticket,
+    .v5 .now,
+    .v5 .contact {
+      background: #23282d;
+      border: 2px solid #000;
+      border-radius: 6px;
+      box-shadow: 6px 6px 0 #000;
+    }
+    .v5 .plate {
+      position: relative;
+      padding: 2.5rem 1.5rem 1.75rem;
+      background-color: #23282d;
+      background-image:
+        radial-gradient(circle 6px at 16px 16px, #ede8df 5px, #000 6px, transparent 7px),
+        radial-gradient(circle 6px at calc(100% - 16px) 16px, #ede8df 5px, #000 6px, transparent 7px),
+        radial-gradient(circle 6px at 16px calc(100% - 16px), #ede8df 5px, #000 6px, transparent 7px),
+        radial-gradient(circle 6px at calc(100% - 16px) calc(100% - 16px), #ede8df 5px, #000 6px, transparent 7px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 5px);
+      background-repeat: no-repeat;
+      animation: v5-drop 0.45s steps(4, end) both;
+    }
+    .v5 .eyebrow {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffc400;
+      margin: 0 0 0.75rem;
+    }
+    .v5 h1 {
+      font-family: "Anton", "Archivo", sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      margin: 0;
+      color: #ede8df;
+    }
+    .v5 h2 {
+      font-family: "Anton", "Archivo", sans-serif;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+      letter-spacing: 0.03em;
+      margin: 0 0 1rem;
+      border-bottom: 2px solid #ffc400;
+      padding-bottom: 0.4rem;
+    }
+    .v5 .role { max-width: 42rem; line-height: 1.6; margin: 0.9rem 0 0; }
+    .v5 .coords {
+      display: inline-block;
+      margin: 1.2rem 0 0;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #15181a;
+      background: #ffc400;
+      border: 2px solid #000;
+      border-radius: 6px;
+      padding: 0.4rem 0.7rem;
+      box-shadow: 4px 4px 0 #000;
+    }
+    .v5 .shop-links {
+      list-style: none; display: flex; flex-wrap: wrap;
+      gap: 0.6rem; margin: 1.2rem 0 0; padding: 0;
+    }
+    .v5 .shop-links a {
+      display: inline-block;
+      color: #ede8df;
+      border: 2px solid #ede8df;
+      border-radius: 6px;
+      padding: 0.45rem 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .v5 .shop-links a:hover { background: #ff5a1f; border-color: #000; color: #15181a; }
+    .v5 .stripe {
+      height: 14px;
+      margin: 1.5rem 0;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: repeating-linear-gradient(45deg, #ffc400 0 14px, #15181a 14px 28px);
+    }
+    .v5 .rail {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .v5 .tools, .v5 .work { padding: 1.25rem; }
+    .v5 .tools ul, .v5 .work ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+    .v5 .peg {
+      padding: 1rem;
+      background-image: radial-gradient(rgba(237, 232, 223, 0.16) 1.5px, transparent 1.6px);
+      background-size: 16px 16px;
+      animation: v5-drop 0.45s steps(4, end) both;
+    }
+    .v5 .peg:nth-child(2) { animation-delay: 0.08s; }
+    .v5 .peg:nth-child(3) { animation-delay: 0.16s; }
+    .v5 .hook {
+      display: block; width: 12px; height: 12px;
+      border-radius: 50%; background: #ffc400;
+      border: 2px solid #000; margin-bottom: 0.6rem;
+    }
+    .v5 h3 { font-size: 1.05rem; font-weight: 800; text-transform: uppercase; margin: 0 0 0.4rem; }
+    .v5 .peg p { margin: 0; line-height: 1.55; font-size: 0.95rem; }
+    .v5 .specs { display: flex; gap: 0.5rem; margin-top: 0.7rem; }
+    .v5 .specs span {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.72rem; font-weight: 600;
+      background: #ede8df; color: #15181a;
+      border: 2px solid #000; border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+    }
+    .v5 .ticket { padding: 1.1rem; animation: v5-drop 0.45s steps(4, end) both; }
+    .v5 .work li:nth-child(2) { animation-delay: 0.1s; }
+    .v5 .work li:nth-child(3) { animation-delay: 0.18s; }
+    .v5 .work li:nth-child(4) { animation-delay: 0.26s; }
+    .v5 .ticket:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 #000; }
+    .v5 .ticket-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .v5 .stamp {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #15181a; background: #ffc400;
+      border: 2px solid #000; border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      transform: rotate(3deg);
+      box-shadow: 3px 3px 0 #000;
+      white-space: nowrap;
+    }
+    .v5 .stamp.alt { background: #ff5a1f; }
+    .v5 .ticket:hover .stamp { transform: rotate(3deg) scale(1.1); }
+    .v5 .ticket p { line-height: 1.6; margin: 0.6rem 0 0; }
+    .v5 .meta { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: #ffc400; }
+    .v5 .now, .v5 .contact { margin-top: 1.5rem; padding: 1.25rem; }
+    .v5 .now p { margin: 0; line-height: 1.6; font-weight: 600; }
+    .v5 .socials, .v5 .routes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .v5 .socials { margin-bottom: 1rem; }
+    .v5 .socials a, .v5 .routes a {
+      display: inline-block;
+      border: 2px solid #000; border-radius: 6px;
+      padding: 0.4rem 0.75rem; font-weight: 600;
+      text-decoration: none; box-shadow: 4px 4px 0 #000;
+    }
+    .v5 .socials a { background: #ffc400; color: #15181a; }
+    .v5 .routes a { background: #ede8df; color: #15181a; }
+    .v5 .socials a:hover, .v5 .routes a:hover { background: #ff5a1f; color: #15181a; }
+    @keyframes v5-drop {
+      from { transform: translateY(-16px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @media (max-width: 860px) { .v5 .rail { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) {
+      .v5 *, .v5 *::before, .v5 *::after { animation: none; transition: none; }
+    }
+  </style>
+</Layout>

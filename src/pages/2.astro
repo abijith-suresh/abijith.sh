@@ -3,397 +3,201 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
-  title="Design 2 Ink Paper Dark"
-  description="Route 02 — Ink Paper Dark. A dark editorial exploration: serif voice, footnotes, and a dated now log."
+  title="Route 2 Sticker Drawer"
+  description="Design exploration"
   type="website"
   noindex={true}
 >
   <Fragment slot="head">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titan+One&family=Nunito:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" />
   </Fragment>
 
-  <div class="r2">
-    <div class="r2-page">
-      <header class="r2-hero">
-        <p class="r2-eyebrow">design exploration 02 / ink paper dark</p>
-        <h1 class="r2-name">Abijith Suresh</h1>
-        <p class="r2-subline">Backend engineer in Kochi, Kerala. Java and Spring&nbsp;Boot at UST.</p>
-        <p class="r2-lede">
-          I build server-side systems by day, and spend evenings playing games or
-          building small things for the web.<a
-            class="r2-fnref"
-            href="#r2-fn1"
-            id="r2-ref1"
-            aria-describedby="r2-footnotes"><sup>1</sup></a
-          > Everything here is written plainly, set in one serif voice, and kept
-          deliberately quiet.<a
-            class="r2-fnref"
-            href="#r2-fn2"
-            id="r2-ref2"
-            aria-describedby="r2-footnotes"><sup>2</sup></a
-          >
-        </p>
-        <ol class="r2-footnotes" id="r2-footnotes" aria-label="Footnotes">
-          <li id="r2-fn1">
-            <span class="r2-fnnum" aria-hidden="true">1</span>
-            <span>Day job: backend engineering with Java and Spring Boot at <a class="r2-link" href="https://ust.com" target="_blank" rel="noopener noreferrer">UST</a>. <a class="r2-back" href="#r2-ref1" aria-label="Back to reference 1">Return</a></span>
-          </li>
-          <li id="r2-fn2">
-            <span class="r2-fnnum" aria-hidden="true">2</span>
-            <span>Off hours: games, side projects, and notes. Start with <a class="r2-link" href="/about/">about me</a>. <a class="r2-back" href="#r2-ref2" aria-label="Back to reference 2">Return</a></span>
-          </li>
-          <li id="r2-fn3">
-            <span class="r2-fnnum" aria-hidden="true">3</span>
-            <span>Colophon: set in Fraunces for titles and IBM Plex for everything else. No scripts, no images on this page.</span>
-          </li>
-        </ol>
+  <div class="v2">
+    <div class="v2-ticker" aria-hidden="true">
+      <div class="v2-ticker-track">
+        <span>shipping tiny tools</span><span class="v2-dot">•</span>
+        <span>backend toys</span><span class="v2-dot">•</span>
+        <span>small + useful</span><span class="v2-dot">•</span>
+        <span>shipping tiny tools</span><span class="v2-dot">•</span>
+        <span>backend toys</span><span class="v2-dot">•</span>
+        <span>small + useful</span><span class="v2-dot">•</span>
+      </div>
+    </div>
+
+    <div class="v2-wrap">
+      <header class="v2-hero">
+        <p class="v2-kicker">Route 02 — Sticker drawer</p>
+        <h1 class="v2-title">Shipping tiny tools!</h1>
+        <p class="v2-sub"><strong>Abijith S</strong> — backend engineer in Kochi. Java + Spring Boot by day, toy-box builds by night.</p>
+        <ul class="v2-pills" aria-label="Tool shelves">
+          <li><a class="v2-pill v2-pill-coral" href="https://skills.abijith.sh">skills.abijith.sh</a></li>
+          <li><a class="v2-pill v2-pill-grape" href="https://prompts.abijith.sh">prompts.abijith.sh</a></li>
+        </ul>
+        <p class="v2-badge" aria-hidden="true">100%<br />handmade</p>
+        <span class="v2-star v2-s1" aria-hidden="true"></span>
+        <span class="v2-star v2-s2" aria-hidden="true"></span>
+        <span class="v2-star v2-s3" aria-hidden="true"></span>
       </header>
 
-      <section class="r2-block" aria-labelledby="r2-tools-h">
-        <h2 class="r2-h" id="r2-tools-h"><span class="r2-hnum" aria-hidden="true">i.</span> Tools shelf</h2>
-        <ul class="r2-shelf">
-          <li>
-            <a class="r2-itemtitle" href="/skills/">Skills</a>
-            <p class="r2-status">Live — what I reach for at work.</p>
+      <section class="v2-section" aria-labelledby="v2-tools-h">
+        <h2 class="v2-h" id="v2-tools-h"><span class="v2-h-tag">Tools shelf</span> Fresh from the machine</h2>
+        <ul class="v2-shelf">
+          <li class="v2-sticker v2-tilt-a">
+            <p class="v2-code">No. 01</p>
+            <h3 class="v2-card-t">Skill files</h3>
+            <p class="v2-card-p">Reusable working notes. Grab one, plug it in.</p>
+            <a class="v2-mini" href="https://skills.abijith.sh">Open skills</a>
           </li>
-          <li>
-            <a class="r2-itemtitle" href="/prompts/">Prompts</a>
-            <p class="r2-status">Live — saved, reusable working notes.</p>
+          <li class="v2-sticker v2-tilt-b">
+            <p class="v2-code">No. 02</p>
+            <h3 class="v2-card-t">Prompt packs</h3>
+            <p class="v2-card-p">Saved prompts that do one job well.</p>
+            <a class="v2-mini" href="https://prompts.abijith.sh">Open prompts</a>
           </li>
-          <li>
-            <span class="r2-itemtitle" aria-disabled="true">Wallpapers</span>
-            <p class="r2-status">Future — a small shelf, when it earns its place.</p>
-          </li>
-        </ul>
-      </section>
-
-      <section class="r2-block" aria-labelledby="r2-work-h">
-        <h2 class="r2-h" id="r2-work-h"><span class="r2-hnum" aria-hidden="true">ii.</span> Selected projects</h2>
-        <ul class="r2-projects">
-          <li>
-            <a class="r2-ptitle" href="/projects/#interleaf">Interleaf</a>
-            <p class="r2-pdesc">A quiet reading surface. Long-form first, chrome last.</p>
-          </li>
-          <li>
-            <a class="r2-ptitle" href="/projects/#reshrimp">Reshrimp</a>
-            <p class="r2-pdesc">Small utilities that do one job and leave.</p>
-          </li>
-          <li>
-            <a class="r2-ptitle" href="/projects/#tailory">Tailory</a>
-            <p class="r2-pdesc">Cut precisely, finish by hand. Experiments in fit.</p>
-          </li>
-          <li>
-            <a class="r2-ptitle" href="/projects/#microbreak">Microbreak</a>
-            <p class="r2-pdesc">A reminder to stand, stretch, and look away.</p>
-          </li>
-        </ul>
-        <p class="r2-more"><a class="r2-link" href="/projects/">All projects</a></p>
-      </section>
-
-      <section class="r2-block" aria-labelledby="r2-now-h">
-        <h2 class="r2-h" id="r2-now-h"><span class="r2-hnum" aria-hidden="true">iii.</span> Now log</h2>
-        <ul class="r2-now">
-          <li>
-            <span class="r2-dot" aria-hidden="true"></span>
-            <time class="r2-date" datetime="2026-08-28">2026-08-28</time>
-            <span>Shipping backend work at UST; keeping evenings for side builds.</span>
-          </li>
-          <li>
-            <span class="r2-dot" aria-hidden="true"></span>
-            <time class="r2-date" datetime="2026-08-14">2026-08-14</time>
-            <span>Revising writing drafts and pruning the projects shelf.</span>
-          </li>
-          <li>
-            <span class="r2-dot" aria-hidden="true"></span>
-            <time class="r2-date" datetime="2026-07-30">2026-07-30</time>
-            <span>Playing through a long game, reading slowly. <a class="r2-link" href="/now/">Full now page</a></span>
+          <li class="v2-sticker v2-tilt-a">
+            <p class="v2-code">No. 03</p>
+            <h3 class="v2-card-t">Micro utils</h3>
+            <p class="v2-card-p">One-screen helpers. No signup, no bloat.</p>
+            <a class="v2-mini" href="/projects/">See builds</a>
           </li>
         </ul>
       </section>
 
-      <nav class="r2-block" aria-label="Elsewhere">
-        <h2 class="r2-h"><span class="r2-hnum" aria-hidden="true">iv.</span> Elsewhere</h2>
-        <ul class="r2-socials">
-          <li><a class="r2-link" href="https://github.com/abijith-suresh" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a class="r2-link" href="https://x.com/abijith_sh" target="_blank" rel="noopener noreferrer">X</a></li>
-          <li><a class="r2-link" href="https://linkedin.com/in/abijith-suresh" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a class="r2-link" href="https://bsky.app/profile/abijith.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a></li>
-          <li><a class="r2-link" href="/rss.xml">RSS</a></li>
+      <section class="v2-section" aria-labelledby="v2-work-h">
+        <h2 class="v2-h" id="v2-work-h"><span class="v2-h-tag v2-h-tag-lime">Projects</span> Tilted + stacked</h2>
+        <ul class="v2-stack">
+          <li class="v2-card v2-tilt-a">
+            <p class="v2-code">Pick 01 — Reading</p>
+            <h3 class="v2-card-t">Interleaf</h3>
+            <p class="v2-card-p">A quiet reading surface. Long-form first, chrome last.</p>
+            <a class="v2-mini" href="/projects/#interleaf">View Interleaf</a>
+          </li>
+          <li class="v2-card v2-tilt-b">
+            <p class="v2-code">Pick 02 — Utils</p>
+            <h3 class="v2-card-t">Reshrimp</h3>
+            <p class="v2-card-p">Small utilities that do one job and leave.</p>
+            <a class="v2-mini" href="/projects/#reshrimp">View Reshrimp</a>
+          </li>
+          <li class="v2-card v2-tilt-a">
+            <p class="v2-code">Pick 03 — Fit</p>
+            <h3 class="v2-card-t">Tailory</h3>
+            <p class="v2-card-p">Cut precisely, finish by hand. Experiments in fit.</p>
+            <a class="v2-mini" href="/projects/#tailory">View Tailory</a>
+          </li>
+          <li class="v2-card v2-tilt-b">
+            <p class="v2-code">Pick 04 — Rest</p>
+            <h3 class="v2-card-t">Microbreak</h3>
+            <p class="v2-card-p">Stand, stretch, look away. A tiny nudge.</p>
+            <a class="v2-mini" href="/projects/#microbreak">View Microbreak</a>
+          </li>
         </ul>
-        <p class="r2-index">
-          Prefer the index? <a class="r2-link" href="/writing/">Writing</a>, <a class="r2-link" href="/about/">About</a>
-        </p>
+      </section>
+
+      <section class="v2-now" aria-labelledby="v2-now-h">
+        <h2 class="v2-h" id="v2-now-h">Now</h2>
+        <p>Now: backend work at UST, evenings for side builds and drafts. <a href="/now/">Full now page</a></p>
+      </section>
+
+      <nav class="v2-socials" aria-label="Elsewhere">
+        <h2 class="v2-h">Elsewhere</h2>
+        <ul>
+          <li><a href="https://github.com/abijith-suresh" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://x.com/abijith_sh" target="_blank" rel="noopener noreferrer">X</a></li>
+          <li><a href="https://linkedin.com/in/abijith-suresh" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://bsky.app/profile/abijith.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
       </nav>
 
-      <footer class="r2-footer">
-        <p>route 02, compare route 01 at <a class="r2-link" href="/1/">/1/</a></p>
+      <footer class="v2-footer">
+        <p>Route 02 toy box — keep browsing:</p>
+        <ul aria-label="Design routes">
+          <li><a href="/1/">/1/</a></li>
+          <li><a href="/3/">/3/</a></li>
+          <li><a href="/4/">/4/</a></li>
+          <li><a href="/5/">/5/</a></li>
+        </ul>
       </footer>
     </div>
   </div>
 
   <style>
-    .r2 {
-      --r2-bg: #171310;
-      --r2-ink: #ece5d8;
-      --r2-muted: #b6ac99;
-      --r2-faint: #8f8674;
-      --r2-line: #2d261e;
-      --r2-green: #a9c795;
-      --r2-green-ink: #14210f;
-      --r2-serif: "Fraunces", Georgia, "Times New Roman", serif;
-      flex: 1;
-      width: 100%;
-      background: var(--r2-bg);
-      color: var(--r2-ink);
-    }
-    .r2 ::selection {
-      background: var(--r2-green);
-      color: var(--r2-green-ink);
-    }
-    .r2-page {
-      width: 100%;
-      max-width: 38rem;
-      margin-inline: auto;
-      padding: clamp(3.5rem, 8vw, 6rem) 1.5rem 4rem;
-    }
-    .r2-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: lowercase;
-      color: var(--r2-faint);
-      margin: 0 0 2.5rem;
-    }
-    .r2-name {
-      font-family: var(--r2-serif);
-      font-weight: 500;
-      font-size: clamp(2.75rem, 7vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 1rem;
-      text-wrap: balance;
-    }
-    .r2-subline {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: var(--r2-muted);
-      margin: 0 0 1.75rem;
-      max-width: 32rem;
-    }
-    .r2-lede {
-      font-size: 1.075rem;
-      line-height: 1.85;
-      margin: 0;
-      max-width: 36rem;
-    }
-    .r2-fnref {
-      color: var(--r2-green);
-      text-decoration: none;
-      padding-inline: 0.1em;
-      border-radius: 0.25rem;
-    }
-    .r2-fnref sup {
-      font-family: var(--font-mono);
-      font-size: 0.72em;
-    }
-    .r2-footnotes {
-      list-style: none;
-      margin: 2.5rem 0 0;
-      padding: 1.25rem 0 0;
-      border-top: 1px solid var(--r2-line);
-      display: grid;
-      gap: 0.9rem;
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--r2-muted);
-    }
-    .r2-footnotes li {
-      display: grid;
-      grid-template-columns: 1.5rem 1fr;
-      gap: 0.5rem;
-    }
-    .r2-fnnum {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--r2-green);
-      padding-top: 0.25em;
-    }
-    .r2-back {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--r2-faint);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      white-space: nowrap;
-    }
-    .r2-block {
-      margin-top: clamp(3rem, 7vw, 4.5rem);
-      padding-top: clamp(2rem, 5vw, 3rem);
-      border-top: 1px solid var(--r2-line);
-    }
-    .r2-h {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--r2-faint);
-      margin: 0 0 1.75rem;
-    }
-    .r2-hnum {
-      color: var(--r2-green);
-      margin-right: 0.6em;
-    }
-    .r2-shelf {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 1.5rem;
-    }
-    .r2-itemtitle {
-      font-family: var(--r2-serif);
-      font-size: 1.4rem;
-      line-height: 1.3;
-      color: var(--r2-ink);
-      text-decoration: none;
-    }
-    a.r2-itemtitle {
-      background-image: linear-gradient(currentColor, currentColor);
-      background-size: 0% 1px;
-      background-repeat: no-repeat;
-      background-position: left calc(100% - 0px);
-      transition: background-size 180ms ease;
-      text-underline-offset: 4px;
-    }
-    .r2-status {
-      margin: 0.3rem 0 0;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--r2-faint);
-    }
-    .r2-projects {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-    }
-    .r2-projects li {
-      padding: 1.4rem 0;
-      border-top: 1px solid var(--r2-line);
-    }
-    .r2-projects li:last-child {
-      border-bottom: 1px solid var(--r2-line);
-    }
-    .r2-ptitle {
-      font-family: var(--r2-serif);
-      font-size: 1.6rem;
-      line-height: 1.25;
-      color: var(--r2-ink);
-      text-decoration: none;
-      background-image: linear-gradient(currentColor, currentColor);
-      background-size: 0% 1px;
-      background-repeat: no-repeat;
-      background-position: left calc(100% - 1px);
-      transition: background-size 180ms ease;
-    }
-    .r2-pdesc {
-      margin: 0.45rem 0 0;
-      font-size: 0.98rem;
-      line-height: 1.7;
-      color: var(--r2-muted);
-      max-width: 30rem;
-    }
-    .r2-more {
-      margin: 1.5rem 0 0;
-      font-size: 0.95rem;
-    }
-    .r2-now {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 1.25rem;
-    }
-    .r2-now li {
-      display: grid;
-      grid-template-columns: 0.6rem 1fr;
-      column-gap: 0.8rem;
-      row-gap: 0.25rem;
-      font-size: 0.98rem;
-      line-height: 1.7;
-      color: var(--r2-muted);
-    }
-    .r2-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      margin-top: 0.55em;
-      background: var(--r2-green);
-      border-radius: 0.125rem;
-    }
-    .r2-date {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.04em;
-      color: var(--r2-ink);
-    }
-    .r2-now li > span:last-child {
-      grid-column: 2;
-    }
-    .r2-link {
-      color: var(--r2-ink);
-      text-decoration: underline;
-      text-decoration-color: var(--r2-green);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
-      background-image: linear-gradient(var(--r2-green), var(--r2-green));
-      background-size: 0% 1px;
-      background-repeat: no-repeat;
-      background-position: left calc(100% + 0px);
-      transition: background-size 180ms ease;
-      border-radius: 0.25rem;
-    }
-    .r2-socials {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.5rem;
-      font-size: 0.98rem;
-    }
-    .r2-index {
-      margin: 1.5rem 0 0;
-      font-size: 0.95rem;
-      color: var(--r2-muted);
-    }
-    .r2-footer {
-      margin-top: clamp(3rem, 7vw, 4.5rem);
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--r2-line);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--r2-faint);
-    }
-    .r2-footer p { margin: 0; }
-    .r2 a:hover {
-      background-size: 100% 1px;
-    }
-    .r2 a:focus-visible {
-      outline: 2px solid var(--r2-green);
-      outline-offset: 3px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .r2 a {
-        transition: none;
-      }
-    }
+    .v2 { --sky: #BFE9FF; --cream: #FFFBEB; --coral: #FF5D3A; --grape: #6C4CF1; --lime: #C8F04B; --ink: #211A30;
+      --display: "Titan One", system-ui, sans-serif; --body: "Nunito", system-ui, sans-serif; --mono: "Space Mono", monospace;
+      background: var(--sky); color: var(--ink); font-family: var(--body); flex: 1; width: 100%;
+      background-image: radial-gradient(#211a3022 1.5px, transparent 1.5px); background-size: 22px 22px; }
+    .v2 ::selection { background: var(--grape); color: #fff; }
+    .v2-ticker { background: var(--ink); color: var(--cream); overflow: hidden; border-block: 3px solid var(--ink); }
+    .v2-ticker-track { display: flex; gap: 1rem; width: max-content; padding: 0.6rem 1rem; font-family: var(--mono);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+      animation: v2-marquee 18s linear infinite; }
+    .v2-dot { color: var(--lime); }
+    .v2-wrap { max-width: 62rem; margin-inline: auto; padding: 2.5rem 1.25rem 4rem; display: grid; gap: 2rem; }
+    .v2-hero { position: relative; background: var(--cream); border-radius: 28px; padding: clamp(2rem, 6vw, 3.5rem);
+      border: 3px solid var(--ink); box-shadow: 0 0 0 4px #fff, 0 0 0 7px var(--ink), 6px 6px 0 7px var(--ink);
+      text-align: center; animation: v2-pop 0.5s ease both; }
+    .v2-kicker { font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; background: var(--lime); display: inline-block; padding: 0.4rem 0.9rem;
+      border: 3px solid var(--ink); border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); margin: 0 0 1rem; }
+    .v2-title { font-family: var(--display); font-size: clamp(2.6rem, 8vw, 5rem); line-height: 0.95; margin: 0 0 1rem;
+      text-wrap: balance; letter-spacing: 0.01em; }
+    .v2-sub { font-size: 1.1rem; line-height: 1.6; max-width: 34rem; margin: 0 auto 1.5rem; }
+    .v2-pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+    .v2-pill { font-weight: 800; text-decoration: none; padding: 0.7rem 1.3rem; border-radius: 20px;
+      border: 3px solid var(--ink); box-shadow: 0 0 0 3px #fff, 4px 4px 0 var(--ink); display: inline-block; color: var(--ink); }
+    .v2-pill-coral { background: var(--coral); }
+    .v2-pill-grape { background: var(--grape); color: #fff; }
+    .v2-badge { position: absolute; top: -1.6rem; right: 1rem; width: 6.5rem; height: 6.5rem; margin: 0;
+      display: grid; place-content: center; font-family: var(--display); font-size: 0.95rem; line-height: 1.1;
+      background: var(--coral); color: var(--ink); border: 3px solid var(--ink); border-radius: 50%;
+      box-shadow: 0 0 0 4px #fff, 0 0 0 7px var(--ink); transform: rotate(12deg); }
+    .v2-star { position: absolute; width: 18px; height: 18px; background: var(--grape);
+      clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+    .v2-s1 { left: 8%; top: 18%; } .v2-s2 { left: 14%; bottom: 14%; background: var(--coral); } .v2-s3 { right: 18%; bottom: 10%; background: var(--ink); }
+    .v2-section { display: grid; gap: 1.25rem; }
+    .v2-h { font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0; text-align: center; }
+    .v2-h-tag { background: var(--coral); border: 3px solid var(--ink); border-radius: 999px; padding: 0.25rem 0.8rem;
+      box-shadow: 3px 3px 0 var(--ink); display: inline-block; margin-right: 0.5rem; }
+    .v2-h-tag-lime { background: var(--lime); }
+    .v2-shelf, .v2-stack { list-style: none; margin: 0; padding: 0.5rem 0.25rem 0.75rem; display: grid; gap: 1.5rem; }
+    @media (min-width: 48rem) { .v2-shelf { grid-template-columns: repeat(3, 1fr); } .v2-stack { grid-template-columns: 1fr 1fr; } }
+    .v2-sticker, .v2-card { background: var(--cream); border: 3px solid var(--ink); padding: 1.5rem 1.4rem;
+      box-shadow: 0 0 0 4px #fff, 0 0 0 7px var(--ink), 6px 6px 0 7px var(--ink); animation: v2-pop 0.5s ease both; }
+    .v2-sticker { border-radius: 24px; text-align: center; }
+    .v2-card { border-radius: 20px; }
+    .v2-tilt-a { transform: rotate(-2deg); } .v2-tilt-b { transform: rotate(2deg); }
+    .v2-sticker:nth-child(2), .v2-card:nth-child(2) { animation-delay: 0.08s; }
+    .v2-sticker:nth-child(3), .v2-card:nth-child(3) { animation-delay: 0.16s; }
+    .v2-card:nth-child(4) { animation-delay: 0.24s; }
+    .v2-code { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; background: var(--lime); display: inline-block; margin: 0 0 0.8rem;
+      padding: 0.25rem 0.7rem; border: 2px solid var(--ink); border-radius: 999px; }
+    .v2-card:nth-child(even) .v2-code { background: var(--sky); }
+    .v2-card-t { font-family: var(--display); font-size: 1.7rem; margin: 0 0 0.5rem; line-height: 1; }
+    .v2-card-p { margin: 0 0 1rem; line-height: 1.6; font-size: 0.98rem; }
+    .v2-mini { font-weight: 800; color: var(--ink); text-decoration: underline; text-decoration-thickness: 3px;
+      text-decoration-color: var(--coral); text-underline-offset: 4px; border-radius: 6px; }
+    .v2-card:nth-child(even) .v2-mini { text-decoration-color: var(--grape); }
+    .v2-now { background: var(--ink); color: var(--cream); border-radius: 24px; padding: 1.5rem 1.75rem;
+      border: 3px solid var(--ink); box-shadow: 0 0 0 4px #fff, 6px 6px 0 var(--ink); text-align: center; }
+    .v2-now .v2-h { color: var(--lime); } .v2-now p { margin: 0.5rem 0 0; line-height: 1.6; }
+    .v2-now a { color: var(--lime); font-weight: 800; }
+    .v2-socials { background: var(--cream); border: 3px solid var(--ink); border-radius: 24px; padding: 1.5rem;
+      box-shadow: 0 0 0 4px #fff, 0 0 0 7px var(--ink), 6px 6px 0 7px var(--ink); text-align: center; }
+    .v2-socials ul { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
+    .v2-socials ul a { font-weight: 800; color: var(--ink); text-decoration: none; background: #fff;
+      border: 2px solid var(--ink); border-radius: 999px; padding: 0.45rem 1rem; box-shadow: 3px 3px 0 var(--ink); display: inline-block; }
+    .v2-footer { text-align: center; font-family: var(--mono); font-size: 0.85rem; }
+    .v2-footer p { margin: 0 0 0.75rem; } .v2-footer ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.7rem; justify-content: center; }
+    .v2-footer ul a { font-weight: 700; color: var(--cream); background: var(--grape); text-decoration: none;
+      border: 3px solid var(--ink); border-radius: 14px; padding: 0.4rem 0.9rem; box-shadow: 0 0 0 3px #fff, 4px 4px 0 var(--ink); display: inline-block; }
+    .v2 a:focus-visible { outline: 3px solid var(--grape); outline-offset: 3px; }
+    .v2-sticker:hover, .v2-card:hover, .v2-pill:hover, .v2-socials ul a:hover, .v2-footer ul a:hover { animation: v2-wobble 0.4s ease; }
+    .v2-tilt-a:hover, .v2-tilt-b:hover { transform: rotate(0deg); }
+    @keyframes v2-marquee { to { transform: translateX(-50%); } }
+    @keyframes v2-pop { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes v2-wobble { 0% { rotate: 0deg; } 25% { rotate: -1.5deg; } 50% { rotate: 1.5deg; } 75% { rotate: -1deg; } 100% { rotate: 0deg; } }
+    @media (prefers-reduced-motion: reduce) { .v2-ticker-track, .v2-hero, .v2-sticker, .v2-card { animation: none; }
+      .v2-sticker:hover, .v2-card:hover, .v2-pill:hover { animation: none; } }
   </style>
 </Layout>
