@@ -5,6 +5,7 @@ import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import type { SEOProps } from "@/components/seo/SEO.astro";
 import type { JsonLdProps } from "@/components/seo/JsonLd.astro";
+import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/consts";
 import baseCss from "@/styles/base.css?raw";
 import tokensCss from "@/styles/tokens.css?raw";
@@ -41,7 +42,8 @@ const resolvedJsonLd = jsonLd ?? {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#2b2535" />
+    <meta name="theme-color" content="#1a1823" />
+    <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 
@@ -65,7 +67,7 @@ const resolvedJsonLd = jsonLd ?? {
     <slot name="head" />
   </head>
   <body style="display:flex;height:fit-content;min-height:100vh;flex-direction:column">
-    <div class="aurora-glow" aria-hidden="true"></div>
+    <div class="aurora-glow" aria-hidden="true" transition:persist></div>
     <a
       href="#main-content"
       class="skip-link"
@@ -164,7 +166,7 @@ const resolvedJsonLd = jsonLd ?? {
   .brand {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: var(--text-base);
     letter-spacing: var(--letter-spacing-tight);
     color: var(--color-text);
     text-decoration: none;

@@ -10,12 +10,11 @@ import Layout from "@/layouts/Layout.astro";
 >
   <div class="page-404">
     <Container class="page-404-inner">
-      <p class="eyebrow rise" style="--d: 0ms" aria-hidden="true">404</p>
-      <h1 class="rise" style="--d: 60ms">page not found<span class="period">.</span></h1>
-      <p class="page-404-note rise" style="--d: 120ms">
+      <h1 class="rise" style="--d: 0ms">page not found<span class="period">.</span></h1>
+      <p class="page-404-note rise" style="--d: 60ms">
         the page you're looking for doesn't exist or has been moved.
       </p>
-      <a class="back-link rise" style="--d: 180ms" href="/">
+      <a class="back-link rise" style="--d: 120ms" href="/">
         <span class="arrow" aria-hidden="true">←</span> back to home
       </a>
     </Container>
@@ -35,19 +34,13 @@ import Layout from "@/layouts/Layout.astro";
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    flex-grow: 1;
     row-gap: var(--space-2xs);
     padding-block: var(--page-block-start) var(--page-block-end);
   }
 
-  .page-404-inner .eyebrow {
-    color: var(--color-primary);
-  }
-
   h1 {
     font-family: var(--font-display);
-    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-size: var(--text-hero);
     font-weight: 650;
     letter-spacing: var(--letter-spacing-heading);
     line-height: var(--leading-heading);

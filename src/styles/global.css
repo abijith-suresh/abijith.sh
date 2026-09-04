@@ -19,11 +19,17 @@ a {
 .text-link {
   font-weight: 500;
   color: var(--color-text);
-  transition: color var(--transition-base);
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: oklch(from var(--color-muted-foreground) l c h / 0.5);
+  transition:
+    color var(--transition-base),
+    text-decoration-color var(--transition-base);
 }
 
 .text-link:hover {
   color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
 }
 
 .sr-only {
@@ -246,9 +252,9 @@ summary {
 .media-card-title {
   margin: 0.35rem 0 0.5rem;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.15rem;
-  letter-spacing: -0.005em;
+  font-weight: 650;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
   color: var(--color-text);
 }
 
@@ -393,17 +399,20 @@ summary {
 .prose :where(a):not(:where(.not-prose, .not-prose *)) {
   font-weight: 500;
   color: var(--color-text);
-  text-decoration-line: none;
-  transition: text-decoration-color var(--transition-base);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: oklch(from var(--color-muted-foreground) l c h / 0.5);
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: none;
+  transition:
+    color var(--transition-base),
+    text-decoration-color var(--transition-base);
   overflow-wrap: break-word;
 }
 
 .prose :where(a:hover):not(:where(.not-prose, .not-prose *)) {
-  text-decoration-line: underline;
+  color: var(--color-primary);
   text-decoration-color: var(--color-primary);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-  text-decoration-skip-ink: none;
 }
 
 .prose :where(strong):not(:where(.not-prose, .not-prose *)) {

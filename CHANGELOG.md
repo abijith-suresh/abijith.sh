@@ -38,6 +38,25 @@ All notable changes to this site are documented in this file.
   error code as a mono eyebrow.
 - Compose the media-card placeholder: a larger violet-tinted display initial
   over a violet/pink radial wash instead of a dim letter on an empty panel.
+- Align with the Dusk Aurora House Standard v1 across sites: Satori/OG and
+  favicon palette moves to the canonical sRGB set (#1a1823 bg, #e0ddef text,
+  #a09aad muted, #312f39 hairline) with the theme-color meta updated to match;
+  the favicon "as." monogram is rebuilt on the shared geometry (full-bleed
+  tile, 16% radius, no frame, 0.52-size glyph).
+- Add the cross-site --text-* type-role tokens (xs/sm/base/lg/hero/page) with
+  exact shared clamps: the landing hero renders at --text-hero, inner page
+  headers and article titles at --text-page, the brand at --text-base, and
+  card titles at 1.2rem/650/-0.01em.
+- Give inline text links and prose links a persistent subtle underline
+  (3px offset, muted at 50% alpha) that shifts to primary on hover, so links
+  are identifiable without hover.
+- Drop the "writing" segment from article browser titles, now "<post> ·
+  abijith.sh"; recompose the 404 without the mono eyebrow — hero-size title,
+  relaxed left-aligned stack, and 0/60/120ms rise stagger.
+- Add the Astro ClientRouter for view transitions, with the aurora glow marked
+  transition:persist so its 22s breathe carries across navigations; standardize
+  rise choreography to header 0ms → content 80ms → list items 160ms + 70ms
+  (capped at 8 items) on the homepage, writing, and projects indexes.
 - Restyle the now page's labels (building/playing/watching/reading, last
   updated) from the mono eyebrow treatment to plain lowercase muted text in
   the body font; year labels elsewhere keep the deliberate mono eyebrow.

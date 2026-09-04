@@ -52,8 +52,8 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#2b2535",
-          color: "#ece7f1",
+          backgroundColor: "#1a1823",
+          color: "#e0ddef",
           padding: 72,
           fontFamily: "IBM Plex Sans",
         },
@@ -73,7 +73,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                     style: {
                       width: "100%",
                       height: 1,
-                      backgroundColor: "#403b49",
+                      backgroundColor: "#312f39",
                     },
                   },
                 },
@@ -90,7 +90,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                         type: "div",
                         props: {
                           style: {
-                            color: "#a9a2b4",
+                            color: "#a09aad",
                             fontFamily: "IBM Plex Mono",
                             fontSize: 24,
                             fontWeight: 500,
@@ -128,7 +128,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                             display: "flex",
                             flexDirection: "column",
                             gap: 8,
-                            color: "#a9a2b4",
+                            color: "#a09aad",
                             fontSize: 32,
                             lineHeight: 1.25,
                           },
@@ -169,7 +169,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                     style: {
                       width: "100%",
                       height: 1,
-                      backgroundColor: "#403b49",
+                      backgroundColor: "#312f39",
                     },
                   },
                 },
@@ -190,9 +190,11 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
 async function renderIconSvg(size: number): Promise<string> {
   const fonts = await loadFonts();
 
-  // "as." monogram — site ink background, pink signature period.
-  // Colors mirror the OG template: bg #2b2535, frame #403b49, glyph #ece7f1,
-  // period #f2b8c6 (oklch(83.9% 0.069 3), the --color-pink token).
+  // "as." monogram — canonical Dusk Aurora geometry: full-bleed tile with a
+  // 16% radius and no frame, glyph at 0.52*size optically lifted 6% of its
+  // font size. Colors: bg #1a1823, glyph #e0ddef, period #f2b8c6
+  // (oklch(83.9% 0.069 3), the --color-pink token).
+  const glyphSize = size * 0.52;
   return satori(
     {
       type: "div",
@@ -203,50 +205,41 @@ async function renderIconSvg(size: number): Promise<string> {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#2b2535",
+          backgroundColor: "#1a1823",
+          borderRadius: size * 0.16,
         },
-        children: {
-          type: "div",
-          props: {
-            style: {
-              width: size * 0.68,
-              height: size * 0.68,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: `${size * 0.012}px solid #403b49`,
-              borderRadius: size * 0.14,
+        children: [
+          {
+            type: "div",
+            props: {
+              style: {
+                color: "#e0ddef",
+                fontFamily: "IBM Plex Sans",
+                fontSize: glyphSize,
+                fontWeight: 500,
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                transform: `translateY(${glyphSize * -0.06}px)`,
+              },
+              children: "as",
             },
-            children: [
-              {
-                type: "div",
-                props: {
-                  style: {
-                    color: "#ece7f1",
-                    fontFamily: "IBM Plex Sans",
-                    fontSize: size * 0.4,
-                    fontWeight: 500,
-                    lineHeight: 1,
-                  },
-                  children: "as",
-                },
-              },
-              {
-                type: "div",
-                props: {
-                  style: {
-                    color: "#f2b8c6",
-                    fontFamily: "IBM Plex Sans",
-                    fontSize: size * 0.4,
-                    fontWeight: 500,
-                    lineHeight: 1,
-                  },
-                  children: ".",
-                },
-              },
-            ],
           },
-        },
+          {
+            type: "div",
+            props: {
+              style: {
+                color: "#f2b8c6",
+                fontFamily: "IBM Plex Sans",
+                fontSize: glyphSize,
+                fontWeight: 500,
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                transform: `translateY(${glyphSize * -0.06}px)`,
+              },
+              children: ".",
+            },
+          },
+        ],
       },
     },
     {

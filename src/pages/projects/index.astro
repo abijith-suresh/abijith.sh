@@ -27,7 +27,7 @@ const findProjectShot = (id: string) =>
       allProjects.length > 0 ? (
         <Container>
           {projectsByYear.map(({ year, items: yearProjects }, yearIndex) => (
-            <div class="year-group rise" style={`--d: ${80 + yearIndex * 70}ms`}>
+            <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
                 {yearProjects.map((project, index) => (

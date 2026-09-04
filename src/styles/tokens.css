@@ -36,7 +36,9 @@
   --ring: oklch(100% 0 0 / 0.08);
   --ring-hover: oklch(100% 0 0 / 0.15);
 
-  /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site */
+  /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site.
+     --step-* is the raw scale; --text-* are the cross-site role names
+     (Dusk Aurora House Standard v1) and carry the exact shared clamps. */
   --step--1: clamp(0.875rem, 0.8519rem + 0.1127vw, 0.9375rem);
   --step-0: clamp(1rem, 0.9538rem + 0.2255vw, 1.125rem);
   --step-1: clamp(1.125rem, 1.0418rem + 0.4059vw, 1.35rem);
@@ -44,17 +46,24 @@
   --step-3: clamp(1.4238rem, 1.2309rem + 0.941vw, 1.944rem);
   --step-4: clamp(2.2rem, 1.7rem + 2.2vw, 4rem);
 
-  /* Type aliases */
-  --heading-1: var(--step-3);
-  --text-xs: var(--step--1);
+  /* Type roles — exact clamps shared across all Dusk Aurora sites */
+  --text-xs: clamp(0.8125rem, 0.7894rem + 0.1127vw, 0.875rem);
   --text-sm: var(--step--1);
   --text-base: var(--step-0);
   --text-lg: var(--step-1);
+  --text-hero: clamp(2.25rem, 1.5rem + 3vw, 3.25rem);
+  --text-page: clamp(1.75rem, 1.2877rem + 2.255vw, 3rem);
+
+  /* Type aliases
+     --heading-1 (inner page headers) and --hero-size (landing hero) point at
+     the role tokens so their rendered sizes match cross-site. --text-xl..4xl
+     remain prose-heading sizes on the raw scale. */
+  --heading-1: var(--text-page);
   --text-xl: var(--step-2);
   --text-2xl: var(--step-3);
   --text-3xl: var(--step-3);
   --text-4xl: var(--step-3);
-  --hero-size: var(--step-4);
+  --hero-size: var(--text-hero);
 
   /* Line-height */
   --leading-text: calc(0.65rem + 1em);
