@@ -14,10 +14,29 @@ interface Props {
 const { title, subtitle, class: className } = Astro.props;
 ---
 
-<div style="width:100%; margin-inline:auto; display:flex; flex-grow:1; flex-direction:column; row-gap:var(--content-gap); padding-bottom:var(--page-block-end)" class={className}>
-  <Container style="padding-top:var(--page-block-start); display:flex; flex-direction:column; row-gap:var(--content-gap)">
-    <PageHeader title={title} subtitle={subtitle} />
-  </Container>
-
+<div class:list={["page-shell", className]}>
+  <div class="page-shell-header">
+    <Container>
+      <PageHeader title={title} subtitle={subtitle} />
+    </Container>
+  </div>
   <slot />
 </div>
+
+<style>
+  .page-shell {
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding-bottom: var(--page-block-end);
+  }
+
+  /* air between the page header and the first section — mirrors the
+     homepage hero-to-section rhythm */
+  .page-shell-header {
+    padding-top: var(--page-block-start);
+    padding-bottom: clamp(4rem, 10vh, 6.5rem);
+  }
+</style>

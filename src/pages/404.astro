@@ -11,19 +11,15 @@ import Layout from "@/layouts/Layout.astro";
   jsonLd={{ type: "website" }}
 >
   <div class="page-404">
-    <Container class="page-404-container">
-      <div class="page-404-code" aria-hidden="true">404</div>
-
-      <div class="page-404-body">
-        <h1>Page Not Found</h1>
-        <p>The page you're looking for doesn't exist or has been moved.</p>
-      </div>
-
-      <div class="page-404-back">
-        <a href="/" class="back-link">
-          <span class="arrow" aria-hidden="true">←</span> Back to Home
-        </a>
-      </div>
+    <Container class="page-404-inner">
+      <p class="eyebrow rise" style="--d: 0ms" aria-hidden="true">404</p>
+      <h1 class="rise" style="--d: 60ms">page not found<span class="period">.</span></h1>
+      <p class="page-404-note rise" style="--d: 120ms">
+        the page you're looking for doesn't exist or has been moved.
+      </p>
+      <a class="back-link rise" style="--d: 180ms" href="/">
+        <span class="arrow" aria-hidden="true">←</span> back to home
+      </a>
     </Container>
   </div>
 </Layout>
@@ -37,51 +33,71 @@ import Layout from "@/layouts/Layout.astro";
     flex-direction: column;
   }
 
-  .page-404-container {
+  .page-404-inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    row-gap: var(--spacing-8);
-    padding-block: 7rem;
+    flex-grow: 1;
+    row-gap: var(--space-2xs);
+    padding-block: var(--page-block-start) var(--page-block-end);
   }
 
-  .page-404-code {
-    font-family: var(--font-display);
-    font-size: 8rem;
-    font-weight: 700;
-    line-height: var(--leading-none);
-    letter-spacing: -0.015em;
-    color: oklch(70.6% 0.078 302 / 0.35);
-    user-select: none;
+  .page-404-inner .eyebrow {
+    color: var(--color-primary);
   }
 
-  .page-404-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: var(--spacing-3);
-    text-align: center;
-  }
-
-  .page-404-body h1 {
+  h1 {
     font-family: var(--font-display);
     font-size: clamp(1.875rem, 4vw, 3rem);
-    font-weight: 600;
+    font-weight: 650;
     letter-spacing: -0.015em;
+    line-height: var(--leading-heading);
   }
 
-  .page-404-body p {
-    font-size: var(--text-lg);
-    max-width: 28rem;
+  .period {
+    position: relative;
+    display: inline-block;
+    color: var(--color-pink);
+  }
+
+  /* the glow lives on a layered copy of the period so its intensity
+     can breathe by animating opacity instead of repainting text-shadow */
+  .period::after {
+    content: ".";
+    position: absolute;
+    inset: 0;
+    color: var(--color-pink);
+    text-shadow:
+      0 0 18px oklch(70.6% 0.078 302 / 0.6),
+      0 0 36px oklch(83.9% 0.069 3 / 0.4);
+    pointer-events: none;
+    animation: glow-breathe 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-breathe {
+    from {
+      opacity: 0.75;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .period::after {
+      animation: none;
+    }
+  }
+
+  .page-404-note {
+    max-width: 32rem;
+    margin-top: var(--space-2xs);
     color: var(--color-muted-foreground);
   }
 
-  .page-404-back {
-    padding-top: var(--spacing-4);
-  }
-
   .back-link {
+    margin-top: var(--space-s);
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;

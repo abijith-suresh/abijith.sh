@@ -70,7 +70,25 @@ const routeMetadata = getStaticRouteMetadata("/about/");
 </Layout>
 
 <style>
+  /* readable measure inside the 64rem frame, left-aligned to the header */
   .page-intro p {
+    max-width: 38rem;
     color: var(--color-muted-foreground);
+  }
+
+  /* the lead paragraph carries a little more presence than the rest */
+  .page-intro p:first-child {
+    color: var(--color-text-muted);
+  }
+
+  .page-intro p:first-child::before {
+    content: "";
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.55rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+    vertical-align: 0.18em;
   }
 </style>

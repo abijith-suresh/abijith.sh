@@ -1,6 +1,6 @@
 ---
 interface Props {
-  /** Page title */
+  /** Page title — page chrome renders in the site's lowercase voice */
   title: string;
   /** Subtitle / description below the title */
   subtitle?: string;
@@ -12,7 +12,7 @@ const { title, subtitle, class: className } = Astro.props;
 ---
 
 <div class:list={["page-header", "rise", className]} style="--d: 0ms">
-  <h1>{title}</h1>
+  <h1>{title.toLowerCase()}<span class="period">.</span></h1>
   {subtitle && <p>{subtitle}</p>}
 </div>
 
@@ -33,5 +33,40 @@ const { title, subtitle, class: className } = Astro.props;
 
   .page-header p {
     color: var(--color-muted-foreground);
+  }
+
+  .period {
+    position: relative;
+    display: inline-block;
+    color: var(--color-pink);
+  }
+
+  /* the glow lives on a layered copy of the period so its intensity
+     can breathe by animating opacity instead of repainting text-shadow */
+  .period::after {
+    content: ".";
+    position: absolute;
+    inset: 0;
+    color: var(--color-pink);
+    text-shadow:
+      0 0 18px oklch(70.6% 0.078 302 / 0.6),
+      0 0 36px oklch(83.9% 0.069 3 / 0.4);
+    pointer-events: none;
+    animation: glow-breathe 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-breathe {
+    from {
+      opacity: 0.75;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .period::after {
+      animation: none;
+    }
   }
 </style>

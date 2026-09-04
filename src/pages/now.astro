@@ -66,7 +66,14 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 </Layout>
 
 <style>
+  /* the mono labels are the page's accent moment */
+  .page-now .eyebrow {
+    color: var(--color-primary);
+  }
+
+  /* readable measure inside the 64rem frame, left-aligned to the header */
   .page-now p {
+    max-width: 38rem;
     color: var(--color-muted-foreground);
   }
 </style>

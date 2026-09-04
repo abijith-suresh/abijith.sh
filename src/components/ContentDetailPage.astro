@@ -103,8 +103,14 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
     color: var(--color-muted-foreground);
   }
 
+  .article-meta span[aria-hidden="true"] {
+    color: var(--color-primary);
+  }
+
   .article-lede {
     margin-top: var(--space-2xs);
+    padding-left: 1.1rem;
+    border-left: 2px solid oklch(70.6% 0.078 302 / 0.4);
     font-size: var(--text-lg);
     line-height: var(--leading-text);
     max-width: 52ch;
@@ -124,5 +130,10 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
   .article-copyright {
     color: var(--color-muted-foreground);
     font-size: var(--text-xs);
+  }
+
+  /* the back link arrow points left — slide it left, not right */
+  .article-footer .all-link:hover .arrow {
+    transform: translateX(-3px);
   }
 </style>

@@ -17,8 +17,8 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
     {
       allProjects.length > 0 ? (
         <Container>
-          {projectsByYear.map(({ year, items: yearProjects }) => (
-            <div class="year-group">
+          {projectsByYear.map(({ year, items: yearProjects }, yearIndex) => (
+            <div class="year-group rise" style={`--d: ${80 + yearIndex * 70}ms`}>
               <span class="eyebrow">{year}</span>
               <ul class="archive">
                 {yearProjects.map((project) => (
@@ -51,9 +51,11 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
     padding-bottom: var(--content-gap);
   }
 
-  .eyebrow {
+  /* year labels are the page's accent moment — violet-tinted mono */
+  .year-group > .eyebrow {
     display: block;
     margin-bottom: var(--section-gap);
+    color: var(--color-primary);
   }
 
   .archive {

@@ -21,6 +21,27 @@ All notable changes to this site are documented in this file.
   staggered rise reveal on about and now, eyebrow labels on the now page, and a
   quieter 404 page with a violet-tinted display-font numeral and a muted back
   link with arrow nudge.
+- Translate the Dusk Aurora design intent to every inner page: glowing-period
+  lowercase page headers on about, now, writing, projects, and 404; the
+  homepage's 64rem frame and hero-to-section air; lowercase mono eyebrows with
+  violet accents on year labels and the now page's labels; a readable text
+  measure with a violet lede dot on about; violet meta separators and a lede
+  hairline on the article page; and a recomposed, left-aligned 404 with the
+  error code as a mono eyebrow.
+- Compose the media-card placeholder: a larger violet-tinted display initial
+  over a violet/pink radial wash instead of a dim letter on an empty panel.
+- Recolor generated OG images and site icons to the Dusk Aurora palette
+  (violet-tinted background, warm text, quiet hairlines).
+- Use the site's lowercase voice for dates: formatDate now returns
+  "february 11, 2026", flowing to card meta, the writing index, and article
+  bylines.
+
+### Fixed — 2026-09-04
+
+- Stack all media cards image-first on mobile; flip cards previously kept text
+  above the image while normal cards showed the image on top.
+- Slide the article page's "← all writing" arrow left on hover instead of
+  right.
 
 ### Removed — 2026-09-04
 

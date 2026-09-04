@@ -27,8 +27,8 @@ const findWritingShot = (id: string) =>
     {
       allPosts.length > 0 ? (
         <Container>
-          {postsByYear.map(({ year, items: yearPosts }) => (
-            <div class="year-group">
+          {postsByYear.map(({ year, items: yearPosts }, yearIndex) => (
+            <div class="year-group rise" style={`--d: ${80 + yearIndex * 70}ms`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
                 {yearPosts.map((post, index) => (
@@ -60,8 +60,10 @@ const findWritingShot = (id: string) =>
     padding-bottom: var(--content-gap);
   }
 
-  .eyebrow {
+  /* year labels are the page's accent moment — violet-tinted mono */
+  .year-group > .eyebrow {
     display: block;
     margin-bottom: var(--section-gap);
+    color: var(--color-primary);
   }
 </style>
