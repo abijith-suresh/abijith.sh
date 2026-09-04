@@ -52,8 +52,8 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#1a1823",
-          color: "#e0ddef",
+          backgroundColor: "#141414",
+          color: "#e8e8e8",
           padding: 72,
           fontFamily: "IBM Plex Sans",
         },
@@ -73,7 +73,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                     style: {
                       width: "100%",
                       height: 1,
-                      backgroundColor: "#312f39",
+                      backgroundColor: "#2c2c2c",
                     },
                   },
                 },
@@ -90,7 +90,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                         type: "div",
                         props: {
                           style: {
-                            color: "#a09aad",
+                            color: "#a3a3a3",
                             fontFamily: "IBM Plex Mono",
                             fontSize: 24,
                             fontWeight: 500,
@@ -128,7 +128,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                             display: "flex",
                             flexDirection: "column",
                             gap: 8,
-                            color: "#a09aad",
+                            color: "#a3a3a3",
                             fontSize: 32,
                             lineHeight: 1.25,
                           },
@@ -169,7 +169,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                     style: {
                       width: "100%",
                       height: 1,
-                      backgroundColor: "#312f39",
+                      backgroundColor: "#2c2c2c",
                     },
                   },
                 },
@@ -192,7 +192,7 @@ async function renderIconSvg(size: number): Promise<string> {
 
   // "as." monogram — canonical Dusk Aurora geometry: full-bleed tile with a
   // 16% radius and no frame, glyph at 0.52*size optically lifted 6% of its
-  // font size. Colors: bg #1a1823, glyph #e0ddef, period #f2b8c6
+  // font size. Colors: bg #141414, glyph #e8e8e8, period #f2b8c6
   // (oklch(83.9% 0.069 3), the --color-pink token).
   const glyphSize = size * 0.52;
   return satori(
@@ -205,7 +205,7 @@ async function renderIconSvg(size: number): Promise<string> {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#1a1823",
+          backgroundColor: "#141414",
           borderRadius: size * 0.16,
         },
         children: [
@@ -213,7 +213,7 @@ async function renderIconSvg(size: number): Promise<string> {
             type: "div",
             props: {
               style: {
-                color: "#e0ddef",
+                color: "#e8e8e8",
                 fontFamily: "IBM Plex Sans",
                 fontSize: glyphSize,
                 fontWeight: 500,

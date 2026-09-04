@@ -1,6 +1,6 @@
 ---
-title: "Why I Built My Own Website"
-description: "On the value of owning your own corner of the internet, learning in public, and the satisfaction of building something for yourself."
+title: "why i built my own website"
+description: "on the value of owning your own corner of the internet, learning in public, and the satisfaction of building something for yourself."
 publishedDate: 2026-02-11
 ---
 

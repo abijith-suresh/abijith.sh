@@ -42,7 +42,7 @@ const resolvedJsonLd = jsonLd ?? {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#1a1823" />
+    <meta name="theme-color" content="#141414" />
     <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -67,7 +67,6 @@ const resolvedJsonLd = jsonLd ?? {
     <slot name="head" />
   </head>
   <body style="display:flex;height:fit-content;min-height:100vh;flex-direction:column">
-    <div class="aurora-glow" aria-hidden="true" transition:persist></div>
     <a
       href="#main-content"
       class="skip-link"
@@ -108,30 +107,6 @@ const resolvedJsonLd = jsonLd ?? {
   </body>
 </html>
 <style>
-  .aurora-glow {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-glow);
-    pointer-events: none;
-    background: radial-gradient(
-      ellipse 62% 46% at 50% 22%,
-      oklch(from var(--color-primary) l c h / 0.07),
-      transparent 70%
-    );
-    animation: aurora-breathe var(--duration-breathe) ease-in-out infinite alternate;
-  }
-
-  @keyframes aurora-breathe {
-    from {
-      opacity: 0.8;
-      filter: hue-rotate(-6deg);
-    }
-    to {
-      opacity: 1;
-      filter: hue-rotate(6deg);
-    }
-  }
-
   .site-topbar,
   .site-footer {
     position: relative;
@@ -241,11 +216,5 @@ const resolvedJsonLd = jsonLd ?? {
   main {
     position: relative;
     z-index: var(--z-content);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .aurora-glow {
-      animation: none;
-    }
   }
 </style>

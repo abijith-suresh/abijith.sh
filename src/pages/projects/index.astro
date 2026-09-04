@@ -30,17 +30,15 @@ const findProjectShot = (id: string) =>
             <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
-                {yearProjects.map((project, index) => (
+                {yearProjects.map((project) => (
                   <MediaCard
-                    flip={index % 2 === 1}
                     external
                     href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
                     title={project.data.title}
                     description={project.data.description}
                     placeholder={project.data.title.charAt(0)}
                     image={findProjectShot(project.id)}
-                    browser={project.data.url ? new URL(project.data.url).hostname : undefined}
-                    footLabel="visit"
+                    accent={project.data.accent}
                   />
                 ))}
               </div>

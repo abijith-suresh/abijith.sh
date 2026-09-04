@@ -8,7 +8,6 @@ import Layout from "@/layouts/Layout.astro";
 import { getAllWriting } from "@/lib/writing";
 import { groupByYear } from "@/lib/group-by-year";
 import { getStaticRouteMetadata } from "@/lib/route-metadata";
-import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
 
 const allPosts = await getAllWriting();
 const postsByYear = groupByYear(allPosts, (post) => post.data.publishedDate);
@@ -31,16 +30,13 @@ const findWritingShot = (id: string) =>
             <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
-                {yearPosts.map((post, index) => (
+                {yearPosts.map((post) => (
                   <MediaCard
-                    flip={index % 2 === 1}
                     href={`/writing/${post.id}/`}
                     title={post.data.title}
                     description={post.data.description}
-                    meta={`${formatDate(post.data.publishedDate)} · ${formatReadingTime(calculateReadingTime(post.body ?? ""))}`}
                     image={findWritingShot(post.id)}
                     placeholder={post.data.title.charAt(0)}
-                    footLabel="read"
                   />
                 ))}
               </div>

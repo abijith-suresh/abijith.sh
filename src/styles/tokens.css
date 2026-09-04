@@ -1,4 +1,5 @@
-/* Design tokens — Dusk Aurora.
+/* Design tokens — Dusk Aurora v2 (flat).
+   Neutral hueless surfaces; violet primary + pink period are the only color.
    Shared by critical inline CSS and the main stylesheet. */
 
 :root {
@@ -9,24 +10,24 @@
     "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
     "DejaVu Sans Mono", monospace;
 
-  /* Color palette — Dusk Aurora, dark only, OKLCH */
-  --color-bg: oklch(21.7% 0.0215 293);
-  --color-card: oklch(25.4% 0.03 293);
-  --color-text: oklch(90.5% 0.0245 294);
-  --color-ink: oklch(23% 0.035 296);
+  /* Color palette — dark neutrals, OKLCH, zero chroma */
+  --color-bg: oklch(20.8% 0 0);
+  --color-card: oklch(24.5% 0 0);
+  --color-text: oklch(92% 0 0);
+  --color-ink: oklch(26% 0 0);
   --color-primary: oklch(70.6% 0.078 302);
   --color-pink: oklch(83.9% 0.069 3);
 
   /* Semantic tokens */
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
-  --color-muted-foreground: oklch(69.7% 0.028 300);
+  --color-muted-foreground: oklch(66% 0 0);
 
   /* Surface tokens */
   --color-border: oklch(100% 0 0 / 0.1);
   --color-surface: oklch(100% 0 0 / 0.06);
   --color-surface-strong: oklch(100% 0 0 / 0.08);
-  --color-text-muted: oklch(90.5% 0.0245 294 / 0.8);
+  --color-text-muted: oklch(92% 0 0 / 0.8);
 
   /* Signature glow — the pink period's breathing halo */
   --glow-primary: oklch(from var(--color-primary) l c h / 0.6);
@@ -119,7 +120,6 @@
   --duration-breathe: 22s;
 
   /* Layering */
-  --z-glow: 0;
   --z-content: 1;
   --z-skip-link: 50;
 

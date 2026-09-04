@@ -1,6 +1,7 @@
 ---
-title: "Interleaf"
-description: "Client-side PDF manipulation tool - merge, split, reorder, rotate, and more"
+title: "interleaf"
+description: "client-side pdf manipulation tool - merge, split, reorder, rotate, and more"
+accent: "#ff0000"
 url: "https://interleaf-snowy.vercel.app"
 publishedDate: 2026-02-16
 ---

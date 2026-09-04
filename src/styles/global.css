@@ -3,8 +3,8 @@
 @import "./base.css";
 
 /* ==========================================================================
-   Dusk Aurora Design System
-   Dark violet, rounded, one glowing accent. Lift + ring, never shadows.
+   Dusk Aurora Design System — v2 flat
+   Neutral dark surfaces, rounded, one glowing accent. Lift + ring, never shadows.
    ========================================================================== */
 
 a {
@@ -156,8 +156,9 @@ summary {
   transform: translateX(3px);
 }
 
-/* ── Media card — horizontal, image one side, content the other,
-      alternating. The one card pattern for projects and writing. ────── */
+/* ── Media card — addi.lol anatomy: solid accent panel left,
+      title + description right. The one card pattern for projects
+      and writing; uniform, no zig-zag. ────────────────────────── */
 .media-card {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
@@ -171,21 +172,14 @@ summary {
     border-color var(--transition-lift);
 }
 
-.media-card--flip {
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-}
-
 .media-card-media {
   position: relative;
   display: block;
   min-height: 11rem;
   height: 100%;
   overflow: hidden;
-  background: var(--color-ink);
-}
-
-.media-card--flip .media-card-media {
-  order: 2;
+  /* solid per-project accent when provided, neutral card tone otherwise */
+  background: var(--panel-accent, var(--color-card));
 }
 
 .media-card:hover {
@@ -193,12 +187,19 @@ summary {
   border-color: var(--ring-hover);
 }
 
+/* the screenshot floats offset toward the top-left and bleeds off the
+   bottom-right — its overflowing edges are cut by the panel */
 .media-card-img {
   position: absolute;
-  inset: 0;
+  top: 1rem;
+  left: 1rem;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
+  border-radius: 0.75rem 0 0 0;
+  outline: 1px solid var(--color-border);
+  outline-offset: -1px;
   transition: filter var(--transition-lift);
 }
 
@@ -216,92 +217,8 @@ summary {
   font-weight: 700;
   font-size: 4rem;
   letter-spacing: var(--letter-spacing-display);
-  color: oklch(from var(--color-primary) l c h / 0.55);
-  background:
-    radial-gradient(
-      130% 110% at 22% 0%,
-      oklch(from var(--color-primary) l c h / 0.16),
-      transparent 58%
-    ),
-    radial-gradient(
-      110% 120% at 88% 115%,
-      oklch(from var(--color-pink) l c h / 0.08),
-      transparent 60%
-    ),
-    var(--color-ink);
+  color: oklch(100% 0 0 / 0.85);
 }
-
-/* ── Mini browser window — when a project card has both a screenshot and a
-      display domain, the panel becomes a tiny browser: dots + URL pill above
-      a rounded-top viewport. The violet/pink wash stays visible around the
-      window; hairlines do all the defining (no shadows). ────────────── */
-.media-card-browser {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  /* width-relative so the window inset scales with the panel */
-  padding: 8% 6%;
-  background:
-    radial-gradient(
-      130% 110% at 22% 0%,
-      oklch(from var(--color-primary) l c h / 0.16),
-      transparent 58%
-    ),
-    radial-gradient(
-      110% 120% at 88% 115%,
-      oklch(from var(--color-pink) l c h / 0.08),
-      transparent 60%
-    ),
-    var(--color-ink);
-}
-
-.media-card-chrome {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.media-card-dots {
-  display: inline-flex;
-  flex-shrink: 0;
-  gap: 4px;
-}
-
-.media-card-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: var(--radius-pill);
-  background: oklch(100% 0 0 / 0.25);
-}
-
-.media-card-url {
-  min-width: 0;
-  overflow: hidden;
-  padding: 2px 10px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  background: var(--color-surface);
-  color: var(--color-muted-foreground);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  line-height: 1.4;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.media-card-viewport {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-
-/* .media-card-img is absolute + object-cover, so it fills the viewport
-   without extra rules — the hover brightness lift carries over too */
 
 .media-card-body {
   display: flex;
@@ -309,14 +226,8 @@ summary {
   padding: clamp(1.1rem, 2.5vw, 1.5rem);
 }
 
-.media-card-meta {
-  color: var(--color-muted-foreground);
-  font-size: 0.8rem;
-  letter-spacing: 0.02em;
-}
-
 .media-card-title {
-  margin: 0.35rem 0 0.5rem;
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 650;
   font-size: 1.2rem;
@@ -324,49 +235,19 @@ summary {
   color: var(--color-text);
 }
 
-.media-card-meta + .media-card-title {
-  margin-top: 0.3rem;
-}
-
 .media-card-desc {
+  margin-top: 0.5rem;
   color: var(--color-muted-foreground);
   font-size: 0.925rem;
   line-height: 1.6;
 }
 
-.media-card-foot {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--gap-icon);
-  margin-top: auto;
-  padding-top: 1rem;
-  color: var(--color-muted-foreground);
-  font-size: 0.8rem;
-  transition: color var(--transition-lift);
-}
-
-.media-card:hover .media-card-foot {
-  color: var(--color-primary);
-}
-
-/* subtle arrow movement — horizontal for →, diagonal for ↗ */
-.media-card:hover .media-card-foot .arrow {
-  transform: translateX(3px);
-}
-
-.media-card--ext:hover .media-card-foot .arrow {
-  transform: translate(2px, -2px);
-}
-
 @media (max-width: 40rem) {
-  .media-card,
-  .media-card--flip {
+  .media-card {
     grid-template-columns: 1fr;
   }
 
-  /* both card variants stack image-first on mobile — this (0,2,0) rule sits
-     after the flip rule above, so it wins the cascade for flip cards too */
-  .media-card .media-card-media {
+  .media-card-media {
     order: -1;
     min-height: 0;
     height: auto;
@@ -376,16 +257,6 @@ summary {
   .media-card-ph {
     position: absolute;
     inset: 0;
-  }
-
-  /* tighter window inset on the 16/9 mobile panel; the pill truncates via
-     ellipsis and the dots keep the chrome legible at any width */
-  .media-card-browser {
-    padding: 6% 5%;
-  }
-
-  .media-card-url {
-    font-size: 0.75rem;
   }
 }
 

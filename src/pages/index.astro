@@ -6,7 +6,6 @@ import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getAllProjects } from "@/lib/projects";
 import { getAllWriting } from "@/lib/writing";
-import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
 
 const FEATURED_SLUGS = ["interleaf", "reshrimp", "tailory"];
 
@@ -104,17 +103,15 @@ const socials = SITE.socialLinks.map((social) => ({
       </div>
       <div class="stack">
         {
-          featured.map((project, index) => (
+          featured.map((project) => (
             <MediaCard
-              flip={index % 2 === 1}
               external
               href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
               title={project.data.title}
               description={project.data.description}
               placeholder={project.data.title.charAt(0)}
               image={findProjectShot(project.id)}
-              browser={project.data.url ? new URL(project.data.url).hostname : undefined}
-              footLabel="visit"
+              accent={project.data.accent}
             />
           ))
         }
@@ -130,16 +127,13 @@ const socials = SITE.socialLinks.map((social) => ({
       </div>
       <div class="stack">
         {
-          latestPosts.map((post, index) => (
+          latestPosts.map((post) => (
             <MediaCard
-              flip={index % 2 === 1}
               href={`/writing/${post.id}/`}
               title={post.data.title}
               description={post.data.description}
-              meta={`${formatDate(post.data.publishedDate)} · ${formatReadingTime(calculateReadingTime(post.body ?? ""))}`}
               image={findWritingShot(post.id)}
               placeholder={post.data.title.charAt(0)}
-              footLabel="read"
             />
           ))
         }
