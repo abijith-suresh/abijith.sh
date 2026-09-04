@@ -1,6 +1,8 @@
 ---
+import type { ImageMetadata } from "astro";
 import Container from "@/components/ui/Container.astro";
 import EmptyState from "@/components/ui/EmptyState.astro";
+import MediaCard from "@/components/MediaCard.astro";
 import PageShell from "@/components/ui/PageShell.astro";
 import Layout from "@/layouts/Layout.astro";
 import { groupByYear } from "@/lib/group-by-year";
@@ -10,6 +12,13 @@ import { getStaticRouteMetadata } from "@/lib/route-metadata";
 const allProjects = await getAllProjects();
 const projectsByYear = groupByYear(allProjects, (project) => project.data.publishedDate);
 const routeMetadata = getStaticRouteMetadata("/projects/");
+
+const projectShots = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/projects/*.{webp,png,jpg,jpeg,avif}",
+  { eager: true },
+);
+const findProjectShot = (id: string) =>
+  Object.entries(projectShots).find(([path]) => path.includes(`/${id}.`))?.[1].default;
 ---
 
 <Layout>
@@ -20,22 +29,20 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
           {projectsByYear.map(({ year, items: yearProjects }, yearIndex) => (
             <div class="year-group rise" style={`--d: ${80 + yearIndex * 70}ms`}>
               <span class="eyebrow">{year}</span>
-              <ul class="archive">
-                {yearProjects.map((project) => (
-                  <li>
-                    <a
-                      class="archive-row"
-                      href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="archive-title">{project.data.title}</span>
-                      <span class="archive-desc">{project.data.description}</span>
-                      <span class="archive-arrow" aria-hidden="true">↗</span>
-                    </a>
-                  </li>
+              <div class="stack">
+                {yearProjects.map((project, index) => (
+                  <MediaCard
+                    flip={index % 2 === 1}
+                    external
+                    href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
+                    title={project.data.title}
+                    description={project.data.description}
+                    placeholder={project.data.title.charAt(0)}
+                    image={findProjectShot(project.id)}
+                    footLabel="visit"
+                  />
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </Container>
@@ -56,73 +63,5 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
     display: block;
     margin-bottom: var(--section-gap);
     color: var(--color-primary);
-  }
-
-  .archive {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .archive li + li {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .archive-row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.4rem 1rem;
-    padding: 0.9rem 0.25rem;
-    border-radius: 0.5rem;
-    transition:
-      background var(--transition-base),
-      transform var(--transition-lift);
-  }
-
-  .archive-row:hover {
-    background: var(--color-surface);
-  }
-
-  .archive-title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: var(--color-text);
-    white-space: nowrap;
-  }
-
-  .archive-desc {
-    flex: 1;
-    min-width: 12rem;
-    color: var(--color-muted-foreground);
-    font-size: 0.925rem;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-  }
-
-  .archive-arrow {
-    color: var(--color-muted-foreground);
-    transition:
-      color var(--transition-base),
-      transform var(--transition-lift);
-  }
-
-  .archive-row:hover .archive-arrow {
-    color: var(--color-primary);
-    transform: translate(2px, -2px);
-  }
-
-  @media (max-width: 40rem) {
-    .archive-row {
-      flex-wrap: wrap;
-    }
-
-    .archive-desc {
-      flex-basis: 100%;
-      -webkit-line-clamp: 2;
-    }
   }
 </style>

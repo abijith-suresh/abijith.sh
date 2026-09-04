@@ -39,7 +39,6 @@ const findWritingShot = (id: string) =>
                     description={post.data.description}
                     meta={`${formatDate(post.data.publishedDate)} · ${formatReadingTime(calculateReadingTime(post.body ?? ""))}`}
                     image={findWritingShot(post.id)}
-                    imageSrc={`/og/writing/${post.id}.png`}
                     placeholder={post.data.title.charAt(0)}
                     footLabel="read"
                   />

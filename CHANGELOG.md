@@ -35,6 +35,14 @@ All notable changes to this site are documented in this file.
 - Use the site's lowercase voice for dates: formatDate now returns
   "february 11, 2026", flowing to card meta, the writing index, and article
   bylines.
+- Tighten the inner-page header spacing so title, subtitle, and content read
+  as one unit (clamp(2.25rem, 5vh, 3.5rem) instead of the hero-scale gap);
+  the landing page keeps its own rhythm.
+- Stop using generated OG images as writing card covers on the homepage and
+  writing index — cards now show the violet placeholder initial unless a real
+  image exists in src/assets/writing/. OG images still back social meta tags.
+- Rebuild the projects index as the same alternating MediaCard stack used on
+  the homepage, keeping the violet mono year eyebrows and year grouping.
 
 ### Fixed — 2026-09-04
 
