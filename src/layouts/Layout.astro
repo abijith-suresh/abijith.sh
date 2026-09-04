@@ -5,6 +5,7 @@ import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import type { SEOProps } from "@/components/seo/SEO.astro";
 import type { JsonLdProps } from "@/components/seo/JsonLd.astro";
+import { SITE } from "@/consts";
 import baseCss from "@/styles/base.css?raw";
 import tokensCss from "@/styles/tokens.css?raw";
 import "@/styles/global.css";
@@ -87,7 +88,21 @@ const resolvedJsonLd = jsonLd ?? {
     </main>
     <footer class="site-footer">
       <div class="topbar-inner footer-inner">
-        <p>© 2026 abijith s</p>
+        <div class="footer-id">
+          <p>© 2026 abijith s</p>
+          <nav class="footer-socials" aria-label="Social">
+            {
+              SITE.socialLinks.map((social) => (
+                <a
+                  href={social.href}
+                  {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {social.label.toLowerCase()}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
         <p>kochi, kerala</p>
       </div>
     </footer>
@@ -97,14 +112,14 @@ const resolvedJsonLd = jsonLd ?? {
   .aurora-glow {
     position: fixed;
     inset: 0;
-    z-index: 0;
+    z-index: var(--z-glow);
     pointer-events: none;
     background: radial-gradient(
       ellipse 62% 46% at 50% 22%,
-      oklch(70.6% 0.078 302 / 0.07),
+      oklch(from var(--color-primary) l c h / 0.07),
       transparent 70%
     );
-    animation: aurora-breathe 22s ease-in-out infinite alternate;
+    animation: aurora-breathe var(--duration-breathe) ease-in-out infinite alternate;
   }
 
   @keyframes aurora-breathe {
@@ -121,14 +136,14 @@ const resolvedJsonLd = jsonLd ?? {
   .site-topbar,
   .site-footer {
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
     width: 100%;
   }
 
   .topbar-inner {
     max-width: 64rem;
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    padding-inline: var(--page-inline);
   }
 
   .site-topbar {
@@ -150,7 +165,7 @@ const resolvedJsonLd = jsonLd ?? {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.05rem;
-    letter-spacing: -0.01em;
+    letter-spacing: var(--letter-spacing-tight);
     color: var(--color-text);
     text-decoration: none;
     transition: color var(--transition-base);
@@ -163,12 +178,12 @@ const resolvedJsonLd = jsonLd ?? {
   .topnav {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 1.4rem;
+    gap: var(--gap-wrap);
   }
 
   .topnav a {
     color: var(--color-muted-foreground);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     transition: color var(--transition-base);
   }
 
@@ -185,14 +200,36 @@ const resolvedJsonLd = jsonLd ?? {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
+    gap: var(--gap-wrap);
     padding-block: 1.5rem 4rem;
   }
 
   .footer-inner p {
     margin: 0;
     color: var(--color-muted-foreground);
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
+  }
+
+  .footer-id {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-wrap);
+  }
+
+  .footer-socials a {
+    color: var(--color-muted-foreground);
+    font-size: var(--text-sm);
+    transition: color var(--transition-base);
+  }
+
+  .footer-socials a:hover {
+    color: var(--color-text);
   }
 
   .skip-link {
@@ -201,7 +238,7 @@ const resolvedJsonLd = jsonLd ?? {
     overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
   }
   .skip-link:focus {
-    position: fixed; top: var(--spacing-4); left: var(--spacing-4); z-index: 50;
+    position: fixed; top: var(--spacing-4); left: var(--spacing-4); z-index: var(--z-skip-link);
     width: auto; height: auto; padding: var(--spacing-4) var(--spacing-2); margin: 0;
     overflow: visible; clip: auto; white-space: normal;
     background-color: var(--color-primary); color: var(--color-ink); font-weight: 500;
@@ -209,7 +246,7 @@ const resolvedJsonLd = jsonLd ?? {
 
   main {
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
   }
 
   @media (prefers-reduced-motion: reduce) {

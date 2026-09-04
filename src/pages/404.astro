@@ -1,11 +1,9 @@
 ---
 import Container from "@/components/ui/Container.astro";
-import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
-  title={`404 - Page Not Found | ${SITE.title}`}
   description="The page you're looking for doesn't exist."
   noindex={true}
   jsonLd={{ type: "website" }}
@@ -51,43 +49,8 @@ import Layout from "@/layouts/Layout.astro";
     font-family: var(--font-display);
     font-size: clamp(1.875rem, 4vw, 3rem);
     font-weight: 650;
-    letter-spacing: -0.015em;
+    letter-spacing: var(--letter-spacing-heading);
     line-height: var(--leading-heading);
-  }
-
-  .period {
-    position: relative;
-    display: inline-block;
-    color: var(--color-pink);
-  }
-
-  /* the glow lives on a layered copy of the period so its intensity
-     can breathe by animating opacity instead of repainting text-shadow */
-  .period::after {
-    content: ".";
-    position: absolute;
-    inset: 0;
-    color: var(--color-pink);
-    text-shadow:
-      0 0 18px oklch(70.6% 0.078 302 / 0.6),
-      0 0 36px oklch(83.9% 0.069 3 / 0.4);
-    pointer-events: none;
-    animation: glow-breathe 22s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow-breathe {
-    from {
-      opacity: 0.75;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .period::after {
-      animation: none;
-    }
   }
 
   .page-404-note {
@@ -100,7 +63,7 @@ import Layout from "@/layouts/Layout.astro";
     margin-top: var(--space-s);
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: var(--gap-icon);
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--color-muted-foreground);

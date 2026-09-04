@@ -12,7 +12,7 @@ a {
 }
 
 ::selection {
-  background: oklch(70.6% 0.078 302 / 0.92);
+  background: oklch(from var(--color-primary) l c h / 0.92);
   color: var(--color-ink);
 }
 
@@ -85,13 +85,44 @@ summary {
   animation-delay: var(--d, 0ms);
 }
 
+/* ── Signature period — pink dot with a breathing glow.
+      Shared by the hero, page headers, and the 404. ─────────────────── */
+.period {
+  position: relative;
+  display: inline-block;
+  color: var(--color-pink);
+}
+
+/* the glow lives on a layered copy of the period so its intensity
+   can breathe by animating opacity instead of repainting text-shadow */
+.period::after {
+  content: ".";
+  position: absolute;
+  inset: 0;
+  color: var(--color-pink);
+  text-shadow:
+    0 0 18px var(--glow-primary),
+    0 0 36px var(--glow-pink);
+  pointer-events: none;
+  animation: glow-breathe var(--duration-breathe) ease-in-out infinite alternate;
+}
+
+@keyframes glow-breathe {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ── Section head — title left, "all … →" top right ────────────────── */
 .section-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: var(--gap-wrap);
   margin-bottom: 1.4rem;
 }
 
@@ -100,15 +131,15 @@ summary {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 3vw, 1.75rem);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .all-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: var(--gap-icon);
   color: var(--color-muted-foreground);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   transition: color var(--transition-base);
 }
 
@@ -118,7 +149,7 @@ summary {
 
 .arrow {
   display: inline-block;
-  transition: transform 200ms ease;
+  transition: transform var(--transition-lift);
 }
 
 .all-link:hover .arrow {
@@ -132,7 +163,7 @@ summary {
   grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
   background: var(--color-card);
   border: 1px solid var(--ring);
-  border-radius: 1rem;
+  border-radius: var(--radius-card);
   overflow: hidden;
   text-decoration: none;
   transition:
@@ -150,7 +181,7 @@ summary {
   min-height: 11rem;
   height: 100%;
   overflow: hidden;
-  background: oklch(23% 0.025 296);
+  background: var(--color-ink);
 }
 
 .media-card--flip .media-card-media {
@@ -168,7 +199,7 @@ summary {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: filter 220ms ease;
+  transition: filter var(--transition-lift);
 }
 
 .media-card:hover .media-card-img {
@@ -184,12 +215,20 @@ summary {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 4rem;
-  letter-spacing: -0.02em;
-  color: oklch(70.6% 0.078 302 / 0.55);
+  letter-spacing: var(--letter-spacing-display);
+  color: oklch(from var(--color-primary) l c h / 0.55);
   background:
-    radial-gradient(130% 110% at 22% 0%, oklch(70.6% 0.078 302 / 0.16), transparent 58%),
-    radial-gradient(110% 120% at 88% 115%, oklch(83.9% 0.069 3 / 0.08), transparent 60%),
-    oklch(23% 0.025 296);
+    radial-gradient(
+      130% 110% at 22% 0%,
+      oklch(from var(--color-primary) l c h / 0.16),
+      transparent 58%
+    ),
+    radial-gradient(
+      110% 120% at 88% 115%,
+      oklch(from var(--color-pink) l c h / 0.08),
+      transparent 60%
+    ),
+    var(--color-ink);
 }
 
 .media-card-body {
@@ -226,7 +265,7 @@ summary {
 .media-card-foot {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: var(--gap-icon);
   margin-top: auto;
   padding-top: 1rem;
   color: var(--color-muted-foreground);
@@ -519,6 +558,10 @@ summary {
 
 @media (prefers-reduced-motion: reduce) {
   .rise {
+    animation: none;
+  }
+
+  .period::after {
     animation: none;
   }
 }

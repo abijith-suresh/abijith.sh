@@ -28,6 +28,10 @@
   --color-surface-strong: oklch(100% 0 0 / 0.08);
   --color-text-muted: oklch(90.5% 0.0245 294 / 0.8);
 
+  /* Signature glow — the pink period's breathing halo */
+  --glow-primary: oklch(from var(--color-primary) l c h / 0.6);
+  --glow-pink: oklch(from var(--color-pink) l c h / 0.4);
+
   /* Rings — the card hover language: lift + ring brighten, no shadows */
   --ring: oklch(100% 0 0 / 0.08);
   --ring-hover: oklch(100% 0 0 / 0.15);
@@ -67,8 +71,10 @@
   --space-xl: clamp(3rem, 2.8613rem + 0.6764vw, 3.375rem);
   --space-2xl: clamp(4rem, 3.8151rem + 0.9019vw, 4.5rem);
 
-  /* Semantic rhythm */
-  --page-inline: var(--space-m);
+  /* Semantic rhythm
+     --page-inline is the site gutter shared by topbar, footer, page
+     containers, and the article detail page. */
+  --page-inline: clamp(1.25rem, 5vw, 2.5rem);
   --page-block-start: clamp(4rem, 3.2rem + 3vw, 6.25rem);
   --page-block-end: var(--space-2xl);
   --title-subtitle-gap: var(--space-2xs);
@@ -89,9 +95,29 @@
   /* Border tokens */
   --border-width: 1px;
 
+  /* Radius tokens */
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+
+  /* Micro-gaps — icon-to-text pairs and wrapping flex rows */
+  --gap-icon: 0.4rem;
+  --gap-wrap: 0.5rem 1.5rem;
+
+  /* Display tracking — tighter as type gets larger */
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-heading: -0.015em;
+  --letter-spacing-display: -0.02em;
+
   /* Motion tokens */
   --transition-base: 150ms ease;
   --transition-lift: 200ms ease;
+  --duration-breathe: 22s;
   --letter-spacing-uppercase: 0.04em;
+
+  /* Layering */
+  --z-glow: 0;
+  --z-content: 1;
+  --z-skip-link: 50;
+
   color-scheme: dark;
 }

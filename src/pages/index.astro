@@ -41,12 +41,7 @@ const socials = [
 ];
 ---
 
-<Layout
-  title={SITE.title}
-  description={SITE.description}
-  type="website"
-  jsonLd={{ type: "website" }}
->
+<Layout description={SITE.description} type="website" jsonLd={{ type: "website" }}>
   <div class="page">
     <section class="hero">
       <h1 class="rise" style="--d: 0ms">
@@ -176,43 +171,8 @@ const socials = [
     font-weight: 700;
     font-size: var(--hero-size);
     line-height: 1.12;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--letter-spacing-display);
     text-wrap: balance;
-  }
-
-  .period {
-    position: relative;
-    display: inline-block;
-    color: var(--color-pink);
-  }
-
-  /* the glow lives on a layered copy of the period so its intensity
-     can breathe by animating opacity instead of repainting text-shadow */
-  .period::after {
-    content: ".";
-    position: absolute;
-    inset: 0;
-    color: var(--color-pink);
-    text-shadow:
-      0 0 18px oklch(70.6% 0.078 302 / 0.6),
-      0 0 36px oklch(83.9% 0.069 3 / 0.4);
-    pointer-events: none;
-    animation: glow-breathe 22s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow-breathe {
-    from {
-      opacity: 0.75;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .period::after {
-      animation: none;
-    }
   }
 
   .bio {
@@ -236,12 +196,12 @@ const socials = [
   .social {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: var(--gap-icon);
     padding: 0.45rem 0.85rem;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: var(--color-surface);
     color: var(--color-muted-foreground);
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     transition:
       background var(--transition-base),
       color var(--transition-base);

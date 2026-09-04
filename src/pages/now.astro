@@ -10,7 +10,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 <Layout>
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
     <Container class="section-flow page-now rise" style="--d: 80ms">
-      <p class="eyebrow">Last updated: August 2026</p>
+      <p>last updated: august 2026</p>
 
       <p>
         Still at <a
@@ -22,7 +22,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
       </p>
 
       <p>
-        <span class="eyebrow">Building —</span> <a
+        building — <a
           href="https://github.com/abijith-suresh/interleaf"
           class="text-link"
           target="_blank"
@@ -31,7 +31,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
       </p>
 
       <p>
-        <span class="eyebrow">Playing —</span> <a
+        playing — <a
           href="https://store.steampowered.com/app/2221490/Tom_Clancys_The_Division_2/"
           class="text-link"
           target="_blank"
@@ -45,7 +45,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
       </p>
 
       <p>
-        <span class="eyebrow">Watching —</span> <a
+        watching — <a
           href="https://anilist.co/anime/161645/Kusuriya-no-Hitorigoto/"
           class="text-link"
           target="_blank"
@@ -54,7 +54,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
       </p>
 
       <p>
-        <span class="eyebrow">Reading —</span> <a
+        reading — <a
           href="https://www.goodreads.com/book/show/19776547-essentialism"
           class="text-link"
           target="_blank"
@@ -66,11 +66,6 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 </Layout>
 
 <style>
-  /* the mono labels are the page's accent moment */
-  .page-now .eyebrow {
-    color: var(--color-primary);
-  }
-
   /* readable measure inside the 64rem frame, left-aligned to the header */
   .page-now p {
     max-width: 38rem;

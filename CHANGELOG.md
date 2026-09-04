@@ -4,6 +4,14 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-09-04
+
+- Add the owner's social links (github, x, linkedin, bluesky, rss) to the site
+  footer as quiet lowercase text links, stacked under the copyright line.
+- Tokenize the design system further: glow color/duration tokens, display
+  tracking tokens, radius, micro-gap, and z-index tokens, with the signature
+  period glow extracted into one shared `.period` pattern.
+
 ### Changed — 2026-09-04
 
 - Redesign the site to the Dusk Aurora system: dark violet palette, Bricolage
@@ -30,6 +38,15 @@ All notable changes to this site are documented in this file.
   error code as a mono eyebrow.
 - Compose the media-card placeholder: a larger violet-tinted display initial
   over a violet/pink radial wash instead of a dim letter on an empty panel.
+- Restyle the now page's labels (building/playing/watching/reading, last
+  updated) from the mono eyebrow treatment to plain lowercase muted text in
+  the body font; year labels elsewhere keep the deliberate mono eyebrow.
+- Shorten the projects subtitle to "Things I've built."
+- Make every browser title lowercase in the "<page> · abijith.sh" format
+  (home, writing, projects, about, now, 404); article pages keep the post
+  title as authored over a lowercase "· writing · abijith.sh" suffix.
+- Redraw the generated favicon as a lowercase "as." monogram with a pink
+  signature period on the rounded-square ink tile, sized for 16px legibility.
 - Recolor generated OG images and site icons to the Dusk Aurora palette
   (violet-tinted background, warm text, quiet hairlines).
 - Use the site's lowercase voice for dates: formatDate now returns

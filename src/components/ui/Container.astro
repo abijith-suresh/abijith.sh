@@ -7,6 +7,6 @@ interface Props {
 const { class: className, style: styleStr } = Astro.props;
 ---
 
-<div style={`margin-inline:auto; width:100%; max-width:64rem; padding-inline:clamp(1.25rem, 5vw, 2.5rem);${styleStr ? ` ${styleStr}` : ''}`} class={className}>
+<div style={`margin-inline:auto; width:100%; max-width:64rem; padding-inline:var(--page-inline);${styleStr ? ` ${styleStr}` : ''}`} class={className}>
   <slot />
 </div>

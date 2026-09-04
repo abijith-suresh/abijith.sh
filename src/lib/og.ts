@@ -190,6 +190,9 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
 async function renderIconSvg(size: number): Promise<string> {
   const fonts = await loadFonts();
 
+  // "as." monogram — site ink background, pink signature period.
+  // Colors mirror the OG template: bg #2b2535, frame #403b49, glyph #ece7f1,
+  // period #f2b8c6 (oklch(83.9% 0.069 3), the --color-pink token).
   return satori(
     {
       type: "div",
@@ -201,10 +204,6 @@ async function renderIconSvg(size: number): Promise<string> {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#2b2535",
-          color: "#ece7f1",
-          fontFamily: "IBM Plex Sans",
-          fontSize: size * 0.32,
-          fontWeight: 500,
         },
         children: {
           type: "div",
@@ -216,8 +215,36 @@ async function renderIconSvg(size: number): Promise<string> {
               alignItems: "center",
               justifyContent: "center",
               border: `${size * 0.012}px solid #403b49`,
+              borderRadius: size * 0.14,
             },
-            children: "AS",
+            children: [
+              {
+                type: "div",
+                props: {
+                  style: {
+                    color: "#ece7f1",
+                    fontFamily: "IBM Plex Sans",
+                    fontSize: size * 0.4,
+                    fontWeight: 500,
+                    lineHeight: 1,
+                  },
+                  children: "as",
+                },
+              },
+              {
+                type: "div",
+                props: {
+                  style: {
+                    color: "#f2b8c6",
+                    fontFamily: "IBM Plex Sans",
+                    fontSize: size * 0.4,
+                    fontWeight: 500,
+                    lineHeight: 1,
+                  },
+                  children: ".",
+                },
+              },
+            ],
           },
         },
       },
