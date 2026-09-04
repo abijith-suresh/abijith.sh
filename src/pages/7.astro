@@ -1,6 +1,8 @@
 ---
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/geist";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 const socials = [
   { label: "github", href: "https://github.com/abijith-suresh", icon: "github" },
@@ -13,33 +15,43 @@ const socials = [
 const projects = [
   {
     title: "Interleaf",
+    slug: "interleaf",
     description: "Client-side PDF manipulation tool - merge, split, reorder, rotate, and more",
-    href: "https://github.com/abijith-suresh/interleaf",
-    art: "--au-a:301; --au-b:347; --ax1:77%; --ay1:10%; --ax2:78%; --ay2:63%;",
+    href: "https://interleaf-snowy.vercel.app",
   },
   {
     title: "Reshrimp",
+    slug: "reshrimp",
     description:
       "Client-side image manipulation tool - resize, compress, convert formats in your browser",
-    href: "https://github.com/abijith-suresh/reshrimp",
-    art: "--au-a:301; --au-b:341; --ax1:77%; --ay1:52%; --ax2:64%; --ay2:74%;",
+    href: "https://reshrimp.vercel.app",
   },
   {
     title: "Tailory",
+    slug: "tailory",
     description:
       "Client-side resume editor — upload, edit, preview, and export your resume as PDF. No account, no server, all local.",
-    href: "https://github.com/abijith-suresh/tailory",
-    art: "--au-a:289; --au-b:330; --ax1:62%; --ay1:13%; --ax2:15%; --ay2:82%;",
+    href: "https://tailory-nine.vercel.app",
   },
   {
     title: "Microbreak",
+    slug: "microbreak",
     description: "Short, non-addictive puzzle games for build wait times.",
-    href: "https://github.com/abijith-suresh/microbreak",
-    art: "--au-a:300; --au-b:340; --ax1:16%; --ay1:14%; --ax2:58%; --ay2:55%;",
+    href: "https://microbreak-abijiths-projects-1.vercel.app",
   },
 ];
 
-const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
+// Drop a screenshot at src/assets/projects/<slug>.webp (or png/jpg/avif) and
+// it automatically replaces the placeholder on the card.
+const shots = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/projects/*.{webp,png,jpg,jpeg,avif}",
+  { eager: true },
+);
+
+const shotFor = (slug: string) =>
+  Object.entries(shots).find(([path]) => path.includes(`/${slug}.`))?.[1].default;
+
+const cards = projects.map((p) => ({ ...p, shot: shotFor(p.slug) }));
 ---
 
 <!doctype html>
@@ -47,7 +59,7 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Abijith S — Design 7</title>
+    <title>Abijith S — Dusk Aurora</title>
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#2b2535" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -70,8 +82,7 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
 
       <main id="main">
         <section class="hero">
-          <p class="eyebrow rise" style="--d: 80ms">from kochi, india</p>
-          <h1 class="rise" style="--d: 160ms">
+          <h1 class="rise" style="--d: 80ms">
             hi, i'm abijith<span class="period">.</span>
           </h1>
           <p class="bio rise" style="--d: 240ms">
@@ -135,7 +146,7 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
           </div>
           <div class="grid">
             {
-              projects.map((p, i) => (
+              cards.map((p, i) => (
                 <a
                   class="card rise"
                   style={`--d: ${480 + i * 90}ms`}
@@ -143,12 +154,26 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span class="art" aria-hidden="true" style={`${p.art} --breath-delay: ${i * 3000}ms;`} />
+                  <span class="shot" aria-hidden="true">
+                    {p.shot ? (
+                      <Image
+                        src={p.shot}
+                        alt=""
+                        widths={[640, 1280]}
+                        sizes="(min-width: 40rem) 31rem, 100vw"
+                        loading="lazy"
+                        decoding="async"
+                        class="shot-img"
+                      />
+                    ) : (
+                      <span class="shot-ph">{p.title.charAt(0)}</span>
+                    )}
+                  </span>
                   <div class="card-body">
                     <h3 class="card-title">{p.title}</h3>
                     <p class="card-desc">{p.description}</p>
                     <span class="card-foot">
-                      github <span class="arrow" aria-hidden="true">↗</span>
+                      visit <span class="arrow" aria-hidden="true">↗</span>
                     </span>
                   </div>
                 </a>
@@ -180,23 +205,11 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
 
       <footer class="footer">
         <p>© 2026 abijith s</p>
-        <p class="design-note">design 07 · dusk aurora</p>
+        <p class="design-note">dusk aurora · preview</p>
       </footer>
     </div>
 
-    <nav class="switcher" aria-label="Design switcher">
-      {
-        designVariants.map((v) => (
-          <a
-            href={v}
-            class={v === "/7" ? "active" : undefined}
-            aria-current={v === "/7" ? "page" : undefined}
-          >
-            {v}
-          </a>
-        ))
-      }
-    </nav>
+    <a class="home-pill" href="/">← abijith.sh</a>
   </body>
 </html>
 
@@ -257,15 +270,6 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
     }
     to {
       opacity: 1;
-    }
-  }
-
-  @keyframes orb-breathe {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 0.15;
     }
   }
 
@@ -397,13 +401,6 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
 
   .hero {
     padding-top: clamp(4.5rem, 12vh, 7rem);
-  }
-
-  .eyebrow {
-    margin: 0 0 1.1rem;
-    color: var(--muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.02em;
   }
 
   h1 {
@@ -554,55 +551,48 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
     border-radius: 1rem;
     overflow: hidden;
     text-decoration: none;
-    transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    transition: transform 200ms ease, border-color 200ms ease;
   }
 
   .card:hover {
     transform: translateY(-2px);
     border-color: var(--ring-hover);
-    box-shadow: 0 10px 32px -8px oklch(70.6% 0.078 302 / 0.22);
   }
 
-  /* ---------- generative art banner ---------- */
+  /* ---------- screenshot / placeholder ---------- */
 
-  .art {
-    position: relative;
+  .shot {
     display: block;
-    height: 9rem;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
     border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0;
-    background:
-      radial-gradient(90% 160% at var(--ax1) var(--ay1), hsl(var(--au-a) 55% 62% / 0.8), transparent 68%),
-      radial-gradient(55% 100% at var(--ax2) var(--ay2), hsl(var(--au-b) 75% 70% / 0.75), transparent 70%),
-      linear-gradient(160deg, hsl(var(--au-a) 32% 13%), hsl(265 35% 9%));
+    background: oklch(23% 0.025 296);
+  }
+
+  .shot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
     transition: filter 220ms ease;
   }
 
-  /* each card's orbs breathe out of phase with the rest of the page */
-  .art::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+  .card:hover .shot-img {
+    filter: brightness(1.06);
+  }
+
+  .shot-ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.75rem;
+    color: oklch(100% 0 0 / 0.09);
     background:
-      radial-gradient(90% 160% at var(--ax1) var(--ay1), hsl(var(--au-a) 55% 62% / 0.8), transparent 68%),
-      radial-gradient(55% 100% at var(--ax2) var(--ay2), hsl(var(--au-b) 75% 70% / 0.75), transparent 70%);
-    opacity: 0;
-    pointer-events: none;
-    animation: orb-breathe 22s ease-in-out infinite alternate backwards;
-    animation-delay: var(--breath-delay, 0ms);
-  }
-
-  .art::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-    opacity: 0.07;
-    mix-blend-mode: overlay;
-  }
-
-  .card:hover .art {
-    filter: brightness(1.1);
+      radial-gradient(120% 100% at 30% 0%, oklch(70.6% 0.078 302 / 0.06), transparent 60%),
+      oklch(23% 0.025 296);
   }
 
   .card-body {
@@ -650,13 +640,12 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
     border-radius: 1rem;
     padding: 1.5rem;
     text-decoration: none;
-    transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    transition: transform 200ms ease, border-color 200ms ease;
   }
 
   .post:hover {
     transform: translateY(-2px);
     border-color: var(--ring-hover);
-    box-shadow: 0 10px 32px -8px oklch(70.6% 0.078 302 / 0.22);
   }
 
   .post-date {
@@ -719,24 +708,17 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
     font-weight: 500;
   }
 
-  /* ---------- design switcher ---------- */
+  /* ---------- home pill ---------- */
 
-  .switcher {
+  .home-pill {
     position: fixed;
     right: 1rem;
     bottom: 1rem;
     z-index: 10;
-    display: flex;
-    gap: 2px;
-    padding: 3px;
+    padding: 0.45rem 0.85rem;
     background: oklch(25.4% 0.03 293 / 0.85);
     backdrop-filter: blur(10px);
     border: 1px solid var(--hairline);
-    border-radius: 999px;
-  }
-
-  .switcher a {
-    padding: 0.28rem 0.6rem;
     border-radius: 999px;
     color: var(--muted);
     font-size: 0.78rem;
@@ -745,14 +727,8 @@ const designVariants = ["/", "/1", "/2", "/3", "/4", "/5", "/6", "/7", "/8"];
     transition: background 160ms ease, color 160ms ease;
   }
 
-  .switcher a:hover {
+  .home-pill:hover {
     background: oklch(100% 0 0 / 0.1);
     color: var(--text);
-  }
-
-  .switcher a.active {
-    background: var(--primary);
-    color: var(--ink);
-    font-weight: 600;
   }
 </style>
