@@ -72,7 +72,7 @@ const resolvedJsonLd = jsonLd ?? {
       href="#main-content"
       class="skip-link"
     >
-      Skip to content
+      skip to content
     </a>
     <header class="site-topbar">
       <div class="topbar-inner">
@@ -90,22 +90,19 @@ const resolvedJsonLd = jsonLd ?? {
     </main>
     <footer class="site-footer">
       <div class="topbar-inner footer-inner">
-        <div class="footer-id">
-          <p>© 2026 abijith s</p>
-          <nav class="footer-socials" aria-label="Social">
-            {
-              SITE.socialLinks.map((social) => (
-                <a
-                  href={social.href}
-                  {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                >
-                  {social.label.toLowerCase()}
-                </a>
-              ))
-            }
-          </nav>
-        </div>
-        <p>kochi, kerala</p>
+        <p>&copy; 2026 abijith s</p>
+        <nav class="footer-socials" aria-label="Social">
+          {
+            SITE.socialLinks.map((social) => (
+              <a
+                href={social.href}
+                {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {social.label.toLowerCase()}
+              </a>
+            ))
+          }
+        </nav>
       </div>
     </footer>
   </body>
@@ -200,6 +197,7 @@ const resolvedJsonLd = jsonLd ?? {
 
   .footer-inner {
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: var(--gap-wrap);
@@ -210,12 +208,6 @@ const resolvedJsonLd = jsonLd ?? {
     margin: 0;
     color: var(--color-muted-foreground);
     font-size: var(--text-sm);
-  }
-
-  .footer-id {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
   }
 
   .footer-socials {

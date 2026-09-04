@@ -4,7 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
-  description="The page you're looking for doesn't exist."
+  description="the page you're looking for doesn't exist."
   noindex={true}
   jsonLd={{ type: "website" }}
 >
@@ -28,6 +28,7 @@ import Layout from "@/layouts/Layout.astro";
     display: flex;
     flex-grow: 1;
     flex-direction: column;
+    justify-content: center;
   }
 
   .page-404-inner {
@@ -35,7 +36,9 @@ import Layout from "@/layouts/Layout.astro";
     flex-direction: column;
     align-items: flex-start;
     row-gap: var(--space-2xs);
-    padding-block: var(--page-block-start) var(--page-block-end);
+    /* symmetric so the centered stack doesn't lean; doubles as
+       breathing room on viewports too small to center into */
+    padding-block: var(--space-2xl);
   }
 
   h1 {

@@ -79,6 +79,18 @@ All notable changes to this site are documented in this file.
   image exists in src/assets/writing/. OG images still back social meta tags.
 - Rebuild the projects index as the same alternating MediaCard stack used on
   the homepage, keeping the violet mono year eyebrows and year grouping.
+- Reword the hero bio and site meta description to "java backend engineer at
+  ust. i build tools for fun on the side." and realign the footer to © left,
+  socials right, dropping the "kochi, kerala" line.
+- Revert the persistent link underline: .text-link and prose links are now
+  identified by violet color alone, brightening toward the pink accent on
+  hover.
+- Trim the homepage featured list to three projects and tighten the
+  hero-to-featured gap (hero padding-bottom clamp(2.5rem, 6vh, 4rem)).
+- Center the 404 stack vertically in the viewport, keeping the left-aligned
+  text and the 0/60/120ms rise.
+- Run a full-lowercase pass over page chrome: about and now prose, route
+  metadata descriptions, the site tagline, and empty-state messages.
 
 ### Fixed — 2026-09-04
 
@@ -93,6 +105,9 @@ All notable changes to this site are documented in this file.
   URLs or repositories from the homepage and the projects archive.
 - Remove the design exploration route `/7` (the design now lives on the main
   site) and the superseded card components.
+- Remove the skills and prompts project entries; they now live as separate
+  subdomain sites and no longer appear in the projects archive or the
+  homepage featured list.
 
 ### Added — 2026-09-03
 

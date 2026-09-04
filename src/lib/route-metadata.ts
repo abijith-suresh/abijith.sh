@@ -19,32 +19,32 @@ export const STATIC_ROUTE_METADATA = [
     path: "/about/",
     title: "About",
     seoTitle: `about · ${SITE.domain}`,
-    description: "My life in a minute.",
+    description: "my life in a minute.",
     type: "profile",
   },
   {
     path: "/writing/",
     title: "Writing",
     seoTitle: `writing · ${SITE.domain}`,
-    description: "Things I've written.",
+    description: "things i've written.",
   },
   {
     path: "/projects/",
     title: "Projects",
     seoTitle: `projects · ${SITE.domain}`,
-    description: "Things I've built.",
+    description: "things i've built.",
   },
   {
     path: "/now/",
     title: "Now",
     seoTitle: `now · ${SITE.domain}`,
-    description: "What I'm currently up to.",
+    description: "what i'm currently up to.",
   },
   {
     path: "/404/",
     title: "Page Not Found",
     seoTitle: `page not found · ${SITE.domain}`,
-    description: "The page you are looking for does not exist.",
+    description: "the page you are looking for does not exist.",
   },
 ] satisfies RouteMetadata[];
 

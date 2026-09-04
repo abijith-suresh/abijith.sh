@@ -2,7 +2,7 @@
 export const SITE = {
   // Meta
   title: "Abijith S",
-  description: "Backend engineer in Kochi, Kerala. I work with Java and Spring Boot.",
+  description: "java backend engineer at ust. i build tools for fun on the side.",
   url: "https://abijith.sh",
   domain: "abijith.sh",
   locale: "en-US",
@@ -10,12 +10,12 @@ export const SITE = {
   // Author
   author: "Abijith S",
   fullName: "Abijith Suresh",
-  tagline: "My life in a minute.",
+  tagline: "my life in a minute.",
   avatar: "/avatar.jpg",
   twitterHandle: "@abijith_sh", // Kept for SEO compatibility (twitter:creator metadata)
 
   // Hero
-  role: "Backend Engineer",
+  role: "backend engineer",
 
   // Footer navigation links
   socialLinks: [

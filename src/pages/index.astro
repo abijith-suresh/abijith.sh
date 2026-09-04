@@ -8,7 +8,7 @@ import { getAllProjects } from "@/lib/projects";
 import { getAllWriting } from "@/lib/writing";
 import { calculateReadingTime, formatDate, formatReadingTime } from "@/lib/utils";
 
-const FEATURED_SLUGS = ["interleaf", "reshrimp", "tailory", "microbreak"];
+const FEATURED_SLUGS = ["interleaf", "reshrimp", "tailory"];
 
 const allProjects = await getAllProjects();
 const featured = FEATURED_SLUGS.map((slug) =>
@@ -48,9 +48,7 @@ const socials = [
         hi, i'm abijith<span class="period">.</span>
       </h1>
       <p class="bio rise" style="--d: 80ms">
-        backend engineer at ust in kochi, india. i build with java and spring
-        boot — and outside work, i'm usually playing games or building
-        something.
+        java backend engineer at ust. i build tools for fun on the side.
       </p>
 
       <ul class="socials rise" style="--d: 160ms">
@@ -162,7 +160,7 @@ const socials = [
   }
 
   .hero {
-    padding-bottom: clamp(4rem, 10vh, 6.5rem);
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
   }
 
   h1 {

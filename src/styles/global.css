@@ -18,18 +18,12 @@ a {
 
 .text-link {
   font-weight: 500;
-  color: var(--color-text);
-  text-decoration-line: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: oklch(from var(--color-muted-foreground) l c h / 0.5);
-  transition:
-    color var(--transition-base),
-    text-decoration-color var(--transition-base);
+  color: var(--color-primary);
+  transition: color var(--transition-base);
 }
 
 .text-link:hover {
-  color: var(--color-primary);
-  text-decoration-color: var(--color-primary);
+  color: color-mix(in oklch, var(--color-primary) 55%, var(--color-pink));
 }
 
 .sr-only {
@@ -398,21 +392,13 @@ summary {
 
 .prose :where(a):not(:where(.not-prose, .not-prose *)) {
   font-weight: 500;
-  color: var(--color-text);
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-decoration-color: oklch(from var(--color-muted-foreground) l c h / 0.5);
-  text-underline-offset: 3px;
-  text-decoration-skip-ink: none;
-  transition:
-    color var(--transition-base),
-    text-decoration-color var(--transition-base);
+  color: var(--color-primary);
+  transition: color var(--transition-base);
   overflow-wrap: break-word;
 }
 
 .prose :where(a:hover):not(:where(.not-prose, .not-prose *)) {
-  color: var(--color-primary);
-  text-decoration-color: var(--color-primary);
+  color: color-mix(in oklch, var(--color-primary) 55%, var(--color-pink));
 }
 
 .prose :where(strong):not(:where(.not-prose, .not-prose *)) {
