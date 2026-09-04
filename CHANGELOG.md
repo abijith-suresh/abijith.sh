@@ -6,91 +6,70 @@ All notable changes to this site are documented in this file.
 
 ### Added — 2026-09-04
 
-- Add the owner's social links (github, x, linkedin, bluesky, rss) to the site
-  footer as quiet lowercase text links, stacked under the copyright line.
-- Tokenize the design system further: glow color/duration tokens, display
-  tracking tokens, radius, micro-gap, and z-index tokens, with the signature
-  period glow extracted into one shared `.period` pattern.
-
-### Changed — 2026-09-04
-
 - Redesign the site to the Dusk Aurora system: dark violet palette, Bricolage
   Grotesque + Geist typography, site-wide breathing aurora glow, topbar and
   footer shell, and a glowing-period hero signature.
-- Rework the homepage: featured projects as alternating image/content cards
-  linking straight to deployments, and a latest-writing section with the same
-  card pattern and generated OG images as covers.
-- Move "all projects" and "all writing" links into section headers (top right)
-  and restyle the writing index with the card pattern grouped by year.
-- Restyle the writing article page for Dusk Aurora: display-font headline,
-  staggered rise reveal for header and prose, a 70ch reading measure, and a
-  quiet hairline article footer with an "← all writing" back link.
-- Restyle the secondary pages for Dusk Aurora: display-font page headers with a
-  staggered rise reveal on about and now, eyebrow labels on the now page, and a
-  quieter 404 page with a violet-tinted display-font numeral and a muted back
-  link with arrow nudge.
-- Translate the Dusk Aurora design intent to every inner page: glowing-period
-  lowercase page headers on about, now, writing, projects, and 404; the
-  homepage's 64rem frame and hero-to-section air; lowercase mono eyebrows with
-  violet accents on year labels and the now page's labels; a readable text
-  measure with a violet lede dot on about; violet meta separators and a lede
-  hairline on the article page; and a recomposed, left-aligned 404 with the
-  error code as a mono eyebrow.
-- Compose the media-card placeholder: a larger violet-tinted display initial
-  over a violet/pink radial wash instead of a dim letter on an empty panel.
-- Align with the Dusk Aurora House Standard v1 across sites: Satori/OG and
-  favicon palette moves to the canonical sRGB set (#1a1823 bg, #e0ddef text,
-  #a09aad muted, #312f39 hairline) with the theme-color meta updated to match;
-  the favicon "as." monogram is rebuilt on the shared geometry (full-bleed
-  tile, 16% radius, no frame, 0.52-size glyph).
-- Add the cross-site --text-* type-role tokens (xs/sm/base/lg/hero/page) with
-  exact shared clamps: the landing hero renders at --text-hero, inner page
-  headers and article titles at --text-page, the brand at --text-base, and
-  card titles at 1.2rem/650/-0.01em.
-- Give inline text links and prose links a persistent subtle underline
-  (3px offset, muted at 50% alpha) that shifts to primary on hover, so links
-  are identifiable without hover.
-- Drop the "writing" segment from article browser titles, now "<post> ·
-  abijith.sh"; recompose the 404 without the mono eyebrow — hero-size title,
-  relaxed left-aligned stack, and 0/60/120ms rise stagger.
 - Add the Astro ClientRouter for view transitions, with the aurora glow marked
   transition:persist so its 22s breathe carries across navigations; standardize
   rise choreography to header 0ms → content 80ms → list items 160ms + 70ms
   (capped at 8 items) on the homepage, writing, and projects indexes.
+- Align with the Dusk Aurora House Standard v1 across sites: Satori/OG and
+  favicon palette moves to the canonical sRGB set (#1a1823 bg, #e0ddef text,
+  #a09aad muted, #312f39 hairline) with the theme-color meta updated to match,
+  and the favicon "as." monogram rebuilt on the shared geometry (full-bleed
+  tile, 16% radius, no frame, 0.52-size glyph, pink period).
+- Add the cross-site --text-* type-role tokens (xs/sm/base/lg/hero/page) with
+  exact shared clamps: the landing hero renders at --text-hero, inner page
+  headers and article titles at --text-page, the brand at --text-base, and
+  card titles at 1.2rem/650/-0.01em.
+- Tokenize the design system further: glow color/duration tokens, display
+  tracking tokens, radius, micro-gap, and z-index tokens, with the signature
+  period glow extracted into one shared `.period` pattern.
+- Add the owner's social links (github, x, linkedin, bluesky, rss) to the site
+  footer as quiet lowercase text links — © line on the left, socials on the
+  right, single row.
+
+### Changed — 2026-09-04
+
+- Rework the homepage: featured projects as alternating image/content cards
+  linking straight to deployments, and a latest-writing section with the same
+  card pattern. Featured list is trimmed to three projects and the
+  hero-to-featured gap tightened (hero padding-bottom clamp(2.5rem, 6vh,
+  4rem)).
+- Move "all projects" and "all writing" links into section headers (top right)
+  and restyle the writing index with the card pattern grouped by year.
+- Rebuild the projects index as the same alternating MediaCard stack used on
+  the homepage, keeping the violet mono year eyebrows and year grouping.
+- Restyle the writing article page for Dusk Aurora: display-font headline,
+  staggered rise reveal for header and prose, a 70ch reading measure, and a
+  quiet hairline article footer with an "← all writing" back link.
+- Restyle the secondary pages for Dusk Aurora: glowing-period lowercase page
+  headers on about, now, writing, projects, and 404; a vertically centered 404
+  ("page not found." + muted line + "← back to home", no eyebrow or numeral);
+  and back links with the arrow nudge on hover.
+- Compose the media-card placeholder: a larger violet-tinted display initial
+  over a violet/pink radial wash instead of a dim letter on an empty panel.
+  Cards show the placeholder unless a real image exists in src/assets/;
+  generated OG images no longer back writing card covers (they still back
+  social meta tags).
+- Make every browser title lowercase: home renders "abijith.sh", section
+  pages "<page> · abijith.sh", articles "<post> · abijith.sh" (the "writing"
+  segment is dropped), 404 "page not found · abijith.sh".
+- Identify inline text links by violet color alone (.text-link and prose
+  links), brightening toward the pink accent on hover — no underlines.
+- Reword the hero bio and site meta description to "java backend engineer at
+  ust. i build tools for fun on the side."
+- Run a full-lowercase pass over page chrome and static prose: about and now
+  pages, route metadata descriptions, the site tagline, empty-state messages,
+  and dates (formatDate returns "february 11, 2026").
 - Restyle the now page's labels (building/playing/watching/reading, last
-  updated) from the mono eyebrow treatment to plain lowercase muted text in
-  the body font; year labels elsewhere keep the deliberate mono eyebrow.
-- Shorten the projects subtitle to "Things I've built."
-- Make every browser title lowercase in the "<page> · abijith.sh" format
-  (home, writing, projects, about, now, 404); article pages keep the post
-  title as authored over a lowercase "· writing · abijith.sh" suffix.
-- Redraw the generated favicon as a lowercase "as." monogram with a pink
-  signature period on the rounded-square ink tile, sized for 16px legibility.
-- Recolor generated OG images and site icons to the Dusk Aurora palette
-  (violet-tinted background, warm text, quiet hairlines).
-- Use the site's lowercase voice for dates: formatDate now returns
-  "february 11, 2026", flowing to card meta, the writing index, and article
-  bylines.
+  updated) as plain lowercase muted text in the body font; year labels
+  elsewhere keep the deliberate mono eyebrow.
 - Tighten the inner-page header spacing so title, subtitle, and content read
   as one unit (clamp(2.25rem, 5vh, 3.5rem) instead of the hero-scale gap);
   the landing page keeps its own rhythm.
-- Stop using generated OG images as writing card covers on the homepage and
-  writing index — cards now show the violet placeholder initial unless a real
-  image exists in src/assets/writing/. OG images still back social meta tags.
-- Rebuild the projects index as the same alternating MediaCard stack used on
-  the homepage, keeping the violet mono year eyebrows and year grouping.
-- Reword the hero bio and site meta description to "java backend engineer at
-  ust. i build tools for fun on the side." and realign the footer to © left,
-  socials right, dropping the "kochi, kerala" line.
-- Revert the persistent link underline: .text-link and prose links are now
-  identified by violet color alone, brightening toward the pink accent on
-  hover.
-- Trim the homepage featured list to three projects and tighten the
-  hero-to-featured gap (hero padding-bottom clamp(2.5rem, 6vh, 4rem)).
-- Center the 404 stack vertically in the viewport, keeping the left-aligned
-  text and the 0/60/120ms rise.
-- Run a full-lowercase pass over page chrome: about and now prose, route
-  metadata descriptions, the site tagline, and empty-state messages.
+- Dedupe the social links: SITE.socialLinks gains an `icon` field and the
+  homepage hero derives its socials from it; rendered output is unchanged.
 
 ### Fixed — 2026-09-04
 
@@ -121,8 +100,6 @@ All notable changes to this site are documented in this file.
   media selector, the inert `prefetch` config block, the ContentDetailPage
   `class` prop, and the `tags` field from the writing/projects content
   schemas and all frontmatter.
-- Dedupe the social links: the homepage hero now derives its socials from
-  `SITE.socialLinks` via a new `icon` field; rendered output is unchanged.
 
 ### Added — 2026-09-03
 
