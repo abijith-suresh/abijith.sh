@@ -28,6 +28,10 @@ All notable changes to this site are documented in this file.
 - Add the owner's social links (github, x, linkedin, bluesky, rss) to the site
   footer as quiet lowercase text links — © line on the left, socials on the
   right, single row.
+- Render project card screenshots as mini browser windows (addi.lol-style):
+  a quiet CSS chrome strip (three dots + mono URL pill showing the project's
+  domain) above a rounded-top, hairline-outlined viewport, inset on the
+  violet/pink wash panel — no shadows, writing cards unaffected.
 
 ### Changed — 2026-09-04
 

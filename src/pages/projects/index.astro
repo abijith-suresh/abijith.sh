@@ -39,6 +39,7 @@ const findProjectShot = (id: string) =>
                     description={project.data.description}
                     placeholder={project.data.title.charAt(0)}
                     image={findProjectShot(project.id)}
+                    browser={project.data.url ? new URL(project.data.url).hostname : undefined}
                     footLabel="visit"
                   />
                 ))}

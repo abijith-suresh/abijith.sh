@@ -12,6 +12,8 @@ interface Props {
   flip?: boolean;
   /** Optimized local image (src/assets/...) — takes priority */
   image?: ImageMetadata;
+  /** Display domain — with `image`, renders the media panel as a mini browser window */
+  browser?: string;
   /** Remote/absolute fallback image URL when no local image exists */
   imageSrc?: string;
   /** Dim display initial shown when no image is available */
@@ -27,6 +29,7 @@ const {
   external = false,
   flip = false,
   image,
+  browser,
   imageSrc,
   placeholder,
   meta,
@@ -41,7 +44,29 @@ const {
 >
   <span class="media-card-media" aria-hidden="true">
     {
-      image ? (
+      image && browser ? (
+        <span class="media-card-browser">
+          <span class="media-card-chrome">
+            <span class="media-card-dots" aria-hidden="true">
+              <span class="media-card-dot" />
+              <span class="media-card-dot" />
+              <span class="media-card-dot" />
+            </span>
+            <span class="media-card-url">{browser}</span>
+          </span>
+          <span class="media-card-viewport">
+            <Image
+              src={image}
+              alt=""
+              widths={[640, 1280]}
+              sizes="(min-width: 40rem) 26rem, 100vw"
+              loading="lazy"
+              decoding="async"
+              class="media-card-img"
+            />
+          </span>
+        </span>
+      ) : image ? (
         <Image
           src={image}
           alt=""

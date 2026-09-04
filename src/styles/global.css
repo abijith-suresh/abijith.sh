@@ -231,6 +231,78 @@ summary {
     var(--color-ink);
 }
 
+/* ── Mini browser window — when a project card has both a screenshot and a
+      display domain, the panel becomes a tiny browser: dots + URL pill above
+      a rounded-top viewport. The violet/pink wash stays visible around the
+      window; hairlines do all the defining (no shadows). ────────────── */
+.media-card-browser {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  /* width-relative so the window inset scales with the panel */
+  padding: 8% 6%;
+  background:
+    radial-gradient(
+      130% 110% at 22% 0%,
+      oklch(from var(--color-primary) l c h / 0.16),
+      transparent 58%
+    ),
+    radial-gradient(
+      110% 120% at 88% 115%,
+      oklch(from var(--color-pink) l c h / 0.08),
+      transparent 60%
+    ),
+    var(--color-ink);
+}
+
+.media-card-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.media-card-dots {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.media-card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: oklch(100% 0 0 / 0.25);
+}
+
+.media-card-url {
+  min-width: 0;
+  overflow: hidden;
+  padding: 2px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-muted-foreground);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.media-card-viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* .media-card-img is absolute + object-cover, so it fills the viewport
+   without extra rules — the hover brightness lift carries over too */
+
 .media-card-body {
   display: flex;
   flex-direction: column;
@@ -304,6 +376,16 @@ summary {
   .media-card-ph {
     position: absolute;
     inset: 0;
+  }
+
+  /* tighter window inset on the 16/9 mobile panel; the pill truncates via
+     ellipsis and the dots keep the chrome legible at any width */
+  .media-card-browser {
+    padding: 6% 5%;
+  }
+
+  .media-card-url {
+    font-size: 0.75rem;
   }
 }
 
