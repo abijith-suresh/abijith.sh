@@ -23,7 +23,8 @@ a {
 }
 
 .text-link:hover {
-  color: color-mix(in oklch, var(--color-primary) 55%, var(--color-pink));
+  /* primary is the pink accent — hover brightens it toward white */
+  color: color-mix(in oklch, var(--color-primary) 55%, oklch(100% 0 0));
 }
 
 .sr-only {
@@ -156,9 +157,9 @@ summary {
   transform: translateX(3px);
 }
 
-/* ── Media card — addi.lol anatomy: solid accent panel left,
-      title + description right. The one card pattern for projects
-      and writing; uniform, no zig-zag. ────────────────────────── */
+/* ── Media card — horizontal, solid accent panel one side,
+      title + description the other, alternating left/right.
+      The one card pattern for projects and writing. ────────────── */
 .media-card {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
@@ -172,6 +173,10 @@ summary {
     border-color var(--transition-lift);
 }
 
+.media-card--flip {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
 .media-card-media {
   position: relative;
   display: block;
@@ -180,6 +185,10 @@ summary {
   overflow: hidden;
   /* solid per-project accent when provided, neutral card tone otherwise */
   background: var(--panel-accent, var(--color-card));
+}
+
+.media-card--flip .media-card-media {
+  order: 2;
 }
 
 .media-card:hover {
@@ -197,6 +206,7 @@ summary {
   height: 100%;
   max-width: none;
   object-fit: cover;
+  object-position: top left;
   border-radius: 0.75rem 0 0 0;
   outline: 1px solid var(--color-border);
   outline-offset: -1px;
@@ -243,11 +253,14 @@ summary {
 }
 
 @media (max-width: 40rem) {
-  .media-card {
+  .media-card,
+  .media-card--flip {
     grid-template-columns: 1fr;
   }
 
-  .media-card-media {
+  /* both card variants stack image-first on mobile — this (0,2,0) rule sits
+     after the flip rule above, so it wins the cascade for flip cards too */
+  .media-card .media-card-media {
     order: -1;
     min-height: 0;
     height: auto;
@@ -335,7 +348,7 @@ summary {
 }
 
 .prose :where(a:hover):not(:where(.not-prose, .not-prose *)) {
-  color: color-mix(in oklch, var(--color-primary) 55%, var(--color-pink));
+  color: color-mix(in oklch, var(--color-primary) 55%, oklch(100% 0 0));
 }
 
 .prose :where(strong):not(:where(.not-prose, .not-prose *)) {
@@ -483,8 +496,9 @@ summary {
    Focus styles — neutral focus rings
    ========================================================================== */
 
+/* focus stays hueless — white/alpha ring, never a brand color */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid oklch(100% 0 0 / 0.6);
   outline-offset: 2px;
 }
 

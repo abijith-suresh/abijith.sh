@@ -103,7 +103,7 @@ const socials = SITE.socialLinks.map((social) => ({
       </div>
       <div class="stack">
         {
-          featured.map((project) => (
+          featured.map((project, i) => (
             <MediaCard
               external
               href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
@@ -112,6 +112,7 @@ const socials = SITE.socialLinks.map((social) => ({
               placeholder={project.data.title.charAt(0)}
               image={findProjectShot(project.id)}
               accent={project.data.accent}
+              flip={i % 2 === 1}
             />
           ))
         }

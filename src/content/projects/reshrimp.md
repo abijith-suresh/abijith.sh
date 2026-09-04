@@ -1,7 +1,7 @@
 ---
 title: "reshrimp"
 description: "client-side image manipulation tool - resize, compress, convert formats in your browser"
-accent: "#f25a5a"
+accent: "#d97706"
 url: "https://reshrimp.vercel.app"
 publishedDate: 2026-02-08
 ---

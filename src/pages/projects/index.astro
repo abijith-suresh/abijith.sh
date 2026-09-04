@@ -30,7 +30,7 @@ const findProjectShot = (id: string) =>
             <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
-                {yearProjects.map((project) => (
+                {yearProjects.map((project, i) => (
                   <MediaCard
                     external
                     href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
@@ -39,6 +39,7 @@ const findProjectShot = (id: string) =>
                     placeholder={project.data.title.charAt(0)}
                     image={findProjectShot(project.id)}
                     accent={project.data.accent}
+                    flip={i % 2 === 1}
                   />
                 ))}
               </div>
@@ -57,7 +58,7 @@ const findProjectShot = (id: string) =>
     padding-bottom: var(--content-gap);
   }
 
-  /* year labels are the page's accent moment — violet-tinted mono */
+  /* year labels are the page's accent moment — pink mono */
   .year-group > .eyebrow {
     display: block;
     margin-bottom: var(--section-gap);

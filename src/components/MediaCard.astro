@@ -8,6 +8,8 @@ interface Props {
   href: string;
   /** External links open in a new tab */
   external?: boolean;
+  /** Flip the media panel to the right side (alternating zig-zag) */
+  flip?: boolean;
   /** Optimized local image (src/assets/...) */
   image?: ImageMetadata;
   /** Remote/absolute fallback image URL when no local image exists */
@@ -18,12 +20,21 @@ interface Props {
   accent?: string;
 }
 
-const { title, description, href, external = false, image, imageSrc, placeholder, accent } =
-  Astro.props;
+const {
+  title,
+  description,
+  href,
+  external = false,
+  flip = false,
+  image,
+  imageSrc,
+  placeholder,
+  accent,
+} = Astro.props;
 ---
 
 <a
-  class:list={["media-card"]}
+  class:list={["media-card", { "media-card--flip": flip }]}
   href={href}
   {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 >
