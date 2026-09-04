@@ -13,6 +13,8 @@ const projects = defineCollection({
       description: z.string(),
       publishedDate: z.coerce.date(),
       tags: z.array(z.string().min(1).trim()).min(1),
+      /** Where the project lives — deployed URL or repo */
+      url: z.string().url().optional(),
     })
     .strict(),
 });

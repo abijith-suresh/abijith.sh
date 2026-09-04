@@ -1,6 +1,7 @@
 ---
 title: "Microbreak"
 description: "Short, non-addictive puzzle games for build wait times."
+url: "https://microbreak-abijiths-projects-1.vercel.app"
 publishedDate: 2026-04-24
 tags: ["Games", "Puzzles", "Browser"]
 ---

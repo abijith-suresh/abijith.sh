@@ -20,8 +20,8 @@ const routeMetadata = getStaticRouteMetadata("/about/");
   }}
 >
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow">
-      <p style="color:var(--color-muted-foreground)">
+    <Container class="section-flow page-intro rise" style="--d: 80ms">
+      <p>
         I'm a backend engineer at <a
           href="https://ust.com"
           class="text-link"
@@ -36,13 +36,13 @@ const routeMetadata = getStaticRouteMetadata("/about/");
         set problems just past what you could do. That stuck.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
+      <p>
         On the side I've built tools that run entirely in your browser. No servers,
         no accounts, files stay local. It started because I couldn't find a simple
         image resizer I trusted, so I built one. That kept going.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
+      <p>
         You can find me on <a
           href="https://github.com/abijith-suresh"
           class="text-link"
@@ -68,3 +68,9 @@ const routeMetadata = getStaticRouteMetadata("/about/");
     </Container>
   </PageShell>
 </Layout>
+
+<style>
+  .page-intro p {
+    color: var(--color-muted-foreground);
+  }
+</style>

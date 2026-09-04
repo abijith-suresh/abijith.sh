@@ -4,6 +4,31 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-09-04
+
+- Redesign the site to the Dusk Aurora system: dark violet palette, Bricolage
+  Grotesque + Geist typography, site-wide breathing aurora glow, topbar and
+  footer shell, and a glowing-period hero signature.
+- Rework the homepage: featured projects as alternating image/content cards
+  linking straight to deployments, and a latest-writing section with the same
+  card pattern and generated OG images as covers.
+- Move "all projects" and "all writing" links into section headers (top right)
+  and restyle the writing index with the card pattern grouped by year.
+- Restyle the writing article page for Dusk Aurora: display-font headline,
+  staggered rise reveal for header and prose, a 70ch reading measure, and a
+  quiet hairline article footer with an "← all writing" back link.
+- Restyle the secondary pages for Dusk Aurora: display-font page headers with a
+  staggered rise reveal on about and now, eyebrow labels on the now page, and a
+  quieter 404 page with a violet-tinted display-font numeral and a muted back
+  link with arrow nudge.
+
+### Removed — 2026-09-04
+
+- Remove project detail pages; projects now link directly to their deployed
+  URLs or repositories from the homepage and the projects archive.
+- Remove the design exploration route `/7` (the design now lives on the main
+  site) and the superseded card components.
+
 ### Added — 2026-09-03
 
 - Add a standalone Dusk Aurora homepage exploration at `/7` for review: dark violet theme with breathing aurora, featured projects with screenshot slots linking straight to deployments, no tag chips, and a glowing-period signature. Self-contained and `noindex`ed.

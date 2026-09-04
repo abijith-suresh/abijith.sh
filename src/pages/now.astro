@@ -9,12 +9,10 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 
 <Layout>
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow">
-      <p style="color:var(--color-muted-foreground)">
-        Last updated: August 2026
-      </p>
+    <Container class="section-flow page-now rise" style="--d: 80ms">
+      <p class="eyebrow">Last updated: August 2026</p>
 
-      <p style="color:var(--color-muted-foreground)">
+      <p>
         Still at <a
           href="https://ust.com"
           class="text-link"
@@ -23,8 +21,8 @@ const routeMetadata = getStaticRouteMetadata("/now/");
         >, writing Java.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Building — <a
+      <p>
+        <span class="eyebrow">Building —</span> <a
           href="https://github.com/abijith-suresh/interleaf"
           class="text-link"
           target="_blank"
@@ -32,8 +30,8 @@ const routeMetadata = getStaticRouteMetadata("/now/");
         >, a client-side PDF editor.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Playing — <a
+      <p>
+        <span class="eyebrow">Playing —</span> <a
           href="https://store.steampowered.com/app/2221490/Tom_Clancys_The_Division_2/"
           class="text-link"
           target="_blank"
@@ -46,8 +44,8 @@ const routeMetadata = getStaticRouteMetadata("/now/");
         > (2019).
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Watching — <a
+      <p>
+        <span class="eyebrow">Watching —</span> <a
           href="https://anilist.co/anime/161645/Kusuriya-no-Hitorigoto/"
           class="text-link"
           target="_blank"
@@ -55,8 +53,8 @@ const routeMetadata = getStaticRouteMetadata("/now/");
         >.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Reading — <a
+      <p>
+        <span class="eyebrow">Reading —</span> <a
           href="https://www.goodreads.com/book/show/19776547-essentialism"
           class="text-link"
           target="_blank"
@@ -66,3 +64,9 @@ const routeMetadata = getStaticRouteMetadata("/now/");
     </Container>
   </PageShell>
 </Layout>
+
+<style>
+  .page-now p {
+    color: var(--color-muted-foreground);
+  }
+</style>

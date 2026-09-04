@@ -1,6 +1,7 @@
 ---
 title: "Reshrimp"
 description: "Client-side image manipulation tool - resize, compress, convert formats in your browser"
+url: "https://reshrimp.vercel.app"
 publishedDate: 2026-02-08
 tags: ["Typescript", "Image", "Browser"]
 ---

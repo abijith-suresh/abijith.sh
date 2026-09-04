@@ -10,29 +10,33 @@ import Layout from "@/layouts/Layout.astro";
   noindex={true}
   jsonLd={{ type: "website" }}
 >
-  <div style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
+  <div class="page-404">
     <Container class="page-404-container">
-      <div
-        style="font-size:8rem;font-weight:500;user-select:none;line-height:var(--leading-none);color:var(--color-muted-foreground)"
-        aria-hidden="true"
-      >
-        404
+      <div class="page-404-code" aria-hidden="true">404</div>
+
+      <div class="page-404-body">
+        <h1>Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
       </div>
 
-      <div style="display:flex;flex-direction:column;align-items:center;row-gap:var(--spacing-3);text-align:center">
-        <h1 style="font-size:clamp(1.875rem,4vw,3rem);font-weight:500;letter-spacing:-0.025em">Page Not Found</h1>
-        <p style="font-size:var(--text-lg);max-width:28rem;color:var(--color-muted-foreground)">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-      </div>
-
-      <div style="padding-top:var(--spacing-4)">
-        <a href="/" class="footer-link">← Back to Home</a>
+      <div class="page-404-back">
+        <a href="/" class="back-link">
+          <span class="arrow" aria-hidden="true">←</span> Back to Home
+        </a>
       </div>
     </Container>
   </div>
 </Layout>
+
 <style>
+  .page-404 {
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+
   .page-404-container {
     display: flex;
     flex-direction: column;
@@ -40,5 +44,58 @@ import Layout from "@/layouts/Layout.astro";
     justify-content: center;
     row-gap: var(--spacing-8);
     padding-block: 7rem;
+  }
+
+  .page-404-code {
+    font-family: var(--font-display);
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: var(--leading-none);
+    letter-spacing: -0.015em;
+    color: oklch(70.6% 0.078 302 / 0.35);
+    user-select: none;
+  }
+
+  .page-404-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: var(--spacing-3);
+    text-align: center;
+  }
+
+  .page-404-body h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .page-404-body p {
+    font-size: var(--text-lg);
+    max-width: 28rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .page-404-back {
+    padding-top: var(--spacing-4);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-muted-foreground);
+    transition: color var(--transition-base);
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
   }
 </style>

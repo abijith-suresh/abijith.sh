@@ -2,7 +2,6 @@
 import Container from "@/components/ui/Container.astro";
 import EmptyState from "@/components/ui/EmptyState.astro";
 import PageShell from "@/components/ui/PageShell.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { groupByYear } from "@/lib/group-by-year";
 import { getAllProjects } from "@/lib/projects";
@@ -19,11 +18,24 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
       allProjects.length > 0 ? (
         <Container>
           {projectsByYear.map(({ year, items: yearProjects }) => (
-            <div style="padding-bottom:var(--content-gap)">
-              <span style="display:block;margin-bottom:var(--section-gap)" class="eyebrow">{year}</span>
-              {yearProjects.map((project) => (
-                <ProjectCard project={project} />
-              ))}
+            <div class="year-group">
+              <span class="eyebrow">{year}</span>
+              <ul class="archive">
+                {yearProjects.map((project) => (
+                  <li>
+                    <a
+                      class="archive-row"
+                      href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="archive-title">{project.data.title}</span>
+                      <span class="archive-desc">{project.data.description}</span>
+                      <span class="archive-arrow" aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </Container>
@@ -33,3 +45,82 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
     }
   </PageShell>
 </Layout>
+
+<style>
+  .year-group {
+    padding-bottom: var(--content-gap);
+  }
+
+  .eyebrow {
+    display: block;
+    margin-bottom: var(--section-gap);
+  }
+
+  .archive {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .archive li + li {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .archive-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem 1rem;
+    padding: 0.9rem 0.25rem;
+    border-radius: 0.5rem;
+    transition:
+      background var(--transition-base),
+      transform var(--transition-lift);
+  }
+
+  .archive-row:hover {
+    background: var(--color-surface);
+  }
+
+  .archive-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .archive-desc {
+    flex: 1;
+    min-width: 12rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.925rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .archive-arrow {
+    color: var(--color-muted-foreground);
+    transition:
+      color var(--transition-base),
+      transform var(--transition-lift);
+  }
+
+  .archive-row:hover .archive-arrow {
+    color: var(--color-primary);
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 40rem) {
+    .archive-row {
+      flex-wrap: wrap;
+    }
+
+    .archive-desc {
+      flex-basis: 100%;
+      -webkit-line-clamp: 2;
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 title: "Skills"
 description: "My personal collection of AI skills"
+url: "https://skills.abijith.sh"
 publishedDate: 2026-03-01
 tags: ["agent-skills", "ai"]
 ---

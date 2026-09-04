@@ -1,4 +1,6 @@
 ---
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/geist";
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import type { SEOProps } from "@/components/seo/SEO.astro";
@@ -38,16 +40,9 @@ const resolvedJsonLd = jsonLd ?? {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" content="#2b2535" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link
-      rel="preload"
-      href="/fonts/IBMPlexSansVar-Roman.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
 
     <style is:inline set:html={criticalCss}></style>
 
@@ -69,18 +64,137 @@ const resolvedJsonLd = jsonLd ?? {
     <slot name="head" />
   </head>
   <body style="display:flex;height:fit-content;min-height:100vh;flex-direction:column">
+    <div class="aurora-glow" aria-hidden="true"></div>
     <a
       href="#main-content"
       class="skip-link"
     >
       Skip to content
     </a>
+    <header class="site-topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/">abijith.sh</a>
+        <nav class="topnav" aria-label="Primary">
+          <a href="/writing/">writing</a>
+          <a href="/projects/">projects</a>
+          <a href="/about/">about</a>
+          <a href="/now/">now</a>
+        </nav>
+      </div>
+    </header>
     <main id="main-content" style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
       <slot />
     </main>
+    <footer class="site-footer">
+      <div class="topbar-inner footer-inner">
+        <p>© 2026 abijith s</p>
+        <p>kochi, kerala</p>
+      </div>
+    </footer>
   </body>
 </html>
 <style>
+  .aurora-glow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 62% 46% at 50% 22%,
+      oklch(70.6% 0.078 302 / 0.07),
+      transparent 70%
+    );
+    animation: aurora-breathe 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes aurora-breathe {
+    from {
+      opacity: 0.8;
+      filter: hue-rotate(-6deg);
+    }
+    to {
+      opacity: 1;
+      filter: hue-rotate(6deg);
+    }
+  }
+
+  .site-topbar,
+  .site-footer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .topbar-inner {
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+  }
+
+  .site-topbar {
+    display: flex;
+    align-items: center;
+    padding-block: 1.5rem 0.25rem;
+  }
+
+  .site-topbar .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.75rem;
+    width: 100%;
+  }
+
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .brand:hover {
+    color: var(--color-primary);
+  }
+
+  .topnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+  }
+
+  .topnav a {
+    color: var(--color-muted-foreground);
+    font-size: 0.9rem;
+    transition: color var(--transition-base);
+  }
+
+  .topnav a:hover {
+    color: var(--color-text);
+  }
+
+  .site-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.5rem 4rem;
+  }
+
+  .footer-inner p {
+    margin: 0;
+    color: var(--color-muted-foreground);
+    font-size: 0.85rem;
+  }
+
   .skip-link {
     position: absolute;
     width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -90,6 +204,17 @@ const resolvedJsonLd = jsonLd ?? {
     position: fixed; top: var(--spacing-4); left: var(--spacing-4); z-index: 50;
     width: auto; height: auto; padding: var(--spacing-4) var(--spacing-2); margin: 0;
     overflow: visible; clip: auto; white-space: normal;
-    background-color: var(--color-text); color: var(--color-bg); font-weight: 500;
+    background-color: var(--color-primary); color: var(--color-ink); font-weight: 500;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-glow {
+      animation: none;
+    }
   }
 </style>

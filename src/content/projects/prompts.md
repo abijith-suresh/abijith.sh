@@ -1,6 +1,7 @@
 ---
 title: "Prompts"
 description: "A collection of reusable AI agent prompts for coding agents and chat applications"
+url: "https://prompts.abijith.sh"
 publishedDate: 2026-05-16
 tags: ["AI", "Prompts", "Coding"]
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Tailory"
 description: "Client-side resume editor — upload, edit, preview, and export your resume as PDF. No account, no server, all local."
+url: "https://tailory-nine.vercel.app"
 publishedDate: 2026-03-01
 tags:
   [

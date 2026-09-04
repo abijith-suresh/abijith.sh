@@ -21,18 +21,14 @@ const { title, description, meta, microformat, titleClass, class: className } = 
 const contentClass = microformat === "h-entry" ? "e-content" : undefined;
 ---
 
-<section class:list={["detail-section", microformat, className]}>
+<article class:list={["detail-section", microformat, className]}>
   <!-- Header -->
-  <header style="display:flex;flex-direction:column;row-gap:var(--section-gap);padding-top:var(--page-block-start)">
-    <h1 class={titleClass} style="font-size:var(--heading-1);letter-spacing:0;line-height:var(--leading-heading)">
-      {title}
-    </h1>
+  <header class="article-header rise" style="--d: 0ms">
+    <h1 class:list={["article-title", titleClass]}>{title}</h1>
 
     {
       meta && meta.length > 0 && (
-        <div
-          style="display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--spacing-3);row-gap:var(--spacing-1);font-size:var(--text-sm);color:var(--color-muted-foreground)"
-        >
+        <div class="article-meta">
           {meta.map((item, index) => (
             <>
               {item.type === "date" ? (
@@ -40,7 +36,7 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
               ) : (
                 <span>{item.value}</span>
               )}
-              {index < meta.length - 1 && <span>&middot;</span>}
+              {index < meta.length - 1 && <span aria-hidden="true">&middot;</span>}
             </>
           ))}
         </div>
@@ -49,34 +45,84 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
 
     {
       description && (
-        <p
-          class:list={[microformat === "h-entry" && "p-summary"]}
-          style="font-size:var(--text-lg);line-height:var(--leading-text);max-width:none;color:var(--color-muted-foreground)"
-        >
-          {description}
-        </p>
+        <p class:list={["article-lede", microformat === "h-entry" && "p-summary"]}>{description}</p>
       )
     }
   </header>
 
   <!-- Prose Content -->
-  <article class="prose" style="max-width:none">
-    <div style="border-top:var(--border-width) solid var(--color-border);margin-bottom:var(--content-gap)"></div>
+  <div class="prose rise" style="--d: 80ms">
     <div class={contentClass}>
       <slot />
     </div>
-  </article>
-</section>
+  </div>
+
+  <!-- Article footer -->
+  <footer class="article-footer rise" style="--d: 160ms">
+    <a class="all-link" href="/writing/">
+      <span class="arrow" aria-hidden="true">&larr;</span> all writing
+    </a>
+    <p class="article-copyright">&copy; 2026 abijith s</p>
+  </footer>
+</article>
 
 <style>
   .detail-section {
     margin-inline: auto;
     width: 100%;
-    max-width: var(--measure);
+    max-width: calc(70ch + 2 * var(--page-inline));
     padding-inline: var(--page-inline);
+    padding-top: var(--page-block-start);
+    padding-bottom: var(--page-block-end);
     display: flex;
     flex-direction: column;
     row-gap: var(--content-gap);
-    padding-bottom: var(--page-block-end);
+  }
+
+  .article-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--title-subtitle-gap);
+  }
+
+  .article-title {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: var(--heading-1);
+    letter-spacing: -0.015em;
+    line-height: var(--leading-heading);
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--spacing-3);
+    row-gap: var(--spacing-1);
+    font-size: var(--text-sm);
+    color: var(--color-muted-foreground);
+  }
+
+  .article-lede {
+    margin-top: var(--space-2xs);
+    font-size: var(--text-lg);
+    line-height: var(--leading-text);
+    max-width: 52ch;
+    color: var(--color-muted-foreground);
+  }
+
+  .article-footer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    padding-top: var(--space-s);
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  .article-copyright {
+    color: var(--color-muted-foreground);
+    font-size: var(--text-xs);
   }
 </style>

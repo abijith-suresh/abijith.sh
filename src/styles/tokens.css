@@ -1,26 +1,36 @@
-/* Design tokens — shared by critical inline CSS and the main stylesheet. */
+/* Design tokens — Dusk Aurora.
+   Shared by critical inline CSS and the main stylesheet. */
 
 :root {
   /* Typography */
-  --font-sans: "IBM Plex Sans", "IBM Plex Sans Fallback", system-ui, sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
     "DejaVu Sans Mono", monospace;
 
-  /* Color palette — neutral grays, OKLCH, dark only */
-  --color-bg: oklch(14.5% 0 0);
-  --color-text: oklch(98.5% 0 0);
-  --color-border: oklch(25% 0 0);
+  /* Color palette — Dusk Aurora, dark only, OKLCH */
+  --color-bg: oklch(21.7% 0.0215 293);
+  --color-card: oklch(25.4% 0.03 293);
+  --color-text: oklch(90.5% 0.0245 294);
+  --color-ink: oklch(23% 0.035 296);
+  --color-primary: oklch(70.6% 0.078 302);
+  --color-pink: oklch(83.9% 0.069 3);
 
   /* Semantic tokens */
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
-  --color-muted-foreground: color-mix(in oklch, var(--color-text) 60%, transparent);
+  --color-muted-foreground: oklch(69.7% 0.028 300);
 
   /* Surface tokens */
-  --color-surface: color-mix(in oklch, var(--color-text) 6%, transparent);
-  --color-surface-strong: color-mix(in oklch, var(--color-text) 8%, transparent);
-  --color-text-muted: color-mix(in oklch, var(--color-text) 80%, transparent);
+  --color-border: oklch(100% 0 0 / 0.1);
+  --color-surface: oklch(100% 0 0 / 0.06);
+  --color-surface-strong: oklch(100% 0 0 / 0.08);
+  --color-text-muted: oklch(90.5% 0.0245 294 / 0.8);
+
+  /* Rings — the card hover language: lift + ring brighten, no shadows */
+  --ring: oklch(100% 0 0 / 0.08);
+  --ring-hover: oklch(100% 0 0 / 0.15);
 
   /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site */
   --step--1: clamp(0.875rem, 0.8519rem + 0.1127vw, 0.9375rem);
@@ -28,6 +38,7 @@
   --step-1: clamp(1.125rem, 1.0418rem + 0.4059vw, 1.35rem);
   --step-2: clamp(1.2656rem, 1.1346rem + 0.6392vw, 1.62rem);
   --step-3: clamp(1.4238rem, 1.2309rem + 0.941vw, 1.944rem);
+  --step-4: clamp(2.2rem, 1.7rem + 2.2vw, 4rem);
 
   /* Type aliases */
   --heading-1: var(--step-3);
@@ -39,6 +50,7 @@
   --text-2xl: var(--step-3);
   --text-3xl: var(--step-3);
   --text-4xl: var(--step-3);
+  --hero-size: var(--step-4);
 
   /* Line-height */
   --leading-text: calc(0.65rem + 1em);
@@ -57,7 +69,7 @@
 
   /* Semantic rhythm */
   --page-inline: var(--space-m);
-  --page-block-start: clamp(5rem, 4.5377rem + 2.255vw, 6.25rem);
+  --page-block-start: clamp(4rem, 3.2rem + 3vw, 6.25rem);
   --page-block-end: var(--space-2xl);
   --title-subtitle-gap: var(--space-2xs);
   --section-gap: var(--space-m);
@@ -79,6 +91,7 @@
 
   /* Motion tokens */
   --transition-base: 150ms ease;
+  --transition-lift: 200ms ease;
   --letter-spacing-uppercase: 0.04em;
   color-scheme: dark;
 }

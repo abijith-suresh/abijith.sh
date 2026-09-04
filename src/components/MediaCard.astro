@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  /** External links open in a new tab and get the ↗ arrow */
+  external?: boolean;
+  /** Flip the image to the right side (alternating zig-zag) */
+  flip?: boolean;
+  /** Optimized local image (src/assets/...) — takes priority */
+  image?: ImageMetadata;
+  /** Remote/absolute fallback image URL when no local image exists */
+  imageSrc?: string;
+  /** Dim display initial shown when no image is available */
+  placeholder?: string;
+  meta?: string;
+  footLabel: string;
+}
+
+const {
+  title,
+  description,
+  href,
+  external = false,
+  flip = false,
+  image,
+  imageSrc,
+  placeholder,
+  meta,
+  footLabel,
+} = Astro.props;
+---
+
+<a
+  class:list={["media-card", { "media-card--flip": flip, "media-card--ext": external }]}
+  href={href}
+  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+>
+  <span class="media-card-media" aria-hidden="true">
+    {
+      image ? (
+        <Image
+          src={image}
+          alt=""
+          widths={[640, 1280]}
+          sizes="(min-width: 40rem) 26rem, 100vw"
+          loading="lazy"
+          decoding="async"
+          class="media-card-img"
+        />
+      ) : imageSrc ? (
+        <img
+          src={imageSrc}
+          alt=""
+          width="1200"
+          height="630"
+          loading="lazy"
+          decoding="async"
+          class="media-card-img"
+        />
+      ) : (
+        <span class="media-card-ph">{placeholder}</span>
+      )
+    }
+  </span>
+  <span class="media-card-body">
+    {meta && <span class="media-card-meta">{meta}</span>}
+    <span class="media-card-title">{title}</span>
+    <span class="media-card-desc">{description}</span>
+    <span class="media-card-foot">
+      {footLabel} <span class="arrow" aria-hidden="true">{external ? "↗" : "→"}</span>
+    </span>
+  </span>
+</a>
