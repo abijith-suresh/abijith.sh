@@ -44,7 +44,6 @@
   --step-1: clamp(1.125rem, 1.0418rem + 0.4059vw, 1.35rem);
   --step-2: clamp(1.2656rem, 1.1346rem + 0.6392vw, 1.62rem);
   --step-3: clamp(1.4238rem, 1.2309rem + 0.941vw, 1.944rem);
-  --step-4: clamp(2.2rem, 1.7rem + 2.2vw, 4rem);
 
   /* Type roles — exact clamps shared across all Dusk Aurora sites */
   --text-xs: clamp(0.8125rem, 0.7894rem + 0.1127vw, 0.875rem);
@@ -56,13 +55,12 @@
 
   /* Type aliases
      --heading-1 (inner page headers) and --hero-size (landing hero) point at
-     the role tokens so their rendered sizes match cross-site. --text-xl..4xl
+     the role tokens so their rendered sizes match cross-site. --text-xl..3xl
      remain prose-heading sizes on the raw scale. */
   --heading-1: var(--text-page);
   --text-xl: var(--step-2);
   --text-2xl: var(--step-3);
   --text-3xl: var(--step-3);
-  --text-4xl: var(--step-3);
   --hero-size: var(--text-hero);
 
   /* Line-height */
@@ -96,9 +94,7 @@
   --spacing-2: var(--space-2xs);
   --spacing-3: var(--space-xs);
   --spacing-4: var(--space-s);
-  --spacing-6: var(--space-m);
   --spacing-8: var(--space-l);
-  --spacing-12: var(--space-xl);
   --spacing-16: var(--space-2xl);
 
   /* Border tokens */
@@ -121,7 +117,6 @@
   --transition-base: 150ms ease;
   --transition-lift: 200ms ease;
   --duration-breathe: 22s;
-  --letter-spacing-uppercase: 0.04em;
 
   /* Layering */
   --z-glow: 0;

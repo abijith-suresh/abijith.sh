@@ -313,22 +313,6 @@ summary {
   gap: 1rem;
 }
 
-/* ── Footer Link ──────────────────────────────────────────────────────── */
-.footer-link {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-text);
-  text-decoration: none;
-  padding-bottom: var(--spacing-1);
-  border-bottom: var(--border-width) solid var(--color-muted-foreground);
-  transition: border-color var(--transition-base);
-  line-height: var(--leading-none);
-}
-
-.footer-link:hover {
-  border-bottom-color: var(--color-text);
-}
-
 /* ==========================================================================
    Prose Styles (Blog content typography)
    ========================================================================== */
@@ -515,7 +499,7 @@ summary {
   overflow-wrap: break-word;
 }
 
-.prose :where(img, video, figure, .expressive-code):not(:where(.not-prose, .not-prose *)) {
+.prose :where(img, video, figure):not(:where(.not-prose, .not-prose *)) {
   margin: var(--spacing-4) auto;
 }
 

@@ -14,14 +14,13 @@ interface Props {
   meta?: MetaItem[];
   microformat?: "h-entry";
   titleClass?: string;
-  class?: string;
 }
 
-const { title, description, meta, microformat, titleClass, class: className } = Astro.props;
+const { title, description, meta, microformat, titleClass } = Astro.props;
 const contentClass = microformat === "h-entry" ? "e-content" : undefined;
 ---
 
-<article class:list={["detail-section", microformat, className]}>
+<article class:list={["detail-section", microformat]}>
   <!-- Header -->
   <header class="article-header rise" style="--d: 0ms">
     <h1 class:list={["article-title", titleClass]}>{title}</h1>

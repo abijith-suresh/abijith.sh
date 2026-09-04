@@ -12,7 +12,6 @@ const projects = defineCollection({
       title: z.string(),
       description: z.string(),
       publishedDate: z.coerce.date(),
-      tags: z.array(z.string().min(1).trim()).min(1),
       /** Where the project lives — deployed URL or repo */
       url: z.string().url().optional(),
     })
@@ -29,7 +28,6 @@ const writing = defineCollection({
       title: z.string(),
       description: z.string(),
       publishedDate: z.coerce.date(),
-      tags: z.array(z.string().min(1).trim()).min(1),
     })
     .strict(),
 });

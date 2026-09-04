@@ -108,6 +108,21 @@ All notable changes to this site are documented in this file.
 - Remove the skills and prompts project entries; they now live as separate
   subdomain sites and no longer appear in the projects archive or the
   homepage featured list.
+- Remove the unused `extractExcerpt` module (the only direct import of the
+  undeclared `satteri` package) and five unused @fontsource-variable
+  dependencies (fraunces, geist-mono, instrument-sans, jetbrains-mono,
+  newsreader).
+- Remove the IBM Plex Sans @font-face blocks and font files, and the unused
+  IBM Plex Mono italic/medium-italic faces and files; IBM Plex Mono keeps
+  Regular and Medium.
+- Remove the unused `.footer-link` styles, five zero-reference design tokens
+  (--step-4, --text-4xl, --spacing-6, --spacing-12,
+  --letter-spacing-uppercase), the `.expressive-code` entry in the prose
+  media selector, the inert `prefetch` config block, the ContentDetailPage
+  `class` prop, and the `tags` field from the writing/projects content
+  schemas and all frontmatter.
+- Dedupe the social links: the homepage hero now derives its socials from
+  `SITE.socialLinks` via a new `icon` field; rendered output is unchanged.
 
 ### Added — 2026-09-03
 

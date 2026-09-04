@@ -3,7 +3,6 @@ title: "Reshrimp"
 description: "Client-side image manipulation tool - resize, compress, convert formats in your browser"
 url: "https://reshrimp.vercel.app"
 publishedDate: 2026-02-08
-tags: ["Typescript", "Image", "Browser"]
 ---
 
 Reshrimp is a client-side image manipulation tool that runs entirely in the browser. It lets you resize, compress, and convert image formats without uploading files to any server, keeping your data private and local.

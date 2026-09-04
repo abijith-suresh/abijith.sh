@@ -32,13 +32,11 @@ const shotFor =
 const findProjectShot = shotFor(projectShots);
 const findWritingShot = shotFor(writingShots);
 
-const socials = [
-  { label: "github", href: "https://github.com/abijith-suresh", icon: "github" },
-  { label: "x", href: "https://x.com/abijith_sh", icon: "x" },
-  { label: "linkedin", href: "https://linkedin.com/in/abijith-suresh", icon: "linkedin" },
-  { label: "bluesky", href: "https://bsky.app/profile/abijith.bsky.social", icon: "bluesky" },
-  { label: "rss", href: "/rss.xml", icon: "rss" },
-];
+const socials = SITE.socialLinks.map((social) => ({
+  label: social.label.toLowerCase(),
+  href: social.href,
+  icon: social.icon,
+}));
 ---
 
 <Layout description={SITE.description} type="website" jsonLd={{ type: "website" }}>
