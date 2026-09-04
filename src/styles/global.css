@@ -12,19 +12,22 @@ a {
 }
 
 ::selection {
-  background: oklch(from var(--color-primary) l c h / 0.92);
-  color: var(--color-ink);
+  background: oklch(100% 0 0 / 0.22);
+  color: inherit;
 }
 
 .text-link {
   font-weight: 500;
-  color: var(--color-primary);
-  transition: color var(--transition-base);
+  color: oklch(100% 0 0);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: oklch(100% 0 0 / 0.35);
+  transition: text-decoration-color var(--transition-base);
 }
 
 .text-link:hover {
-  /* primary is the pink accent — hover brightens it toward white */
-  color: color-mix(in oklch, var(--color-primary) 55%, oklch(100% 0 0));
+  text-decoration-color: oklch(100% 0 0 / 0.9);
 }
 
 .sr-only {
@@ -342,13 +345,17 @@ summary {
 
 .prose :where(a):not(:where(.not-prose, .not-prose *)) {
   font-weight: 500;
-  color: var(--color-primary);
-  transition: color var(--transition-base);
+  color: oklch(100% 0 0);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: oklch(100% 0 0 / 0.35);
+  transition: text-decoration-color var(--transition-base);
   overflow-wrap: break-word;
 }
 
 .prose :where(a:hover):not(:where(.not-prose, .not-prose *)) {
-  color: color-mix(in oklch, var(--color-primary) 55%, oklch(100% 0 0));
+  text-decoration-color: oklch(100% 0 0 / 0.9);
 }
 
 .prose :where(strong):not(:where(.not-prose, .not-prose *)) {

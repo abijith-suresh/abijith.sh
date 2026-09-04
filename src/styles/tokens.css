@@ -1,8 +1,8 @@
-/* Design tokens — Dusk Aurora v2 (flat).
-   Neutral hueless surfaces; pink is the one site accent — links, hover,
-   eyebrows, article accents, and the "as." period signature all share it.
-   Violet retired 2026-02-06. Shared by critical inline CSS and the
-   main stylesheet. */
+/* Design tokens — Dusk Aurora v2.1 (flat, monochrome chrome).
+   Neutral hueless surfaces, no UI accent: hovers, links, eyebrows, and
+   selection are white/neutral. Pink survives only as the signature — the
+   glowing period and the "as." favicon mark. Violet retired 2026-02-06.
+   Shared by critical inline CSS and the main stylesheet. */
 
 :root {
   /* Typography */
@@ -13,14 +13,13 @@
     "DejaVu Sans Mono", monospace;
 
   /* Color palette — dark neutrals, OKLCH, zero chroma.
-     primary is the pink accent (oklch(83.9% 0.069 3) ≈ #f2b8c6);
-     don't darken it — #f2b8c6 on #141414 is ≈ 8:1. */
+     pink (oklch(83.9% 0.069 3) ≈ #f2b8c6) is signature-only: don't darken it
+     and don't spend it on UI chrome — #f2b8c6 on #141414 is ≈ 8:1. */
   --color-bg: oklch(20.8% 0 0);
   --color-card: oklch(24.5% 0 0);
   --color-text: oklch(92% 0 0);
   --color-ink: oklch(26% 0 0);
   --color-pink: oklch(83.9% 0.069 3);
-  --color-primary: var(--color-pink);
 
   /* Semantic tokens */
   --color-background: var(--color-bg);
@@ -33,9 +32,8 @@
   --color-surface-strong: oklch(100% 0 0 / 0.08);
   --color-text-muted: oklch(92% 0 0 / 0.8);
 
-  /* Signature glow — the pink period's breathing halo
-     (--glow-primary now derives from the pink accent) */
-  --glow-primary: oklch(from var(--color-primary) l c h / 0.6);
+  /* Signature glow — the pink period's breathing halo */
+  --glow-primary: oklch(from var(--color-pink) l c h / 0.6);
   --glow-pink: oklch(from var(--color-pink) l c h / 0.4);
 
   /* Rings — the card hover language: lift + ring brighten, no shadows */
