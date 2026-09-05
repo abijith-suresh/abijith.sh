@@ -86,6 +86,10 @@ All notable changes to this site are documented in this file.
 - Restrict media card hover effects (lift, ring, image brightness) to
   hover-capable pointers so touch devices no longer trigger the animation
   while scrolling.
+- Point the microbreak project's frontmatter `url` at the production domain
+  (`microbreak.vercel.app`) instead of the team-scoped Vercel alias
+  (`microbreak-abijiths-projects-1.vercel.app`), which project cards on the
+  landing and projects pages linked to.
 
 ### Changed — 2026-09-05
 
