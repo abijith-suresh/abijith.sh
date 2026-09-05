@@ -2,7 +2,7 @@
 title: "microbreak"
 description: "short, non-addictive puzzle games for build wait times."
 accent: "#e07a5a"
-url: "https://microbreak-abijiths-projects-1.vercel.app"
+url: "https://microbreak.vercel.app"
 publishedDate: 2026-04-24
 ---
 
