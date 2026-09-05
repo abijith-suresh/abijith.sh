@@ -54,7 +54,7 @@
   --text-sm: var(--step--1);
   --text-base: var(--step-0);
   --text-lg: var(--step-1);
-  --text-hero: clamp(2.25rem, 1.5rem + 3vw, 3.25rem);
+  --text-hero: clamp(2.5rem, 2.5rem + 2vw, 3.75rem);
   --text-page: clamp(1.75rem, 1.2877rem + 2.255vw, 3rem);
 
   /* Type aliases

@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-09-05
+
+- Highlight the active section in the top navigation: `aria-current="page"` is
+  set from the current path (section pages and their detail pages) and the
+  active link renders in full text color.
+
 ### Added — 2026-09-04
 
 - Redesign the site to the Dusk Aurora system: dark violet palette, Bricolage
@@ -83,6 +89,14 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-09-05
 
+- Scale the landing hero up to the addi.lol reference size: `--text-hero`
+  now renders at 48px on small phones and 60px on desktop (previously
+  36–52px). Note: this diverges the landing-hero clamp from the shared
+  Dusk Aurora type-role table; inner-page headers (`--text-page`) are
+  unchanged.
+- Tidy the footer row: center-align the copyright and social links and use a
+  symmetric 1.5rem/3rem padding block instead of the long 4rem bottom pad
+  that left the row floating high.
 - Upgrade Bun from 1.3.14 to 1.4.1 and Node from 24.19.0 to 24.20.0, and make
   `mise.toml` the single source for tool versions: remove the root
   `.bun-version` and `.node-version` dotfiles (mise reads its own config, and
