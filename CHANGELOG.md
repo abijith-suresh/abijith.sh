@@ -77,12 +77,12 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-09-05
 
-- Upgrade Bun from 1.3.14 to 1.4.1 and make `mise.toml` the single source for
-  tool versions: remove the root `.bun-version` and `.node-version` dotfiles
-  (mise reads its own config, and the shared CI `bun-quality` v0.4.0 workflow
-  now reads Bun from `mise.toml`), pin `engines.bun` to the exact `1.4.1`
-  version, and re-pin `ci.yml` to the workflows release that carries the new
-  contract.
+- Upgrade Bun from 1.3.14 to 1.4.1 and Node from 24.19.0 to 24.20.0, and make
+  `mise.toml` the single source for tool versions: remove the root
+  `.bun-version` and `.node-version` dotfiles (mise reads its own config, and
+  the shared CI `bun-quality` v0.4.0 workflow now reads Bun from `mise.toml`),
+  pin `engines.bun` to the exact `1.4.1` version, and re-pin `ci.yml` to the
+  workflows release that carries the new contract.
 
 ### Fixed — 2026-09-04
 
