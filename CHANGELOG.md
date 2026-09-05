@@ -103,6 +103,10 @@ All notable changes to this site are documented in this file.
   the shared CI `bun-quality` v0.4.0 workflow now reads Bun from `mise.toml`),
   pin `engines.bun` to the exact `1.4.1` version, and re-pin `ci.yml` to the
   workflows release that carries the new contract.
+- Label the X/Twitter social link "twitter" everywhere it renders (hero
+  socials, footer, about page); the X logo mark stays.
+- Credit the full name in the copyright lines: "© 2026 abijith suresh" in the
+  site footer and article footers (was "abijith s").
 
 ### Fixed — 2026-09-04
 
