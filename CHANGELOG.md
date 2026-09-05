@@ -75,6 +75,12 @@ All notable changes to this site are documented in this file.
 - Dedupe the social links: SITE.socialLinks gains an `icon` field and the
   homepage hero derives its socials from it; rendered output is unchanged.
 
+### Fixed — 2026-09-05
+
+- Restrict media card hover effects (lift, ring, image brightness) to
+  hover-capable pointers so touch devices no longer trigger the animation
+  while scrolling.
+
 ### Changed — 2026-09-05
 
 - Upgrade Bun from 1.3.14 to 1.4.1 and Node from 24.19.0 to 24.20.0, and make
