@@ -1,8 +1,9 @@
 ---
+import type { ImageMetadata } from "astro";
 import Container from "@/components/ui/Container.astro";
 import EmptyState from "@/components/ui/EmptyState.astro";
+import MediaCard from "@/components/MediaCard.astro";
 import PageShell from "@/components/ui/PageShell.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { groupByYear } from "@/lib/group-by-year";
 import { getAllProjects } from "@/lib/projects";
@@ -11,6 +12,13 @@ import { getStaticRouteMetadata } from "@/lib/route-metadata";
 const allProjects = await getAllProjects();
 const projectsByYear = groupByYear(allProjects, (project) => project.data.publishedDate);
 const routeMetadata = getStaticRouteMetadata("/projects/");
+
+const projectShots = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/projects/*.{webp,png,jpg,jpeg,avif}",
+  { eager: true },
+);
+const findProjectShot = (id: string) =>
+  Object.entries(projectShots).find(([path]) => path.includes(`/${id}.`))?.[1].default;
 ---
 
 <Layout>
@@ -18,18 +26,41 @@ const routeMetadata = getStaticRouteMetadata("/projects/");
     {
       allProjects.length > 0 ? (
         <Container>
-          {projectsByYear.map(({ year, items: yearProjects }) => (
-            <div style="padding-bottom:var(--content-gap)">
-              <span style="display:block;margin-bottom:var(--section-gap)" class="eyebrow">{year}</span>
-              {yearProjects.map((project) => (
-                <ProjectCard project={project} />
-              ))}
+          {projectsByYear.map(({ year, items: yearProjects }, yearIndex) => (
+            <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
+              <span class="eyebrow">{year}</span>
+              <div class="stack">
+                {yearProjects.map((project, i) => (
+                  <MediaCard
+                    external
+                    href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
+                    title={project.data.title}
+                    description={project.data.description}
+                    placeholder={project.data.title.charAt(0)}
+                    image={findProjectShot(project.id)}
+                    accent={project.data.accent}
+                    flip={i % 2 === 1}
+                  />
+                ))}
+              </div>
             </div>
           ))}
         </Container>
       ) : (
-        <EmptyState message="No projects to display yet." />
+        <EmptyState message="no projects to display yet." />
       )
     }
   </PageShell>
 </Layout>
+
+<style>
+  .year-group {
+    padding-bottom: var(--content-gap);
+  }
+
+  /* year labels sit on their own row above the group */
+  .year-group > .eyebrow {
+    display: block;
+    margin-bottom: var(--section-gap);
+  }
+</style>

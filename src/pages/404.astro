@@ -1,44 +1,76 @@
 ---
 import Container from "@/components/ui/Container.astro";
-import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
-  title={`404 - Page Not Found | ${SITE.title}`}
-  description="The page you're looking for doesn't exist."
+  description="the page you're looking for doesn't exist."
   noindex={true}
   jsonLd={{ type: "website" }}
 >
-  <div style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column">
-    <Container class="page-404-container">
-      <div
-        style="font-size:8rem;font-weight:500;user-select:none;line-height:var(--leading-none);color:var(--color-muted-foreground)"
-        aria-hidden="true"
-      >
-        404
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;row-gap:var(--spacing-3);text-align:center">
-        <h1 style="font-size:clamp(1.875rem,4vw,3rem);font-weight:500;letter-spacing:-0.025em">Page Not Found</h1>
-        <p style="font-size:var(--text-lg);max-width:28rem;color:var(--color-muted-foreground)">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-      </div>
-
-      <div style="padding-top:var(--spacing-4)">
-        <a href="/" class="footer-link">← Back to Home</a>
-      </div>
+  <div class="page-404">
+    <Container class="page-404-inner">
+      <h1 class="rise" style="--d: 0ms">page not found<span class="period">.</span></h1>
+      <p class="page-404-note rise" style="--d: 60ms">
+        the page you're looking for doesn't exist or has been moved.
+      </p>
+      <a class="back-link rise" style="--d: 120ms" href="/">
+        <span class="arrow" aria-hidden="true">←</span> back to home
+      </a>
     </Container>
   </div>
 </Layout>
+
 <style>
-  .page-404-container {
+  .page-404 {
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .page-404-inner {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    row-gap: var(--space-2xs);
+    /* symmetric so the centered stack doesn't lean; doubles as
+       breathing room on viewports too small to center into */
+    padding-block: var(--space-2xl);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 650;
+    letter-spacing: var(--letter-spacing-heading);
+    line-height: var(--leading-heading);
+  }
+
+  .page-404-note {
+    max-width: 32rem;
+    margin-top: var(--space-2xs);
+    color: var(--color-muted-foreground);
+  }
+
+  .back-link {
+    margin-top: var(--space-s);
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    row-gap: var(--spacing-8);
-    padding-block: 7rem;
+    gap: var(--gap-icon);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-muted-foreground);
+    transition: color var(--transition-base);
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
   }
 </style>

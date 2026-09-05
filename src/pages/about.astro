@@ -20,51 +20,75 @@ const routeMetadata = getStaticRouteMetadata("/about/");
   }}
 >
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow">
-      <p style="color:var(--color-muted-foreground)">
-        I'm a backend engineer at <a
+    <Container class="section-flow page-intro rise" style="--d: 80ms">
+      <p>
+        i'm a backend engineer at <a
           href="https://ust.com"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">UST</a
+          rel="noopener noreferrer">ust</a
         > — born in <a
           href="https://en.wikipedia.org/wiki/Kochi"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">Kochi</a
-        >, still here. I got into programming through QBasic in Class 9. The teacher
-        set problems just past what you could do. That stuck.
+          rel="noopener noreferrer">kochi</a
+        >, still here. i got into programming through qbasic in class 9. the teacher
+        set problems just past what you could do. that stuck.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        On the side I've built tools that run entirely in your browser. No servers,
-        no accounts, files stay local. It started because I couldn't find a simple
-        image resizer I trusted, so I built one. That kept going.
+      <p>
+        on the side i've built tools that run entirely in your browser. no servers,
+        no accounts, files stay local. it started because i couldn't find a simple
+        image resizer i trusted, so i built one. that kept going.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        You can find me on <a
+      <p>
+        you can find me on <a
           href="https://github.com/abijith-suresh"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">GitHub</a
+          rel="noopener noreferrer">github</a
         >, <a
           href="https://x.com/abijith_sh"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">X</a
+          rel="noopener noreferrer">x</a
         >, <a
           href="https://linkedin.com/in/abijith-suresh"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">LinkedIn</a
+          rel="noopener noreferrer">linkedin</a
         >, and <a
           href="https://bsky.app/profile/abijith.bsky.social"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">Bluesky</a
+          rel="noopener noreferrer">bluesky</a
         >.
       </p>
     </Container>
   </PageShell>
 </Layout>
+
+<style>
+  /* readable measure inside the 64rem frame, left-aligned to the header */
+  .page-intro p {
+    max-width: 38rem;
+    color: var(--color-muted-foreground);
+  }
+
+  /* the lead paragraph carries a little more presence than the rest */
+  .page-intro p:first-child {
+    color: var(--color-text-muted);
+  }
+
+  .page-intro p:first-child::before {
+    content: "";
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.55rem;
+    border-radius: var(--radius-pill);
+    background: oklch(100% 0 0 / 0.4);
+    vertical-align: 0.18em;
+  }
+</style>

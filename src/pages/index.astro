@@ -1,69 +1,222 @@
 ---
-import Container from "@/components/ui/Container.astro";
-import PageHeader from "@/components/ui/PageHeader.astro";
+
+import type { ImageMetadata } from "astro";
+import MediaCard from "@/components/MediaCard.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { getAllProjects } from "@/lib/projects";
+import { getAllWriting } from "@/lib/writing";
+
+const FEATURED_SLUGS = ["interleaf", "reshrimp", "tailory"];
+
+const allProjects = await getAllProjects();
+const featured = FEATURED_SLUGS.map((slug) =>
+  allProjects.find((project) => project.id === slug),
+).filter((project) => project !== undefined);
+
+const latestPosts = (await getAllWriting()).slice(0, 2);
+
+const projectShots = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/projects/*.{webp,png,jpg,jpeg,avif}",
+  { eager: true },
+);
+const writingShots = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/writing/*.{webp,png,jpg,jpeg,avif}",
+  { eager: true },
+);
+
+const shotFor =
+  (shots: Record<string, { default: ImageMetadata }>) => (id: string) =>
+    Object.entries(shots).find(([path]) => path.includes(`/${id}.`))?.[1].default;
+const findProjectShot = shotFor(projectShots);
+const findWritingShot = shotFor(writingShots);
+
+const socials = SITE.socialLinks.map((social) => ({
+  label: social.label.toLowerCase(),
+  href: social.href,
+  icon: social.icon,
+}));
 ---
 
-<Layout
-  title={SITE.title}
-  description={SITE.description}
-  type="website"
-  jsonLd={{ type: "website" }}
->
-  <div style="width:100%;margin-inline:auto;display:flex;flex-grow:1;flex-direction:column;padding-top:var(--page-block-start);padding-bottom:var(--page-block-end)">
-    <Container class="section-flow">
-      <PageHeader title={SITE.author} subtitle={SITE.role} />
-      <p style="color:var(--color-muted-foreground)">
-        Backend engineer at <a
-          href="https://ust.com"
-          class="text-link"
-          target="_blank"
-          rel="noopener noreferrer">UST</a
-        > in <a
-          href="https://en.wikipedia.org/wiki/Kochi"
-          class="text-link"
-          target="_blank"
-          rel="noopener noreferrer">Kochi, Kerala</a
-        >. I work with Java and Spring Boot. Outside work, I'm usually playing games or building
-        something.
+<Layout description={SITE.description} type="website" jsonLd={{ type: "website" }}>
+  <div class="page">
+    <section class="hero">
+      <h1 class="rise" style="--d: 0ms">
+        hi, i'm abijith<span class="period">.</span>
+      </h1>
+      <p class="bio rise" style="--d: 80ms">
+        java backend engineer at ust. i build tools for fun on the side.
       </p>
-      <p style="color:var(--color-muted-foreground)">
-        You can read more <a href="/about/" class="text-link">about me</a>,
-        see my <a href="/projects/" class="text-link"
-          >projects</a
-        >,         read my <a href="/writing/" class="text-link">writing</a>, or
-        check <a href="/now/" class="text-link">what I'm doing now</a>.
-      </p>
-      <p style="color:var(--color-muted-foreground)">
-        Find me on{" "}
-        <a
-          href="https://github.com/abijith-suresh"
-          class="text-link"
-          target="_blank"
-          rel="noopener noreferrer">GitHub</a
-        >,{" "}
-        <a
-          href="https://x.com/abijith_sh"
-          class="text-link"
-          target="_blank"
-          rel="noopener noreferrer">X</a
-        >,{" "}
-        <a
-          href="https://linkedin.com/in/abijith-suresh"
-          class="text-link"
-          target="_blank"
-          rel="noopener noreferrer">LinkedIn</a
-        >,{" "}
-        <a
-          href="https://bsky.app/profile/abijith.bsky.social"
-          class="text-link"
-          target="_blank"
-          rel="noopener noreferrer">Bluesky</a
-        >,{" "}
-        or subscribe via{" "}
-        <a href="/rss.xml" class="text-link">RSS</a>.
-      </p>
-    </Container>
+
+      <ul class="socials rise" style="--d: 160ms">
+        {
+          socials.map((social) => (
+            <li>
+              <a
+                class="social"
+                href={social.href}
+                {...(social.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {social.icon === "github" && (
+                  <svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                  </svg>
+                )}
+                {social.icon === "x" && (
+                  <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18.9 1.15h3.68l-8.04 9.19 9.46 12.51h-7.41l-5.8-7.58-6.63 7.58H.48l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41Z" />
+                  </svg>
+                )}
+                {social.icon === "linkedin" && (
+                  <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+                  </svg>
+                )}
+                {social.icon === "bluesky" && (
+                  <svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 10.8c-1.09-2.11-4.05-6.05-6.8-8C2.57.94 1.56 1.27.9 1.57.14 1.91 0 3.08 0 3.77c0 .69.38 5.65.62 6.48.82 2.73 3.72 3.66 6.39 3.36.13-.02.27-.04.41-.06-.13.02-.27.04-.41.06-3.91.58-7.39 2-2.83 7.08 5.01 5.19 6.87-1.11 7.82-4.31.95 3.2 2.05 9.27 7.73 4.31 4.27-4.31 1.17-6.5-2.74-7.08a8.7 8.7 0 0 1-.41-.06c.14.02.28.04.41.06 2.67.3 5.57-.63 6.39-3.36.24-.83.62-5.79.62-6.48 0-.69-.14-1.86-.9-2.2-.66-.3-1.66-.63-4.3 1.24C16.05 4.75 13.09 8.69 12 10.8Z" />
+                  </svg>
+                )}
+                {social.icon === "rss" && (
+                  <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 11a9 9 0 0 1 9 9" />
+                    <path d="M4 4a16 16 0 0 1 16 16" />
+                    <circle cx="5" cy="19" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                )}
+                <span>{social.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="featured-projects">
+      <div class="section-head rise" style="--d: 230ms">
+        <h2 id="featured-projects">featured projects</h2>
+        <a class="all-link" href="/projects/">
+          all projects <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="stack">
+        {
+          featured.map((project, i) => (
+            <MediaCard
+              external
+              href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
+              title={project.data.title}
+              description={project.data.description}
+              placeholder={project.data.title.charAt(0)}
+              image={findProjectShot(project.id)}
+              accent={project.data.accent}
+              flip={i % 2 === 1}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="latest-writing">
+      <div class="section-head rise" style="--d: 300ms">
+        <h2 id="latest-writing">latest writing</h2>
+        <a class="all-link" href="/writing/">
+          all writing <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="stack">
+        {
+          latestPosts.map((post) => (
+            <MediaCard
+              href={`/writing/${post.id}/`}
+              title={post.data.title}
+              description={post.data.description}
+              image={findWritingShot(post.id)}
+              placeholder={post.data.title.charAt(0)}
+            />
+          ))
+        }
+      </div>
+    </section>
   </div>
 </Layout>
+
+<style>
+  .page {
+    max-width: 64rem;
+    margin-inline: auto;
+    width: 100%;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    padding-top: var(--page-block-start);
+    padding-bottom: var(--page-block-end);
+  }
+
+  .hero {
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+
+  h1 {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-hero);
+    line-height: 1.12;
+    letter-spacing: var(--letter-spacing-display);
+    text-wrap: balance;
+  }
+
+  .bio {
+    max-width: 46ch;
+    margin: 0;
+    color: var(--color-muted-foreground);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.9rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gap-icon);
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    color: var(--color-muted-foreground);
+    font-size: var(--text-sm);
+    transition:
+      background var(--transition-base),
+      color var(--transition-base);
+  }
+
+  .social .icon {
+    transition: transform var(--transition-base);
+  }
+
+  .social:hover {
+    background: var(--color-surface-strong);
+    color: var(--color-text);
+  }
+
+  .social:hover .icon {
+    transform: translateX(2px);
+  }
+
+  .section {
+    margin-top: clamp(4rem, 10vh, 6.5rem);
+  }
+
+  .section:first-of-type {
+    margin-top: 0;
+  }
+</style>

@@ -1,8 +1,9 @@
 ---
-title: "Interleaf"
-description: "Client-side PDF manipulation tool - merge, split, reorder, rotate, and more"
+title: "interleaf"
+description: "client-side pdf manipulation tool - merge, split, reorder, rotate, and more"
+accent: "#ff0000"
+url: "https://interleaf-snowy.vercel.app"
 publishedDate: 2026-02-16
-tags: ["Typescript", "PDF", "Browser"]
 ---
 
 Interleaf is a client-side PDF manipulation tool that handles common document operations directly in your browser. Merge multiple PDFs into one, split a large document into individual pages, reorder pages, and rotate them as needed.

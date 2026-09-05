@@ -1,8 +1,9 @@
 ---
+import type { ImageMetadata } from "astro";
 import Container from "@/components/ui/Container.astro";
 import EmptyState from "@/components/ui/EmptyState.astro";
+import MediaCard from "@/components/MediaCard.astro";
 import PageShell from "@/components/ui/PageShell.astro";
-import WritingCard from "@/components/WritingCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllWriting } from "@/lib/writing";
 import { groupByYear } from "@/lib/group-by-year";
@@ -11,6 +12,13 @@ import { getStaticRouteMetadata } from "@/lib/route-metadata";
 const allPosts = await getAllWriting();
 const postsByYear = groupByYear(allPosts, (post) => post.data.publishedDate);
 const routeMetadata = getStaticRouteMetadata("/writing/");
+
+const writingShots = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/writing/*.{webp,png,jpg,jpeg,avif}",
+  { eager: true },
+);
+const findWritingShot = (id: string) =>
+  Object.entries(writingShots).find(([path]) => path.includes(`/${id}.`))?.[1].default;
 ---
 
 <Layout>
@@ -18,18 +26,38 @@ const routeMetadata = getStaticRouteMetadata("/writing/");
     {
       allPosts.length > 0 ? (
         <Container>
-          {postsByYear.map(({ year, items: yearPosts }) => (
-            <div style="padding-bottom:var(--content-gap)">
-              <span style="display:block;margin-bottom:var(--section-gap)" class="eyebrow">{year}</span>
-              {yearPosts.map((post) => (
-                <WritingCard post={post} />
-              ))}
+          {postsByYear.map(({ year, items: yearPosts }, yearIndex) => (
+            <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
+              <span class="eyebrow">{year}</span>
+              <div class="stack">
+                {yearPosts.map((post) => (
+                  <MediaCard
+                    href={`/writing/${post.id}/`}
+                    title={post.data.title}
+                    description={post.data.description}
+                    image={findWritingShot(post.id)}
+                    placeholder={post.data.title.charAt(0)}
+                  />
+                ))}
+              </div>
             </div>
           ))}
         </Container>
       ) : (
-        <EmptyState message="No posts to display yet." />
+        <EmptyState message="no posts to display yet." />
       )
     }
   </PageShell>
 </Layout>
+
+<style>
+  .year-group {
+    padding-bottom: var(--content-gap);
+  }
+
+  /* year labels sit on their own row above the group */
+  .year-group > .eyebrow {
+    display: block;
+    margin-bottom: var(--section-gap);
+  }
+</style>

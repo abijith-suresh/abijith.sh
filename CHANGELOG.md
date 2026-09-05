@@ -4,6 +4,111 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-09-04
+
+- Redesign the site to the Dusk Aurora system: dark violet palette, Bricolage
+  Grotesque + Geist typography, site-wide breathing aurora glow, topbar and
+  footer shell, and a glowing-period hero signature.
+- Add the Astro ClientRouter for view transitions, with the aurora glow marked
+  transition:persist so its 22s breathe carries across navigations; standardize
+  rise choreography to header 0ms → content 80ms → list items 160ms + 70ms
+  (capped at 8 items) on the homepage, writing, and projects indexes.
+- Align with the Dusk Aurora House Standard v1 across sites: Satori/OG and
+  favicon palette moves to the canonical sRGB set (#1a1823 bg, #e0ddef text,
+  #a09aad muted, #312f39 hairline) with the theme-color meta updated to match,
+  and the favicon "as." monogram rebuilt on the shared geometry (full-bleed
+  tile, 16% radius, no frame, 0.52-size glyph, pink period).
+- Add the cross-site --text-* type-role tokens (xs/sm/base/lg/hero/page) with
+  exact shared clamps: the landing hero renders at --text-hero, inner page
+  headers and article titles at --text-page, the brand at --text-base, and
+  card titles at 1.2rem/650/-0.01em.
+- Tokenize the design system further: glow color/duration tokens, display
+  tracking tokens, radius, micro-gap, and z-index tokens, with the signature
+  period glow extracted into one shared `.period` pattern.
+- Add the owner's social links (github, x, linkedin, bluesky, rss) to the site
+  footer as quiet lowercase text links — © line on the left, socials on the
+  right, single row.
+- Render project card screenshots as mini browser windows (addi.lol-style):
+  a quiet CSS chrome strip (three dots + mono URL pill showing the project's
+  domain) above a rounded-top, hairline-outlined viewport, inset on the
+  violet/pink wash panel — no shadows, writing cards unaffected.
+
+### Changed — 2026-09-04
+
+- Rework the homepage: featured projects as alternating image/content cards
+  linking straight to deployments, and a latest-writing section with the same
+  card pattern. Featured list is trimmed to three projects and the
+  hero-to-featured gap tightened (hero padding-bottom clamp(2.5rem, 6vh,
+  4rem)).
+- Move "all projects" and "all writing" links into section headers (top right)
+  and restyle the writing index with the card pattern grouped by year.
+- Rebuild the projects index as the same alternating MediaCard stack used on
+  the homepage, keeping the violet mono year eyebrows and year grouping.
+- Restyle the writing article page for Dusk Aurora: display-font headline,
+  staggered rise reveal for header and prose, a 70ch reading measure, and a
+  quiet hairline article footer with an "← all writing" back link.
+- Restyle the secondary pages for Dusk Aurora: glowing-period lowercase page
+  headers on about, now, writing, projects, and 404; a vertically centered 404
+  ("page not found." + muted line + "← back to home", no eyebrow or numeral);
+  and back links with the arrow nudge on hover.
+- Compose the media-card placeholder: a larger violet-tinted display initial
+  over a violet/pink radial wash instead of a dim letter on an empty panel.
+  Cards show the placeholder unless a real image exists in src/assets/;
+  generated OG images no longer back writing card covers (they still back
+  social meta tags).
+- Make every browser title lowercase: home renders "abijith.sh", section
+  pages "<page> · abijith.sh", articles "<post> · abijith.sh" (the "writing"
+  segment is dropped), 404 "page not found · abijith.sh".
+- Identify inline text links by violet color alone (.text-link and prose
+  links), brightening toward the pink accent on hover — no underlines.
+- Reword the hero bio and site meta description to "java backend engineer at
+  ust. i build tools for fun on the side."
+- Run a full-lowercase pass over page chrome and static prose: about and now
+  pages, route metadata descriptions, the site tagline, empty-state messages,
+  and dates (formatDate returns "february 11, 2026").
+- Restyle the now page's labels (building/playing/watching/reading, last
+  updated) as plain lowercase muted text in the body font; year labels
+  elsewhere keep the deliberate mono eyebrow.
+- Tighten the inner-page header spacing so title, subtitle, and content read
+  as one unit (clamp(2.25rem, 5vh, 3.5rem) instead of the hero-scale gap);
+  the landing page keeps its own rhythm.
+- Dedupe the social links: SITE.socialLinks gains an `icon` field and the
+  homepage hero derives its socials from it; rendered output is unchanged.
+
+### Fixed — 2026-09-04
+
+- Stack all media cards image-first on mobile; flip cards previously kept text
+  above the image while normal cards showed the image on top.
+- Slide the article page's "← all writing" arrow left on hover instead of
+  right.
+
+### Removed — 2026-09-04
+
+- Remove project detail pages; projects now link directly to their deployed
+  URLs or repositories from the homepage and the projects archive.
+- Remove the design exploration route `/7` (the design now lives on the main
+  site) and the superseded card components.
+- Remove the skills and prompts project entries; they now live as separate
+  subdomain sites and no longer appear in the projects archive or the
+  homepage featured list.
+- Remove the unused `extractExcerpt` module (the only direct import of the
+  undeclared `satteri` package) and five unused @fontsource-variable
+  dependencies (fraunces, geist-mono, instrument-sans, jetbrains-mono,
+  newsreader).
+- Remove the IBM Plex Sans @font-face blocks and font files, and the unused
+  IBM Plex Mono italic/medium-italic faces and files; IBM Plex Mono keeps
+  Regular and Medium.
+- Remove the unused `.footer-link` styles, five zero-reference design tokens
+  (--step-4, --text-4xl, --spacing-6, --spacing-12,
+  --letter-spacing-uppercase), the `.expressive-code` entry in the prose
+  media selector, the inert `prefetch` config block, the ContentDetailPage
+  `class` prop, and the `tags` field from the writing/projects content
+  schemas and all frontmatter.
+
+### Added — 2026-09-03
+
+- Add a standalone Dusk Aurora homepage exploration at `/7` for review: dark violet theme with breathing aurora, featured projects with screenshot slots linking straight to deployments, no tag chips, and a glowing-period signature. Self-contained and `noindex`ed.
+
 ### Added — 2026-08-31
 
 - Add a Vercel header baseline for static security headers and revalidation-friendly caching of generated OG images, site icons, and fonts.

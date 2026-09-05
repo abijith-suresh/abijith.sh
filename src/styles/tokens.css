@@ -1,44 +1,71 @@
-/* Design tokens — shared by critical inline CSS and the main stylesheet. */
+/* Design tokens — Dusk Aurora v2.1 (flat, monochrome chrome).
+   Neutral hueless surfaces, no UI accent: hovers, links, eyebrows, and
+   selection are white/neutral. Pink survives only as the signature — the
+   glowing period and the "as." favicon mark. Violet retired 2026-02-06.
+   Shared by critical inline CSS and the main stylesheet. */
 
 :root {
   /* Typography */
-  --font-sans: "IBM Plex Sans", "IBM Plex Sans Fallback", system-ui, sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
     "DejaVu Sans Mono", monospace;
 
-  /* Color palette — neutral grays, OKLCH, dark only */
-  --color-bg: oklch(14.5% 0 0);
-  --color-text: oklch(98.5% 0 0);
-  --color-border: oklch(25% 0 0);
+  /* Color palette — dark neutrals, OKLCH, zero chroma.
+     pink (oklch(83.9% 0.069 3) ≈ #f2b8c6) is signature-only: don't darken it
+     and don't spend it on UI chrome — #f2b8c6 on #141414 is ≈ 8:1. */
+  --color-bg: oklch(20.8% 0 0);
+  --color-card: oklch(24.5% 0 0);
+  --color-text: oklch(92% 0 0);
+  --color-ink: oklch(26% 0 0);
+  --color-pink: oklch(83.9% 0.069 3);
 
   /* Semantic tokens */
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
-  --color-muted-foreground: color-mix(in oklch, var(--color-text) 60%, transparent);
+  --color-muted-foreground: oklch(66% 0 0);
 
   /* Surface tokens */
-  --color-surface: color-mix(in oklch, var(--color-text) 6%, transparent);
-  --color-surface-strong: color-mix(in oklch, var(--color-text) 8%, transparent);
-  --color-text-muted: color-mix(in oklch, var(--color-text) 80%, transparent);
+  --color-border: oklch(100% 0 0 / 0.1);
+  --color-surface: oklch(100% 0 0 / 0.06);
+  --color-surface-strong: oklch(100% 0 0 / 0.08);
+  --color-text-muted: oklch(92% 0 0 / 0.8);
 
-  /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site */
+  /* Signature glow — the pink period's breathing halo */
+  --glow-primary: oklch(from var(--color-pink) l c h / 0.6);
+  --glow-pink: oklch(from var(--color-pink) l c h / 0.4);
+
+  /* Rings — the card hover language: lift + ring brighten, no shadows */
+  --ring: oklch(100% 0 0 / 0.08);
+  --ring-hover: oklch(100% 0 0 / 0.15);
+
+  /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site.
+     --step-* is the raw scale; --text-* are the cross-site role names
+     (Dusk Aurora House Standard v1) and carry the exact shared clamps. */
   --step--1: clamp(0.875rem, 0.8519rem + 0.1127vw, 0.9375rem);
   --step-0: clamp(1rem, 0.9538rem + 0.2255vw, 1.125rem);
   --step-1: clamp(1.125rem, 1.0418rem + 0.4059vw, 1.35rem);
   --step-2: clamp(1.2656rem, 1.1346rem + 0.6392vw, 1.62rem);
   --step-3: clamp(1.4238rem, 1.2309rem + 0.941vw, 1.944rem);
 
-  /* Type aliases */
-  --heading-1: var(--step-3);
-  --text-xs: var(--step--1);
+  /* Type roles — exact clamps shared across all Dusk Aurora sites */
+  --text-xs: clamp(0.8125rem, 0.7894rem + 0.1127vw, 0.875rem);
   --text-sm: var(--step--1);
   --text-base: var(--step-0);
   --text-lg: var(--step-1);
+  --text-hero: clamp(2.25rem, 1.5rem + 3vw, 3.25rem);
+  --text-page: clamp(1.75rem, 1.2877rem + 2.255vw, 3rem);
+
+  /* Type aliases
+     --heading-1 (inner page headers) and --hero-size (landing hero) point at
+     the role tokens so their rendered sizes match cross-site. --text-xl..3xl
+     remain prose-heading sizes on the raw scale. */
+  --heading-1: var(--text-page);
   --text-xl: var(--step-2);
   --text-2xl: var(--step-3);
   --text-3xl: var(--step-3);
-  --text-4xl: var(--step-3);
+  --hero-size: var(--text-hero);
 
   /* Line-height */
   --leading-text: calc(0.65rem + 1em);
@@ -55,9 +82,11 @@
   --space-xl: clamp(3rem, 2.8613rem + 0.6764vw, 3.375rem);
   --space-2xl: clamp(4rem, 3.8151rem + 0.9019vw, 4.5rem);
 
-  /* Semantic rhythm */
-  --page-inline: var(--space-m);
-  --page-block-start: clamp(5rem, 4.5377rem + 2.255vw, 6.25rem);
+  /* Semantic rhythm
+     --page-inline is the site gutter shared by topbar, footer, page
+     containers, and the article detail page. */
+  --page-inline: clamp(1.25rem, 5vw, 2.5rem);
+  --page-block-start: clamp(4rem, 3.2rem + 3vw, 6.25rem);
   --page-block-end: var(--space-2xl);
   --title-subtitle-gap: var(--space-2xs);
   --section-gap: var(--space-m);
@@ -69,16 +98,33 @@
   --spacing-2: var(--space-2xs);
   --spacing-3: var(--space-xs);
   --spacing-4: var(--space-s);
-  --spacing-6: var(--space-m);
   --spacing-8: var(--space-l);
-  --spacing-12: var(--space-xl);
   --spacing-16: var(--space-2xl);
 
   /* Border tokens */
   --border-width: 1px;
 
+  /* Radius tokens */
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+
+  /* Micro-gaps — icon-to-text pairs and wrapping flex rows */
+  --gap-icon: 0.4rem;
+  --gap-wrap: 0.5rem 1.5rem;
+
+  /* Display tracking — tighter as type gets larger */
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-heading: -0.015em;
+  --letter-spacing-display: -0.02em;
+
   /* Motion tokens */
   --transition-base: 150ms ease;
-  --letter-spacing-uppercase: 0.04em;
+  --transition-lift: 200ms ease;
+  --duration-breathe: 22s;
+
+  /* Layering */
+  --z-content: 1;
+  --z-skip-link: 50;
+
   color-scheme: dark;
 }

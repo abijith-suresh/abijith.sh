@@ -1,19 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { groupByYear } from "./group-by-year";
-import { getProjectUrl, getWritingUrl } from "./routes";
+import { getWritingUrl } from "./routes";
 import { calculateReadingTime, formatDate, formatReadingTime } from "./utils";
 
 describe("formatDate", () => {
-  it("formats a date in en-US long format", () => {
-    expect(formatDate(new Date(2026, 5, 11))).toBe("June 11, 2026");
+  it("formats a date in lowercase en-US long format", () => {
+    expect(formatDate(new Date(2026, 5, 11))).toBe("june 11, 2026");
   });
 
   it("handles end of year", () => {
-    expect(formatDate(new Date(2025, 11, 31))).toBe("December 31, 2025");
+    expect(formatDate(new Date(2025, 11, 31))).toBe("december 31, 2025");
   });
 
   it("handles leap year", () => {
-    expect(formatDate(new Date(2024, 1, 29))).toBe("February 29, 2024");
+    expect(formatDate(new Date(2024, 1, 29))).toBe("february 29, 2024");
   });
 });
 
@@ -109,11 +109,5 @@ describe("getWritingUrl", () => {
     expect(getWritingUrl("why-i-built-my-own-website")).toBe(
       "/writing/why-i-built-my-own-website/"
     );
-  });
-});
-
-describe("getProjectUrl", () => {
-  it("returns the correct URL for a project", () => {
-    expect(getProjectUrl("interleaf")).toBe("/projects/interleaf/");
   });
 });

@@ -52,8 +52,8 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#080808",
-          color: "#fafafa",
+          backgroundColor: "#141414",
+          color: "#e8e8e8",
           padding: 72,
           fontFamily: "IBM Plex Sans",
         },
@@ -73,7 +73,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                     style: {
                       width: "100%",
                       height: 1,
-                      backgroundColor: "#3f3f3f",
+                      backgroundColor: "#2c2c2c",
                     },
                   },
                 },
@@ -90,7 +90,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                         type: "div",
                         props: {
                           style: {
-                            color: "#a9a9a9",
+                            color: "#a3a3a3",
                             fontFamily: "IBM Plex Mono",
                             fontSize: 24,
                             fontWeight: 500,
@@ -128,7 +128,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                             display: "flex",
                             flexDirection: "column",
                             gap: 8,
-                            color: "#a9a9a9",
+                            color: "#a3a3a3",
                             fontSize: 32,
                             lineHeight: 1.25,
                           },
@@ -169,7 +169,7 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
                     style: {
                       width: "100%",
                       height: 1,
-                      backgroundColor: "#3f3f3f",
+                      backgroundColor: "#2c2c2c",
                     },
                   },
                 },
@@ -190,6 +190,11 @@ async function renderOgSvg(route: OgRoute): Promise<string> {
 async function renderIconSvg(size: number): Promise<string> {
   const fonts = await loadFonts();
 
+  // "as." monogram — canonical Dusk Aurora geometry: full-bleed tile with a
+  // 16% radius and no frame, glyph at 0.52*size optically lifted 6% of its
+  // font size. Colors: bg #141414, glyph #e8e8e8, period #f2b8c6
+  // (oklch(83.9% 0.069 3), the --color-pink token).
+  const glyphSize = size * 0.52;
   return satori(
     {
       type: "div",
@@ -200,26 +205,41 @@ async function renderIconSvg(size: number): Promise<string> {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#080808",
-          color: "#fafafa",
-          fontFamily: "IBM Plex Sans",
-          fontSize: size * 0.32,
-          fontWeight: 500,
+          backgroundColor: "#141414",
+          borderRadius: size * 0.16,
         },
-        children: {
-          type: "div",
-          props: {
-            style: {
-              width: size * 0.68,
-              height: size * 0.68,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: `${size * 0.012}px solid #3f3f3f`,
+        children: [
+          {
+            type: "div",
+            props: {
+              style: {
+                color: "#e8e8e8",
+                fontFamily: "IBM Plex Sans",
+                fontSize: glyphSize,
+                fontWeight: 500,
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                transform: `translateY(${glyphSize * -0.06}px)`,
+              },
+              children: "as",
             },
-            children: "AS",
           },
-        },
+          {
+            type: "div",
+            props: {
+              style: {
+                color: "#f2b8c6",
+                fontFamily: "IBM Plex Sans",
+                fontSize: glyphSize,
+                fontWeight: 500,
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                transform: `translateY(${glyphSize * -0.06}px)`,
+              },
+              children: ".",
+            },
+          },
+        ],
       },
     },
     {

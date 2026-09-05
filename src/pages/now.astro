@@ -9,60 +9,66 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 
 <Layout>
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow">
-      <p style="color:var(--color-muted-foreground)">
-        Last updated: August 2026
-      </p>
+    <Container class="section-flow page-now rise" style="--d: 80ms">
+      <p>last updated: august 2026</p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Still at <a
+      <p>
+        still at <a
           href="https://ust.com"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">UST</a
-        >, writing Java.
+          rel="noopener noreferrer">ust</a
+        >, writing java.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Building — <a
+      <p>
+        building — <a
           href="https://github.com/abijith-suresh/interleaf"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">Interleaf</a
-        >, a client-side PDF editor.
+          rel="noopener noreferrer">interleaf</a
+        >, a client-side pdf editor.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Playing — <a
+      <p>
+        playing — <a
           href="https://store.steampowered.com/app/2221490/Tom_Clancys_The_Division_2/"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">The Division 2</a
+          rel="noopener noreferrer">the division 2</a
         > and <a
           href="https://store.steampowered.com/app/2000950/Call_of_Duty_Modern_Warfare/"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">Call of Duty: Modern Warfare</a
+          rel="noopener noreferrer">call of duty: modern warfare</a
         > (2019).
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Watching — <a
+      <p>
+        watching — <a
           href="https://anilist.co/anime/161645/Kusuriya-no-Hitorigoto/"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">The Apothecary Diaries</a
+          rel="noopener noreferrer">the apothecary diaries</a
         >.
       </p>
 
-      <p style="color:var(--color-muted-foreground)">
-        Reading — <a
+      <p>
+        reading — <a
           href="https://www.goodreads.com/book/show/19776547-essentialism"
           class="text-link"
           target="_blank"
-          rel="noopener noreferrer">Essentialism</a
-        > by Greg McKeown.
+          rel="noopener noreferrer">essentialism</a
+        > by greg mckeown.
       </p>
     </Container>
   </PageShell>
 </Layout>
+
+<style>
+  /* readable measure inside the 64rem frame, left-aligned to the header */
+  .page-now p {
+    max-width: 38rem;
+    color: var(--color-muted-foreground);
+  }
+</style>

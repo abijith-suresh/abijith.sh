@@ -43,10 +43,6 @@ export default defineConfig({
     }),
   },
   integrations: [generatedAssets(), sitemap()],
-  prefetch: {
-    prefetchAll: false,
-    defaultStrategy: "hover",
-  },
   vite: {
     server: {
       // Improve dev server performance
