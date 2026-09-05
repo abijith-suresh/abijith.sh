@@ -21,7 +21,7 @@ export const SITE = {
   // homepage hero; label/href/external also drive the Layout footer and JSON-LD.
   socialLinks: [
     { label: "GitHub", href: "https://github.com/abijith-suresh", external: true, icon: "github" },
-    { label: "X", href: "https://x.com/abijith_sh", external: true, icon: "x" },
+    { label: "Twitter", href: "https://x.com/abijith_sh", external: true, icon: "x" },
     {
       label: "LinkedIn",
       href: "https://linkedin.com/in/abijith-suresh",
