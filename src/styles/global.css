@@ -1,6 +1,7 @@
 @import "./fonts.css";
 @import "./tokens.css";
 @import "./base.css";
+@import "./motion.css";
 
 /* ==========================================================================
    Dusk Aurora Design System — v2 flat
@@ -70,23 +71,6 @@ summary {
   display: flex;
   flex-direction: column;
   gap: var(--section-gap);
-}
-
-/* ── Orchestrated load reveal ────────────────────────────────────────── */
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.rise {
-  animation: rise 560ms cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
-  animation-delay: var(--d, 0ms);
 }
 
 /* ── Signature period — pink dot with a breathing glow.
@@ -514,10 +498,6 @@ summary {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rise {
-    animation: none;
-  }
-
   .period::after {
     animation: none;
   }

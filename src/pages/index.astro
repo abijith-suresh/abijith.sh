@@ -4,6 +4,7 @@ import type { ImageMetadata } from "astro";
 import MediaCard from "@/components/MediaCard.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { riseStep } from "@/lib/motion";
 import { getAllProjects } from "@/lib/projects";
 import { getAllWriting } from "@/lib/writing";
 
@@ -41,14 +42,14 @@ const socials = SITE.socialLinks.map((social) => ({
 <Layout description={SITE.description} type="website" jsonLd={{ type: "website" }}>
   <div class="page">
     <section class="hero">
-      <h1 class="rise" style="--d: 0ms">
+      <h1 class="rise" style={`--d: ${riseStep(0)}`}>
         hi, i'm abijith<span class="period">.</span>
       </h1>
-      <p class="bio rise" style="--d: 80ms">
+      <p class="bio rise" style={`--d: ${riseStep(1)}`}>
         java backend engineer at ust. i build tools for fun on the side.
       </p>
 
-      <ul class="socials rise" style="--d: 160ms">
+      <ul class="socials rise" style={`--d: ${riseStep(2)}`}>
         {
           socials.map((social) => (
             <li>
@@ -95,7 +96,7 @@ const socials = SITE.socialLinks.map((social) => ({
     </section>
 
     <section class="section" aria-labelledby="featured-projects">
-      <div class="section-head rise" style="--d: 230ms">
+      <div class="section-head rise" style={`--d: ${riseStep(3)}`}>
         <h2 id="featured-projects">featured projects</h2>
         <a class="all-link" href="/projects/">
           all projects <span class="arrow" aria-hidden="true">→</span>
@@ -104,23 +105,25 @@ const socials = SITE.socialLinks.map((social) => ({
       <div class="stack">
         {
           featured.map((project, i) => (
-            <MediaCard
-              external
-              href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
-              title={project.data.title}
-              description={project.data.description}
-              placeholder={project.data.title.charAt(0)}
-              image={findProjectShot(project.id)}
-              accent={project.data.accent}
-              flip={i % 2 === 1}
-            />
+            <div class="rise" style={`--d: ${riseStep(4 + i)}`}>
+              <MediaCard
+                external
+                href={project.data.url ?? `https://github.com/abijith-suresh/${project.id}`}
+                title={project.data.title}
+                description={project.data.description}
+                placeholder={project.data.title.charAt(0)}
+                image={findProjectShot(project.id)}
+                accent={project.data.accent}
+                flip={i % 2 === 1}
+              />
+            </div>
           ))
         }
       </div>
     </section>
 
     <section class="section" aria-labelledby="latest-writing">
-      <div class="section-head rise" style="--d: 300ms">
+      <div class="section-head rise" style={`--d: ${riseStep(7)}`}>
         <h2 id="latest-writing">latest writing</h2>
         <a class="all-link" href="/writing/">
           all writing <span class="arrow" aria-hidden="true">→</span>
@@ -128,14 +131,16 @@ const socials = SITE.socialLinks.map((social) => ({
       </div>
       <div class="stack">
         {
-          latestPosts.map((post) => (
-            <MediaCard
-              href={`/writing/${post.id}/`}
-              title={post.data.title}
-              description={post.data.description}
-              image={findWritingShot(post.id)}
-              placeholder={post.data.title.charAt(0)}
-            />
+          latestPosts.map((post, i) => (
+            <div class="rise" style={`--d: ${riseStep(8 + i)}`}>
+              <MediaCard
+                href={`/writing/${post.id}/`}
+                title={post.data.title}
+                description={post.data.description}
+                image={findWritingShot(post.id)}
+                placeholder={post.data.title.charAt(0)}
+              />
+            </div>
           ))
         }
       </div>

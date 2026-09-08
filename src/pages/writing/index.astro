@@ -7,6 +7,7 @@ import PageShell from "@/components/ui/PageShell.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllWriting } from "@/lib/writing";
 import { groupByYear } from "@/lib/group-by-year";
+import { listStagger } from "@/lib/motion";
 import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
 const allPosts = await getAllWriting();
@@ -27,7 +28,7 @@ const findWritingShot = (id: string) =>
       allPosts.length > 0 ? (
         <Container>
           {postsByYear.map(({ year, items: yearPosts }, yearIndex) => (
-            <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
+            <div class="year-group rise" style={`--d: ${listStagger(yearIndex)}`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
                 {yearPosts.map((post) => (

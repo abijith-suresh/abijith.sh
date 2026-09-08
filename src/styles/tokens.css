@@ -122,6 +122,14 @@
   --transition-lift: 200ms ease;
   --duration-breathe: 22s;
 
+  /* Enter choreography — Material-influenced durations (400ms enter, 100ms steps, 50ms stagger) */
+  --motion-rise-duration: 400ms;
+  --motion-rise-easing: cubic-bezier(0, 0, 0.2, 1);
+  --motion-step: 100ms;
+  --motion-list-base: 200ms;
+  --motion-list-stagger: 50ms;
+  --motion-list-cap: 8;
+
   /* Layering */
   --z-content: 1;
   --z-skip-link: 50;

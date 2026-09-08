@@ -6,6 +6,7 @@ import MediaCard from "@/components/MediaCard.astro";
 import PageShell from "@/components/ui/PageShell.astro";
 import Layout from "@/layouts/Layout.astro";
 import { groupByYear } from "@/lib/group-by-year";
+import { listStagger } from "@/lib/motion";
 import { getAllProjects } from "@/lib/projects";
 import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
@@ -27,7 +28,7 @@ const findProjectShot = (id: string) =>
       allProjects.length > 0 ? (
         <Container>
           {projectsByYear.map(({ year, items: yearProjects }, yearIndex) => (
-            <div class="year-group rise" style={`--d: ${160 + Math.min(yearIndex, 7) * 70}ms`}>
+            <div class="year-group rise" style={`--d: ${listStagger(yearIndex)}`}>
               <span class="eyebrow">{year}</span>
               <div class="stack">
                 {yearProjects.map((project, i) => (

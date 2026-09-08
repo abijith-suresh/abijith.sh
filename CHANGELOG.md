@@ -4,6 +4,18 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-09-08
+
+- Centralize page-enter motion in `src/lib/motion.ts` and `src/styles/motion.css`:
+  tokenized rise duration (400ms), 100ms section steps, and 50ms list stagger;
+  replay `.rise` animations on client navigations via `astro:after-swap`.
+
+### Fixed — 2026-09-08
+
+- Restore rise enter animations for homepage featured-project and latest-writing
+  cards, which were missing the `.rise` class after the Dusk Aurora homepage
+  rework.
+
 ### Added — 2026-09-05
 
 - Highlight the active section in the top navigation: `aria-current="page"` is
