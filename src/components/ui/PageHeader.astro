@@ -1,4 +1,6 @@
 ---
+import { riseStep } from "@/lib/motion";
+
 interface Props {
   /** Page title — page chrome renders in the site's lowercase voice */
   title: string;
@@ -11,7 +13,7 @@ interface Props {
 const { title, subtitle, class: className } = Astro.props;
 ---
 
-<div class:list={["page-header", "rise", className]} style="--d: 0ms">
+<div class:list={["page-header", "rise", className]} style={`--d: ${riseStep(0)}`}>
   <h1>{title.toLowerCase()}<span class="period">.</span></h1>
   {subtitle && <p>{subtitle}</p>}
 </div>

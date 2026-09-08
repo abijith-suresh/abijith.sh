@@ -2,6 +2,7 @@
 import Container from "@/components/ui/Container.astro";
 import PageShell from "@/components/ui/PageShell.astro";
 import Layout from "@/layouts/Layout.astro";
+import { riseStep } from "@/lib/motion";
 import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
 const routeMetadata = getStaticRouteMetadata("/now/");
@@ -9,7 +10,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 
 <Layout>
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow page-now rise" style="--d: 80ms">
+    <Container class="section-flow page-now rise" style={`--d: ${riseStep(1)}`}>
       <p>last updated: august 2026</p>
 
       <p>

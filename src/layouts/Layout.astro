@@ -116,6 +116,15 @@ const resolvedJsonLd = jsonLd ?? {
         </nav>
       </div>
     </footer>
+    <script is:inline>
+      document.addEventListener("astro:after-swap", () => {
+        for (const el of document.querySelectorAll(".rise")) {
+          el.style.animation = "none";
+          void el.offsetHeight;
+          el.style.animation = "";
+        }
+      });
+    </script>
   </body>
 </html>
 <style>

@@ -3,6 +3,7 @@ import Container from "@/components/ui/Container.astro";
 import PageShell from "@/components/ui/PageShell.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { riseStep } from "@/lib/motion";
 import { getStaticRouteMetadata } from "@/lib/route-metadata";
 
 const routeMetadata = getStaticRouteMetadata("/about/");
@@ -20,7 +21,7 @@ const routeMetadata = getStaticRouteMetadata("/about/");
   }}
 >
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow page-intro rise" style="--d: 80ms">
+    <Container class="section-flow page-intro rise" style={`--d: ${riseStep(1)}`}>
       <p>
         i'm a backend engineer at <a
           href="https://ust.com"

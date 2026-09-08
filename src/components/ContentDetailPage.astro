@@ -1,4 +1,6 @@
 ---
+import { riseStep } from "@/lib/motion";
+
 interface MetaItem {
   type: "date" | "text";
   value: string;
@@ -22,7 +24,7 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
 
 <article class:list={["detail-section", microformat]}>
   <!-- Header -->
-  <header class="article-header rise" style="--d: 0ms">
+  <header class="article-header rise" style={`--d: ${riseStep(0)}`}>
     <h1 class:list={["article-title", titleClass]}>{title}</h1>
 
     {
@@ -50,14 +52,14 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
   </header>
 
   <!-- Prose Content -->
-  <div class="prose rise" style="--d: 80ms">
+  <div class="prose rise" style={`--d: ${riseStep(1)}`}>
     <div class={contentClass}>
       <slot />
     </div>
   </div>
 
   <!-- Article footer -->
-  <footer class="article-footer rise" style="--d: 160ms">
+  <footer class="article-footer rise" style={`--d: ${riseStep(2)}`}>
     <a class="all-link" href="/writing/">
       <span class="arrow" aria-hidden="true">&larr;</span> all writing
     </a>
