@@ -178,19 +178,6 @@ summary {
   order: 2;
 }
 
-/* hover effects are desktop-only: gate them behind hover-capable pointers so
-   touch devices don't get sticky hover lifts mid-scroll */
-@media (hover: hover) and (pointer: fine) {
-  .media-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--ring-hover);
-  }
-
-  .media-card:hover .media-card-img {
-    filter: brightness(1.06);
-  }
-}
-
 /* the screenshot floats offset toward the top-left and bleeds off the
    bottom-right — its overflowing edges are cut by the panel */
 .media-card-img {
@@ -206,6 +193,27 @@ summary {
   outline: 1px solid var(--color-border);
   outline-offset: -1px;
   transition: filter var(--transition-lift);
+}
+
+/* mirror the screenshot framing when the media panel moves to the right */
+.media-card--flip .media-card-img {
+  right: 1rem;
+  left: auto;
+  object-position: top right;
+  border-radius: 0 0.75rem 0 0;
+}
+
+/* hover effects are desktop-only: gate them behind hover-capable pointers so
+   touch devices don't get sticky hover lifts mid-scroll */
+@media (hover: hover) and (pointer: fine) {
+  .media-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--ring-hover);
+  }
+
+  .media-card:hover .media-card-img {
+    filter: brightness(1.06);
+  }
 }
 
 .media-card-ph {

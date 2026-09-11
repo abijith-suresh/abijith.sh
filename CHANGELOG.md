@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-09-11
+
+- Mirror project screenshot framing with each card's left or right layout, and
+  keep the alternating sequence continuous across year groups as projects are
+  added.
+
 ### Added — 2026-09-08
 
 - Centralize page-enter motion in `src/lib/motion.ts` and `src/styles/motion.css`:
