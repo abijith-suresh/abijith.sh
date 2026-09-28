@@ -4,6 +4,10 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Added — 2026-09-28
+
+- Skip Dependabot builds and remove Vercel preview deployments when pull requests close.
+
 ### Changed — 2026-09-11
 
 - Mirror project screenshot framing with each card's left or right layout, and
