@@ -4,6 +4,12 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-09-29
+
+- Pin shared CI and preview cleanup workflows to the published 0.6.0 release.
+- Use the shared Dependabot auto-merge workflow with a repository-scoped Dependabot
+  token; keep GitHub Actions updates for manual review.
+
 ### Added — 2026-09-28
 
 - Skip Dependabot builds and remove Vercel preview deployments when pull requests close.
