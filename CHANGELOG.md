@@ -8,6 +8,8 @@ All notable changes to this site are documented in this file.
 
 - Update Interleaf's project links to `www.interleaf.cc` and replace its
   screenshot with the redesigned production landing page.
+- Replace Reshrimp's project screenshot with its redesigned production
+  landing page.
 
 ### Changed — 2026-09-11
 
