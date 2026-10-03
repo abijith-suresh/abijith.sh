@@ -2,7 +2,7 @@
 title: "interleaf"
 description: "client-side pdf manipulation tool - merge, split, reorder, rotate, and more"
 accent: "#ff0000"
-url: "https://interleaf-snowy.vercel.app"
+url: "https://www.interleaf.cc"
 publishedDate: 2026-02-16
 ---
 
@@ -19,4 +19,4 @@ No files ever leave your machine — all processing happens locally using browse
 ## Links
 
 - **Repository**: [GitHub](https://github.com/abijith-suresh/interleaf)
-- **Live Demo**: [interleaf-snowy.vercel.app](https://interleaf-snowy.vercel.app)
+- **Live Demo**: [interleaf.cc](https://www.interleaf.cc)

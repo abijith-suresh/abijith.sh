@@ -4,6 +4,11 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-03
+
+- Update Interleaf's project links to `www.interleaf.cc` and replace its
+  screenshot with the redesigned production landing page.
+
 ### Changed — 2026-09-11
 
 - Mirror project screenshot framing with each card's left or right layout, and
