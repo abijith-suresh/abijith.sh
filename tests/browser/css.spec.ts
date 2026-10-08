@@ -145,6 +145,66 @@ test("reduced motion stops reveals, glow, and hover movement", async ({ page }) 
   expect(motion.card).toBe("none");
 });
 
+test("font faces sit in the critical CSS and binaries are preloaded", async ({ page }) => {
+  for (const route of routes) {
+    await page.goto(route);
+    const fonts = await page.evaluate(() => ({
+      faceCss: [...document.querySelectorAll("style")]
+        .map((style) => style.textContent ?? "")
+        .filter((css) => css.includes("@font-face"))
+        .join("\n"),
+      preloads: [...document.querySelectorAll('link[rel="preload"][as="font"]')].map((link) => ({
+        href: link.getAttribute("href") ?? "",
+        crossOrigin: link.getAttribute("crossorigin"),
+      })),
+    }));
+    for (const family of ["Geist Variable", "Bricolage Grotesque Variable", "IBM Plex Mono"]) {
+      expect(fonts.faceCss).toContain(`"${family}"`);
+    }
+    const destinations = fonts.preloads.map((preload) => preload.href);
+    expect(destinations.some((href) => href.includes("geist-latin-wght-normal"))).toBe(true);
+    expect(
+      destinations.some((href) => href.includes("bricolage-grotesque-latin-wght-normal"))
+    ).toBe(true);
+    expect(destinations.some((href) => href.endsWith("/fonts/IBMPlexMono-Regular.woff2"))).toBe(
+      true
+    );
+    expect(destinations.some((href) => href.endsWith("/fonts/IBMPlexMono-Medium.woff2"))).toBe(
+      true
+    );
+    expect(fonts.preloads.length).toBe(4);
+    for (const preload of fonts.preloads) {
+      expect(preload.crossOrigin).not.toBeNull();
+    }
+  }
+});
+
+test("cold first paint arranges fonts without a visible swap reflow", async ({ page }) => {
+  await page.addInitScript(() => {
+    Reflect.set(window, "fontShift", 0);
+    try {
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          const value = Reflect.get(entry, "value");
+          if (typeof value === "number") {
+            Reflect.set(window, "fontShift", Reflect.get(window, "fontShift") + value);
+          }
+        }
+      }).observe({ type: "layout-shift", buffered: true });
+    } catch {
+      // layout-shift support is checked below; absence fails safely.
+    }
+  });
+  await page.goto("/");
+  const supported = await page.evaluate(() =>
+    PerformanceObserver.supportedEntryTypes.includes("layout-shift")
+  );
+  test.skip(!supported, "layout instability entries are unavailable in this engine");
+  await page.evaluate(() => document.fonts.ready);
+  const fontShift = await page.evaluate(() => Reflect.get(window, "fontShift") as number);
+  expect(fontShift).toBeLessThan(0.05);
+});
+
 test("client navigation keeps motion timings and active navigation", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
