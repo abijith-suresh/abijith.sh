@@ -21,7 +21,7 @@ const routeMetadata = getStaticRouteMetadata("/about/");
   }}
 >
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow page-intro rise" style={`--d: ${riseStep(1)}`}>
+    <Container class="section-flow rise" style={`--d: ${riseStep(1)}`}>
       <p>
         i'm a backend engineer at <a
           href="https://ust.com"
@@ -69,27 +69,3 @@ const routeMetadata = getStaticRouteMetadata("/about/");
     </Container>
   </PageShell>
 </Layout>
-
-<style>
-  /* readable measure inside the 64rem frame, left-aligned to the header */
-  .page-intro p {
-    max-width: 38rem;
-    color: var(--color-muted-foreground);
-  }
-
-  /* the lead paragraph carries a little more presence than the rest */
-  .page-intro p:first-child {
-    color: var(--color-text-muted);
-  }
-
-  .page-intro p:first-child::before {
-    content: "";
-    display: inline-block;
-    width: 0.4rem;
-    height: 0.4rem;
-    margin-right: 0.55rem;
-    border-radius: var(--radius-pill);
-    background: oklch(100% 0 0 / 0.4);
-    vertical-align: 0.18em;
-  }
-</style>

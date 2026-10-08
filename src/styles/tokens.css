@@ -15,30 +15,29 @@
   /* Color palette — dark neutrals, OKLCH, zero chroma.
      pink (oklch(83.9% 0.069 3) ≈ #f2b8c6) is signature-only: don't darken it
      and don't spend it on UI chrome — #f2b8c6 on #141414 is ≈ 8:1. */
-  --color-bg: oklch(20.8% 0 0);
-  --color-card: oklch(24.5% 0 0);
-  --color-text: oklch(92% 0 0);
-  --color-ink: oklch(26% 0 0);
+  --color-white: oklch(100% 0 none);
+  --color-bg: oklch(20.8% 0 none);
+  --color-card: oklch(24.5% 0 none);
+  --color-text: oklch(92% 0 none);
+  --color-ink: oklch(26% 0 none);
   --color-pink: oklch(83.9% 0.069 3);
 
   /* Semantic tokens */
-  --color-background: var(--color-bg);
-  --color-foreground: var(--color-text);
-  --color-muted-foreground: oklch(66% 0 0);
+  --color-muted-foreground: oklch(66% 0 none);
 
   /* Surface tokens */
-  --color-border: oklch(100% 0 0 / 0.1);
-  --color-surface: oklch(100% 0 0 / 0.06);
-  --color-surface-strong: oklch(100% 0 0 / 0.08);
-  --color-text-muted: oklch(92% 0 0 / 0.8);
+  --color-border: oklch(from var(--color-white) l c h / 0.1);
+  --color-surface: oklch(from var(--color-white) l c h / 0.06);
+  --color-surface-strong: oklch(from var(--color-white) l c h / 0.08);
+  --color-text-muted: oklch(from var(--color-text) l c h / 0.8);
 
   /* Signature glow — the pink period's breathing halo */
   --glow-primary: oklch(from var(--color-pink) l c h / 0.6);
   --glow-pink: oklch(from var(--color-pink) l c h / 0.4);
 
   /* Rings — the card hover language: lift + ring brighten, no shadows */
-  --ring: oklch(100% 0 0 / 0.08);
-  --ring-hover: oklch(100% 0 0 / 0.15);
+  --ring: var(--color-surface-strong);
+  --ring-hover: oklch(from var(--color-white) l c h / 0.15);
 
   /* Fluid type scale — Utopia-inspired, tuned for a narrow personal site.
      --step-* is the raw scale; --text-* are the cross-site role names
@@ -57,15 +56,10 @@
   --text-hero: clamp(2.5rem, 2.5rem + 2vw, 3.75rem);
   --text-page: clamp(1.75rem, 1.2877rem + 2.255vw, 3rem);
 
-  /* Type aliases
-     --heading-1 (inner page headers) and --hero-size (landing hero) point at
-     the role tokens so their rendered sizes match cross-site. --text-xl..3xl
-     remain prose-heading sizes on the raw scale. */
-  --heading-1: var(--text-page);
+  /* Prose heading roles use the same type scale. */
   --text-xl: var(--step-2);
   --text-2xl: var(--step-3);
   --text-3xl: var(--step-3);
-  --hero-size: var(--text-hero);
 
   /* Line-height */
   --leading-text: calc(0.65rem + 1em);
@@ -76,11 +70,15 @@
   --space-3xs: clamp(0.25rem, 0.2269rem + 0.1127vw, 0.3125rem);
   --space-2xs: clamp(0.5rem, 0.4769rem + 0.1127vw, 0.5625rem);
   --space-xs: clamp(0.75rem, 0.7038rem + 0.2255vw, 0.875rem);
-  --space-s: clamp(1rem, 0.9538rem + 0.2255vw, 1.125rem);
+  --space-s: var(--step-0);
   --space-m: clamp(1.5rem, 1.4307rem + 0.3382vw, 1.6875rem);
   --space-l: clamp(2rem, 1.9076rem + 0.451vw, 2.25rem);
   --space-xl: clamp(3rem, 2.8613rem + 0.6764vw, 3.375rem);
   --space-2xl: clamp(4rem, 3.8151rem + 0.9019vw, 4.5rem);
+
+  /* Layout measures */
+  --page-max: 64rem;
+  --measure-prose: 70ch;
 
   /* Semantic rhythm
      --page-inline is the site gutter shared by topbar, footer, page
@@ -91,15 +89,6 @@
   --title-subtitle-gap: var(--space-2xs);
   --section-gap: var(--space-m);
   --content-gap: var(--space-l);
-  --measure: 40rem;
-
-  /* Compatibility aliases while components migrate to semantic tokens */
-  --spacing-1: var(--space-3xs);
-  --spacing-2: var(--space-2xs);
-  --spacing-3: var(--space-xs);
-  --spacing-4: var(--space-s);
-  --spacing-8: var(--space-l);
-  --spacing-16: var(--space-2xl);
 
   /* Border tokens */
   --border-width: 1px;
@@ -125,10 +114,6 @@
   /* Enter choreography — Material-influenced durations (400ms enter, 100ms steps, 50ms stagger) */
   --motion-rise-duration: 400ms;
   --motion-rise-easing: cubic-bezier(0, 0, 0.2, 1);
-  --motion-step: 100ms;
-  --motion-list-base: 200ms;
-  --motion-list-stagger: 50ms;
-  --motion-list-cap: 8;
 
   /* Layering */
   --z-content: 1;

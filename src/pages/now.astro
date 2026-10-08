@@ -10,7 +10,7 @@ const routeMetadata = getStaticRouteMetadata("/now/");
 
 <Layout>
   <PageShell title={routeMetadata.title} subtitle={routeMetadata.description}>
-    <Container class="section-flow page-now rise" style={`--d: ${riseStep(1)}`}>
+    <Container class="section-flow rise" style={`--d: ${riseStep(1)}`}>
       <p>last updated: august 2026</p>
 
       <p>
@@ -65,11 +65,3 @@ const routeMetadata = getStaticRouteMetadata("/now/");
     </Container>
   </PageShell>
 </Layout>
-
-<style>
-  /* readable measure inside the 64rem frame, left-aligned to the header */
-  .page-now p {
-    max-width: 38rem;
-    color: var(--color-muted-foreground);
-  }
-</style>

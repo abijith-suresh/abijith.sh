@@ -4,6 +4,42 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-08
+
+- Consolidate page widths and gutters in a shared critical `.container` rule;
+  move card and empty-state styles into their components and load prose styles
+  with article pages.
+- Share link, heading, archive, and arrow behavior, derive neutral color variants
+  from the base palette, and remove duplicate external copies of critical CSS.
+- Centralize motion preferences and batch reveal restarts into one layout read
+  per client navigation.
+- Apply good-css guidance to authored spacing and alignment with logical
+  properties, reserve the scrollbar gutter, and use the small viewport height
+  for the page shell and article code blocks.
+- Gate link and social hover effects behind hover-capable fine pointers, add
+  press feedback, and disable hover movement when reduced motion is requested.
+- Scale focus outlines and social icons with text, and use `overflow: clip`
+  for media card cropping without creating scroll containers.
+
+### Fixed — 2026-10-08
+
+- Forward native attributes and Astro scope attributes through `Container` so
+  the 404 page receives its intended spacing and column layout.
+- Keep article images, videos, and tables inside the reading column, allow
+  long table cells to wrap, and keep code overflow locally scrollable.
+- Declare the existing dark color scheme in HTML before styles load.
+
+### Added — 2026-10-08
+
+- Add Playwright regression checks in Chromium, Firefox, and WebKit, a
+  `test:browser` command, and a pull-request CI job for the browser suite.
+
+### Removed — 2026-10-08
+
+- Remove unused color, type, measure, and motion tokens, migrate spacing aliases
+  to their semantic names, and remove dormant intro-page style rules while
+  preserving the rendered appearance.
+
 ### Changed — 2026-10-03
 
 - Update Interleaf's project links to `www.interleaf.cc` and replace its

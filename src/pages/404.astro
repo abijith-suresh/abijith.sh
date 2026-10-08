@@ -11,11 +11,11 @@ import { riseStep } from "@/lib/motion";
 >
   <div class="page-404">
     <Container class="page-404-inner">
-      <h1 class="rise" style={`--d: ${riseStep(0)}`}>page not found<span class="period">.</span></h1>
+      <h1 class="page-title rise" style={`--d: ${riseStep(0)}`}>page not found<span class="period">.</span></h1>
       <p class="page-404-note rise" style={`--d: ${riseStep(1)}`}>
         the page you're looking for doesn't exist or has been moved.
       </p>
-      <a class="back-link rise" style={`--d: ${riseStep(2)}`} href="/">
+      <a class="all-link back-link rise" style={`--d: ${riseStep(2)}`} href="/">
         <span class="arrow" aria-hidden="true">←</span> back to home
       </a>
     </Container>
@@ -43,35 +43,18 @@ import { riseStep } from "@/lib/motion";
   }
 
   h1 {
-    font-family: var(--font-display);
-    font-size: var(--text-hero);
-    font-weight: 650;
-    letter-spacing: var(--letter-spacing-heading);
-    line-height: var(--leading-heading);
+    --title-size: var(--text-hero);
   }
 
   .page-404-note {
     max-width: 32rem;
-    margin-top: var(--space-2xs);
+    margin-block-start: var(--space-2xs);
     color: var(--color-muted-foreground);
   }
 
   .back-link {
-    margin-top: var(--space-s);
-    display: inline-flex;
-    align-items: center;
-    gap: var(--gap-icon);
-    font-size: var(--text-sm);
+    --arrow-shift: -3px;
+    margin-block-start: var(--space-s);
     font-weight: 500;
-    color: var(--color-muted-foreground);
-    transition: color var(--transition-base);
-  }
-
-  .back-link:hover {
-    color: var(--color-text);
-  }
-
-  .back-link:hover .arrow {
-    transform: translateX(-3px);
   }
 </style>

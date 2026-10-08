@@ -30,13 +30,13 @@ const { title, subtitle, class: className } = Astro.props;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    padding-bottom: var(--page-block-end);
+    padding-block-end: var(--page-block-end);
   }
 
   /* air between the page header and the first section — kept tight so
      title, subtitle, and content read as one unit */
   .page-shell-header {
-    padding-top: var(--page-block-start);
-    padding-bottom: clamp(2.25rem, 5vh, 3.5rem);
+    padding-block-start: var(--page-block-start);
+    padding-block-end: clamp(2.25rem, 5vh, 3.5rem);
   }
 </style>
