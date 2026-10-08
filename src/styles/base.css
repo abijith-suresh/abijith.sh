@@ -2,6 +2,8 @@
 
 html {
   box-sizing: border-box;
+  scrollbar-gutter: stable;
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -29,11 +31,22 @@ dd {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100svh;
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: var(--leading-text);
   font-size: var(--text-base);
+}
+
+main {
+  inline-size: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 }
 
 h1,
@@ -44,21 +57,19 @@ h5,
 h6 {
   text-wrap: balance;
   line-height: var(--leading-heading);
-  text-align: left;
+  text-align: start;
   font-weight: 500;
 }
 
 p {
   text-wrap: pretty;
-  text-align: left;
+  text-align: start;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
+/* Keep article media inside the reading column; card screenshots override this. */
+img,
+video {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
 }

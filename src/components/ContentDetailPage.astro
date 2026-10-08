@@ -73,8 +73,8 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
     width: 100%;
     max-width: calc(70ch + 2 * var(--page-inline));
     padding-inline: var(--page-inline);
-    padding-top: var(--page-block-start);
-    padding-bottom: var(--page-block-end);
+    padding-block-start: var(--page-block-start);
+    padding-block-end: var(--page-block-end);
     display: flex;
     flex-direction: column;
     row-gap: var(--content-gap);
@@ -105,9 +105,9 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
   }
 
   .article-lede {
-    margin-top: var(--space-2xs);
-    padding-left: 1.1rem;
-    border-left: 2px solid oklch(100% 0 0 / 0.25);
+    margin-block-start: var(--space-2xs);
+    padding-inline-start: 1.1rem;
+    border-inline-start: 2px solid oklch(100% 0 0 / 0.25);
     font-size: var(--text-lg);
     line-height: var(--leading-text);
     max-width: 52ch;
@@ -120,8 +120,8 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: var(--gap-wrap);
-    padding-top: var(--space-s);
-    border-top: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-width) solid var(--color-border);
   }
 
   .article-copyright {
@@ -130,7 +130,9 @@ const contentClass = microformat === "h-entry" ? "e-content" : undefined;
   }
 
   /* the back link arrow points left — slide it left, not right */
-  .article-footer .all-link:hover .arrow {
-    transform: translateX(-3px);
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .article-footer .all-link:hover .arrow {
+      transform: translateX(-3px);
+    }
   }
 </style>

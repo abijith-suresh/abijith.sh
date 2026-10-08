@@ -52,12 +52,12 @@ import { riseStep } from "@/lib/motion";
 
   .page-404-note {
     max-width: 32rem;
-    margin-top: var(--space-2xs);
+    margin-block-start: var(--space-2xs);
     color: var(--color-muted-foreground);
   }
 
   .back-link {
-    margin-top: var(--space-s);
+    margin-block-start: var(--space-s);
     display: inline-flex;
     align-items: center;
     gap: var(--gap-icon);
@@ -67,11 +67,19 @@ import { riseStep } from "@/lib/motion";
     transition: color var(--transition-base);
   }
 
-  .back-link:hover {
+  .back-link:active {
     color: var(--color-text);
   }
 
-  .back-link:hover .arrow {
-    transform: translateX(-3px);
+  @media (hover: hover) and (pointer: fine) {
+    .back-link:hover {
+      color: var(--color-text);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .back-link:hover .arrow {
+        transform: translateX(-3px);
+      }
+    }
   }
 </style>

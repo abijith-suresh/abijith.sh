@@ -4,6 +4,22 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-08
+
+- Apply good-css guidance to authored spacing and alignment with logical
+  properties, reserve the scrollbar gutter, and use the small viewport height
+  for the page shell and article code blocks.
+- Gate link and social hover effects behind hover-capable fine pointers, add
+  press feedback, and disable hover movement when reduced motion is requested.
+- Scale focus outlines and social icons with text, and use `overflow: clip`
+  for media card cropping without creating scroll containers.
+
+### Fixed — 2026-10-08
+
+- Keep article images, videos, and tables inside the reading column, allow
+  long table cells to wrap, and keep code overflow locally scrollable.
+- Declare the existing dark color scheme in HTML before styles load.
+
 ### Changed — 2026-10-03
 
 - Update Interleaf's project links to `www.interleaf.cc` and replace its

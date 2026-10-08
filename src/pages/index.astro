@@ -154,16 +154,16 @@ const socials = SITE.socialLinks.map((social) => ({
     margin-inline: auto;
     width: 100%;
     padding-inline: clamp(1.25rem, 5vw, 2.5rem);
-    padding-top: var(--page-block-start);
-    padding-bottom: var(--page-block-end);
+    padding-block-start: var(--page-block-start);
+    padding-block-end: var(--page-block-end);
   }
 
   .hero {
-    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+    padding-block-end: clamp(2.5rem, 6vh, 4rem);
   }
 
   h1 {
-    margin: 0 0 1.6rem;
+    margin-block-end: 1.6rem;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-hero);
@@ -185,7 +185,8 @@ const socials = SITE.socialLinks.map((social) => ({
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin: 1.9rem 0 0;
+    margin-block: 1.9rem 0;
+    margin-inline: 0;
     padding: 0;
     list-style: none;
   }
@@ -205,23 +206,35 @@ const socials = SITE.socialLinks.map((social) => ({
   }
 
   .social .icon {
+    flex: none;
+    inline-size: 1.2em;
+    block-size: 1.2em;
     transition: transform var(--transition-base);
   }
 
-  .social:hover {
+  .social:active {
     background: var(--color-surface-strong);
     color: var(--color-text);
   }
 
-  .social:hover .icon {
-    transform: translateX(2px);
+  @media (hover: hover) and (pointer: fine) {
+    .social:hover {
+      background: var(--color-surface-strong);
+      color: var(--color-text);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .social:hover .icon {
+        transform: translateX(2px);
+      }
+    }
   }
 
   .section {
-    margin-top: clamp(4rem, 10vh, 6.5rem);
+    margin-block-start: clamp(4rem, 10vh, 6.5rem);
   }
 
   .section:first-of-type {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 </style>
