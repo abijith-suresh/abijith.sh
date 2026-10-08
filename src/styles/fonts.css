@@ -1,3 +1,9 @@
+/* Web font faces for the inlined critical CSS.
+   Mono is self-hosted from /fonts with absolute URLs, safe to inline raw;
+   the latin faces of the variable families are appended in
+   src/layouts/Layout.astro with their hashed bundle URLs.
+   Loaded bytes stay identical — the browser deduplicates by URL. */
+
 @font-face {
   font-family: "IBM Plex Mono";
   src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");

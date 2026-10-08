@@ -28,6 +28,9 @@ All notable changes to this site are documented in this file.
 - Keep article images, videos, and tables inside the reading column, allow
   long table cells to wrap, and keep code overflow locally scrollable.
 - Declare the existing dark color scheme in HTML before styles load.
+- Keep web font faces on the critical path: inline them with the first-paint
+  tokens and preload the font binaries so hard reloads resolve fonts in
+  parallel with the stylesheet and text no longer reflows as fonts arrive.
 
 ### Added — 2026-10-08
 
@@ -36,6 +39,8 @@ All notable changes to this site are documented in this file.
 
 ### Removed — 2026-10-08
 
+- Remove the unused jsdelivr preconnect hint now that all web fonts are
+  self-hosted.
 - Remove unused color, type, measure, and motion tokens, migrate spacing aliases
   to their semantic names, and remove dormant intro-page style rules while
   preserving the rendered appearance.

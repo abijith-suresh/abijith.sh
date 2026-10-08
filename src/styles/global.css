@@ -1,5 +1,7 @@
-@import "./fonts.css";
 @import "./motion.css";
+
+/* IBM Plex Mono faces live in the inlined critical CSS (fonts.css) so
+   first paint can resolve mono text without waiting for this sheet. */
 
 /* ==========================================================================
    Dusk Aurora Design System — v2 flat
