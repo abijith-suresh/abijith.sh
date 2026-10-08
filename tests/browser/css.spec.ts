@@ -158,7 +158,7 @@ test("font faces sit in the critical CSS and binaries are preloaded", async ({ p
         crossOrigin: link.getAttribute("crossorigin"),
       })),
     }));
-    for (const family of ["Geist Variable", "Bricolage Grotesque Variable", "IBM Plex Mono"]) {
+    for (const family of ["Geist Variable", "Bricolage Grotesque Variable"]) {
       expect(fonts.faceCss).toContain(`"${family}"`);
     }
     const destinations = fonts.preloads.map((preload) => preload.href);
@@ -166,16 +166,12 @@ test("font faces sit in the critical CSS and binaries are preloaded", async ({ p
     expect(
       destinations.some((href) => href.includes("bricolage-grotesque-latin-wght-normal"))
     ).toBe(true);
-    expect(destinations.some((href) => href.endsWith("/fonts/IBMPlexMono-Regular.woff2"))).toBe(
-      true
-    );
-    expect(destinations.some((href) => href.endsWith("/fonts/IBMPlexMono-Medium.woff2"))).toBe(
-      true
-    );
-    expect(fonts.preloads.length).toBe(4);
+    expect(fonts.preloads.length).toBe(2);
     for (const preload of fonts.preloads) {
       expect(preload.crossOrigin).not.toBeNull();
     }
+    expect(await page.locator('link[rel="stylesheet"]').count()).toBe(0);
+    expect(await page.locator("style").count()).toBeGreaterThan(0);
   }
 });
 

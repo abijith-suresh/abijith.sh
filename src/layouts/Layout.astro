@@ -10,15 +10,14 @@ import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/consts";
 import baseCss from "@/styles/base.css?raw";
 import tokensCss from "@/styles/tokens.css?raw";
-import fontsCss from "@/styles/fonts.css?raw";
 import geistFontUrl from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
 import bricolageFontUrl from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
 import "@/styles/global.css";
 
 /* Latin faces of the variable families for first paint. The descriptors
    mirror the fontsource declarations so both copies resolve to the same
-   hashed binary — inlining lets font fetches start during the first
-   stylesheet pass instead of after the main stylesheet resolves. */
+   hashed binary. With faces known to the first HTML parse, the preloads
+   below are all the browser needs to start fetching font binaries. */
 const variableFontFaces = `
 /* geist-latin-wght */
 @font-face {
@@ -41,7 +40,7 @@ const variableFontFaces = `
 }
 `;
 
-const criticalCss = [tokensCss, baseCss, fontsCss, variableFontFaces].join("\n");
+const criticalCss = [tokensCss, baseCss, variableFontFaces].join("\n");
 
 interface Props extends SEOProps {
   title?: string;
@@ -77,13 +76,11 @@ const resolvedJsonLd = jsonLd ?? {
     <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- First-paint fonts: binaries race the main stylesheet instead of
-         waiting for it. Fonts always fetch with CORS, so preloads need
-         crossorigin even for same-origin files. -->
+    <!-- First-paint fonts: binaries race the page instead of waiting for it.
+         Fonts always fetch with CORS, so preloads need crossorigin even for
+         same-origin files. -->
     <link rel="preload" as="font" type="font/woff2" href={geistFontUrl} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={bricolageFontUrl} crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/IBMPlexMono-Regular.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/IBMPlexMono-Medium.woff2" crossorigin />
 
     <style is:inline set:html={criticalCss}></style>
 

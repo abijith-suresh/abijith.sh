@@ -8,9 +8,10 @@
   /* Typography */
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  /* Native mono per platform — aligns with text size, zero downloads.
+     Shared by eyebrow labels, prose code, and kbd. */
   --font-mono:
-    "IBM Plex Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "DejaVu Sans Mono", monospace;
+    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 
   /* Color palette — dark neutrals, OKLCH, zero chroma.
      pink (oklch(83.9% 0.069 3) ≈ #f2b8c6) is signature-only: don't darken it

@@ -6,6 +6,9 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-10-08
 
+- Inline the whole stylesheet into every page so hard reloads paint from a
+  single HTML request; web font first paint drops to two preloaded latin
+  binaries that race the page.
 - Consolidate page widths and gutters in a shared critical `.container` rule;
   move card and empty-state styles into their components and load prose styles
   with article pages.
@@ -41,6 +44,8 @@ All notable changes to this site are documented in this file.
 
 - Remove the unused jsdelivr preconnect hint now that all web fonts are
   self-hosted.
+- Drop the IBM Plex Mono family, its self-hosted files and preloads, and its
+  font cache rule; mono text uses the platform's native monospace stack.
 - Remove unused color, type, measure, and motion tokens, migrate spacing aliases
   to their semantic names, and remove dormant intro-page style rules while
   preserving the rendered appearance.
