@@ -23,6 +23,12 @@ All notable changes to this site are documented in this file.
   press feedback, and disable hover movement when reduced motion is requested.
 - Scale focus outlines and social icons with text, and use `overflow: clip`
   for media card cropping without creating scroll containers.
+- Adopt `abijith-suresh/workflows` 0.7.0: the shared `ci.yml` replaces the
+  `bun-quality` call, every reusable workflow ref pins the 0.7.0 commit, and the
+  inline browser-tests job makes way for the shared suite driven by the renamed
+  `test:e2e` script.
+- Configure Playwright to write an HTML report (`playwright-report/`) alongside
+  its list output so failing CI runs upload a browsable failure artifact.
 
 ### Fixed — 2026-10-08
 
@@ -41,7 +47,9 @@ All notable changes to this site are documented in this file.
 ### Added — 2026-10-08
 
 - Add Playwright regression checks in Chromium, Firefox, and WebKit, a
-  `test:browser` command, and a pull-request CI job for the browser suite.
+  `test:e2e` command, and a pull-request CI job for the browser suite.
+- Add a `gate` CI job that requires the shared CI and dependency review to
+  succeed, giving branch protection one stable required check.
 
 ### Removed — 2026-10-08
 

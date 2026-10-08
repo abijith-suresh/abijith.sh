@@ -22,7 +22,7 @@
     "test:watch": "vitest",
     "verify": "bun run type-check && bun run lint && bun run format:check && bun run test && bun run build",
     "prepare": "husky",
-    "test:browser": "bun run build && playwright test"
+    "test:e2e": "bun run build && playwright test"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.2",
