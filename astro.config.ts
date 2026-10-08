@@ -43,6 +43,11 @@ export default defineConfig({
     }),
   },
   integrations: [generatedAssets(), sitemap()],
+  build: {
+    // Paint waits on nothing external: hard reloads resolve every page from
+    // a single HTML response.
+    inlineStylesheets: "always",
+  },
   vite: {
     server: {
       // Improve dev server performance
