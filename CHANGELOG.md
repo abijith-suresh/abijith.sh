@@ -34,6 +34,9 @@ All notable changes to this site are documented in this file.
 - Keep web font faces on the critical path: inline them with the first-paint
   tokens and preload the font binaries so hard reloads resolve fonts in
   parallel with the stylesheet and text no longer reflows as fonts arrive.
+- Canonicalize generated SVG icon markup and compare before writing so icon
+  files stay byte-stable across build hosts instead of churning committed
+  files.
 
 ### Added — 2026-10-08
 

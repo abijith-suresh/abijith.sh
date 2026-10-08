@@ -23,18 +23,80 @@ export async function renderOgPng(route: OgRoute): Promise<Buffer> {
   return renderPng(svg, OG_WIDTH);
 }
 
-export async function generateSiteIcons(): Promise<void> {
-  const faviconSvg = withSvgTitle(await renderIconSvg(512), SITE.title);
-  const publicDir = path.join(process.cwd(), PUBLIC_DIR);
-  const faviconPath = path.join(publicDir, "favicon.svg");
-  const appleIconPath = path.join(publicDir, "apple-touch-icon.png");
-  const icoPath = path.join(publicDir, "favicon.ico");
-  const applePng = renderPng(faviconSvg, 180);
-  const faviconPng = renderPng(faviconSvg, 32);
+export interface SiteIcons {
+  faviconSvg: string;
+  appleIconPng: Buffer;
+  faviconIco: Buffer;
+}
 
-  await writeFileIfChanged(faviconPath, faviconSvg);
-  await writeFileIfChanged(appleIconPath, applePng);
-  await writeFileIfChanged(icoPath, createIco(faviconPng, 32, 32));
+export async function buildSiteIcons(): Promise<SiteIcons> {
+  const faviconSvg = canonicalizeSvg(withSvgTitle(await renderIconSvg(512), SITE.title));
+
+  return {
+    faviconSvg,
+    appleIconPng: renderPng(faviconSvg, 180),
+    faviconIco: createIco(renderPng(faviconSvg, 32), 32, 32),
+  };
+}
+
+export async function generateSiteIcons(): Promise<void> {
+  const icons = await buildSiteIcons();
+  const publicDir = path.join(process.cwd(), PUBLIC_DIR);
+
+  await writeFileIfChanged(path.join(publicDir, "favicon.svg"), icons.faviconSvg);
+  await writeFileIfChanged(path.join(publicDir, "apple-touch-icon.png"), icons.appleIconPng);
+  await writeFileIfChanged(path.join(publicDir, "favicon.ico"), icons.faviconIco);
+}
+
+/* Satori's SVG serializer leaves environment-dependent attribute padding
+   (e.g. `<g  >` vs `<g>`), so the same icon can hit disk with different bytes
+   across build hosts and churn committed files. Collapse whitespace runs
+   inside tags — outside quoted attribute values — leaving text untouched. */
+export function canonicalizeSvg(svg: string): string {
+  let out = "";
+  let inTag = false;
+  let quote: string | null = null;
+  let pendingSpace = false;
+
+  for (const char of svg) {
+    if (!inTag) {
+      if (char === "<") {
+        inTag = true;
+        quote = null;
+        pendingSpace = false;
+      }
+      out += char;
+      continue;
+    }
+    if (quote) {
+      out += char;
+      if (char === quote) quote = null;
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      quote = char;
+      pendingSpace = false;
+      out += char;
+      continue;
+    }
+    if (/\s/.test(char)) {
+      pendingSpace = true;
+      continue;
+    }
+    if (char === ">") {
+      inTag = false;
+      pendingSpace = false;
+      out += char;
+      continue;
+    }
+    if (pendingSpace) {
+      out += " ";
+      pendingSpace = false;
+    }
+    out += char;
+  }
+
+  return out;
 }
 
 async function renderOgSvg(route: OgRoute): Promise<string> {
