@@ -1,12 +1,11 @@
 ---
-interface Props {
-  class?: string;
-  style?: string;
-}
+import type { HTMLAttributes } from "astro/types";
 
-const { class: className, style: styleStr } = Astro.props;
+type Props = HTMLAttributes<"div">;
+
+const { class: className, ...attributes } = Astro.props;
 ---
 
-<div style={`margin-inline:auto; width:100%; max-width:64rem; padding-inline:var(--page-inline);${styleStr ? ` ${styleStr}` : ''}`} class={className}>
+<div {...attributes} class:list={["container", className]}>
   <slot />
 </div>

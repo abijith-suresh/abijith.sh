@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/geist";
+import Container from "@/components/ui/Container.astro";
 import SEO from "@/components/seo/SEO.astro";
 import JsonLd from "@/components/seo/JsonLd.astro";
 import type { SEOProps } from "@/components/seo/SEO.astro";
@@ -37,7 +38,7 @@ const resolvedJsonLd = jsonLd ?? {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -70,13 +71,13 @@ const resolvedJsonLd = jsonLd ?? {
   <body>
     <a
       href="#main-content"
-      class="skip-link"
+      class="skip-link sr-only"
     >
       skip to content
     </a>
     <header class="site-topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="/">abijith.sh</a>
+      <Container class="topbar-inner">
+        <a class="brand quiet-link" href="/">abijith.sh</a>
         <nav class="topnav" aria-label="Primary">
           {[
             { href: "/writing/", label: "writing" },
@@ -89,24 +90,25 @@ const resolvedJsonLd = jsonLd ?? {
               current === item.href.replace(/\/$/, "") ||
               current.startsWith(`${item.href.replace(/\/$/, "")}/`);
             return (
-              <a href={item.href} aria-current={active ? "page" : undefined}>
+              <a class="quiet-link" href={item.href} aria-current={active ? "page" : undefined}>
                 {item.label}
               </a>
             );
           })}
         </nav>
-      </div>
+      </Container>
     </header>
     <main id="main-content">
       <slot />
     </main>
     <footer class="site-footer">
-      <div class="topbar-inner footer-inner">
+      <Container class="topbar-inner footer-inner">
         <p>&copy; 2026 abijith suresh</p>
         <nav class="footer-socials" aria-label="Social">
           {
             SITE.socialLinks.map((social) => (
               <a
+                class="quiet-link"
                 href={social.href}
                 {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
@@ -115,15 +117,17 @@ const resolvedJsonLd = jsonLd ?? {
             ))
           }
         </nav>
-      </div>
+      </Container>
     </footer>
-    <script is:inline>
+    <script>
       document.addEventListener("astro:after-swap", () => {
-        for (const el of document.querySelectorAll(".rise")) {
-          el.style.animation = "none";
-          void el.offsetHeight;
-          el.style.animation = "";
-        }
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const elements = document.querySelectorAll<HTMLElement>(".rise");
+        if (elements.length === 0) return;
+        for (const element of elements) element.style.animation = "none";
+        // Commit all resets together, then restart the existing CSS choreography.
+        void document.body.offsetHeight;
+        for (const element of elements) element.style.removeProperty("animation");
       });
     </script>
   </body>
@@ -133,13 +137,7 @@ const resolvedJsonLd = jsonLd ?? {
   .site-footer {
     position: relative;
     z-index: var(--z-content);
-    width: 100%;
-  }
-
-  .topbar-inner {
-    max-width: 64rem;
-    margin-inline: auto;
-    padding-inline: var(--page-inline);
+    inline-size: 100%;
   }
 
   .site-topbar {
@@ -154,7 +152,6 @@ const resolvedJsonLd = jsonLd ?? {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.75rem 1.75rem;
-    width: 100%;
   }
 
   .brand {
@@ -162,28 +159,14 @@ const resolvedJsonLd = jsonLd ?? {
     font-weight: 700;
     font-size: var(--text-base);
     letter-spacing: var(--letter-spacing-tight);
-    color: var(--color-muted-foreground);
-    text-decoration: none;
-    transition: color var(--transition-base);
   }
 
-  .topnav {
+  .topnav,
+  .footer-socials {
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap-wrap);
-  }
-
-  .topnav a {
-    color: var(--color-muted-foreground);
     font-size: var(--text-sm);
-    transition: color var(--transition-base);
-  }
-
-  .brand:active,
-  .topnav a:active,
-  .footer-socials a:active,
-  .topnav a[aria-current="page"] {
-    color: var(--color-text);
   }
 
   .site-footer {
@@ -201,41 +184,25 @@ const resolvedJsonLd = jsonLd ?? {
   }
 
   .footer-inner p {
-    margin: 0;
     color: var(--color-muted-foreground);
     font-size: var(--text-sm);
   }
 
-  .footer-socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-wrap);
-  }
-
-  .footer-socials a {
-    color: var(--color-muted-foreground);
-    font-size: var(--text-sm);
-    transition: color var(--transition-base);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .brand:hover,
-    .topnav a:hover,
-    .footer-socials a:hover {
-      color: var(--color-text);
-    }
-  }
-
-  .skip-link {
-    position: absolute;
-    width: 1px; height: 1px; padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
-  }
   .skip-link:focus {
-    position: fixed; inset-block-start: var(--spacing-4); inset-inline-start: var(--spacing-4); z-index: var(--z-skip-link);
-    width: auto; height: auto; padding: var(--spacing-4) var(--spacing-2); margin: 0;
-    overflow: visible; clip: auto; white-space: normal;
-    background-color: oklch(100% 0 0); color: var(--color-ink); font-weight: 500;
+    position: fixed;
+    inset-block-start: var(--space-s);
+    inset-inline-start: var(--space-s);
+    z-index: var(--z-skip-link);
+    inline-size: auto;
+    block-size: auto;
+    padding: var(--space-s) var(--space-2xs);
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-weight: 500;
   }
 
   main {

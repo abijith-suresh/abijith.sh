@@ -40,7 +40,7 @@ const socials = SITE.socialLinks.map((social) => ({
 ---
 
 <Layout description={SITE.description} type="website" jsonLd={{ type: "website" }}>
-  <div class="page">
+  <div class="container page">
     <section class="hero">
       <h1 class="rise" style={`--d: ${riseStep(0)}`}>
         hi, i'm abijith<span class="period">.</span>
@@ -150,10 +150,6 @@ const socials = SITE.socialLinks.map((social) => ({
 
 <style>
   .page {
-    max-width: 64rem;
-    margin-inline: auto;
-    width: 100%;
-    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
     padding-block-start: var(--page-block-start);
     padding-block-end: var(--page-block-end);
   }

@@ -45,3 +45,7 @@ Thumbs.db
 # Deploy
 .vercel
 .vercel/output/
+
+# Browser regression artifacts
+playwright-report/
+test-results/

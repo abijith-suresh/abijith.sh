@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Prose Styles (Blog content typography)
+   ========================================================================== */
+
+.prose {
+  min-inline-size: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-text);
+  max-inline-size: var(--measure-prose);
+  color: var(--color-text);
+}
+
+.prose :where(p):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-s);
+  margin-block-end: var(--space-s);
+  color: var(--color-text-muted);
+  text-align: start;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: var(--leading-heading);
+  scroll-margin-block-start: var(--space-2xl);
+  text-align: start;
+}
+
+.prose :first-child:not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: 0;
+}
+
+.prose :where(h1):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-xl);
+  margin-block-end: var(--space-s);
+  font-size: var(--text-3xl);
+  font-weight: 500;
+}
+
+.prose :where(h2):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-xl);
+  margin-block-end: var(--space-s);
+  font-size: var(--text-2xl);
+}
+
+.prose :where(h3):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-l);
+  margin-block-end: var(--space-xs);
+  font-size: var(--text-xl);
+}
+
+.prose :where(h4):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-l);
+  margin-block-end: var(--space-2xs);
+  font-size: var(--text-lg);
+}
+
+.prose :where(h5, h6):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-m);
+  margin-block-end: var(--space-2xs);
+  font-weight: 500;
+}
+
+.prose :where(strong):not(:where(.not-prose, .not-prose *)) {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.prose :where(ul, ol):not(:where(.not-prose, .not-prose *)) {
+  margin-block: var(--space-s);
+  margin-inline-start: var(--space-s);
+}
+
+.prose :where(ul):not(:where(.not-prose, .not-prose *)) {
+  list-style-type: disc;
+}
+
+.prose :where(ol):not(:where(.not-prose, .not-prose *)) {
+  list-style-type: decimal;
+}
+
+.prose :where(ul > li, ol > li):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-2xs);
+  padding-inline-start: var(--space-2xs);
+  color: var(--color-text-muted);
+}
+
+.prose :where(ul > li > p, ol > li > p):not(:where(.not-prose, .not-prose *)) {
+  margin: 0;
+}
+
+.prose :where(ul ul, ol ol, ul ol, ol ul):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-2xs);
+  margin-block-end: var(--space-2xs);
+  margin-inline-start: var(--space-s);
+}
+
+.prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-s);
+  margin-block-end: var(--space-s);
+  padding-inline-start: var(--space-s);
+  border-inline-start: 3px solid var(--color-border);
+  font-style: normal;
+  color: var(--color-text-muted);
+}
+
+.prose :where(blockquote > *):not(:where(.not-prose, .not-prose *)) {
+  color: inherit;
+}
+
+.prose :where(hr):not(:where(.not-prose, .not-prose *)) {
+  margin-block-start: var(--space-l);
+  margin-block-end: var(--space-l);
+  border: none;
+  border-block-start: var(--border-width) solid var(--color-border);
+}
+
+.prose :where(code):not(:where(.not-prose, .not-prose *)) {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background-color: var(--color-surface);
+  padding: 0.15em 0.35em;
+  overflow-wrap: break-word;
+}
+
+.prose :where(pre):not(:where(.not-prose, .not-prose *)) {
+  max-block-size: min(68svh, 1000px);
+  overflow: auto;
+}
+
+.prose :where(table):not(:where(.not-prose, .not-prose *)) {
+  margin-block: var(--space-s);
+  margin-inline: auto;
+  display: block;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  font-size: var(--text-sm);
+}
+
+.prose :where(thead):not(:where(.not-prose, .not-prose *)) {
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+
+.prose :where(th):not(:where(.not-prose, .not-prose *)) {
+  padding: var(--space-2xs) var(--space-s);
+  font-weight: 500;
+  text-align: start;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.prose :where(tr):not(:where(.not-prose, .not-prose *)) {
+  border-block-start: var(--border-width) solid var(--color-border);
+}
+
+.prose :where(tr:first-child):not(:where(.not-prose, .not-prose *)) {
+  border-block-start: none;
+}
+
+.prose :where(td):not(:where(.not-prose, .not-prose *)) {
+  padding: var(--space-2xs) var(--space-s);
+  text-align: start;
+  vertical-align: top;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.prose :where(img, video, figure):not(:where(.not-prose, .not-prose *)) {
+  margin-block: var(--space-s);
+  margin-inline: auto;
+}
+
+.prose :where(kbd):not(:where(.not-prose, .not-prose *)) {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 0.15em 0.5em;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}

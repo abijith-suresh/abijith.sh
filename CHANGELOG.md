@@ -6,6 +6,13 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-10-08
 
+- Consolidate page widths and gutters in a shared critical `.container` rule;
+  move card and empty-state styles into their components and load prose styles
+  with article pages.
+- Share link, heading, archive, and arrow behavior, derive neutral color variants
+  from the base palette, and remove duplicate external copies of critical CSS.
+- Centralize motion preferences and batch reveal restarts into one layout read
+  per client navigation.
 - Apply good-css guidance to authored spacing and alignment with logical
   properties, reserve the scrollbar gutter, and use the small viewport height
   for the page shell and article code blocks.
@@ -16,9 +23,22 @@ All notable changes to this site are documented in this file.
 
 ### Fixed — 2026-10-08
 
+- Forward native attributes and Astro scope attributes through `Container` so
+  the 404 page receives its intended spacing and column layout.
 - Keep article images, videos, and tables inside the reading column, allow
   long table cells to wrap, and keep code overflow locally scrollable.
 - Declare the existing dark color scheme in HTML before styles load.
+
+### Added — 2026-10-08
+
+- Add Playwright regression checks in Chromium, Firefox, and WebKit, a
+  `test:browser` command, and a pull-request CI job for the browser suite.
+
+### Removed — 2026-10-08
+
+- Remove unused color, type, measure, and motion tokens, migrate spacing aliases
+  to their semantic names, and remove dormant intro-page style rules while
+  preserving the rendered appearance.
 
 ### Changed — 2026-10-03
 

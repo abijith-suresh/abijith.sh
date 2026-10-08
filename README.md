@@ -29,6 +29,28 @@ bun run dev
 
 Visit `http://localhost:4321`
 
+## Browser checks
+
+`bun run verify` runs the existing quality checks. To run the browser regression
+suite locally, install the browsers once, then run the tests:
+
+```bash
+bunx playwright install --with-deps chromium firefox webkit
+bun run test:browser
+```
+
+The suite builds the site and starts its own preview server. CI runs it on pull
+requests. It checks responsive layouts, enlarged text, keyboard navigation,
+article overflow, client navigation, motion preferences, and touch feedback.
+
+## CSS structure
+
+`src/styles/tokens.css` and `base.css` are inlined by the layout for first paint.
+`global.css` holds shared patterns, and `motion.css` holds animation and reduced
+motion rules. Media cards and empty states own their scoped styles. Article pages
+import `prose.css`. Use the shared `Container` for page widths and gutters, and
+keep inline styles for per-instance values such as reveal delays and panel colors.
+
 ## DevContainer Support
 
 This project includes a devcontainer configuration for consistent development environments. Works with both Docker and Podman.
