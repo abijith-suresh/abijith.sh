@@ -4,6 +4,14 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-09
+
+- Run the browser suite against the existing build: `test:e2e` is now
+  `playwright test` so the shared CI's explicit Build step is no longer
+  duplicated, and the new `test:e2e:build` keeps the clean-start local command
+  (`bun run build && bun run test:e2e`). The README browser-check instructions
+  now point local runs at `test:e2e:build`.
+
 ### Changed — 2026-10-08
 
 - Inline the whole stylesheet into every page so hard reloads paint from a
