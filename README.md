@@ -36,7 +36,7 @@ suite locally, install the browsers once, then run the tests:
 
 ```bash
 bunx playwright install --with-deps chromium firefox webkit
-bun run test:browser
+bun run test:e2e
 ```
 
 The suite builds the site and starts its own preview server. CI runs it on pull

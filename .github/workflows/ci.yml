@@ -12,34 +12,37 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  bun-quality:
-    name: bun-quality
-    uses: abijith-suresh/workflows/.github/workflows/bun-quality.yml@163055ac24b4169ae93ae05c5d7491b1cd5d96c7 # v0.6.0
+  ci:
+    name: CI
     permissions:
       contents: read
+    uses: abijith-suresh/workflows/.github/workflows/ci.yml@6838f8e2495013c024606bbf8d63d3d5c66344fa # 0.8.0
 
   dependency-review:
     name: dependency-review
-    uses: abijith-suresh/workflows/.github/workflows/dependency-review.yml@163055ac24b4169ae93ae05c5d7491b1cd5d96c7 # v0.6.0
+    uses: abijith-suresh/workflows/.github/workflows/dependency-review.yml@6838f8e2495013c024606bbf8d63d3d5c66344fa # 0.8.0
     permissions:
       contents: read
 
-  browser-tests:
-    name: Browser regressions
+  gate:
+    name: gate
+    if: ${{ !cancelled() }}
+    needs: [ci, dependency-review]
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    permissions:
-      contents: read
+    permissions: {}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        with:
-          persist-credentials: false
-      - name: Install tools from mise.toml
-        uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-      - name: Install browsers and system dependencies
-        run: bunx playwright install --with-deps chromium firefox webkit
-      - name: Check browser behavior
-        run: bun run test:browser
+      - name: Require CI success
+        shell: bash
+        env:
+          CI_RESULT: ${{ needs.ci.result }}
+          DEPENDENCY_REVIEW_RESULT: ${{ needs.dependency-review.result }}
+        run: |
+          set -euo pipefail
+          if [[ "$CI_RESULT" != success ]]; then
+            echo "ci result: $CI_RESULT" >&2
+            exit 1
+          fi
+          if [[ "$DEPENDENCY_REVIEW_RESULT" != success ]]; then
+            echo "dependency-review result: $DEPENDENCY_REVIEW_RESULT" >&2
+            exit 1
+          fi
