@@ -32,16 +32,20 @@ Visit `http://localhost:4321`
 ## Browser checks
 
 `bun run verify` runs the existing quality checks. To run the browser regression
-suite locally, install the browsers once, then run the tests:
+suite locally from a clean checkout, install the browsers once, then build and
+run the tests:
 
 ```bash
 bunx playwright install --with-deps chromium firefox webkit
-bun run test:e2e
+bun run test:e2e:build
 ```
 
-The suite builds the site and starts its own preview server. CI runs it on pull
-requests. It checks responsive layouts, enlarged text, keyboard navigation,
-article overflow, client navigation, motion preferences, and touch feedback.
+`test:e2e:build` builds the site before running `bun run test:e2e`, which starts
+the suite's own preview server. After a build, `bun run test:e2e` runs the
+browsers against the existing `dist/`; that matches the CI sequence, where the
+Build step runs before the browser tests. CI runs the suite on pull requests. It
+checks responsive layouts, enlarged text, keyboard navigation, article overflow,
+client navigation, motion preferences, and touch feedback.
 
 ## CSS structure
 
