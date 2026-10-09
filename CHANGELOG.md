@@ -23,10 +23,10 @@ All notable changes to this site are documented in this file.
   press feedback, and disable hover movement when reduced motion is requested.
 - Scale focus outlines and social icons with text, and use `overflow: clip`
   for media card cropping without creating scroll containers.
-- Adopt `abijith-suresh/workflows` 0.7.0: the shared `ci.yml` replaces the
-  `bun-quality` call, every reusable workflow ref pins the 0.7.0 commit, and the
+- Adopt `abijith-suresh/workflows` 0.8.0: the shared `ci.yml` replaces the
+  `bun-quality` call, every reusable workflow ref pins the 0.8.0 commit, the
   inline browser-tests job makes way for the shared suite driven by the renamed
-  `test:e2e` script.
+  `test:e2e` script, and dependabot auto-merge now calls the shared workflow.
 - Configure Playwright to write an HTML report (`playwright-report/`) alongside
   its list output so failing CI runs upload a browsable failure artifact.
 
