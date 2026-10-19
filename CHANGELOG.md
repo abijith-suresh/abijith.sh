@@ -4,6 +4,13 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-19
+
+- Rewrite `AGENTS.md` as the standard agent brief: core promise, non-goals,
+  live status, working rules, sources of truth, and a repo map. Commit types
+  now point at `commitlint.config.ts` instead of restating the list, and the
+  Playwright suite is called out as separate from `bun run verify`.
+
 ### Changed — 2026-10-09
 
 - Run the browser suite against the existing build: `test:e2e` is now
