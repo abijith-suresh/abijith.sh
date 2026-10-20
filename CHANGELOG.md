@@ -4,6 +4,13 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-20
+
+- Tighten `AGENTS.md` to non-derivable content only: product intent, the
+  working agreements, and the traps that otherwise cost a build to discover —
+  `route-metadata` registration for new pages, generated icons in `public/`,
+  and the template frontmatter the strict schemas reject.
+
 ### Changed — 2026-10-19
 
 - Rewrite `AGENTS.md` as the standard agent brief: core promise, non-goals,
