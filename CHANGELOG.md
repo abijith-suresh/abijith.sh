@@ -6,17 +6,11 @@ All notable changes to this site are documented in this file.
 
 ### Changed — 2026-10-20
 
-- Tighten `AGENTS.md` to non-derivable content only: product intent, the
-  working agreements, and the traps that otherwise cost a build to discover —
-  `route-metadata` registration for new pages, generated icons in `public/`,
-  and the template frontmatter the strict schemas reject.
-
-### Changed — 2026-10-19
-
-- Rewrite `AGENTS.md` as the standard agent brief: core promise, non-goals,
-  live status, working rules, sources of truth, and a repo map. Commit types
-  now point at `commitlint.config.ts` instead of restating the list, and the
-  Playwright suite is called out as separate from `bun run verify`.
+- Split the repo documentation by purpose: `AGENTS.md` now covers only what the
+  project is and its philosophy, while the working agreements and the
+  non-derivable traps — `route-metadata` registration for new pages, generated
+  icons in `public/`, and the template frontmatter the strict schemas reject —
+  live in a new `CONTRIBUTING.md`.
 
 ### Changed — 2026-10-09
 
