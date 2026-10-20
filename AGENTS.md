@@ -1,42 +1,24 @@
-# Agent Instructions
+# abijith.sh — agent brief
 
-Personal portfolio and blog built with Astro.
+A personal portfolio and blog for Abijith Suresh.
 
-## Quick Start
+## The Project
 
-- `bun install` — install dependencies
-- `bun run dev` — start dev server
-- `bun run verify` — run type-check, lint, format check, tests, and build
+Core promise: a quiet home for ideas written in full sentences, where nothing competes with the text.
+What makes it special: the only publishing path is markdown in this repo — no CMS, no accounts, no client-side framework, one page shell. Restraint is the design: additions need a reason, and drafts may stay drafts.
+Non-goals: short-form feeds (reels, stories, threads); a CMS or admin surface; comments, accounts, or analytics.
+Status: live (content site) — deployed on Vercel at `abijith.sh`.
 
 ## Sources of Truth
 
-| What                                                   | Where                   |
-| ------------------------------------------------------ | ----------------------- |
-| Content schemas (frontmatter validation)               | `src/content.config.ts` |
-| Site-wide config (URLs, social links, nav, pagination) | `src/consts.ts`         |
-| Changelog — add dated entries under `## Unreleased`    | `CHANGELOG.md`          |
+| Fact | Where |
+|---|---|
+| Product intent | § The Project (this file) |
+| Runtime behavior | code + tests |
+| Commands & deps | package.json |
+| How to work here | CONTRIBUTING.md |
+| Content frontmatter | src/content.config.ts |
+| Site name, URLs, social links | src/consts.ts |
+| Changelog | CHANGELOG.md |
 
-Browse `src/components/` and `src/lib/` for existing patterns before introducing new abstractions.
-
-## Rules
-
-- Use `@/` path alias for all imports from `src/`.
-- Update `CHANGELOG.md` for every notable change. Add entries under
-  `## Unreleased`, grouped by the category that best describes the
-  change:
-  - `### Added` for new features
-  - `### Changed` for modifications to existing functionality
-  - `### Removed` for deleted files, dependencies, or features
-  - `### Fixed` for bug fixes
-    Each category header must include today's date
-    (e.g., `### Removed — YYYY-MM-DD`). If a subsection with today's
-    date and the same category already exists, append to it instead of
-    creating a duplicate.
-- Never create duplicate subsection headers for the same date in `CHANGELOG.md`.
-  If a subsection with today's date and category already exists, append entries
-  to it instead of creating a new one.
-- Prefer Goodreads links for book references.
-- Run `bun run verify` before every push.
-- Commit and PR titles must use Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `ci`).
-- Branch from the latest `main`; never commit directly to `main`.
-- Squash merge is the expected merge strategy.
+Code and tests are the authority; this file never overrides executable truth.
