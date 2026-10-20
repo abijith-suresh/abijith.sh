@@ -4,6 +4,14 @@ All notable changes to this site are documented in this file.
 
 ## Unreleased
 
+### Changed — 2026-10-20
+
+- Split the repo documentation by purpose: `AGENTS.md` now covers only what the
+  project is and its philosophy, while the working agreements and the
+  non-derivable traps — `route-metadata` registration for new pages, generated
+  icons in `public/`, and the template frontmatter the strict schemas reject —
+  live in a new `CONTRIBUTING.md`.
+
 ### Changed — 2026-10-09
 
 - Run the browser suite against the existing build: `test:e2e` is now
